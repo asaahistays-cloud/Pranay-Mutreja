@@ -5,17 +5,13 @@
     "BTC-USD": {
       "status": "watching",
       "range_high": 80891.43,
-      "range_low": 78357.57,
+      "range_low": 77832.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 78357.57,
-        "bar_time": 1787691600000
-      },
+      "last_alert": {},
       "trade_journal": [
         {
           "direction": "short",
@@ -181,7 +177,7 @@
     "NEAR-USD": {
       "status": "watching",
       "range_high": 1.9976,
-      "range_low": 1.854,
+      "range_low": 1.8309,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
