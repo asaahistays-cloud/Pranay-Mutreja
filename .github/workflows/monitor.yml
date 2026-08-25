@@ -1,5 +1,17 @@
 name: Multi-market monitor
 
+# Overlapping runs (native schedule + external cron-job.org triggers,
+# often seconds apart) were racing to commit state.json -- the loser of
+# each race got its changes silently discarded on `git pull --rebase`,
+# which is why setup_log entries were firing correctly (real alerts
+# went out) but never actually persisting. Serializing runs into a
+# single queue removes the race entirely instead of retrying around it:
+# each run starts from a checkout that already includes every prior
+# run's committed state, so there's nothing left to race against.
+concurrency:
+  group: monitor-bot-state
+  cancel-in-progress: false
+
 on:
   schedule:
     # Every 15 minutes: the regular crypto/US/India monitor loop.
@@ -13,10 +25,17 @@ on:
     # transitions (~early Nov, ~early Mar) if the scan starts firing
     # before the US market actually opens.
     - cron: "5 14 * * 1-5"
+    # Swing scan (India + US equities only, daily candles -- crypto is
+    # already covered 24/7 by the intraday scan, so it's excluded here).
+    # Once a day, weekdays only: 21:30 UTC is safely after both the
+    # India close (~10:00 UTC) and the US close (~20:00 UTC EDT / 21:00
+    # UTC EST) so that day's daily candle is fully closed on both
+    # markets. Same DST caveat as the US opening-range cron above.
+    - cron: "30 21 * * 1-5"
   workflow_dispatch:
     inputs:
       mode:
-        description: "monitor / india / us / report (for manual testing)"
+        description: "monitor / india / us / swing / report (for manual testing)"
         required: false
         default: "monitor"
 
@@ -46,6 +65,13 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python3 rank_movers.py us
+
+      - name: Swing scan (India + US, daily)
+        if: github.event.schedule == '30 21 * * 1-5' || github.event.inputs.mode == 'swing'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 swing.py
 
       - name: Trade performance report
         if: github.event.inputs.mode == 'report'
