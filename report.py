@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
 """
-Signal quality report -- every setup the bot has fired, whether or not
-the user took it, shadow-tracked to a real outcome and summarized: hit
-rate, P&L by currency, breakdown by setup type. Sends to Telegram and
-appends a dated snapshot to Trade Results.md (a permanent, ever-growing
-log committed to the repo -- laptop-independent, unlike a literal file
-on the Desktop which GitHub's cloud runners have no way to write to).
+Signal quality report -- answers one question: "if I had taken every
+trade the bot suggested today, would I be up or down, and how many
+were actually right vs wrong?" Every fired setup is shadow-tracked to
+a real outcome (hit its target/trailing-stop lock, or stopped out)
+using the exact same check_open() logic as a real position -- just
+silent -- regardless of whether the user actually took the trade.
+Sends to Telegram and appends a dated snapshot to Trade Results.md (a
+permanent, ever-growing log committed to the repo -- laptop-independent,
+unlike a literal file on the Desktop which GitHub's cloud runners have
+no way to write to).
 
-There used to also be a real-trade-performance section (from manually
-registering trades via Telegram commands) and a YOU vs BOT comparison,
-but the whole open/fill/skip/close tracking system was removed --
-trade_journal will never gain new entries, so those sections would only
-ever show stale data. Signal quality is the one section with real,
-current data every night, since it's fully automatic.
-
-Runs nightly at 12:00 AM IST via an external cron-job.org trigger
-(workflow_dispatch, mode=report), same reliable pattern as the other
-scheduled checks. Can also be triggered manually anytime for an
-on-demand snapshot. Never places trades -- read-only reporting.
+Scoped to the current IST calendar day, not all-time -- a setup fired
+minutes ago hasn't had time to hit its target or stop yet, so lumping
+it in with weeks of history would bury today's actual answer. Runs
+nightly at 12:00 AM IST via an external cron-job.org trigger
+(workflow_dispatch, mode=report). Can also be triggered manually
+anytime for an on-demand snapshot. Never places trades -- read-only
+reporting.
 """
 import os
 import sys
@@ -26,32 +26,42 @@ from datetime import datetime, timezone, timedelta
 import monitor
 
 RESULTS_FILE = os.path.join(os.path.dirname(__file__), "Trade Results.md")
+IST_OFFSET = timedelta(hours=5, minutes=30)
 
 
 def currency_for(symbol):
     return "INR" if symbol.endswith(".NS") else "USD"
 
 
-def build_setup_log_report():
-    """Every setup the bot has fired, whether or not the user took it,
-    shadow-tracked to a real outcome (hit its target / trailing stop
-    lock, or stopped out) using the exact same check_open() logic as a
-    real position -- just silent. Answers "does it actually reach the
-    expected profit" with real numbers instead of the alert's promise."""
-    state = monitor.load_state()
-    log = state.get("setup_log", [])
+def to_ist_date(iso_str):
+    dt = datetime.fromisoformat(iso_str)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return (dt + IST_OFFSET).strftime("%Y-%m-%d")
+
+
+def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY", day_ist=None):
+    """If you'd taken every trade the bot fired today, taken or not --
+    what's the real win/loss count and net P&L? Only setups fired
+    during the given IST calendar day (default: today) are counted, so
+    a fresh setup that hasn't had time to hit its target/stop yet shows
+    up as pending, not lumped into a stale all-time average."""
+    day_ist = day_ist or (datetime.now(timezone.utc) + IST_OFFSET).strftime("%Y-%m-%d")
+    log = [e for e in state.get(log_key, []) if to_ist_date(e["fired_at"]) == day_ist]
+
     if not log:
-        return "**SIGNAL QUALITY**\nNo setups logged yet."
+        return f"**{label}** ({day_ist})\nNo setups fired today."
 
     resolved = [e for e in log if e["resolved"]]
     pending = len(log) - len(resolved)
-    lines = ["**SIGNAL QUALITY** (every setup fired, taken or not -- shadow-tracked automatically)",
-              f"- Fired: {len(log)} | Resolved: {len(resolved)} | Still open: {pending}"]
+    lines = [f"**{label}** ({day_ist})",
+              f"- Suggested: {len(log)} trade(s) | Resolved: {len(resolved)} | Still playing out: {pending}"]
 
     if resolved:
         wins = [e for e in resolved if e["outcome"]["pnl_per_unit"] > 0]
+        losses = len(resolved) - len(wins)
         win_rate = len(wins) / len(resolved) * 100
-        lines.append(f"- Hit rate: {win_rate:.1f}% ({len(wins)}W / {len(resolved) - len(wins)}L)")
+        lines.append(f"- If you'd taken all {len(resolved)} resolved trades: {len(wins)} right, {losses} wrong ({win_rate:.0f}% correct)")
 
         by_currency = {}
         for e in resolved:
@@ -60,22 +70,24 @@ def build_setup_log_report():
                 cur = currency_for(e["symbol"])
                 by_currency[cur] = by_currency.get(cur, 0) + pnl_total
         for cur, total in by_currency.items():
-            lines.append(f"- Simulated P&L ({cur}): {total:+,.4g}")
+            sign = "profit" if total >= 0 else "loss"
+            lines.append(f"- Net {sign} ({cur}): {total:+,.4g}")
 
-        by_type = {}
         for e in resolved:
-            d = by_type.setdefault(e["type"], {"n": 0, "wins": 0})
-            d["n"] += 1
-            d["wins"] += 1 if e["outcome"]["pnl_per_unit"] > 0 else 0
-        for t, d in by_type.items():
-            wr = d["wins"] / d["n"] * 100 if d["n"] else 0
-            lines.append(f"  {t}: {d['n']} fired, {wr:.0f}% hit rate")
+            mark = "+" if e["outcome"]["pnl_per_unit"] > 0 else "-"
+            lines.append(f"  [{mark}] {e['symbol']} {e['type']} ({e['direction']}): {e['outcome']['pnl_total']:+,.4g}" if e["outcome"].get("pnl_total") is not None else f"  [{mark}] {e['symbol']} {e['type']} ({e['direction']})")
+    else:
+        lines.append("- None have hit their target or stop yet -- too soon to call any of them right or wrong.")
+
+    if pending:
+        lines.append(f"- {pending} trade(s) still open, not yet counted above: " +
+                      ", ".join(f"{e['symbol']} ({e['type']})" for e in log if not e["resolved"]))
 
     return "\n".join(lines)
 
 
 def append_to_file(report_text):
-    ist_now = datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
+    ist_now = datetime.now(timezone.utc) + IST_OFFSET
     header = f"## {ist_now.strftime('%Y-%m-%d %H:%M')} IST\n\n"
     entry = header + report_text + "\n\n---\n\n"
 
@@ -88,7 +100,8 @@ def append_to_file(report_text):
 
 
 def main():
-    report_text = build_setup_log_report()
+    state = monitor.load_state()
+    report_text = build_daily_report(state)
     append_to_file(report_text)
     monitor.send_telegram("TRADE PERFORMANCE REPORT\n\n" + report_text)
 
