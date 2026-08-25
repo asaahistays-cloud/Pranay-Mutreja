@@ -29,25 +29,30 @@ import monitor
 TOP_N = 15
 MIN_VALID_RESULTS = 5  # don't overwrite the watchlist on a thin/bad scan
 
+# India has no fractional-share support on the user's broker -- these are
+# genuinely liquid large/mid-caps that happen to trade at low absolute
+# prices (mostly PSU banks, PSU energy/infra, and other high-share-count
+# names), not thin/manipulable penny stocks. Roughly Rs.10-500/share.
 INDIA_UNIVERSE = [
-    "RELIANCE.NS", "HDFCBANK.NS", "ICICIBANK.NS", "INFY.NS", "TCS.NS",
-    "SBIN.NS", "ITC.NS", "LT.NS", "KOTAKBANK.NS", "AXISBANK.NS",
-    "BHARTIARTL.NS", "HINDUNILVR.NS", "BAJFINANCE.NS", "MARUTI.NS", "WIPRO.NS",
-    "ADANIENT.NS", "ADANIPORTS.NS", "APOLLOHOSP.NS", "ASIANPAINT.NS",
-    "BAJAJFINSV.NS", "BEL.NS", "CIPLA.NS", "COALINDIA.NS", "DRREDDY.NS",
-    "EICHERMOT.NS", "GRASIM.NS", "HCLTECH.NS", "HDFCLIFE.NS", "HEROMOTOCO.NS",
-    "HINDALCO.NS", "INDUSINDBK.NS", "JSWSTEEL.NS", "NESTLEIND.NS", "NTPC.NS",
-    "ONGC.NS", "POWERGRID.NS", "SBILIFE.NS", "SHRIRAMFIN.NS", "SUNPHARMA.NS",
-    "TATACONSUM.NS", "TATASTEEL.NS", "TECHM.NS", "TITAN.NS", "ULTRACEMCO.NS",
+    "PNB.NS", "BANKBARODA.NS", "CANBK.NS", "UNIONBANK.NS", "BANKINDIA.NS",
+    "IDFCFIRSTB.NS", "FEDERALBNK.NS", "INDIANB.NS", "IOB.NS", "IOC.NS",
+    "ONGC.NS", "GAIL.NS", "NTPC.NS", "POWERGRID.NS", "COALINDIA.NS",
+    "SAIL.NS", "NATIONALUM.NS", "NHPC.NS", "TATAPOWER.NS", "VEDL.NS",
+    "NMDC.NS", "HINDCOPPER.NS", "RECLTD.NS", "PFC.NS", "IRFC.NS",
+    "SUZLON.NS", "ETERNAL.NS", "PAYTM.NS", "IDEA.NS", "YESBANK.NS",
+    "RVNL.NS", "IRCON.NS", "HUDCO.NS", "BEL.NS", "BHEL.NS",
+    "GMRAIRPORT.NS", "JPPOWER.NS", "RPOWER.NS", "TRIDENT.NS", "JSWENERGY.NS",
 ]
 
+# User's broker supports fractional US shares, but they still want the
+# universe kept affordable per-share for consistency -- liquid names
+# mostly under ~$60-70.
 US_UNIVERSE = [
-    "AAPL", "MSFT", "NVDA", "TSLA", "AMZN", "GOOGL", "META", "JPM", "V",
-    "WMT", "DIS", "NFLX", "AMD", "INTC", "BA", "ORCL", "ADBE", "CRM",
-    "PYPL", "QCOM", "TXN", "HON", "UNH", "JNJ", "PFE", "MRK", "ABBV",
-    "XOM", "CVX", "KO", "PEP", "MCD", "NKE", "COST", "HD", "LOW", "GS",
-    "MS", "BAC", "WFC", "C", "T", "VZ", "CSCO", "IBM", "GE", "CAT",
-    "MMM", "UPS", "F", "GM",
+    "F", "GM", "INTC", "T", "VZ", "CSCO", "BAC", "WFC", "PFE", "KO",
+    "SOFI", "PLTR", "RIVN", "NIO", "SNAP", "PINS", "LYFT", "RIOT",
+    "MARA", "AAL", "CCL", "GOLD", "NCLH", "WBD", "CLF", "OXY", "KMI",
+    "NEM", "HBAN", "KEY", "RF", "SIRI", "DKNG", "HOOD", "UBER", "PYPL",
+    "NKE", "C", "DAL", "MO",
 ]
 
 
