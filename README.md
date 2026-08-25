@@ -1,13 +1,27 @@
-# BTC monitor bot
+# Multi-market monitor bot
 
-Runs on GitHub's servers every 15 minutes, checks BTC/USD on Coinbase, and
-sends a Telegram alert when something actionable happens. Never places
-trades -- alert only, same as the manual process this replaces.
+Runs on GitHub's servers every 15 minutes, checks **42 symbols across three
+markets** (12 crypto via Coinbase, 15 US equities + 15 Indian equities via
+Yahoo Finance), and sends a Telegram alert when something actionable
+happens on any of them. Never places trades -- alert only, same as the
+manual process this replaces.
 
 Works even when your laptop is off, because nothing runs on your machine --
 GitHub's own infrastructure runs the schedule.
 
-## What it does (v2)
+**Indian equities are analysis-only** -- TradingView's paper account
+doesn't support NSE symbols (confirmed by testing), so those alerts are
+labeled accordingly. US equities and crypto both support the full
+propose -> trade -> track loop.
+
+US and Indian markets have trading hours; a staleness check skips a
+symbol for the cycle if its latest bar is too old, rather than firing a
+false signal off data from a closed market.
+
+The full watchlist is the `WATCHLIST` constant near the top of
+`monitor.py` -- edit it directly (add/remove symbols) whenever you want.
+
+## What it does (v3)
 
 - **Breakout/breakdown**: confirmed 15m close beyond the range, with
   volume above the recent average AND price on the correct side of its
@@ -69,15 +83,17 @@ closed.
 
 ## Editing the strategy
 
-`state.json` holds the current range (`range_high`/`range_low`), your
-`capital_usd` (used for position sizing), `consecutive_losses` (auto-tracked),
-and, if a trade is open, `direction`/`entry_price`/`stop_loss`. You (or a
-future chat with Claude) can hand-edit this file directly in GitHub's web UI
-or via git to update the range as the market moves, or to mark a position as
+`state.json` has a top-level `capital_usd` (used for position sizing across
+all symbols) and a `symbols` dict, one entry per symbol in the watchlist --
+each with its own range, status, and (if open) direction/entry/stop. You
+(or a future chat with Claude) can hand-edit any symbol's entry directly in
+GitHub's web UI or via git to update its range, or to mark a position as
 "open" after you place it manually, mirroring exactly how the manual monitor
-in chat has been doing it. When status is "closed", the bot leaves it alone
-on purpose -- someone has to consciously set a fresh range and status back
-to "watching" rather than it silently re-arming itself.
+in chat has been doing it. When a symbol's status is "closed", the bot
+leaves it alone on purpose -- someone has to consciously set a fresh range
+and status back to "watching" rather than it silently re-arming itself. A
+symbol not yet in `state.json` gets seeded automatically from its own
+recent price action the first time the bot sees it.
 
 `monitor.py` has the actual logic -- plain, dependency-free Python. See the
 module docstring at the top of the file for the full rundown of what's

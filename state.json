@@ -1,13 +1,352 @@
 {
-  "status": "open",
-  "range_high": 80924,
-  "range_low": 80322,
-  "direction": "short",
-  "entry_price": 79781.99,
-  "stop_loss": 80178.71,
-  "extreme_since_entry": 79781.99,
   "capital_usd": 122.11,
-  "consecutive_losses": 0,
-  "last_alert": {},
-  "trade_journal": []
+  "symbols": {
+    "BTC-USD": {
+      "status": "watching",
+      "range_high": 80529,
+      "range_low": 79370,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": [
+        {"direction": "short", "entry": 79781.99, "exit": 80180, "pnl_per_unit": -398, "exit_reason": "stop_hit", "note": "manually placed and manually closed via TradingView paper account -- stop executed on price touch (wick to 80,203.9), not candle close"}
+      ]
+    },
+    "ETH-USD": {
+      "status": "watching",
+      "range_high": 2514.72,
+      "range_low": 2463.63,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "SOL-USD": {
+      "status": "watching",
+      "range_high": 102.43,
+      "range_low": 99.49,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "XRP-USD": {
+      "status": "watching",
+      "range_high": 1.5259,
+      "range_low": 1.4739,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "ADA-USD": {
+      "status": "watching",
+      "range_high": 0.22795,
+      "range_low": 0.21881,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "DOGE-USD": {
+      "status": "watching",
+      "range_high": 0.09296,
+      "range_low": 0.09011,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "AVAX-USD": {
+      "status": "watching",
+      "range_high": 7.688,
+      "range_low": 7.481,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "LINK-USD": {
+      "status": "watching",
+      "range_high": 11.823,
+      "range_low": 11.489,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "DOT-USD": {
+      "status": "watching",
+      "range_high": 0.919,
+      "range_low": 0.8925,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "LTC-USD": {
+      "status": "watching",
+      "range_high": 52.743,
+      "range_low": 51.313,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "NEAR-USD": {
+      "status": "watching",
+      "range_high": 1.9976,
+      "range_low": 1.9046,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "SUI-USD": {
+      "status": "watching",
+      "range_high": 0.8302,
+      "range_low": 0.7977,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "RELIANCE.NS": {
+      "status": "watching",
+      "range_high": 1306.0,
+      "range_low": 1301.0999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787645700000
+      },
+      "trade_journal": []
+    },
+    "HDFCBANK.NS": {
+      "status": "watching",
+      "range_high": 727.5,
+      "range_low": 722.5,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "ICICIBANK.NS": {
+      "status": "watching",
+      "range_high": 1423.9000244140625,
+      "range_low": 1415.0999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "INFY.NS": {
+      "status": "watching",
+      "range_high": 1130.800048828125,
+      "range_low": 1120.5999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787645700000
+      },
+      "trade_journal": []
+    },
+    "TCS.NS": {
+      "status": "watching",
+      "range_high": 2288.699951171875,
+      "range_low": 2271.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "SBIN.NS": {
+      "status": "watching",
+      "range_high": 1044.0,
+      "range_low": 1037.0999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787645700000
+      },
+      "trade_journal": []
+    },
+    "ITC.NS": {
+      "status": "watching",
+      "range_high": 270.3999938964844,
+      "range_low": 268.20001220703125,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "LT.NS": {
+      "status": "watching",
+      "range_high": 4092.89990234375,
+      "range_low": 4075.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787645700000
+      },
+      "trade_journal": []
+    },
+    "KOTAKBANK.NS": {
+      "status": "watching",
+      "range_high": 401.3500061035156,
+      "range_low": 399.54998779296875,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "AXISBANK.NS": {
+      "status": "watching",
+      "range_high": 1234.800048828125,
+      "range_low": 1230.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787645700000
+      },
+      "trade_journal": []
+    },
+    "BHARTIARTL.NS": {
+      "status": "watching",
+      "range_high": 1940.5999755859375,
+      "range_low": 1930.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787645700000
+      },
+      "trade_journal": []
+    },
+    "HINDUNILVR.NS": {
+      "status": "watching",
+      "range_high": 2026.199951171875,
+      "range_low": 2012.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "BAJFINANCE.NS": {
+      "status": "watching",
+      "range_high": 1081.4000244140625,
+      "range_low": 1075.800048828125,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "MARUTI.NS": {
+      "status": "watching",
+      "range_high": 13548.0,
+      "range_low": 13450.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "WIPRO.NS": {
+      "status": "watching",
+      "range_high": 180.0,
+      "range_low": 178.6999969482422,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787645700000
+      },
+      "trade_journal": []
+    }
+  }
 }
