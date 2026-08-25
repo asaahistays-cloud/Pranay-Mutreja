@@ -297,6 +297,13 @@ def sync_fills(state):
                                         -- same, but with exact entry/stop
                                          (and optionally qty) instead of
                                          the auto-fetched approximation
+      close SYMBOL [price]             -- you exited manually (took
+                                         profit, changed your mind, etc.)
+                                         outside of a stop/target hit --
+                                         logs it as a real trade and
+                                         re-arms to watching. Price
+                                         defaults to the latest fetched
+                                         price if omitted.
 
     Runs at the top of every invocation, regardless of mode, so a
     correction lands as fast as possible. Only messages from the
@@ -408,7 +415,37 @@ def sync_fills(state):
             open_position(sym_state, direction, entry, stop, qty, None)
             send_telegram(f"{symbol} now tracked -- {direction}, entry {entry:,.4g}, stop {stop:,.4g}, qty {qty:.6g}. You'll get trail/stop updates until it closes.")
 
-        elif cmd in ("fill", "skip", "open"):
+        elif cmd == "close" and len(parts) >= 2:
+            symbol = resolve_symbol(parts[1], symbols_state)
+            sym_state = symbols_state.get(symbol) if symbol else None
+            if not sym_state or sym_state.get("status") != "open":
+                send_telegram(f"sync: no open position found for '{parts[1]}'")
+                continue
+            if len(parts) >= 3:
+                try:
+                    close_price = float(parts[2])
+                except ValueError:
+                    send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: close SYMBOL [price]")
+                    continue
+            else:
+                market = market_for(symbol)
+                try:
+                    bars = fetch_klines(symbol, market, limit=5)
+                    close_price = bars[-1]["close"]
+                except Exception as e:
+                    send_telegram(f"sync: couldn't fetch price for {symbol} ({e}) -- try: close {symbol} price")
+                    continue
+            direction = sym_state["direction"]
+            entry = sym_state["entry_price"]
+            qty = sym_state.get("entry_qty")
+            pnl = (close_price - entry) if direction == "long" else (entry - close_price)
+            log_trade(sym_state, direction, entry, close_price, pnl, "manual_close")
+            sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
+            rearm_to_watching(sym_state)
+            pnl_str = f"{pnl * qty:+,.4g}" if qty else f"{pnl:+,.4g}/unit"
+            send_telegram(f"{symbol} closed manually @ {close_price:,.4g} -- P&L {pnl_str}. Back to watching.")
+
+        elif cmd in ("fill", "skip", "open", "close"):
             # Right command, wrong number of args -- e.g. "fill dot" with
             # no price. Anything unmatched falls all the way through
             # silently otherwise (the offset still advances so the update
