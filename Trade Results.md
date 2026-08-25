@@ -120,3 +120,41 @@ No setups logged yet.
 
 ---
 
+## 2026-08-26 02:59 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-08-26)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-08-26)
+- Suggested: 14 trade(s) | Resolved: 8 | Still playing out: 6
+- If you'd taken all 8 resolved trades: 3 right, 5 wrong (38% correct)
+- Net loss (USD): -3.826
+  [-] ADA-USD range_long_rejection (long): -2.054
+  [+] NEAR-USD breakdown_short (short): +0.4637
+  [-] ADA-USD range_long_rejection (long): -1.658
+  [-] DOT-USD range_long_rejection (long): -1.379
+  [+] ADA-USD breakdown_short (short): +0.6654
+  [-] ETH-USD breakdown_short (short): -0.01408
+  [-] NEAR-USD breakdown_short (short): -0.3435
+  [+] SUI-USD breakdown_short (short): +0.4932
+- 6 trade(s) still open, not yet counted above: XRP-USD (breakdown_short), DOGE-USD (breakdown_short), SUI-USD (breakdown_short), LINK-USD (breakdown_short), SOL-USD (breakdown_short), XRP-USD (breakdown_short)
+
+**US -- SIGNAL QUALITY** (2026-08-26)
+- Suggested: 17 trade(s) | Resolved: 11 | Still playing out: 6
+- If you'd taken all 11 resolved trades: 2 right, 9 wrong (18% correct)
+- Net loss (USD): -4.002
+  [-] SOFI range_short_rejection (short): -0.9052
+  [+] SNAP breakout_long (long): +0.8951
+  [-] RIVN breakout_long (long): -0.238
+  [-] AAL range_short_rejection (short): -0.6548
+  [-] MARA breakout_long (long): -0.9938
+  [-] NKE breakdown_short (short): -0.4951
+  [-] RIVN range_short_rejection (short): -0.02975
+  [-] UBER breakout_long (long): -0.3677
+  [+] NEM breakout_long (long): +0.0965
+  [-] AAL range_short_rejection (short): -0.6914
+  [-] AAL range_short_rejection (short): -0.6182
+- 6 trade(s) still open, not yet counted above: HOOD (breakout_long), SOFI (breakout_long), MARA (range_short_rejection), RIVN (range_short_rejection), NKE (range_long_rejection), AAL (breakout_long)
+
+---
+
