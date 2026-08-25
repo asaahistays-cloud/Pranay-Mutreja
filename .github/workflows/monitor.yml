@@ -68,5 +68,15 @@ jobs:
           if ! git diff --quiet -- state.json; then
             git add state.json
             git commit -m "Update state [skip ci]"
-            git push
+            # With 4 cron triggers now firing independently, two runs can
+            # occasionally overlap and race to push. Retry with a rebase
+            # a few times before giving up, instead of failing outright.
+            for i in 1 2 3 4 5; do
+              if git push; then
+                break
+              fi
+              echo "Push rejected (attempt $i), pulling and retrying..."
+              git pull --rebase origin main
+              sleep 2
+            done
           fi

@@ -11,7 +11,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787659200000
+      },
       "trade_journal": [
         {
           "direction": "short",
@@ -41,8 +44,8 @@
       "range_low": 99.07,
       "direction": "short",
       "entry_price": 98.72,
-      "stop_loss": 99.10,
-      "extreme_since_entry": 98.72,
+      "stop_loss": 98.7275,
+      "extreme_since_entry": 97.79,
       "consecutive_losses": 0,
       "last_alert": {
         "type": "breakdown_short",
@@ -60,7 +63,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787659200000
+      },
       "trade_journal": []
     },
     "ADA-USD": {
@@ -72,7 +78,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787659200000
+      },
       "trade_journal": []
     },
     "DOGE-USD": {
@@ -84,7 +93,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787659200000
+      },
       "trade_journal": []
     },
     "AVAX-USD": {
@@ -108,7 +120,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787659200000
+      },
       "trade_journal": []
     },
     "DOT-USD": {
@@ -120,7 +135,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 0.891,
+        "bar_time": 1787659200000
+      },
       "trade_journal": []
     },
     "LTC-USD": {
@@ -132,7 +151,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787659200000
+      },
       "trade_journal": []
     },
     "NEAR-USD": {
@@ -156,7 +178,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787659200000
+      },
       "trade_journal": []
     },
     "RELIANCE.NS": {

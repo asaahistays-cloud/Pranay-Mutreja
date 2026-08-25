@@ -211,9 +211,11 @@ def position_size(capital_usd, entry, stop, consecutive_losses):
 def send_heartbeat(symbol, sym_state, close):
     """Unconditional status update, every run, regardless of whether
     anything's actionable -- mirrors the running commentary given in chat
-    each cycle ('still range-bound, staying silent' etc). Only used for
-    BTC-USD per the user's explicit request -- everything else stays
-    alert-only to avoid noise."""
+    each cycle ('still range-bound, staying silent' etc). Used for BTC-USD
+    always (per the user's original request), and for any symbol while
+    it's in an open position (per a later request to get 5-minute updates
+    on whatever's actually open, not just BTC). Everything else (watching,
+    non-BTC) stays alert-only to avoid noise."""
     status = sym_state.get("status", "watching")
     if status == "open":
         direction = sym_state["direction"]
@@ -429,7 +431,7 @@ def main():
             check_open(symbol, tradable, sym_state, closed_bars, last_closed)
         # "closed" left alone -- a human/chat consciously re-arms it
 
-        if symbol == "BTC-USD":
+        if symbol == "BTC-USD" or sym_state.get("status") == "open":
             send_heartbeat(symbol, sym_state, last_closed["close"])
 
     save_state(state)
