@@ -168,7 +168,7 @@
     "SUI-USD": {
       "status": "watching",
       "range_high": 0.8302,
-      "range_low": 0.7749,
+      "range_low": 0.7729,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -648,16 +648,13 @@
     "NKE": {
       "status": "watching",
       "range_high": 41.099998474121094,
-      "range_low": 39.40999984741211,
+      "range_low": 39.330501556396484,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787686200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "NEM": {
@@ -1329,18 +1326,42 @@
       "target": null,
       "qty": 756.143667296784,
       "fired_at": "2026-08-25T19:15:27.080888+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "short",
-        "entry_price": 0.21517,
-        "entry_qty": 756.143667296784,
-        "stop_loss": 0.213833,
-        "extreme_since_entry": 0.21326,
-        "peak_profit_per_unit": 0.001909999999999995,
+        "entry": 0.21517,
+        "exit": 0.21429,
+        "qty": 756.143667296784,
+        "pnl_per_unit": 0.0008799999999999919,
+        "pnl_total": 0.6654064272211637,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-25T20:15:26.868704+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 0.21517,
+            "exit": 0.21429,
+            "qty": 756.143667296784,
+            "pnl_per_unit": 0.0008799999999999919,
+            "pnl_total": 0.6654064272211637,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-25T20:15:26.868704+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "range_high": 0.21589,
+        "range_low": 0.21304
       }
     },
     {
@@ -1640,8 +1661,8 @@
         "entry_price": 39.58000183105469,
         "entry_qty": 2.526528432890052,
         "stop_loss": 39.404045854296,
-        "extreme_since_entry": 39.58000183105469,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 39.59000015258789,
+        "peak_profit_per_unit": 0.009998321533203125,
         "take_profit_target": 41.099998474121094,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1709,8 +1730,8 @@
         "entry_price": 1.8653,
         "entry_qty": 92.83819628647144,
         "stop_loss": 1.8760714285714286,
-        "extreme_since_entry": 1.8653,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 1.8636,
+        "peak_profit_per_unit": 0.0017000000000000348,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1731,7 +1752,7 @@
         "direction": "short",
         "entry_price": 0.7733,
         "entry_qty": 136.98630136986353,
-        "stop_loss": 0.7806,
+        "stop_loss": 0.7792553571428571,
         "extreme_since_entry": 0.7733,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
