@@ -119,7 +119,30 @@ def save_state(state):
         json.dump(state, f, indent=2)
 
 
-def send_telegram(text):
+def fetch_news(symbol, limit=2):
+    """A couple of recent headlines for the symbol, via Yahoo's free search
+    endpoint (same data source already used for equity prices -- no new
+    API/key needed). Best-effort: returns [] on any failure rather than
+    breaking the alert that's asking for it."""
+    query = symbol.replace("-USD", "").replace(".NS", "")
+    url = f"https://query1.finance.yahoo.com/v1/finance/search?q={query}&newsCount={limit}&quotesCount=0"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read())
+        return [item["title"] for item in data.get("news", [])[:limit] if item.get("title")]
+    except Exception as e:
+        print(f"{symbol}: news fetch failed ({e})")
+        return []
+
+
+def send_telegram(text, symbol=None, price=None):
+    if symbol is not None and price is not None:
+        text += f"\n\nCurrent price: {price:,.4g}"
+        headlines = fetch_news(symbol)
+        if headlines:
+            text += "\nRecent news:\n" + "\n".join(f"- {h}" for h in headlines)
+
     if not BOT_TOKEN or not CHAT_ID:
         print("WARNING: TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID not set, skipping send.")
         print(text)
@@ -171,6 +194,29 @@ def position_size(capital_usd, entry, stop, consecutive_losses):
     return risk_amount / stop_distance
 
 
+def send_heartbeat(symbol, sym_state, close):
+    """Unconditional status update, every run, regardless of whether
+    anything's actionable -- mirrors the running commentary given in chat
+    each cycle ('still range-bound, staying silent' etc). Only used for
+    BTC-USD per the user's explicit request -- everything else stays
+    alert-only to avoid noise."""
+    status = sym_state.get("status", "watching")
+    if status == "open":
+        direction = sym_state["direction"]
+        entry = sym_state["entry_price"]
+        stop = sym_state["stop_loss"]
+        text = (
+            f"{symbol} update -- {direction} open\n"
+            f"Entry: {entry:,.4g} | Current: {close:,.4g} | Stop: {stop:,.4g}"
+        )
+    else:
+        text = (
+            f"{symbol} update -- watching\n"
+            f"Current: {close:,.4g} | Range: {sym_state.get('range_low'):,.4g} - {sym_state.get('range_high'):,.4g}"
+        )
+    send_telegram(text)
+
+
 def default_symbol_state(closed_bars):
     recent_high = max(b["high"] for b in closed_bars[-10:])
     recent_low = min(b["low"] for b in closed_bars[-10:])
@@ -207,7 +253,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         send_telegram(
             f"{symbol} BREAKOUT (confirmed close){tag}\n\n"
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
-            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g})."
+            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).",
+            symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
         return
@@ -222,7 +269,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         send_telegram(
             f"{symbol} BREAKDOWN (confirmed close){tag}\n\n"
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
-            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g})."
+            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).",
+            symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
         return
@@ -237,7 +285,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"{symbol} RANGE REJECTION (bullish){tag}\n\n"
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
                 f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half -- "
-                f"target range high {range_high:,.4g}."
+                f"target range high {range_high:,.4g}.",
+                symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
         return
@@ -252,7 +301,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"{symbol} RANGE REJECTION (bearish){tag}\n\n"
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
                 f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half -- "
-                f"target range low {range_low:,.4g}."
+                f"target range low {range_low:,.4g}.",
+                symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
         return
@@ -280,7 +330,7 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         extreme = max(extreme, last_closed["high"])
         sym_state["extreme_since_entry"] = extreme
         if close < stop:
-            send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.")
+            send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
             sym_state["status"] = "closed"
             pnl = close - entry
             sym_state.setdefault("trade_journal", []).append({"direction": "long", "entry": entry, "exit": close, "pnl_per_unit": pnl, "exit_reason": "stop_hit"})
@@ -289,18 +339,18 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         candidate_stop = extreme - 1.5 * n
         if candidate_stop > stop * 1.001:
             sym_state["stop_loss"] = candidate_stop
-            send_telegram(f"{symbol} long -- trail your stop{tag}\n\nNew high {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g}.")
+            send_telegram(f"{symbol} long -- trail your stop{tag}\n\nNew high {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g}.", symbol=symbol, price=close)
             return
         profit = close - entry
         giveback = extreme - close
         if profit > 1.5 * n and giveback > 0.5 * (extreme - entry):
-            send_telegram(f"{symbol} long -- consider taking profit{tag}\n\nRan to {extreme:,.4g}, now {close:,.4g} -- given back over half the move. Still in profit; your call.")
+            send_telegram(f"{symbol} long -- consider taking profit{tag}\n\nRan to {extreme:,.4g}, now {close:,.4g} -- given back over half the move. Still in profit; your call.", symbol=symbol, price=close)
 
     elif direction == "short":
         extreme = min(extreme, last_closed["low"])
         sym_state["extreme_since_entry"] = extreme
         if close > stop:
-            send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.")
+            send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
             sym_state["status"] = "closed"
             pnl = entry - close
             sym_state.setdefault("trade_journal", []).append({"direction": "short", "entry": entry, "exit": close, "pnl_per_unit": pnl, "exit_reason": "stop_hit"})
@@ -309,12 +359,12 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         candidate_stop = extreme + 1.5 * n
         if candidate_stop < stop * 0.999:
             sym_state["stop_loss"] = candidate_stop
-            send_telegram(f"{symbol} short -- trail your stop{tag}\n\nNew low {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g}.")
+            send_telegram(f"{symbol} short -- trail your stop{tag}\n\nNew low {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g}.", symbol=symbol, price=close)
             return
         profit = entry - close
         giveback = close - extreme
         if profit > 1.5 * n and giveback > 0.5 * (entry - extreme):
-            send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nRan to {extreme:,.4g}, now {close:,.4g} -- given back over half the move. Still in profit; your call.")
+            send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nRan to {extreme:,.4g}, now {close:,.4g} -- given back over half the move. Still in profit; your call.", symbol=symbol, price=close)
 
 
 def main():
@@ -348,6 +398,9 @@ def main():
         elif status == "open":
             check_open(symbol, tradable, sym_state, closed_bars, last_closed)
         # "closed" left alone -- a human/chat consciously re-arms it
+
+        if symbol == "BTC-USD":
+            send_heartbeat(symbol, sym_state, last_closed["close"])
 
     save_state(state)
 
