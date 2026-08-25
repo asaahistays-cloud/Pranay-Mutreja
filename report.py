@@ -40,14 +40,28 @@ def to_ist_date(iso_str):
     return (dt + IST_OFFSET).strftime("%Y-%m-%d")
 
 
-def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY", day_ist=None):
+def market_of(symbol):
+    if symbol.endswith(".NS"):
+        return "india"
+    if "-USD" in symbol:
+        return "crypto"
+    return "us"
+
+
+def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY", day_ist=None, market=None):
     """If you'd taken every trade the bot fired today, taken or not --
     what's the real win/loss count and net P&L? Only setups fired
     during the given IST calendar day (default: today) are counted, so
     a fresh setup that hasn't had time to hit its target/stop yet shows
-    up as pending, not lumped into a stale all-time average."""
+    up as pending, not lumped into a stale all-time average. Pass
+    market="india"/"crypto"/"us" to scope the report to just that
+    market -- each one now runs different entry logic (see
+    monitor.check_watching()), so blending them into one number hides
+    which market is actually driving the result."""
     day_ist = day_ist or (datetime.now(timezone.utc) + IST_OFFSET).strftime("%Y-%m-%d")
     log = [e for e in state.get(log_key, []) if to_ist_date(e["fired_at"]) == day_ist]
+    if market:
+        log = [e for e in log if market_of(e["symbol"]) == market]
 
     if not log:
         return f"**{label}** ({day_ist})\nNo setups fired today."
@@ -101,7 +115,12 @@ def append_to_file(report_text):
 
 def main():
     state = monitor.load_state()
-    report_text = build_daily_report(state)
+    sections = [
+        build_daily_report(state, label="INDIA -- SIGNAL QUALITY", market="india"),
+        build_daily_report(state, label="CRYPTO -- SIGNAL QUALITY", market="crypto"),
+        build_daily_report(state, label="US -- SIGNAL QUALITY", market="us"),
+    ]
+    report_text = "\n\n".join(sections)
     append_to_file(report_text)
     monitor.send_telegram("TRADE PERFORMANCE REPORT\n\n" + report_text)
 
