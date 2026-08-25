@@ -27,24 +27,20 @@
     "ETH-USD": {
       "status": "watching",
       "range_high": 2514.72,
-      "range_low": 2442.4,
+      "range_low": 2415.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 2442.4,
-        "bar_time": 1787691600000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "pending": null
     },
     "SOL-USD": {
       "status": "watching",
       "range_high": 99.84,
-      "range_low": 97.07,
+      "range_low": 95.34,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -52,11 +48,7 @@
       "extreme_since_entry": null,
       "peak_profit_per_unit": 0,
       "consecutive_losses": 1,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 97.07,
-        "bar_time": 1787691600000
-      },
+      "last_alert": {},
       "trade_journal": [
         {
           "direction": "short",
@@ -75,7 +67,7 @@
     "XRP-USD": {
       "status": "watching",
       "range_high": 1.5259,
-      "range_low": 1.4537,
+      "range_low": 1.4056,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -120,7 +112,7 @@
     "AVAX-USD": {
       "status": "watching",
       "range_high": 7.688,
-      "range_low": 7.404,
+      "range_low": 7.237,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
