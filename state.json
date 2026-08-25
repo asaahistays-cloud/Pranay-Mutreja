@@ -10,7 +10,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 79339.0,
+        "bar_time": 1787651100000
+      },
       "trade_journal": [
         {
           "direction": "short",
@@ -25,7 +29,7 @@
     "ETH-USD": {
       "status": "watching",
       "range_high": 2514.72,
-      "range_low": 2463.63,
+      "range_low": 2461.92,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -37,7 +41,7 @@
     "SOL-USD": {
       "status": "watching",
       "range_high": 102.43,
-      "range_low": 99.49,
+      "range_low": 99.22,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -49,7 +53,7 @@
     "XRP-USD": {
       "status": "watching",
       "range_high": 1.5259,
-      "range_low": 1.4739,
+      "range_low": 1.47,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -67,13 +71,17 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 0.21881,
+        "bar_time": 1787651100000
+      },
       "trade_journal": []
     },
     "DOGE-USD": {
       "status": "watching",
       "range_high": 0.09296,
-      "range_low": 0.09011,
+      "range_low": 0.08979,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -109,7 +117,7 @@
     "DOT-USD": {
       "status": "watching",
       "range_high": 0.919,
-      "range_low": 0.8925,
+      "range_low": 0.891,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -127,7 +135,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 51.313,
+        "bar_time": 1787651100000
+      },
       "trade_journal": []
     },
     "NEAR-USD": {
@@ -145,7 +157,7 @@
     "SUI-USD": {
       "status": "watching",
       "range_high": 0.8302,
-      "range_low": 0.7977,
+      "range_low": 0.7955,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
