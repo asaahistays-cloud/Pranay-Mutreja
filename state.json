@@ -10,10 +10,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787652000000
-      },
+      "last_alert": {},
       "trade_journal": [
         {
           "direction": "short",
