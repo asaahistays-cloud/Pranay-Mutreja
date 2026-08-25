@@ -251,6 +251,14 @@ def send_heartbeat(symbol, sym_state, close):
     send_telegram(text)
 
 
+def market_for(symbol):
+    if any(e["symbol"] == symbol for e in CRYPTO_WATCHLIST):
+        return "crypto"
+    if symbol.endswith(".NS"):
+        return "india"
+    return "us"
+
+
 def resolve_symbol(raw, symbols_state):
     raw = raw.strip().upper()
     for candidate in (raw, f"{raw}-USD", f"{raw}.NS"):
@@ -275,13 +283,20 @@ def sync_fills(state):
       skip SYMBOL                      -- this alert wasn't actually
                                          taken; stop tracking it without
                                          logging a fake trade
-      open SYMBOL long|short entry stop [qty]
-                                        -- register a trade that didn't
+      open SYMBOL long|short           -- register a trade that didn't
                                          come from a bot alert at all
                                          (started entirely off your own
                                          read of the chart) so it still
                                          gets trailing-stop/stop-hit
-                                         tracking from here on
+                                         tracking from here on. Entry is
+                                         fetched off the latest closed
+                                         bar and the stop is the same
+                                         ATR-based formula a real signal
+                                         would have used.
+      open SYMBOL long|short entry stop [qty]
+                                        -- same, but with exact entry/stop
+                                         (and optionally qty) instead of
+                                         the auto-fetched approximation
 
     Runs at the top of every invocation, regardless of mode, so a
     correction lands as fast as possible. Only messages from the
@@ -344,7 +359,7 @@ def sync_fills(state):
             rearm_to_watching(sym_state)
             send_telegram(f"{symbol}: marked not taken, back to watching (no trade logged).")
 
-        elif cmd == "open" and len(parts) >= 5:
+        elif cmd == "open" and len(parts) >= 3:
             symbol = resolve_symbol(parts[1], symbols_state)
             sym_state = symbols_state.get(symbol) if symbol else None
             if not sym_state:
@@ -355,15 +370,38 @@ def sync_fills(state):
                 continue
             direction = parts[2].lower()
             if direction not in ("long", "short"):
-                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short entry stop [qty]")
+                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short [entry stop [qty]]")
                 continue
-            try:
-                entry = float(parts[3])
-                stop = float(parts[4])
-                qty = float(parts[5]) if len(parts) >= 6 else None
-            except ValueError:
-                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short entry stop [qty]")
-                continue
+
+            qty = None
+            if len(parts) >= 5:
+                try:
+                    entry = float(parts[3])
+                    stop = float(parts[4])
+                    qty = float(parts[5]) if len(parts) >= 6 else None
+                except ValueError:
+                    send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short [entry stop [qty]]")
+                    continue
+            else:
+                # No entry/stop given -- fetch the latest price and derive
+                # a stop with the same ATR-based formula a real breakout
+                # signal would have used, so a purely self-initiated trade
+                # gets a sane stop instead of none at all.
+                market = market_for(symbol)
+                try:
+                    bars = fetch_klines(symbol, market, limit=30)
+                except Exception as e:
+                    send_telegram(f"sync: couldn't fetch price for {symbol} ({e}) -- try: open {symbol} {direction} entry stop [qty]")
+                    continue
+                if len(bars) < 15:
+                    send_telegram(f"sync: not enough data for {symbol} -- try: open {symbol} {direction} entry stop [qty]")
+                    continue
+                closed_bars = bars[:-1]
+                last_closed = closed_bars[-1]
+                entry = last_closed["close"]
+                n = atr(closed_bars)
+                stop = last_closed["low"] - 0.5 * n if direction == "long" else last_closed["high"] + 0.5 * n
+
             if qty is None:
                 capital = state.get("capital_inr", 100) if symbol.endswith(".NS") else state.get("capital_usd", 100)
                 qty = position_size(capital, entry, stop, sym_state.get("consecutive_losses", 0))
