@@ -51,3 +51,17 @@ No setups logged yet.
 
 ---
 
+## 2026-08-26 01:10 IST
+
+**TODAY'S SIGNAL QUALITY** (2026-08-26)
+- Suggested: 20 trade(s) | Resolved: 4 | Still playing out: 16
+- If you'd taken all 4 resolved trades: 1 right, 3 wrong (25% correct)
+- Net loss (USD): -1.673
+  [+] NEAR-USD breakdown_short (short): +0.4637
+  [-] SOFI range_short_rejection (short): -0.9052
+  [-] RIVN breakout_long (long): -0.238
+  [-] MARA breakout_long (long): -0.9938
+- 16 trade(s) still open, not yet counted above: ADA-USD (range_long_rejection), HOOD (breakout_long), SNAP (breakout_long), AAL (range_short_rejection), ADA-USD (range_long_rejection), DOT-USD (range_long_rejection), NKE (breakdown_short), SOFI (breakout_long), ADA-USD (breakdown_short), RIVN (range_short_rejection), UBER (breakout_long), NEM (breakout_long), AAL (range_short_rejection), MARA (range_short_rejection), RIVN (range_short_rejection), AAL (range_short_rejection)
+
+---
+
