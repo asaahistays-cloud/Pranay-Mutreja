@@ -534,11 +534,14 @@ def open_position(sym_state, direction, entry_price, stop, qty, take_profit_targ
 # ---------------------------------------------------------------- logic ----
 
 def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital):
-    """Returns the fully-formed alert text for a fired signal (with price
-    and news already baked in via build_alert_text), or None if nothing
-    fired. Does NOT send -- main() collects these across the whole scan
-    and sends them as one batched message, instead of one Telegram
-    message per symbol."""
+    """Returns None if nothing fired, or a dict for a fired signal:
+    {"text": <fully-formed alert text, price/news already baked in>,
+     "type", "direction", "entry", "stop", "qty", "target"} -- the
+    structured fields are what main() uses to open a shadow-tracking
+    entry (see setup_log) so every fired setup's real outcome gets
+    recorded whether or not the user takes it. Does NOT send -- main()
+    collects the text across the whole scan and sends it as one batched
+    message instead of one Telegram send per symbol."""
     range_high = sym_state["range_high"]
     range_low = sym_state["range_low"]
     close = last_closed["close"]
@@ -569,7 +572,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
-        return text
+        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None}
 
     if close < range_low and vol > vol_avg:
         if trend_ema and close > trend_ema:
@@ -588,7 +591,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
-        return text
+        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None}
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
     bullish_rejection = close > (last_closed["low"] + last_closed["high"]) / 2
@@ -613,7 +616,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
-            return text
+            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high}
         return None
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
@@ -634,7 +637,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
-            return text
+            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low}
         return None
 
     if range_low < close < range_high:
@@ -659,7 +662,11 @@ def log_trade(sym_state, direction, entry, exit_price, pnl_per_unit, exit_reason
     })
 
 
-def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
+def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=True):
+    """notify=False runs the exact same trailing-stop/target/stop-hit
+    logic silently -- used to shadow-track every fired setup's real
+    outcome (hit target vs stopped out) whether or not the user actually
+    took it, without generating a single extra Telegram message."""
     direction = sym_state["direction"]
     stop = sym_state["stop_loss"]
     entry = sym_state["entry_price"]
@@ -685,7 +692,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         # gap was letting winners ride the same loose trail as everything
         # else instead of banking at the promised level.
         if tp is not None and close >= tp:
-            send_telegram(f"{symbol} TAKE PROFIT HIT -- long{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} TAKE PROFIT HIT -- long{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
             pnl = close - entry
             log_trade(sym_state, "long", entry, close, pnl, "take_profit")
             sym_state["consecutive_losses"] = 0
@@ -693,7 +701,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
             return
 
         if close < stop:
-            send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
             pnl = close - entry
             log_trade(sym_state, "long", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
@@ -713,7 +722,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         if candidate_stop > stop * 1.001:
             sym_state["stop_loss"] = candidate_stop
             locked_pct = (candidate_stop - entry) / peak_profit * 100 if peak_profit > 0 else 0
-            send_telegram(f"{symbol} long -- trail your stop{tag}\n\nNew high {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g} (locks ~{locked_pct:.0f}% of peak gain).", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} long -- trail your stop{tag}\n\nNew high {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g} (locks ~{locked_pct:.0f}% of peak gain).", symbol=symbol, price=close)
             return
 
         # Take-profit heads-up: based on giveback from the peak profit
@@ -723,7 +733,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         # warning before the guaranteed floor even matters.
         giveback_pct = (peak_profit - current_profit) / peak_profit if peak_profit > 0 else 0
         if peak_profit > 0.5 * n and giveback_pct > 0.25:
-            send_telegram(f"{symbol} long -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} long -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
     elif direction == "short":
         extreme = min(extreme, last_closed["low"])
@@ -733,7 +744,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         sym_state["peak_profit_per_unit"] = peak_profit
 
         if tp is not None and close <= tp:
-            send_telegram(f"{symbol} TAKE PROFIT HIT -- short{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} TAKE PROFIT HIT -- short{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
             pnl = entry - close
             log_trade(sym_state, "short", entry, close, pnl, "take_profit")
             sym_state["consecutive_losses"] = 0
@@ -741,7 +753,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
             return
 
         if close > stop:
-            send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
             pnl = entry - close
             log_trade(sym_state, "short", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
@@ -754,12 +767,14 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         if candidate_stop < stop * 0.999:
             sym_state["stop_loss"] = candidate_stop
             locked_pct = (entry - candidate_stop) / peak_profit * 100 if peak_profit > 0 else 0
-            send_telegram(f"{symbol} short -- trail your stop{tag}\n\nNew low {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g} (locks ~{locked_pct:.0f}% of peak gain).", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} short -- trail your stop{tag}\n\nNew low {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g} (locks ~{locked_pct:.0f}% of peak gain).", symbol=symbol, price=close)
             return
 
         giveback_pct = (peak_profit - current_profit) / peak_profit if peak_profit > 0 else 0
         if peak_profit > 0.5 * n and giveback_pct > 0.25:
-            send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
+            if notify:
+                send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
 def main():
@@ -793,6 +808,7 @@ def main():
             # advanced telegram_update_offset). An early return here used
             # to skip save_state() below and silently discard all of that.
 
+    setup_log = state.setdefault("setup_log", [])
     fired_setups = []
     for entry in watchlist:
         symbol, market, tradable = entry["symbol"], entry["market"], entry["tradable"]
@@ -815,10 +831,40 @@ def main():
         sym_state = symbols_state[symbol]
         status = sym_state.get("status", "watching")
         capital = capital_inr if market == "india" else capital_usd
+
+        # Shadow-track every setup this symbol has ever fired, whether or
+        # not the user took it -- reuses check_open()'s exact trailing
+        # stop/target/stop-hit logic (notify=False, so zero extra
+        # Telegram messages) against the bars already fetched this cycle,
+        # so "did it actually reach the expected profit" has a real
+        # answer instead of just the alert's promise.
+        for log_entry in setup_log:
+            if log_entry["resolved"] or log_entry["symbol"] != symbol:
+                continue
+            shadow = log_entry["shadow"]
+            before = len(shadow["trade_journal"])
+            check_open(symbol, tradable, shadow, closed_bars, last_closed, notify=False)
+            if len(shadow["trade_journal"]) > before:
+                log_entry["resolved"] = True
+                log_entry["outcome"] = shadow["trade_journal"][-1]
+
         if status == "watching":
             alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
             if alert:
-                fired_setups.append(alert)
+                fired_setups.append(alert["text"])
+                setup_log.append({
+                    "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
+                    "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
+                    "qty": alert["qty"], "fired_at": datetime.now(timezone.utc).isoformat(),
+                    "resolved": False, "outcome": None,
+                    "shadow": {
+                        "direction": alert["direction"], "entry_price": alert["entry"],
+                        "entry_qty": alert["qty"], "stop_loss": alert["stop"],
+                        "extreme_since_entry": alert["entry"], "peak_profit_per_unit": 0,
+                        "take_profit_target": alert["target"], "consecutive_losses": 0,
+                        "trade_journal": [],
+                    },
+                })
         # Position tracking (check_open: trailing stop, stop-hit,
         # take-profit, heartbeats) is paused for now -- setup alerts only,
         # per explicit request, until the tracking bugs (sync_fills

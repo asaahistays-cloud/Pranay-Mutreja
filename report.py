@@ -81,6 +81,48 @@ def build_report():
     return "\n".join(lines)
 
 
+def build_setup_log_report():
+    """Every setup the bot has fired, whether or not the user took it,
+    shadow-tracked to a real outcome (hit its target / trailing stop
+    lock, or stopped out) using the exact same check_open() logic as a
+    real position -- just silent. Answers "does it actually reach the
+    expected profit" with real numbers instead of the alert's promise."""
+    state = monitor.load_state()
+    log = state.get("setup_log", [])
+    if not log:
+        return "**SIGNAL QUALITY**\nNo setups logged yet."
+
+    resolved = [e for e in log if e["resolved"]]
+    pending = len(log) - len(resolved)
+    lines = ["**SIGNAL QUALITY** (every setup fired, taken or not -- shadow-tracked automatically)",
+              f"- Fired: {len(log)} | Resolved: {len(resolved)} | Still open: {pending}"]
+
+    if resolved:
+        wins = [e for e in resolved if e["outcome"]["pnl_per_unit"] > 0]
+        win_rate = len(wins) / len(resolved) * 100
+        lines.append(f"- Hit rate: {win_rate:.1f}% ({len(wins)}W / {len(resolved) - len(wins)}L)")
+
+        by_currency = {}
+        for e in resolved:
+            pnl_total = e["outcome"].get("pnl_total")
+            if pnl_total is not None:
+                cur = currency_for(e["symbol"])
+                by_currency[cur] = by_currency.get(cur, 0) + pnl_total
+        for cur, total in by_currency.items():
+            lines.append(f"- Simulated P&L ({cur}): {total:+,.4g}")
+
+        by_type = {}
+        for e in resolved:
+            d = by_type.setdefault(e["type"], {"n": 0, "wins": 0})
+            d["n"] += 1
+            d["wins"] += 1 if e["outcome"]["pnl_per_unit"] > 0 else 0
+        for t, d in by_type.items():
+            wr = d["wins"] / d["n"] * 100 if d["n"] else 0
+            lines.append(f"  {t}: {d['n']} fired, {wr:.0f}% hit rate")
+
+    return "\n".join(lines)
+
+
 def append_to_file(report_text):
     ist_now = datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
     header = f"## {ist_now.strftime('%Y-%m-%d %H:%M')} IST\n\n"
@@ -95,7 +137,7 @@ def append_to_file(report_text):
 
 
 def main():
-    report_text = build_report()
+    report_text = build_report() + "\n\n" + build_setup_log_report()
     append_to_file(report_text)
     monitor.send_telegram("TRADE PERFORMANCE REPORT\n\n" + report_text)
 
