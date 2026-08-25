@@ -770,7 +770,14 @@ def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "full"
 
     state = load_state()
-    sync_fills(state)
+    # DISABLED 2026-08-25: sync_fills() was replaying the user's entire
+    # historical command backlog on every run (12+ repeated Telegram
+    # messages in a single burst) instead of processing only new ones --
+    # the telegram_update_offset it relies on was not reliably surviving
+    # between runs. Turned off entirely until that's root-caused with the
+    # user not being spammed in the meantime. fill/skip/open/close no
+    # longer work over Telegram while this is off.
+    # sync_fills(state)
     symbols_state = state.setdefault("symbols", {})
     capital_usd = state.get("capital_usd", 100)
     capital_inr = state.get("capital_inr", 100)
