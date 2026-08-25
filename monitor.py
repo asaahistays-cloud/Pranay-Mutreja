@@ -384,11 +384,23 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
 
 
 def main():
+    # "open" mode: only check symbols currently in an open position, for
+    # a fast 5-minute cadence that reacts quickly to a stop hit or
+    # reversal, without re-scanning the full watchlist needlessly.
+    # Default (no arg): full scan on the normal 15-minute cadence.
+    mode = sys.argv[1] if len(sys.argv) > 1 else "full"
+
     state = load_state()
     symbols_state = state.setdefault("symbols", {})
     capital_usd = state.get("capital_usd", 100)
     capital_inr = state.get("capital_inr", 100)
     watchlist = build_watchlist(state)
+
+    if mode == "open":
+        watchlist = [e for e in watchlist if symbols_state.get(e["symbol"], {}).get("status") == "open"]
+        if not watchlist:
+            print("open mode: no open positions, nothing to check")
+            return
 
     for entry in watchlist:
         symbol, market, tradable = entry["symbol"], entry["market"], entry["tradable"]

@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "monitor / india / us (for manual testing)"
+        description: "monitor / india / us / open (for manual testing)"
         required: false
         default: "monitor"
 
@@ -47,7 +47,15 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python3 rank_movers.py us
 
-      - name: Run monitor
+      - name: Run monitor (open positions only, fast cadence)
+        if: github.event.inputs.mode == 'open'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 monitor.py open
+
+      - name: Run monitor (full scan)
+        if: github.event.inputs.mode != 'open'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
