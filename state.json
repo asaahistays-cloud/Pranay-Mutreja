@@ -32,11 +32,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 2456.41,
-        "bar_time": 1787686200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "SOL-USD": {
