@@ -3,8 +3,8 @@
   "symbols": {
     "BTC-USD": {
       "status": "watching",
-      "range_high": 80529,
-      "range_low": 79370,
+      "range_high": 80891.43,
+      "range_low": 79339.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -12,7 +12,14 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": [
-        {"direction": "short", "entry": 79781.99, "exit": 80180, "pnl_per_unit": -398, "exit_reason": "stop_hit", "note": "manually placed and manually closed via TradingView paper account -- stop executed on price touch (wick to 80,203.9), not candle close"}
+        {
+          "direction": "short",
+          "entry": 79781.99,
+          "exit": 80180,
+          "pnl_per_unit": -398,
+          "exit_reason": "stop_hit",
+          "note": "manually placed and manually closed via TradingView paper account -- stop executed on price touch (wick to 80,203.9), not candle close"
+        }
       ]
     },
     "ETH-USD": {
@@ -203,7 +210,7 @@
     },
     "TCS.NS": {
       "status": "watching",
-      "range_high": 2288.699951171875,
+      "range_high": 2288.0,
       "range_low": 2271.0,
       "direction": null,
       "entry_price": null,
@@ -242,17 +249,14 @@
     },
     "LT.NS": {
       "status": "watching",
-      "range_high": 4092.89990234375,
+      "range_high": 4100.0,
       "range_low": 4075.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_short_rejection",
-        "bar_time": 1787645700000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "KOTAKBANK.NS": {
@@ -323,8 +327,8 @@
     },
     "MARUTI.NS": {
       "status": "watching",
-      "range_high": 13548.0,
-      "range_low": 13450.0,
+      "range_high": 13580.0,
+      "range_low": 13478.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -347,6 +351,370 @@
         "bar_time": 1787645700000
       },
       "trade_journal": []
+    },
+    "INDUSINDBK.NS": {
+      "status": "watching",
+      "range_high": 1012.4000244140625,
+      "range_low": 1003.5999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "ADANIENT.NS": {
+      "status": "watching",
+      "range_high": 3064.699951171875,
+      "range_low": 3023.800048828125,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "APOLLOHOSP.NS": {
+      "status": "watching",
+      "range_high": 8795.0,
+      "range_low": 8700.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "HCLTECH.NS": {
+      "status": "watching",
+      "range_high": 1304.5,
+      "range_low": 1294.5,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "EICHERMOT.NS": {
+      "status": "watching",
+      "range_high": 8044.5,
+      "range_low": 7996.5,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "HINDALCO.NS": {
+      "status": "watching",
+      "range_high": 1051.5999755859375,
+      "range_low": 1045.0999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "HDFCLIFE.NS": {
+      "status": "watching",
+      "range_high": 550.9500122070312,
+      "range_low": 545.9000244140625,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "TECHM.NS": {
+      "status": "watching",
+      "range_high": 1577.300048828125,
+      "range_low": 1562.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "BAJAJFINSV.NS": {
+      "status": "watching",
+      "range_high": 2003.0999755859375,
+      "range_low": 1991.300048828125,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787646600000
+      },
+      "trade_journal": []
+    },
+    "NESTLEIND.NS": {
+      "status": "watching",
+      "range_high": 1474.5999755859375,
+      "range_low": 1459.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "DRREDDY.NS": {
+      "status": "watching",
+      "range_high": 1183.5,
+      "range_low": 1179.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787646600000
+      },
+      "trade_journal": []
+    },
+    "ADANIPORTS.NS": {
+      "status": "watching",
+      "range_high": 1688.199951171875,
+      "range_low": 1679.5999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "NKE": {
+      "status": "watching",
+      "range_high": 41.099998474121094,
+      "range_low": 40.67499923706055,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "IBM": {
+      "status": "watching",
+      "range_high": 232.91990661621094,
+      "range_low": 231.00999450683594,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "ORCL": {
+      "status": "watching",
+      "range_high": 143.5500030517578,
+      "range_low": 142.25,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "WMT": {
+      "status": "watching",
+      "range_high": 106.59500122070312,
+      "range_low": 105.84100341796875,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "INTC": {
+      "status": "watching",
+      "range_high": 87.93599700927734,
+      "range_low": 86.88999938964844,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "NFLX": {
+      "status": "watching",
+      "range_high": 80.48989868164062,
+      "range_low": 80.0,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "CSCO": {
+      "status": "watching",
+      "range_high": 110.69499969482422,
+      "range_low": 110.19000244140625,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "CRM": {
+      "status": "watching",
+      "range_high": 210.64999389648438,
+      "range_low": 209.05999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "AAPL": {
+      "status": "watching",
+      "range_high": 311.65570068359375,
+      "range_low": 310.1719970703125,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "NVDA": {
+      "status": "watching",
+      "range_high": 209.5695037841797,
+      "range_low": 207.3699951171875,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "V": {
+      "status": "watching",
+      "range_high": 383.42498779296875,
+      "range_low": 380.69000244140625,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "MS": {
+      "status": "watching",
+      "range_high": 214.8699951171875,
+      "range_low": 213.9199981689453,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "DIS": {
+      "status": "watching",
+      "range_high": 110.73999786376953,
+      "range_low": 110.05999755859375,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "TXN": {
+      "status": "watching",
+      "range_high": 260.32000732421875,
+      "range_low": 257.875,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "UPS": {
+      "status": "watching",
+      "range_high": 102.78500366210938,
+      "range_low": 102.37000274658203,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
     }
-  }
+  },
+  "active_india_symbols": [
+    "INDUSINDBK.NS",
+    "ADANIENT.NS",
+    "APOLLOHOSP.NS",
+    "HCLTECH.NS",
+    "MARUTI.NS",
+    "EICHERMOT.NS",
+    "HINDALCO.NS",
+    "HDFCLIFE.NS",
+    "TCS.NS",
+    "TECHM.NS",
+    "BAJAJFINSV.NS",
+    "NESTLEIND.NS",
+    "DRREDDY.NS",
+    "LT.NS",
+    "ADANIPORTS.NS"
+  ],
+  "active_us_symbols": [
+    "NKE",
+    "IBM",
+    "ORCL",
+    "WMT",
+    "INTC",
+    "NFLX",
+    "CSCO",
+    "CRM",
+    "AAPL",
+    "NVDA",
+    "V",
+    "MS",
+    "DIS",
+    "TXN",
+    "UPS"
+  ]
 }

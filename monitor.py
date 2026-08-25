@@ -39,21 +39,24 @@ RISK_PCT_PER_TRADE = 0.01
 LOSS_THROTTLE_AFTER = 2
 STALE_THRESHOLD_SECONDS = 45 * 60  # skip a symbol if its latest bar is older than this
 
-WATCHLIST = (
-    [{"symbol": s, "market": "crypto", "tradable": True} for s in [
-        "BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "ADA-USD", "DOGE-USD",
-        "AVAX-USD", "LINK-USD", "DOT-USD", "LTC-USD", "NEAR-USD", "SUI-USD",
-    ]]
-    + [{"symbol": s, "market": "us", "tradable": True} for s in [
-        "AAPL", "MSFT", "NVDA", "TSLA", "AMZN", "GOOGL", "META", "JPM",
-        "V", "WMT", "DIS", "NFLX", "AMD", "INTC", "BA",
-    ]]
-    + [{"symbol": s, "market": "india", "tradable": False} for s in [
-        "RELIANCE.NS", "HDFCBANK.NS", "ICICIBANK.NS", "INFY.NS", "TCS.NS",
-        "SBIN.NS", "ITC.NS", "LT.NS", "KOTAKBANK.NS", "AXISBANK.NS",
-        "BHARTIARTL.NS", "HINDUNILVR.NS", "BAJFINANCE.NS", "MARUTI.NS", "WIPRO.NS",
-    ]]
-)
+# Crypto is static (24/7, no session to anchor a daily selection to).
+# US and India are NOT static -- their active watchlists are chosen fresh
+# each day by rank_movers.py from that market's opening-range move (the
+# ORB framework, applied at the watchlist-selection level since crypto
+# has no session but equities do). See build_watchlist() below.
+CRYPTO_WATCHLIST = [{"symbol": s, "market": "crypto", "tradable": True} for s in [
+    "BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "ADA-USD", "DOGE-USD",
+    "AVAX-USD", "LINK-USD", "DOT-USD", "LTC-USD", "NEAR-USD", "SUI-USD",
+]]
+
+
+def build_watchlist(state):
+    watchlist = list(CRYPTO_WATCHLIST)
+    for symbol in state.get("active_us_symbols", []):
+        watchlist.append({"symbol": symbol, "market": "us", "tradable": True})
+    for symbol in state.get("active_india_symbols", []):
+        watchlist.append({"symbol": symbol, "market": "india", "tradable": False})
+    return watchlist
 
 
 # ---------------------------------------------------------------- data ----
@@ -318,8 +321,9 @@ def main():
     state = load_state()
     symbols_state = state.setdefault("symbols", {})
     capital = state.get("capital_usd", 100)
+    watchlist = build_watchlist(state)
 
-    for entry in WATCHLIST:
+    for entry in watchlist:
         symbol, market, tradable = entry["symbol"], entry["market"], entry["tradable"]
         try:
             bars = fetch_klines(symbol, market, limit=60)

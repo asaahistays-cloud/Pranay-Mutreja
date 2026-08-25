@@ -2,10 +2,23 @@ name: Multi-market monitor
 
 on:
   schedule:
-    # Every 15 minutes. GitHub's scheduler doesn't guarantee the exact
-    # minute under load, but it's reliably in the ballpark.
+    # Every 15 minutes: the regular crypto/US/India monitor loop.
     - cron: "*/15 * * * *"
-  workflow_dispatch: {}
+    # India opening-range scan: 9:15-9:45 IST just closed -> pick the
+    # day's top 15 movers. 9:50 IST = 4:20 UTC, weekdays only.
+    - cron: "20 4 * * 1-5"
+    # US opening-range scan: 9:30-10:00 AM ET just closed (EDT, summer)
+    # -> 7:35 PM IST = 14:05 UTC, weekdays only. NOTE: shifts an hour
+    # during US winter (EST) -- nudge this cron by +1h around the DST
+    # transitions (~early Nov, ~early Mar) if the scan starts firing
+    # before the US market actually opens.
+    - cron: "5 14 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "monitor / india / us (for manual testing)"
+        required: false
+        default: "monitor"
 
 permissions:
   contents: write
@@ -20,6 +33,20 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: India opening-range scan
+        if: github.event.schedule == '20 4 * * 1-5' || github.event.inputs.mode == 'india'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 rank_movers.py india
+
+      - name: US opening-range scan
+        if: github.event.schedule == '5 14 * * 1-5' || github.event.inputs.mode == 'us'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 rank_movers.py us
+
       - name: Run monitor
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -28,7 +55,7 @@ jobs:
 
       - name: Commit updated state
         run: |
-          git config user.name "btc-monitor-bot"
+          git config user.name "multi-market-monitor-bot"
           git config user.email "actions@github.com"
           if ! git diff --quiet -- state.json; then
             git add state.json
