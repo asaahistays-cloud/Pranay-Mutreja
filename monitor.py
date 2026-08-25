@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-Multi-market monitor -- v3.
+Multi-market monitor -- v4.
 
 Covers three watchlists: crypto (Coinbase), US equities (Yahoo Finance),
 Indian equities (Yahoo Finance, .NS suffix). Applies the same decision
 rules to every symbol: confirmed-close breakout/breakdown with volume and
 trend confirmation, range-boundary rejection, ATR-based stops/sizing,
 trailing stops, take-profit heuristic, loss-throttled sizing, alert
-de-duplication. See the original v2 notes below for what's deliberately
-NOT implemented and why -- still true here, just applied per-symbol now.
+de-duplication.
 
 Indian equities are NOT tradable on TradingView's paper account (confirmed
 during manual testing -- NSE symbols aren't supported there), so alerts
@@ -18,8 +17,15 @@ US and Indian markets have trading hours, unlike crypto's 24/7 -- a
 staleness check skips a symbol for the cycle if its latest bar is old
 (market closed), rather than firing a false signal off stale data.
 
-Never places trades -- alert only. State is persisted to state.json,
-committed back to the repo by the GitHub Actions workflow after each run.
+Alert only -- no live tracking of the user's real trades anymore (the
+open/fill/skip/close Telegram commands were removed; the user places
+real stop-loss/take-profit orders on the exchange and self-manages
+entries/exits entirely outside this bot). The only thing this still
+tracks going forward is setup_log: a silent, automatic shadow simulation
+of every fired setup's real outcome, used purely for the nightly signal
+quality report (report.py) -- not a substitute for the user's own
+records. State is persisted to state.json, committed back to the repo
+by the GitHub Actions workflow after each run.
 """
 import json
 import os
@@ -244,260 +250,6 @@ def expected_profit_line(entry, stop, qty, target=None, currency="$"):
     return f"Expected profit: ~{currency}{reward_per_unit * qty:,.4g} at 2R (no fixed target -- keep trailing, actual depends on how far it runs)"
 
 
-def send_heartbeat(symbol, sym_state, close):
-    """Unconditional status update, every run, regardless of whether
-    anything's actionable -- mirrors the running commentary given in chat
-    each cycle ('still range-bound, staying silent' etc). Used for BTC-USD
-    always (per the user's original request), and for any symbol while
-    it's in an open position (per a later request to get 5-minute updates
-    on whatever's actually open, not just BTC). Everything else (watching,
-    non-BTC) stays alert-only to avoid noise."""
-    status = sym_state.get("status", "watching")
-    if status == "open":
-        direction = sym_state["direction"]
-        entry = sym_state["entry_price"]
-        stop = sym_state["stop_loss"]
-        qty = sym_state.get("entry_qty")
-        pnl_per_unit = (close - entry) if direction == "long" else (entry - close)
-        pnl_pct = (pnl_per_unit / entry * 100) if entry else 0
-        if qty:
-            pnl_str = f"{pnl_per_unit * qty:+,.4g} ({pnl_pct:+.2f}%)"
-        else:
-            pnl_str = f"{pnl_pct:+.2f}% (qty not set, no $ figure)"
-        text = (
-            f"{symbol} update -- {direction} open\n"
-            f"Entry: {entry:,.4g} | Current: {close:,.4g} | Stop: {stop:,.4g}\n"
-            f"Unrealized P&L: {pnl_str}"
-        )
-    else:
-        text = (
-            f"{symbol} update -- watching\n"
-            f"Current: {close:,.4g} | Range: {sym_state.get('range_low'):,.4g} - {sym_state.get('range_high'):,.4g}"
-        )
-    send_telegram(text)
-
-
-def market_for(symbol):
-    if any(e["symbol"] == symbol for e in CRYPTO_WATCHLIST):
-        return "crypto"
-    if symbol.endswith(".NS"):
-        return "india"
-    return "us"
-
-
-def resolve_symbol(raw, symbols_state):
-    raw = raw.strip().upper()
-    for candidate in (raw, f"{raw}-USD", f"{raw}.NS"):
-        if candidate in symbols_state:
-            return candidate
-    open_matches = [s for s in symbols_state if symbols_state[s].get("status") == "open" and raw in s]
-    return open_matches[0] if len(open_matches) == 1 else None
-
-
-def sync_fills(state):
-    """Auto-tracking opens a position off the alert's snapshot price the
-    instant a signal fires -- but the trade is placed manually, seconds to
-    minutes later, so the real fill price is almost never exactly that.
-    Rather than requiring a chat session to correct it, the user can just
-    reply directly in the Telegram thread and this picks it up on the next
-    cycle (every ~5 min), from wherever they are:
-
-      fill SYMBOL price [qty]         -- correct entry_price (and
-                                         entry_qty, or qty is re-derived
-                                         from the existing stop-loss and
-                                         current risk settings)
-      skip SYMBOL                      -- this alert wasn't actually
-                                         taken; stop tracking it without
-                                         logging a fake trade
-      open SYMBOL long|short           -- register a trade (whether it
-                                         came from a bot alert or your
-                                         own read of the chart) so it's
-                                         on record for the nightly
-                                         you-vs-bot comparison. No live
-                                         updates after this -- you place
-                                         your own stop-loss/take-profit
-                                         on the exchange and self-manage
-                                         the exit. Entry is fetched off
-                                         the latest closed bar; use the
-                                         explicit form below for an exact
-                                         entry instead.
-      open SYMBOL long|short entry stop [qty]
-                                        -- same, but with exact entry/stop
-                                         (and optionally qty) instead of
-                                         the auto-fetched approximation
-      close SYMBOL [price]             -- you exited manually (took
-                                         profit, changed your mind, etc.)
-                                         outside of a stop/target hit --
-                                         logs it as a real trade and
-                                         re-arms to watching. Price
-                                         defaults to the latest fetched
-                                         price if omitted.
-
-    Runs at the top of every invocation, regardless of mode, so a
-    correction lands as fast as possible. Only messages from the
-    configured TELEGRAM_CHAT_ID are honored."""
-    if not BOT_TOKEN or not CHAT_ID:
-        return
-    offset = state.get("telegram_update_offset", 0)
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates?offset={offset}&timeout=0"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "btc-monitor-bot"})
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            data = json.loads(resp.read())
-    except Exception as e:
-        print(f"sync_fills: getUpdates failed ({e})")
-        return
-    if not data.get("ok"):
-        return
-
-    symbols_state = state.setdefault("symbols", {})
-    for update in data["result"]:
-        state["telegram_update_offset"] = update["update_id"] + 1
-        msg = update.get("message") or update.get("edited_message")
-        if not msg or str(msg.get("chat", {}).get("id")) != str(CHAT_ID):
-            continue
-        # Hard backstop against replaying the whole command history: if
-        # telegram_update_offset ever fails to persist between runs (it
-        # did, for hours, on 2026-08-25 -- 12+ repeated messages in a
-        # burst, same backlog every single cycle), getUpdates keeps
-        # returning every message from the beginning of time. Age-gating
-        # to the last 10 minutes means a persistence failure degrades to
-        # "a recent command might get reprocessed a couple times"
-        # (harmless -- fill/open/close all handle repeats gracefully)
-        # instead of "replay literally everything, forever".
-        msg_age_seconds = time.time() - msg.get("date", time.time())
-        if msg_age_seconds > 600:
-            continue
-        parts = (msg.get("text") or "").strip().split()
-        if not parts:
-            continue
-        cmd = parts[0].lower()
-
-        if cmd == "fill" and len(parts) >= 3:
-            symbol = resolve_symbol(parts[1], symbols_state)
-            sym_state = symbols_state.get(symbol) if symbol else None
-            if not sym_state or sym_state.get("status") != "open":
-                send_telegram(f"sync: no open position found for '{parts[1]}'")
-                continue
-            try:
-                price = float(parts[2])
-                qty = float(parts[3]) if len(parts) >= 4 else None
-            except ValueError:
-                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: fill SYMBOL price [qty]")
-                continue
-            sym_state["entry_price"] = price
-            sym_state["extreme_since_entry"] = price
-            sym_state["peak_profit_per_unit"] = 0
-            if qty is not None:
-                sym_state["entry_qty"] = qty
-            elif sym_state.get("stop_loss") is not None:
-                capital = state.get("capital_inr", 100) if symbol.endswith(".NS") else state.get("capital_usd", 100)
-                sym_state["entry_qty"] = position_size(
-                    capital, price, sym_state["stop_loss"], sym_state.get("consecutive_losses", 0))
-            qty_str = f", qty {sym_state['entry_qty']:.6g}" if sym_state.get("entry_qty") else ""
-            send_telegram(f"{symbol} entry corrected -> {price:,.4g}{qty_str}")
-
-        elif cmd == "skip" and len(parts) >= 2:
-            symbol = resolve_symbol(parts[1], symbols_state)
-            sym_state = symbols_state.get(symbol) if symbol else None
-            if not sym_state or sym_state.get("status") != "open":
-                send_telegram(f"sync: no open position found for '{parts[1]}'")
-                continue
-            rearm_to_watching(sym_state)
-            send_telegram(f"{symbol}: marked not taken, back to watching (no trade logged).")
-
-        elif cmd == "open" and len(parts) >= 3:
-            symbol = resolve_symbol(parts[1], symbols_state)
-            sym_state = symbols_state.get(symbol) if symbol else None
-            if not sym_state:
-                send_telegram(f"sync: unknown symbol '{parts[1]}'")
-                continue
-            if sym_state.get("status") == "open":
-                send_telegram(f"sync: {symbol} is already open -- use 'fill {symbol} price [qty]' to correct it instead.")
-                continue
-            direction = parts[2].lower()
-            if direction not in ("long", "short"):
-                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short [entry stop [qty]]")
-                continue
-
-            qty = None
-            if len(parts) >= 5:
-                try:
-                    entry = float(parts[3])
-                    stop = float(parts[4])
-                    qty = float(parts[5]) if len(parts) >= 6 else None
-                except ValueError:
-                    send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short [entry stop [qty]]")
-                    continue
-            else:
-                # No entry/stop given -- fetch the latest price and derive
-                # a stop with the same ATR-based formula a real breakout
-                # signal would have used, so a purely self-initiated trade
-                # gets a sane stop instead of none at all.
-                market = market_for(symbol)
-                try:
-                    bars = fetch_klines(symbol, market, limit=30)
-                except Exception as e:
-                    send_telegram(f"sync: couldn't fetch price for {symbol} ({e}) -- try: open {symbol} {direction} entry stop [qty]")
-                    continue
-                if len(bars) < 15:
-                    send_telegram(f"sync: not enough data for {symbol} -- try: open {symbol} {direction} entry stop [qty]")
-                    continue
-                closed_bars = bars[:-1]
-                last_closed = closed_bars[-1]
-                entry = last_closed["close"]
-                n = atr(closed_bars)
-                stop = last_closed["low"] - 0.5 * n if direction == "long" else last_closed["high"] + 0.5 * n
-
-            if qty is None:
-                capital = state.get("capital_inr", 100) if symbol.endswith(".NS") else state.get("capital_usd", 100)
-                qty = position_size(capital, entry, stop, sym_state.get("consecutive_losses", 0))
-            open_position(sym_state, direction, entry, stop, qty, None)
-            send_telegram(f"{symbol} now tracked -- {direction}, entry {entry:,.4g}, stop {stop:,.4g}, qty {qty:.6g}. No live updates -- text 'close {symbol} price' when you exit.")
-
-        elif cmd == "close" and len(parts) >= 2:
-            symbol = resolve_symbol(parts[1], symbols_state)
-            sym_state = symbols_state.get(symbol) if symbol else None
-            if not sym_state or sym_state.get("status") != "open":
-                send_telegram(f"sync: no open position found for '{parts[1]}'")
-                continue
-            if len(parts) >= 3:
-                try:
-                    close_price = float(parts[2])
-                except ValueError:
-                    send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: close SYMBOL [price]")
-                    continue
-            else:
-                market = market_for(symbol)
-                try:
-                    bars = fetch_klines(symbol, market, limit=5)
-                    close_price = bars[-1]["close"]
-                except Exception as e:
-                    send_telegram(f"sync: couldn't fetch price for {symbol} ({e}) -- try: close {symbol} price")
-                    continue
-            direction = sym_state["direction"]
-            entry = sym_state["entry_price"]
-            qty = sym_state.get("entry_qty")
-            pnl = (close_price - entry) if direction == "long" else (entry - close_price)
-            log_trade(sym_state, direction, entry, close_price, pnl, "manual_close")
-            sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
-            rearm_to_watching(sym_state)
-            pnl_str = f"{pnl * qty:+,.4g}" if qty else f"{pnl:+,.4g}/unit"
-            send_telegram(f"{symbol} closed manually @ {close_price:,.4g} -- P&L {pnl_str}. Back to watching.")
-
-        elif cmd in ("fill", "skip", "open", "close"):
-            # Right command, wrong number of args -- e.g. "fill dot" with
-            # no price. Anything unmatched falls all the way through
-            # silently otherwise (the offset still advances so the update
-            # isn't retried), which is exactly what could hide a real sync
-            # failure. Always reply so a mistyped command is visibly a
-            # mistyped command, not radio silence.
-            send_telegram(f"sync: '{' '.join(parts)}' is missing arguments -- see the command formats in any recent alert, or ask Claude.")
-
-        elif cmd not in ("fill", "skip", "open"):
-            continue  # not a bot command at all -- ordinary chat, ignore quietly
-
-
 def default_symbol_state(closed_bars):
     recent_high = max(b["high"] for b in closed_bars[-10:])
     recent_low = min(b["low"] for b in closed_bars[-10:])
@@ -528,21 +280,6 @@ def rearm_to_watching(sym_state, closed_bars=None):
         recent = closed_bars[-10:]
         sym_state["range_high"] = max(b["high"] for b in recent)
         sym_state["range_low"] = min(b["low"] for b in recent)
-
-
-def open_position(sym_state, direction, entry_price, stop, qty, take_profit_target):
-    """Flip a symbol from 'watching' to 'open' the moment its signal
-    fires, with the exact entry/stop/qty the alert quoted. Previously
-    check_watching() computed these values only to print them in the
-    alert text and then discard them -- nothing ever set status="open",
-    so check_open() (trailing stop, stop-hit detection, heartbeats) never
-    ran unless a human manually copied the alert's numbers into
-    state.json after the fact. That's now automatic."""
-    sym_state.update({
-        "status": "open", "direction": direction, "entry_price": entry_price,
-        "entry_qty": qty, "stop_loss": stop, "extreme_since_entry": entry_price,
-        "peak_profit_per_unit": 0, "take_profit_target": take_profit_target,
-    })
 
 
 # ---------------------------------------------------------------- logic ----
@@ -792,28 +529,18 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
 
 
 def main():
-    # "open" mode: only check symbols currently in an open position, for
-    # a fast 5-minute cadence that reacts quickly to a stop hit or
-    # reversal, without re-scanning the full watchlist needlessly.
-    # Default (no arg): full scan on the normal 15-minute cadence.
-    mode = sys.argv[1] if len(sys.argv) > 1 else "full"
-
+    # No more "open"/"fill"/"skip"/"close" Telegram tracking, and no more
+    # fast 5-min "open positions only" cadence -- the user places real
+    # stop-loss/take-profit orders on the exchange and self-manages
+    # entries/exits entirely outside this bot now. Every run is a full
+    # scan for new setups; shadow-tracking (setup_log) is the only thing
+    # that still needs check_open()'s logic, purely as a silent
+    # simulation.
     state = load_state()
-    sync_fills(state)
     symbols_state = state.setdefault("symbols", {})
     capital_usd = state.get("capital_usd", 100)
     capital_inr = state.get("capital_inr", 100)
     watchlist = build_watchlist(state)
-
-    if mode == "open":
-        watchlist = [e for e in watchlist if symbols_state.get(e["symbol"], {}).get("status") == "open"]
-        if not watchlist:
-            print("open mode: no open positions, nothing to check")
-            # NOT an early return -- sync_fills() already ran above and
-            # may have changed state (a "skip" rearming a position back to
-            # watching, an "open" that a later command then undid, an
-            # advanced telegram_update_offset). An early return here used
-            # to skip save_state() below and silently discard all of that.
 
     setup_log = state.setdefault("setup_log", [])
     fired_setups = []
@@ -836,7 +563,6 @@ def main():
         if symbol not in symbols_state:
             symbols_state[symbol] = default_symbol_state(closed_bars)
         sym_state = symbols_state[symbol]
-        status = sym_state.get("status", "watching")
         capital = capital_inr if market == "india" else capital_usd
 
         # Shadow-track every setup this symbol has ever fired, whether or
@@ -855,34 +581,22 @@ def main():
                 log_entry["resolved"] = True
                 log_entry["outcome"] = shadow["trade_journal"][-1]
 
-        if status == "watching":
-            alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
-            if alert:
-                fired_setups.append(alert["text"])
-                setup_log.append({
-                    "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
-                    "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
-                    "qty": alert["qty"], "fired_at": datetime.now(timezone.utc).isoformat(),
-                    "resolved": False, "outcome": None,
-                    "shadow": {
-                        "direction": alert["direction"], "entry_price": alert["entry"],
-                        "entry_qty": alert["qty"], "stop_loss": alert["stop"],
-                        "extreme_since_entry": alert["entry"], "peak_profit_per_unit": 0,
-                        "take_profit_target": alert["target"], "consecutive_losses": 0,
-                        "trade_journal": [],
-                    },
-                })
-        # Real open positions get NO live monitoring/alerts at all now --
-        # the user places real stop-loss/take-profit orders on the
-        # exchange itself and self-manages exits, so check_open()'s
-        # trailing-stop advice and auto stop-hit/take-profit detection
-        # would just be redundant noise on top of orders that already
-        # execute independently. A real position just sits at
-        # status=="open" silently until "close SYMBOL [price]" logs the
-        # real outcome into trade_journal. Shadow-tracking (setup_log,
-        # above) is unaffected -- it's a pure simulation with no real
-        # orders, so it still needs check_open()'s logic to know when a
-        # setup would have hit its target/stop.
+        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
+        if alert:
+            fired_setups.append(alert["text"])
+            setup_log.append({
+                "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
+                "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
+                "qty": alert["qty"], "fired_at": datetime.now(timezone.utc).isoformat(),
+                "resolved": False, "outcome": None,
+                "shadow": {
+                    "direction": alert["direction"], "entry_price": alert["entry"],
+                    "entry_qty": alert["qty"], "stop_loss": alert["stop"],
+                    "extreme_since_entry": alert["entry"], "peak_profit_per_unit": 0,
+                    "take_profit_target": alert["target"], "consecutive_losses": 0,
+                    "trade_journal": [],
+                },
+            })
 
     if fired_setups:
         # One message per scan covering every setup that fired, instead
