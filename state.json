@@ -4,7 +4,7 @@
     "BTC-USD": {
       "status": "watching",
       "range_high": 80891.43,
-      "range_low": 79339.0,
+      "range_low": 78849.5,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -124,31 +124,25 @@
     "LTC-USD": {
       "status": "watching",
       "range_high": 52.743,
-      "range_low": 51.313,
+      "range_low": 50.965,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787652000000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "NEAR-USD": {
       "status": "watching",
       "range_high": 1.9976,
-      "range_low": 1.9046,
+      "range_low": 1.9017,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787652000000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "SUI-USD": {
