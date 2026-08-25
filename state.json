@@ -11,9 +11,8 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {
-        "type": "breakdown_short",
-        "level": 79339.0,
-        "bar_time": 1787651100000
+        "type": "range_long_rejection",
+        "bar_time": 1787652000000
       },
       "trade_journal": [
         {
@@ -41,7 +40,7 @@
     "SOL-USD": {
       "status": "watching",
       "range_high": 102.43,
-      "range_low": 99.22,
+      "range_low": 99.07,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -65,16 +64,13 @@
     "ADA-USD": {
       "status": "watching",
       "range_high": 0.22795,
-      "range_low": 0.21881,
+      "range_low": 0.21748,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787652000000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "DOGE-USD": {
@@ -135,9 +131,8 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {
-        "type": "breakdown_short",
-        "level": 51.313,
-        "bar_time": 1787651100000
+        "type": "range_long_rejection",
+        "bar_time": 1787652000000
       },
       "trade_journal": []
     },
@@ -150,7 +145,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787652000000
+      },
       "trade_journal": []
     },
     "SUI-USD": {
