@@ -354,6 +354,18 @@ def sync_fills(state):
         msg = update.get("message") or update.get("edited_message")
         if not msg or str(msg.get("chat", {}).get("id")) != str(CHAT_ID):
             continue
+        # Hard backstop against replaying the whole command history: if
+        # telegram_update_offset ever fails to persist between runs (it
+        # did, for hours, on 2026-08-25 -- 12+ repeated messages in a
+        # burst, same backlog every single cycle), getUpdates keeps
+        # returning every message from the beginning of time. Age-gating
+        # to the last 10 minutes means a persistence failure degrades to
+        # "a recent command might get reprocessed a couple times"
+        # (harmless -- fill/open/close all handle repeats gracefully)
+        # instead of "replay literally everything, forever".
+        msg_age_seconds = time.time() - msg.get("date", time.time())
+        if msg_age_seconds > 600:
+            continue
         parts = (msg.get("text") or "").strip().split()
         if not parts:
             continue
@@ -785,14 +797,7 @@ def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "full"
 
     state = load_state()
-    # DISABLED 2026-08-25: sync_fills() was replaying the user's entire
-    # historical command backlog on every run (12+ repeated Telegram
-    # messages in a single burst) instead of processing only new ones --
-    # the telegram_update_offset it relies on was not reliably surviving
-    # between runs. Turned off entirely until that's root-caused with the
-    # user not being spammed in the meantime. fill/skip/open/close no
-    # longer work over Telegram while this is off.
-    # sync_fills(state)
+    sync_fills(state)
     symbols_state = state.setdefault("symbols", {})
     capital_usd = state.get("capital_usd", 100)
     capital_inr = state.get("capital_inr", 100)
@@ -865,11 +870,11 @@ def main():
                         "trade_journal": [],
                     },
                 })
-        # Position tracking (check_open: trailing stop, stop-hit,
-        # take-profit, heartbeats) is paused for now -- setup alerts only,
-        # per explicit request, until the tracking bugs (sync_fills
-        # backlog replay etc.) are sorted out separately. A symbol stuck
-        # at status=="open" just sits quietly until this is turned back on.
+        elif status == "open":
+            check_open(symbol, tradable, sym_state, closed_bars, last_closed)
+
+        if sym_state.get("status") == "open":
+            send_heartbeat(symbol, sym_state, last_closed["close"])
 
     if fired_setups:
         # One message per scan covering every setup that fired, instead
