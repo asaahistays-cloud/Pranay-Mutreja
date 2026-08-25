@@ -268,11 +268,20 @@ def sync_fills(state):
     reply directly in the Telegram thread and this picks it up on the next
     cycle (every ~5 min), from wherever they are:
 
-      fill SYMBOL price [qty]  -- correct entry_price (and entry_qty, or
-                                   qty is re-derived from the existing
-                                   stop-loss and current risk settings)
-      skip SYMBOL               -- this alert wasn't actually taken; stop
-                                   tracking it without logging a fake trade
+      fill SYMBOL price [qty]         -- correct entry_price (and
+                                         entry_qty, or qty is re-derived
+                                         from the existing stop-loss and
+                                         current risk settings)
+      skip SYMBOL                      -- this alert wasn't actually
+                                         taken; stop tracking it without
+                                         logging a fake trade
+      open SYMBOL long|short entry stop [qty]
+                                        -- register a trade that didn't
+                                         come from a bot alert at all
+                                         (started entirely off your own
+                                         read of the chart) so it still
+                                         gets trailing-stop/stop-hit
+                                         tracking from here on
 
     Runs at the top of every invocation, regardless of mode, so a
     correction lands as fast as possible. Only messages from the
@@ -334,6 +343,32 @@ def sync_fills(state):
                 continue
             rearm_to_watching(sym_state)
             send_telegram(f"{symbol}: marked not taken, back to watching (no trade logged).")
+
+        elif cmd == "open" and len(parts) >= 5:
+            symbol = resolve_symbol(parts[1], symbols_state)
+            sym_state = symbols_state.get(symbol) if symbol else None
+            if not sym_state:
+                send_telegram(f"sync: unknown symbol '{parts[1]}'")
+                continue
+            if sym_state.get("status") == "open":
+                send_telegram(f"sync: {symbol} is already open -- use 'fill {symbol} price [qty]' to correct it instead.")
+                continue
+            direction = parts[2].lower()
+            if direction not in ("long", "short"):
+                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short entry stop [qty]")
+                continue
+            try:
+                entry = float(parts[3])
+                stop = float(parts[4])
+                qty = float(parts[5]) if len(parts) >= 6 else None
+            except ValueError:
+                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: open SYMBOL long|short entry stop [qty]")
+                continue
+            if qty is None:
+                capital = state.get("capital_inr", 100) if symbol.endswith(".NS") else state.get("capital_usd", 100)
+                qty = position_size(capital, entry, stop, sym_state.get("consecutive_losses", 0))
+            open_position(sym_state, direction, entry, stop, qty, None)
+            send_telegram(f"{symbol} now tracked -- {direction}, entry {entry:,.4g}, stop {stop:,.4g}, qty {qty:.6g}. You'll get trail/stop updates until it closes.")
 
 
 def default_symbol_state(closed_bars):
