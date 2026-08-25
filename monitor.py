@@ -248,7 +248,7 @@ def default_symbol_state(closed_bars):
     return {
         "status": "watching", "range_high": recent_high, "range_low": recent_low,
         "direction": None, "entry_price": None, "entry_qty": None, "stop_loss": None,
-        "extreme_since_entry": None, "consecutive_losses": 0, "last_alert": {},
+        "extreme_since_entry": None, "peak_profit_per_unit": 0, "consecutive_losses": 0, "last_alert": {},
         "trade_journal": [],
     }
 
@@ -367,6 +367,10 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
     if direction == "long":
         extreme = max(extreme, last_closed["high"])
         sym_state["extreme_since_entry"] = extreme
+        current_profit = close - entry
+        peak_profit = max(sym_state.get("peak_profit_per_unit", 0), extreme - entry, current_profit)
+        sym_state["peak_profit_per_unit"] = peak_profit
+
         if close < stop:
             send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
             sym_state["status"] = "closed"
@@ -374,19 +378,37 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
             log_trade(sym_state, "long", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
             return
-        candidate_stop = extreme - 1.5 * n
+
+        # Trailing stop: tighter ATR-based baseline (1x, was 1.5x), PLUS a
+        # profit-lock floor once there's meaningful profit -- guarantees
+        # protecting at least 60% of the peak gain once peak profit
+        # exceeds 1x ATR, instead of a pure ATR trail that can give back
+        # most of a big move before it catches up (the exact SOL problem).
+        candidate_stop = extreme - 1.0 * n
+        if peak_profit > n:
+            candidate_stop = max(candidate_stop, entry + 0.6 * peak_profit)
         if candidate_stop > stop * 1.001:
             sym_state["stop_loss"] = candidate_stop
-            send_telegram(f"{symbol} long -- trail your stop{tag}\n\nNew high {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g}.", symbol=symbol, price=close)
+            locked_pct = (candidate_stop - entry) / peak_profit * 100 if peak_profit > 0 else 0
+            send_telegram(f"{symbol} long -- trail your stop{tag}\n\nNew high {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g} (locks ~{locked_pct:.0f}% of peak gain).", symbol=symbol, price=close)
             return
-        profit = close - entry
-        giveback = extreme - close
-        if profit > 1.5 * n and giveback > 0.5 * (extreme - entry):
-            send_telegram(f"{symbol} long -- consider taking profit{tag}\n\nRan to {extreme:,.4g}, now {close:,.4g} -- given back over half the move. Still in profit; your call.", symbol=symbol, price=close)
+
+        # Take-profit heads-up: based on giveback from the peak profit
+        # actually reached, not an ATR-relative floor that can
+        # contradict itself in a fast reversal. Fires earlier (25%
+        # giveback) than the hard profit-lock stop above (60% floor) --
+        # an early warning before the guaranteed floor even matters.
+        giveback_pct = (peak_profit - current_profit) / peak_profit if peak_profit > 0 else 0
+        if peak_profit > 0.5 * n and giveback_pct > 0.25:
+            send_telegram(f"{symbol} long -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
     elif direction == "short":
         extreme = min(extreme, last_closed["low"])
         sym_state["extreme_since_entry"] = extreme
+        current_profit = entry - close
+        peak_profit = max(sym_state.get("peak_profit_per_unit", 0), entry - extreme, current_profit)
+        sym_state["peak_profit_per_unit"] = peak_profit
+
         if close > stop:
             send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
             sym_state["status"] = "closed"
@@ -394,15 +416,19 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
             log_trade(sym_state, "short", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
             return
-        candidate_stop = extreme + 1.5 * n
+
+        candidate_stop = extreme + 1.0 * n
+        if peak_profit > n:
+            candidate_stop = min(candidate_stop, entry - 0.6 * peak_profit)
         if candidate_stop < stop * 0.999:
             sym_state["stop_loss"] = candidate_stop
-            send_telegram(f"{symbol} short -- trail your stop{tag}\n\nNew low {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g}.", symbol=symbol, price=close)
+            locked_pct = (entry - candidate_stop) / peak_profit * 100 if peak_profit > 0 else 0
+            send_telegram(f"{symbol} short -- trail your stop{tag}\n\nNew low {extreme:,.4g}. Move stop from {stop:,.4g} to {candidate_stop:,.4g} (locks ~{locked_pct:.0f}% of peak gain).", symbol=symbol, price=close)
             return
-        profit = entry - close
-        giveback = close - extreme
-        if profit > 1.5 * n and giveback > 0.5 * (entry - extreme):
-            send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nRan to {extreme:,.4g}, now {close:,.4g} -- given back over half the move. Still in profit; your call.", symbol=symbol, price=close)
+
+        giveback_pct = (peak_profit - current_profit) / peak_profit if peak_profit > 0 else 0
+        if peak_profit > 0.5 * n and giveback_pct > 0.25:
+            send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
 def main():

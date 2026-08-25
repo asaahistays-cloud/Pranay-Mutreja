@@ -13,7 +13,7 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "range_long_rejection",
-        "bar_time": 1787659200000
+        "bar_time": 1787661000000
       },
       "trade_journal": [
         {
@@ -35,25 +35,37 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787661000000
+      },
       "trade_journal": []
     },
     "SOL-USD": {
-      "status": "open",
-      "range_high": 102.43,
-      "range_low": 99.07,
-      "direction": "short",
-      "entry_price": 98.72,
-      "entry_qty": 3.125,
-      "stop_loss": 98.48,
-      "extreme_since_entry": 97.48,
-      "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 99.07,
-        "bar_time": 1787655600000
-      },
-      "trade_journal": []
+      "status": "watching",
+      "range_high": 99.84,
+      "range_low": 97.47,
+      "direction": null,
+      "entry_price": null,
+      "entry_qty": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "peak_profit_per_unit": 0,
+      "consecutive_losses": 1,
+      "last_alert": {},
+      "trade_journal": [
+        {
+          "direction": "short",
+          "entry": 98.72,
+          "exit": 99.05,
+          "qty": 3.125,
+          "pnl_per_unit": -0.33,
+          "pnl_total": -1.03,
+          "exit_reason": "stop_hit",
+          "closed_at": "2026-08-25T12:58:00+00:00",
+          "note": "Manually placed and closed on TradingView. Peak unrealized profit reached ~$3.88 (price dipped to 97.48) before reversing all the way back through the old 1.5x-ATR trailing stop. This is exactly the giveback problem that led to reworking the trail/take-profit logic (tighter ATR trail + profit-lock floor + fixed take-profit heuristic) -- that improved logic wasn't live yet when this trade happened, so it didn't get the benefit."
+        }
+      ]
     },
     "XRP-USD": {
       "status": "watching",
@@ -65,8 +77,9 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787659200000
+        "type": "breakdown_short",
+        "level": 1.47,
+        "bar_time": 1787661000000
       },
       "trade_journal": []
     },
@@ -81,7 +94,7 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "range_long_rejection",
-        "bar_time": 1787659200000
+        "bar_time": 1787661000000
       },
       "trade_journal": []
     },
@@ -96,7 +109,7 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "range_long_rejection",
-        "bar_time": 1787659200000
+        "bar_time": 1787661000000
       },
       "trade_journal": []
     },
@@ -121,10 +134,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787659200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "DOT-USD": {
@@ -137,25 +147,21 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {
-        "type": "breakdown_short",
-        "level": 0.891,
-        "bar_time": 1787659200000
+        "type": "range_long_rejection",
+        "bar_time": 1787661000000
       },
       "trade_journal": []
     },
     "LTC-USD": {
       "status": "watching",
       "range_high": 52.743,
-      "range_low": 50.965,
+      "range_low": 50.832,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787659200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "NEAR-USD": {
@@ -181,7 +187,7 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "range_long_rejection",
-        "bar_time": 1787659200000
+        "bar_time": 1787661000000
       },
       "trade_journal": []
     },
