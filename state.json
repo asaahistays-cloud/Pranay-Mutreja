@@ -5,7 +5,7 @@
     "BTC-USD": {
       "status": "watching",
       "range_high": 80891.43,
-      "range_low": 78742.01,
+      "range_low": 78713.05,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -32,7 +32,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 2456.41,
+        "bar_time": 1787686200000
+      },
       "trade_journal": []
     },
     "SOL-USD": {
@@ -82,17 +86,13 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 0.21748,
-        "bar_time": 1787683500000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "DOGE-USD": {
       "status": "watching",
       "range_high": 0.09296,
-      "range_low": 0.08814,
+      "range_low": 0.08787,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -134,10 +134,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787683500000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "LTC-USD": {
@@ -163,8 +160,8 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "breakdown_short",
-        "level": 1.9017,
-        "bar_time": 1787681700000
+        "level": 1.8657,
+        "bar_time": 1787687100000
       },
       "trade_journal": []
     },
@@ -177,7 +174,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 0.7749,
+        "bar_time": 1787686200000
+      },
       "trade_journal": []
     },
     "RELIANCE.NS": {
@@ -570,11 +571,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 105.88500213623047,
-        "bar_time": 1787682600000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "MARA": {
@@ -629,10 +626,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_short_rejection",
-        "bar_time": 1787685300000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "UBER": {
@@ -1318,9 +1312,9 @@
         "direction": "long",
         "entry_price": 18.940000534057617,
         "entry_qty": 5.085915919921425,
-        "stop_loss": 18.806303092411586,
-        "extreme_since_entry": 18.979999542236328,
-        "peak_profit_per_unit": 0.03999900817871094,
+        "stop_loss": 18.996000480651855,
+        "extreme_since_entry": 19.020000457763672,
+        "peak_profit_per_unit": 0.07999992370605469,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1341,9 +1335,9 @@
         "direction": "short",
         "entry_price": 0.21517,
         "entry_qty": 756.143667296784,
-        "stop_loss": 0.214337,
-        "extreme_since_entry": 0.21398,
-        "peak_profit_per_unit": 0.0011899999999999966,
+        "stop_loss": 0.213833,
+        "extreme_since_entry": 0.21326,
+        "peak_profit_per_unit": 0.001909999999999995,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1553,8 +1547,8 @@
         "entry_price": 11.854999542236328,
         "entry_qty": 5.399601306653656,
         "stop_loss": 12.040198401042394,
-        "extreme_since_entry": 11.824999809265137,
-        "peak_profit_per_unit": 0.029999732971191406,
+        "extreme_since_entry": 11.819999694824219,
+        "peak_profit_per_unit": 0.034999847412109375,
         "take_profit_target": 11.100000381469727,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1645,7 +1639,7 @@
         "direction": "long",
         "entry_price": 39.58000183105469,
         "entry_qty": 2.526528432890052,
-        "stop_loss": 39.30776903969901,
+        "stop_loss": 39.404045854296,
         "extreme_since_entry": 39.58000183105469,
         "peak_profit_per_unit": 0,
         "take_profit_target": 41.099998474121094,
@@ -1668,8 +1662,77 @@
         "direction": "long",
         "entry_price": 13.835000038146973,
         "entry_qty": 7.228044793948101,
-        "stop_loss": 13.719442810331072,
-        "extreme_since_entry": 13.835000038146973,
+        "stop_loss": 13.929500198364257,
+        "extreme_since_entry": 13.970000267028809,
+        "peak_profit_per_unit": 0.13500022888183594,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "ETH-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 2456.22,
+      "stop": 2466.872857142857,
+      "target": null,
+      "qty": 0.0938715301059411,
+      "fired_at": "2026-08-25T20:00:38.575895+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 2456.22,
+        "entry_qty": 0.0938715301059411,
+        "stop_loss": 2466.872857142857,
+        "extreme_since_entry": 2456.22,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "NEAR-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 1.8653,
+      "stop": 1.8760714285714286,
+      "target": null,
+      "qty": 92.83819628647144,
+      "fired_at": "2026-08-25T20:00:39.039056+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 1.8653,
+        "entry_qty": 92.83819628647144,
+        "stop_loss": 1.8760714285714286,
+        "extreme_since_entry": 1.8653,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "SUI-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 0.7733,
+      "stop": 0.7806,
+      "target": null,
+      "qty": 136.98630136986353,
+      "fired_at": "2026-08-25T20:00:39.074913+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 0.7733,
+        "entry_qty": 136.98630136986353,
+        "stop_loss": 0.7806,
+        "extreme_since_entry": 0.7733,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
