@@ -218,6 +218,21 @@ def position_size(capital_usd, entry, stop, consecutive_losses):
     return risk_amount / stop_distance
 
 
+def expected_profit_line(entry, stop, qty, target=None):
+    """Range-rejection trades have a real fixed target, so the expected
+    profit is exact. Breakout/breakdown trades don't (they're trail-only
+    by design -- a fixed target would contradict "let it run"), so this
+    quotes a 2R estimate off the known risk instead, clearly labeled as
+    an estimate rather than implying a real target exists."""
+    risk_per_unit = abs(entry - stop)
+    if target is not None:
+        reward_per_unit = abs(target - entry)
+        r_multiple = reward_per_unit / risk_per_unit if risk_per_unit else 0
+        return f"Expected profit: {reward_per_unit * qty:+,.4g} at target ({r_multiple:.1f}R)"
+    reward_per_unit = 2 * risk_per_unit
+    return f"Expected profit: ~{reward_per_unit * qty:,.4g} at 2R (no fixed target -- keep trailing, actual depends on how far it runs)"
+
+
 def send_heartbeat(symbol, sym_state, close):
     """Unconditional status update, every run, regardless of whether
     anything's actionable -- mirrors the running commentary given in chat
@@ -530,7 +545,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         send_telegram(
             f"{symbol} BREAKOUT (confirmed close){tag}\n\n"
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
-            f"Take profit: Keep trailing (no fixed target)\n\n"
+            f"Take profit: Keep trailing (no fixed target)\n"
+            f"{expected_profit_line(close, stop, qty)}\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).\n\n"
             f"Took this? Reply: open {symbol} long",
             symbol=symbol, price=close,
@@ -548,7 +564,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         send_telegram(
             f"{symbol} BREAKDOWN (confirmed close){tag}\n\n"
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
-            f"Take profit: Keep trailing (no fixed target)\n\n"
+            f"Take profit: Keep trailing (no fixed target)\n"
+            f"{expected_profit_line(close, stop, qty)}\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).\n\n"
             f"Took this? Reply: open {symbol} short",
             symbol=symbol, price=close,
@@ -572,7 +589,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             send_telegram(
                 f"{symbol} RANGE REJECTION (bullish){tag}\n\n"
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
-                f"Take profit: {range_high:,.4g} (range high)\n\n"
+                f"Take profit: {range_high:,.4g} (range high)\n"
+                f"{expected_profit_line(close, stop, qty, range_high)}\n\n"
                 f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.\n\n"
                 f"Took this? Reply: open {symbol} long",
                 symbol=symbol, price=close,
@@ -591,7 +609,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             send_telegram(
                 f"{symbol} RANGE REJECTION (bearish){tag}\n\n"
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
-                f"Take profit: {range_low:,.4g} (range low)\n\n"
+                f"Take profit: {range_low:,.4g} (range low)\n"
+                f"{expected_profit_line(close, stop, qty, range_low)}\n\n"
                 f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.\n\n"
                 f"Took this? Reply: open {symbol} short",
                 symbol=symbol, price=close,
