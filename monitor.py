@@ -309,16 +309,18 @@ def sync_fills(state):
       skip SYMBOL                      -- this alert wasn't actually
                                          taken; stop tracking it without
                                          logging a fake trade
-      open SYMBOL long|short           -- register a trade that didn't
-                                         come from a bot alert at all
-                                         (started entirely off your own
-                                         read of the chart) so it still
-                                         gets trailing-stop/stop-hit
-                                         tracking from here on. Entry is
-                                         fetched off the latest closed
-                                         bar and the stop is the same
-                                         ATR-based formula a real signal
-                                         would have used.
+      open SYMBOL long|short           -- register a trade (whether it
+                                         came from a bot alert or your
+                                         own read of the chart) so it's
+                                         on record for the nightly
+                                         you-vs-bot comparison. No live
+                                         updates after this -- you place
+                                         your own stop-loss/take-profit
+                                         on the exchange and self-manage
+                                         the exit. Entry is fetched off
+                                         the latest closed bar; use the
+                                         explicit form below for an exact
+                                         entry instead.
       open SYMBOL long|short entry stop [qty]
                                         -- same, but with exact entry/stop
                                          (and optionally qty) instead of
@@ -451,7 +453,7 @@ def sync_fills(state):
                 capital = state.get("capital_inr", 100) if symbol.endswith(".NS") else state.get("capital_usd", 100)
                 qty = position_size(capital, entry, stop, sym_state.get("consecutive_losses", 0))
             open_position(sym_state, direction, entry, stop, qty, None)
-            send_telegram(f"{symbol} now tracked -- {direction}, entry {entry:,.4g}, stop {stop:,.4g}, qty {qty:.6g}. You'll get trail/stop updates until it closes.")
+            send_telegram(f"{symbol} now tracked -- {direction}, entry {entry:,.4g}, stop {stop:,.4g}, qty {qty:.6g}. No live updates -- text 'close {symbol} price' when you exit.")
 
         elif cmd == "close" and len(parts) >= 2:
             symbol = resolve_symbol(parts[1], symbols_state)
@@ -870,18 +872,17 @@ def main():
                         "trade_journal": [],
                     },
                 })
-        elif status == "open":
-            # check_open() still runs -- trailing stop, stop-hit, and
-            # take-profit alerts are event-driven (only fire when
-            # something actually changes) and stay on, so open positions
-            # are still genuinely protected. The heartbeat below is
-            # different: an unconditional "still open" status update
-            # every single cycle regardless of any change -- paused again
-            # per explicit request (same complaint as earlier today).
-            check_open(symbol, tradable, sym_state, closed_bars, last_closed)
-
-        # if sym_state.get("status") == "open":
-        #     send_heartbeat(symbol, sym_state, last_closed["close"])
+        # Real open positions get NO live monitoring/alerts at all now --
+        # the user places real stop-loss/take-profit orders on the
+        # exchange itself and self-manages exits, so check_open()'s
+        # trailing-stop advice and auto stop-hit/take-profit detection
+        # would just be redundant noise on top of orders that already
+        # execute independently. A real position just sits at
+        # status=="open" silently until "close SYMBOL [price]" logs the
+        # real outcome into trade_journal. Shadow-tracking (setup_log,
+        # above) is unaffected -- it's a pure simulation with no real
+        # orders, so it still needs check_open()'s logic to know when a
+        # setup would have hit its target/stop.
 
     if fired_setups:
         # One message per scan covering every setup that fired, instead

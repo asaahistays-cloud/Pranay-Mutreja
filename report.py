@@ -136,8 +136,65 @@ def append_to_file(report_text):
         f.write(entry)
 
 
+def build_you_vs_bot_report():
+    """Your real trades (trade_journal, only what you registered via
+    open/fill/close) against every setup the bot fired at all, taken or
+    not (setup_log, shadow-tracked). Answers "am I beating the raw
+    signal quality, or would I have done better just taking everything."
+    """
+    state = monitor.load_state()
+    symbols_state = state.get("symbols", {})
+    setup_log = state.get("setup_log", [])
+
+    your_by_currency = {}
+    for symbol, sym_state in symbols_state.items():
+        cur = currency_for(symbol)
+        for t in sym_state.get("trade_journal", []):
+            if t.get("pnl_per_unit") is None:
+                continue
+            d = your_by_currency.setdefault(cur, {"n": 0, "wins": 0, "pnl": 0})
+            d["n"] += 1
+            d["wins"] += 1 if t["pnl_per_unit"] > 0 else 0
+            if t.get("pnl_total") is not None:
+                d["pnl"] += t["pnl_total"]
+
+    bot_by_currency = {}
+    for e in setup_log:
+        if not e["resolved"]:
+            continue
+        cur = currency_for(e["symbol"])
+        outcome = e["outcome"]
+        d = bot_by_currency.setdefault(cur, {"n": 0, "wins": 0, "pnl": 0})
+        d["n"] += 1
+        d["wins"] += 1 if outcome["pnl_per_unit"] > 0 else 0
+        if outcome.get("pnl_total") is not None:
+            d["pnl"] += outcome["pnl_total"]
+
+    currencies = set(your_by_currency) | set(bot_by_currency)
+    if not currencies:
+        return "**YOU vs BOT**\nNo data yet on either side."
+
+    lines = ["**YOU vs BOT** (your registered trades vs. every setup the bot fired, taken or not)"]
+    for cur in sorted(currencies):
+        y = your_by_currency.get(cur, {"n": 0, "wins": 0, "pnl": 0})
+        b = bot_by_currency.get(cur, {"n": 0, "wins": 0, "pnl": 0})
+        y_wr = y["wins"] / y["n"] * 100 if y["n"] else 0
+        b_wr = b["wins"] / b["n"] * 100 if b["n"] else 0
+        lines.append(f"**{cur}**")
+        lines.append(f"- You: {y['n']} trades | {y_wr:.1f}% win rate | {y['pnl']:+,.4g} {cur}")
+        lines.append(f"- Bot (every setup): {b['n']} resolved | {b_wr:.1f}% hit rate | {b['pnl']:+,.4g} {cur}")
+        if y["n"] and b["n"]:
+            diff = y["pnl"] - b["pnl"]
+            verdict = "ahead of" if diff > 0 else "behind" if diff < 0 else "matching"
+            lines.append(f"- You're {verdict} the bot's overall signal quality by {abs(diff):+,.4g} {cur}")
+
+    return "\n".join(lines)
+
+
 def main():
-    report_text = build_report() + "\n\n" + build_setup_log_report()
+    report_text = (
+        build_report() + "\n\n" + build_setup_log_report() + "\n\n" + build_you_vs_bot_report()
+    )
     append_to_file(report_text)
     monitor.send_telegram("TRADE PERFORMANCE REPORT\n\n" + report_text)
 
