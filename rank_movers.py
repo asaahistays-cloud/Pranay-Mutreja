@@ -100,15 +100,28 @@ def main():
     for symbol, pct, bars in top:
         recent_high = max(b["high"] for b in bars)
         recent_low = min(b["low"] for b in bars)
+        current_price = bars[-1]["close"]
         symbols_state[symbol] = {
             "status": "watching", "range_high": recent_high, "range_low": recent_low,
             "direction": None, "entry_price": None, "stop_loss": None,
             "extreme_since_entry": None, "consecutive_losses": 0, "last_alert": {},
             "trade_journal": [],
         }
-        lines.append(f"{symbol}: {pct:+.2f}%")
+        headlines = monitor.fetch_news(symbol, limit=1)
+        news_str = f" | {headlines[0]}" if headlines else ""
+        lines.append(f"{symbol}: {pct:+.2f}% | {current_price:,.4g}{news_str}")
     if not tradable:
         lines.append("\n(Analysis only -- not paper-tradable on TradingView, use your own broker if acting on any of these.)")
+    news_caveat = (
+        "\n(News headlines are best-effort from a free search API -- reasonably relevant for US names, "
+        "often mismatched for Indian tickers (tested: several NSE stocks got completely unrelated articles). "
+        "Price is always accurate; treat news as a loose pointer, verify before acting on it.)"
+        if market == "india" else
+        "\n(News headlines are best-effort from a free search API -- usually relevant but occasionally off-topic. "
+        "Price is always accurate.)"
+    )
+    lines.append(news_caveat)
+    lines.append("\n(Actual trade setups, if any fire during the session, come as separate BUY/SELL alerts.)")
 
     monitor.send_telegram("\n".join(lines))
     monitor.save_state(state)
