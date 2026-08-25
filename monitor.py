@@ -708,7 +708,11 @@ def main():
         watchlist = [e for e in watchlist if symbols_state.get(e["symbol"], {}).get("status") == "open"]
         if not watchlist:
             print("open mode: no open positions, nothing to check")
-            return
+            # NOT an early return -- sync_fills() already ran above and
+            # may have changed state (a "skip" rearming a position back to
+            # watching, an "open" that a later command then undid, an
+            # advanced telegram_update_offset). An early return here used
+            # to skip save_state() below and silently discard all of that.
 
     for entry in watchlist:
         symbol, market, tradable = entry["symbol"], entry["market"], entry["tradable"]
