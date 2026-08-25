@@ -43,6 +43,12 @@ ATR_PERIOD = 14
 EMA_PERIOD = 10
 REJECTION_BUFFER_PCT = 0.0015
 RISK_PCT_PER_TRADE = 0.01
+
+# Max notional per unit of capital, by market -- the user's actual
+# available leverage on each platform. Risk amount ($ willing to lose)
+# stays tied to real capital regardless of leverage; only the ceiling on
+# how much notional that risk can control changes.
+LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 5}
 LOSS_THROTTLE_AFTER = 2
 STALE_THRESHOLD_SECONDS = 45 * 60  # skip a symbol if its latest bar is older than this
 
@@ -223,13 +229,14 @@ def ema(values, period):
     return e
 
 
-def position_size(capital_usd, entry, stop, consecutive_losses):
+def position_size(capital_usd, entry, stop, consecutive_losses, leverage=1):
     """Risk-based sizing (fixed % of capital / stop distance) alone can
-    suggest a qty whose notional value exceeds total capital on a
-    tight-stop, higher-priced symbol -- e.g. a $0.30 stop on an $87
-    stock sizes to $290 notional off $100 capital, 2.9x leverage. No
-    margin/leverage is assumed on any market here, so the risk-based qty
-    is capped at what's actually affordable in cash."""
+    suggest a qty whose notional value exceeds what the account can
+    actually hold -- e.g. a $0.30 stop on an $87 stock sizes to $290
+    notional off $100 capital, 2.9x, more than the 1x the user actually
+    has for US stocks. leverage is the max notional per unit of capital
+    actually available on that market (LEVERAGE_BY_MARKET); the
+    risk-based qty is capped at what that leverage can actually hold."""
     risk_amount = capital_usd * RISK_PCT_PER_TRADE
     if consecutive_losses >= LOSS_THROTTLE_AFTER:
         risk_amount *= 0.5
@@ -237,7 +244,7 @@ def position_size(capital_usd, entry, stop, consecutive_losses):
     if stop_distance <= 0 or entry <= 0:
         return 0
     risk_based_qty = risk_amount / stop_distance
-    max_affordable_qty = capital_usd / entry
+    max_affordable_qty = (capital_usd * leverage) / entry
     return min(risk_based_qty, max_affordable_qty)
 
 
@@ -292,7 +299,7 @@ def rearm_to_watching(sym_state, closed_bars=None):
 
 # ---------------------------------------------------------------- logic ----
 
-def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital):
+def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
     """Returns None if nothing fired, or a dict for a fired signal:
     {"text": <fully-formed alert text, price/news already baked in>,
      "type", "direction", "entry", "stop", "qty", "target"} -- the
@@ -309,6 +316,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     trend_ema = ema([b["close"] for b in closed_bars[-(EMA_PERIOD * 3):]], EMA_PERIOD)
     n = atr(closed_bars)
     losses = sym_state.get("consecutive_losses", 0)
+    leverage = LEVERAGE_BY_MARKET.get(market, 1)
     already_alerted = sym_state.get("last_alert", {})
     bar_time = last_closed["close_time"]
     tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
@@ -320,7 +328,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         if already_alerted.get("type") == "breakout_long" and already_alerted.get("level") == range_high:
             return None
         stop = last_closed["low"] - 0.5 * n
-        qty = position_size(capital, close, stop, losses)
+        qty = position_size(capital, close, stop, losses, leverage=leverage)
         text = build_alert_text(
             f"{symbol} BREAKOUT (confirmed close){tag}\n\n"
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -339,7 +347,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         if already_alerted.get("type") == "breakdown_short" and already_alerted.get("level") == range_low:
             return None
         stop = last_closed["high"] + 0.5 * n
-        qty = position_size(capital, close, stop, losses)
+        qty = position_size(capital, close, stop, losses, leverage=leverage)
         text = build_alert_text(
             f"{symbol} BREAKDOWN (confirmed close){tag}\n\n"
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -364,7 +372,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             return None
         if already_alerted.get("type") != "range_long_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["low"] - 0.3 * n
-            qty = position_size(capital, close, stop, losses)
+            qty = position_size(capital, close, stop, losses, leverage=leverage)
             text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bullish){tag}\n\n"
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -385,7 +393,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             return None
         if already_alerted.get("type") != "range_short_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["high"] + 0.3 * n
-            qty = position_size(capital, close, stop, losses)
+            qty = position_size(capital, close, stop, losses, leverage=leverage)
             text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bearish){tag}\n\n"
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -589,7 +597,7 @@ def main():
                 log_entry["resolved"] = True
                 log_entry["outcome"] = shadow["trade_journal"][-1]
 
-        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
+        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
         if alert:
             fired_setups.append(alert["text"])
             setup_log.append({
