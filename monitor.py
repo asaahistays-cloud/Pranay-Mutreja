@@ -224,13 +224,21 @@ def ema(values, period):
 
 
 def position_size(capital_usd, entry, stop, consecutive_losses):
+    """Risk-based sizing (fixed % of capital / stop distance) alone can
+    suggest a qty whose notional value exceeds total capital on a
+    tight-stop, higher-priced symbol -- e.g. a $0.30 stop on an $87
+    stock sizes to $290 notional off $100 capital, 2.9x leverage. No
+    margin/leverage is assumed on any market here, so the risk-based qty
+    is capped at what's actually affordable in cash."""
     risk_amount = capital_usd * RISK_PCT_PER_TRADE
     if consecutive_losses >= LOSS_THROTTLE_AFTER:
         risk_amount *= 0.5
     stop_distance = abs(entry - stop)
-    if stop_distance <= 0:
+    if stop_distance <= 0 or entry <= 0:
         return 0
-    return risk_amount / stop_distance
+    risk_based_qty = risk_amount / stop_distance
+    max_affordable_qty = capital_usd / entry
+    return min(risk_based_qty, max_affordable_qty)
 
 
 def expected_profit_line(entry, stop, qty, target=None, currency="$"):
