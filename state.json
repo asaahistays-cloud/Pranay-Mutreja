@@ -74,7 +74,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 1.4611,
+        "bar_time": 1787688000000
+      },
       "trade_journal": []
     },
     "ADA-USD": {
@@ -98,7 +102,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 0.08787,
+        "bar_time": 1787688000000
+      },
       "trade_journal": []
     },
     "AVAX-USD": {
@@ -176,8 +184,8 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "breakdown_short",
-        "level": 0.7749,
-        "bar_time": 1787686200000
+        "level": 0.7729,
+        "bar_time": 1787688000000
       },
       "trade_journal": []
     },
@@ -1706,9 +1714,9 @@
         "direction": "short",
         "entry_price": 2456.22,
         "entry_qty": 0.0938715301059411,
-        "stop_loss": 2466.872857142857,
-        "extreme_since_entry": 2456.22,
-        "peak_profit_per_unit": 0,
+        "stop_loss": 2451.516,
+        "extreme_since_entry": 2449.5,
+        "peak_profit_per_unit": 6.7199999999998,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1729,9 +1737,9 @@
         "direction": "short",
         "entry_price": 1.8653,
         "entry_qty": 92.83819628647144,
-        "stop_loss": 1.8760714285714286,
-        "extreme_since_entry": 1.8636,
-        "peak_profit_per_unit": 0.0017000000000000348,
+        "stop_loss": 1.8604,
+        "extreme_since_entry": 1.8583,
+        "peak_profit_per_unit": 0.006999999999999895,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1752,8 +1760,77 @@
         "direction": "short",
         "entry_price": 0.7733,
         "entry_qty": 136.98630136986353,
-        "stop_loss": 0.7792553571428571,
-        "extreme_since_entry": 0.7733,
+        "stop_loss": 0.76819,
+        "extreme_since_entry": 0.766,
+        "peak_profit_per_unit": 0.007299999999999973,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "XRP-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 1.4573,
+      "stop": 1.4778035714285715,
+      "target": null,
+      "qty": 48.771990942344345,
+      "fired_at": "2026-08-25T20:30:32.176253+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 1.4573,
+        "entry_qty": 48.771990942344345,
+        "stop_loss": 1.4778035714285715,
+        "extreme_since_entry": 1.4573,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "DOGE-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 0.08766,
+      "stop": 0.08832607142857142,
+      "target": null,
+      "qty": 1501.340482573749,
+      "fired_at": "2026-08-25T20:30:32.360116+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 0.08766,
+        "entry_qty": 1501.340482573749,
+        "stop_loss": 0.08832607142857142,
+        "extreme_since_entry": 0.08766,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "SUI-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 0.7709,
+      "stop": 0.778625,
+      "target": null,
+      "qty": 129.44983818770257,
+      "fired_at": "2026-08-25T20:30:32.997811+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 0.7709,
+        "entry_qty": 129.44983818770257,
+        "stop_loss": 0.778625,
+        "extreme_since_entry": 0.7709,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
