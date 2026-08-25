@@ -819,15 +819,11 @@ def main():
             alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
             if alert:
                 fired_setups.append(alert)
-        elif status == "open":
-            check_open(symbol, tradable, sym_state, closed_bars, last_closed)
-        # No "closed" status anymore -- check_open() re-arms straight back
-        # to "watching" via rearm_to_watching() the moment a trade exits
-        # (stop or take-profit), so the bot picks up the next signal on
-        # its own instead of waiting on a human to re-arm it.
-
-        if sym_state.get("status") == "open":
-            send_heartbeat(symbol, sym_state, last_closed["close"])
+        # Position tracking (check_open: trailing stop, stop-hit,
+        # take-profit, heartbeats) is paused for now -- setup alerts only,
+        # per explicit request, until the tracking bugs (sync_fills
+        # backlog replay etc.) are sorted out separately. A symbol stuck
+        # at status=="open" just sits quietly until this is turned back on.
 
     if fired_setups:
         # One message per scan covering every setup that fired, instead
