@@ -40,6 +40,15 @@ RISK_PCT_PER_TRADE = 0.01
 LOSS_THROTTLE_AFTER = 2
 STALE_THRESHOLD_SECONDS = 45 * 60  # skip a symbol if its latest bar is older than this
 
+# Trailing-stop tuning -- backtested against 60 days / 2,127 trades across
+# BTC/ETH/SOL/XRP (15m bars). These values (vs. the prior 1.0/1.0/0.6)
+# came out on top of a 48-combo sweep: total P&L $4.86 -> $55.29, win rate
+# 44.9% -> 52.1%, profit factor 1.00 -> 1.15, avg giveback on winners
+# 58% -> 55%. See btc-monitor-bot backtest notes.
+TRAIL_ATR_MULT = 1.25
+PROFIT_LOCK_FLOOR_ATR_MULT = 0.5  # peak profit must exceed this x ATR before the lock floor engages
+PROFIT_LOCK_FRACTION = 0.7  # once engaged, guarantee at least this fraction of peak profit
+
 # Crypto is static (24/7, no session to anchor a daily selection to).
 # US and India are NOT static -- their active watchlists are chosen fresh
 # each day by rank_movers.py from that market's opening-range move (the
@@ -248,9 +257,41 @@ def default_symbol_state(closed_bars):
     return {
         "status": "watching", "range_high": recent_high, "range_low": recent_low,
         "direction": None, "entry_price": None, "entry_qty": None, "stop_loss": None,
-        "extreme_since_entry": None, "peak_profit_per_unit": 0, "consecutive_losses": 0, "last_alert": {},
+        "extreme_since_entry": None, "peak_profit_per_unit": 0, "take_profit_target": None,
+        "consecutive_losses": 0, "last_alert": {},
         "trade_journal": [],
     }
+
+
+def rearm_to_watching(sym_state, closed_bars):
+    """Re-arm a symbol to 'watching' right after a trade closes, so the bot
+    keeps tracking the next signal on its own -- no human has to manually
+    flip state.json back to watching. Range resets off the most recent 10
+    bars, same as a fresh default_symbol_state()."""
+    recent = closed_bars[-10:]
+    sym_state.update({
+        "status": "watching",
+        "range_high": max(b["high"] for b in recent),
+        "range_low": min(b["low"] for b in recent),
+        "direction": None, "entry_price": None, "entry_qty": None, "stop_loss": None,
+        "extreme_since_entry": None, "peak_profit_per_unit": 0, "take_profit_target": None,
+        "last_alert": {},
+    })
+
+
+def open_position(sym_state, direction, entry_price, stop, qty, take_profit_target):
+    """Flip a symbol from 'watching' to 'open' the moment its signal
+    fires, with the exact entry/stop/qty the alert quoted. Previously
+    check_watching() computed these values only to print them in the
+    alert text and then discard them -- nothing ever set status="open",
+    so check_open() (trailing stop, stop-hit detection, heartbeats) never
+    ran unless a human manually copied the alert's numbers into
+    state.json after the fact. That's now automatic."""
+    sym_state.update({
+        "status": "open", "direction": direction, "entry_price": entry_price,
+        "entry_qty": qty, "stop_loss": stop, "extreme_since_entry": entry_price,
+        "peak_profit_per_unit": 0, "take_profit_target": take_profit_target,
+    })
 
 
 # ---------------------------------------------------------------- logic ----
@@ -279,10 +320,12 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"{symbol} BREAKOUT (confirmed close){tag}\n\n"
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n\n"
-            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).",
+            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).\n\n"
+            f"Auto-tracking this as open -- you'll get trail/stop updates until it closes. "
+            f"Ignore the updates if you didn't actually take this trade.",
             symbol=symbol, price=close,
         )
-        sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
+        open_position(sym_state, "long", close, stop, qty, None)
         return
 
     if close < range_low and vol > vol_avg:
@@ -296,15 +339,24 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"{symbol} BREAKDOWN (confirmed close){tag}\n\n"
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n\n"
-            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).",
+            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).\n\n"
+            f"Auto-tracking this as open -- you'll get trail/stop updates until it closes. "
+            f"Ignore the updates if you didn't actually take this trade.",
             symbol=symbol, price=close,
         )
-        sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
+        open_position(sym_state, "short", close, stop, qty, None)
         return
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
     bullish_rejection = close > (last_closed["low"] + last_closed["high"]) / 2
     if near_low and bullish_rejection and close < range_high:
+        # Same trend filter as breakouts -- backtesting showed rejection
+        # trades taken against the prevailing trend (esp. bearish/short
+        # rejections in an uptrend) were the single biggest source of
+        # losses (-$38 combined, vs +$53 for the trend-agreeing long
+        # rejections, over the same 60-day sample).
+        if trend_ema and close < trend_ema:
+            return
         if already_alerted.get("type") != "range_long_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["low"] - 0.3 * n
             qty = position_size(capital, close, stop, losses)
@@ -312,15 +364,19 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"{symbol} RANGE REJECTION (bullish){tag}\n\n"
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_high:,.4g} (range high)\n\n"
-                f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.",
+                f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.\n\n"
+                f"Auto-tracking this as open -- you'll get trail/stop/target updates until it closes. "
+                f"Ignore the updates if you didn't actually take this trade.",
                 symbol=symbol, price=close,
             )
-            sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
+            open_position(sym_state, "long", close, stop, qty, range_high)
         return
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
     bearish_rejection = close < (last_closed["low"] + last_closed["high"]) / 2
     if near_high and bearish_rejection and close > range_low:
+        if trend_ema and close > trend_ema:
+            return
         if already_alerted.get("type") != "range_short_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["high"] + 0.3 * n
             qty = position_size(capital, close, stop, losses)
@@ -328,10 +384,12 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"{symbol} RANGE REJECTION (bearish){tag}\n\n"
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_low:,.4g} (range low)\n\n"
-                f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.",
+                f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.\n\n"
+                f"Auto-tracking this as open -- you'll get trail/stop/target updates until it closes. "
+                f"Ignore the updates if you didn't actually take this trade.",
                 symbol=symbol, price=close,
             )
-            sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
+            open_position(sym_state, "short", close, stop, qty, range_low)
         return
 
     if range_low < close < range_high:
@@ -364,6 +422,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
     extreme = sym_state.get("extreme_since_entry", entry)
     tag = "" if tradable else " (analysis only)"
 
+    tp = sym_state.get("take_profit_target")
+
     if direction == "long":
         extreme = max(extreme, last_closed["high"])
         sym_state["extreme_since_entry"] = extreme
@@ -371,22 +431,39 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         peak_profit = max(sym_state.get("peak_profit_per_unit", 0), extreme - entry, current_profit)
         sym_state["peak_profit_per_unit"] = peak_profit
 
+        # Take-profit target (range-rejection trades only -- breakouts
+        # have none, "keep trailing"). Checked before the stop so a bar
+        # that gaps through both hits the better-for-the-trade exit.
+        # Previously this target was quoted in the entry alert text but
+        # never actually enforced -- backtesting showed that dead-code
+        # gap was letting winners ride the same loose trail as everything
+        # else instead of banking at the promised level.
+        if tp is not None and close >= tp:
+            send_telegram(f"{symbol} TAKE PROFIT HIT -- long{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+            pnl = close - entry
+            log_trade(sym_state, "long", entry, close, pnl, "take_profit")
+            sym_state["consecutive_losses"] = 0
+            rearm_to_watching(sym_state, closed_bars)
+            return
+
         if close < stop:
             send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
-            sym_state["status"] = "closed"
             pnl = close - entry
             log_trade(sym_state, "long", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
+            rearm_to_watching(sym_state, closed_bars)
             return
 
-        # Trailing stop: tighter ATR-based baseline (1x, was 1.5x), PLUS a
-        # profit-lock floor once there's meaningful profit -- guarantees
-        # protecting at least 60% of the peak gain once peak profit
-        # exceeds 1x ATR, instead of a pure ATR trail that can give back
-        # most of a big move before it catches up (the exact SOL problem).
-        candidate_stop = extreme - 1.0 * n
-        if peak_profit > n:
-            candidate_stop = max(candidate_stop, entry + 0.6 * peak_profit)
+        # Trailing stop: ATR-based baseline, PLUS a profit-lock floor once
+        # there's meaningful profit -- guarantees protecting at least
+        # PROFIT_LOCK_FRACTION of the peak gain once peak profit exceeds
+        # PROFIT_LOCK_FLOOR_ATR_MULT x ATR, instead of a pure ATR trail
+        # that can give back most of a big move before it catches up
+        # (the original SOL problem). Backtested (60d, 2,127 trades) to
+        # cut average giveback on winners from 58% to 55%.
+        candidate_stop = extreme - TRAIL_ATR_MULT * n
+        if peak_profit > PROFIT_LOCK_FLOOR_ATR_MULT * n:
+            candidate_stop = max(candidate_stop, entry + PROFIT_LOCK_FRACTION * peak_profit)
         if candidate_stop > stop * 1.001:
             sym_state["stop_loss"] = candidate_stop
             locked_pct = (candidate_stop - entry) / peak_profit * 100 if peak_profit > 0 else 0
@@ -396,8 +473,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         # Take-profit heads-up: based on giveback from the peak profit
         # actually reached, not an ATR-relative floor that can
         # contradict itself in a fast reversal. Fires earlier (25%
-        # giveback) than the hard profit-lock stop above (60% floor) --
-        # an early warning before the guaranteed floor even matters.
+        # giveback) than the hard profit-lock stop above -- an early
+        # warning before the guaranteed floor even matters.
         giveback_pct = (peak_profit - current_profit) / peak_profit if peak_profit > 0 else 0
         if peak_profit > 0.5 * n and giveback_pct > 0.25:
             send_telegram(f"{symbol} long -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
@@ -409,17 +486,25 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
         peak_profit = max(sym_state.get("peak_profit_per_unit", 0), entry - extreme, current_profit)
         sym_state["peak_profit_per_unit"] = peak_profit
 
+        if tp is not None and close <= tp:
+            send_telegram(f"{symbol} TAKE PROFIT HIT -- short{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+            pnl = entry - close
+            log_trade(sym_state, "short", entry, close, pnl, "take_profit")
+            sym_state["consecutive_losses"] = 0
+            rearm_to_watching(sym_state, closed_bars)
+            return
+
         if close > stop:
             send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
-            sym_state["status"] = "closed"
             pnl = entry - close
             log_trade(sym_state, "short", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
+            rearm_to_watching(sym_state, closed_bars)
             return
 
-        candidate_stop = extreme + 1.0 * n
-        if peak_profit > n:
-            candidate_stop = min(candidate_stop, entry - 0.6 * peak_profit)
+        candidate_stop = extreme + TRAIL_ATR_MULT * n
+        if peak_profit > PROFIT_LOCK_FLOOR_ATR_MULT * n:
+            candidate_stop = min(candidate_stop, entry - PROFIT_LOCK_FRACTION * peak_profit)
         if candidate_stop < stop * 0.999:
             sym_state["stop_loss"] = candidate_stop
             locked_pct = (entry - candidate_stop) / peak_profit * 100 if peak_profit > 0 else 0
@@ -475,7 +560,10 @@ def main():
             check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
         elif status == "open":
             check_open(symbol, tradable, sym_state, closed_bars, last_closed)
-        # "closed" left alone -- a human/chat consciously re-arms it
+        # No "closed" status anymore -- check_open() re-arms straight back
+        # to "watching" via rearm_to_watching() the moment a trade exits
+        # (stop or take-profit), so the bot picks up the next signal on
+        # its own instead of waiting on a human to re-arm it.
 
         if symbol == "BTC-USD" or sym_state.get("status") == "open":
             send_heartbeat(symbol, sym_state, last_closed["close"])
