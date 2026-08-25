@@ -871,10 +871,17 @@ def main():
                     },
                 })
         elif status == "open":
+            # check_open() still runs -- trailing stop, stop-hit, and
+            # take-profit alerts are event-driven (only fire when
+            # something actually changes) and stay on, so open positions
+            # are still genuinely protected. The heartbeat below is
+            # different: an unconditional "still open" status update
+            # every single cycle regardless of any change -- paused again
+            # per explicit request (same complaint as earlier today).
             check_open(symbol, tradable, sym_state, closed_bars, last_closed)
 
-        if sym_state.get("status") == "open":
-            send_heartbeat(symbol, sym_state, last_closed["close"])
+        # if sym_state.get("status") == "open":
+        #     send_heartbeat(symbol, sym_state, last_closed["close"])
 
     if fired_setups:
         # One message per scan covering every setup that fired, instead
