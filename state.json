@@ -59,7 +59,12 @@
           "closed_at": "2026-08-25T12:58:00+00:00",
           "note": "Manually placed and closed on TradingView. Peak unrealized profit reached ~$3.88 (price dipped to 97.48) before reversing all the way back through the old 1.5x-ATR trailing stop. This is exactly the giveback problem that led to reworking the trail/take-profit logic (tighter ATR trail + profit-lock floor + fixed take-profit heuristic) -- that improved logic wasn't live yet when this trade happened, so it didn't get the benefit."
         }
-      ]
+      ],
+      "pending": {
+        "type": "breakdown_short",
+        "level": 97.07,
+        "expires": 1787697900000
+      }
     },
     "XRP-USD": {
       "status": "watching",
@@ -75,7 +80,12 @@
         "level": 1.4611,
         "bar_time": 1787688000000
       },
-      "trade_journal": []
+      "trade_journal": [],
+      "pending": {
+        "type": "breakdown_short",
+        "level": 1.4537,
+        "expires": 1787697900000
+      }
     },
     "ADA-USD": {
       "status": "watching",
@@ -115,7 +125,12 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "pending": {
+        "type": "breakdown_short",
+        "level": 7.404,
+        "expires": 1787697900000
+      }
     },
     "LINK-USD": {
       "status": "watching",
@@ -1851,9 +1866,9 @@
         "direction": "short",
         "entry_price": 1.4573,
         "entry_qty": 48.771990942344345,
-        "stop_loss": 1.45002,
-        "extreme_since_entry": 1.4469,
-        "peak_profit_per_unit": 0.010399999999999965,
+        "stop_loss": 1.44694,
+        "extreme_since_entry": 1.4425,
+        "peak_profit_per_unit": 0.014800000000000146,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
