@@ -532,11 +532,10 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).\n\n"
-            f"Auto-tracking this as open -- you'll get trail/stop updates until it closes. "
-            f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
+            f"Took this? Reply: open {symbol} long",
             symbol=symbol, price=close,
         )
-        open_position(sym_state, "long", close, stop, qty, None)
+        sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
         return
 
     if close < range_low and vol > vol_avg:
@@ -551,11 +550,10 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).\n\n"
-            f"Auto-tracking this as open -- you'll get trail/stop updates until it closes. "
-            f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
+            f"Took this? Reply: open {symbol} short",
             symbol=symbol, price=close,
         )
-        open_position(sym_state, "short", close, stop, qty, None)
+        sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
         return
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
@@ -576,11 +574,10 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_high:,.4g} (range high)\n\n"
                 f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.\n\n"
-                f"Auto-tracking this as open -- you'll get trail/stop/target updates until it closes. "
-                f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
+                f"Took this? Reply: open {symbol} long",
                 symbol=symbol, price=close,
             )
-            open_position(sym_state, "long", close, stop, qty, range_high)
+            sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
         return
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
@@ -596,11 +593,10 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_low:,.4g} (range low)\n\n"
                 f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.\n\n"
-                f"Auto-tracking this as open -- you'll get trail/stop/target updates until it closes. "
-                f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
+                f"Took this? Reply: open {symbol} short",
                 symbol=symbol, price=close,
             )
-            open_position(sym_state, "short", close, stop, qty, range_low)
+            sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
         return
 
     if range_low < close < range_high:
