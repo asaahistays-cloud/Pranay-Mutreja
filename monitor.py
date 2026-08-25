@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """
 BTC 15m range/breakout monitor.
-Fetches candles from Binance's public API, checks for a confirmed-close
+Fetches candles from Coinbase's public API, checks for a confirmed-close
 breakout or range-boundary rejection, and sends a Telegram alert when one
 happens. Never places trades -- alert only.
+
+Uses Coinbase rather than Binance because Binance geo-blocks requests from
+US-based IPs (HTTP 451), which is exactly where GitHub's free runners live.
+Coinbase has no such restriction on its public market-data endpoints.
 
 State is persisted to state.json (committed back to the repo by the
 GitHub Actions workflow after each run).
@@ -14,8 +18,8 @@ import sys
 import urllib.request
 import urllib.error
 
-SYMBOL = "BTCUSDT"
-INTERVAL = "15m"
+PRODUCT = "BTC-USD"
+GRANULARITY_SECONDS = 900  # 15 minutes
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -24,22 +28,24 @@ CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 def fetch_klines(limit=20):
     url = (
-        f"https://api.binance.com/api/v3/klines"
-        f"?symbol={SYMBOL}&interval={INTERVAL}&limit={limit}"
+        f"https://api.exchange.coinbase.com/products/{PRODUCT}/candles"
+        f"?granularity={GRANULARITY_SECONDS}"
     )
-    with urllib.request.urlopen(url, timeout=15) as resp:
+    req = urllib.request.Request(url, headers={"User-Agent": "btc-monitor-bot"})
+    with urllib.request.urlopen(req, timeout=15) as resp:
         raw = json.loads(resp.read())
-    # Binance kline fields: [open_time, open, high, low, close, volume, close_time, ...]
+    # Coinbase returns newest-first: [time, low, high, open, close, volume]
+    raw.sort(key=lambda r: r[0])  # oldest -> newest, to match Binance ordering
     bars = []
-    for k in raw:
+    for r in raw[-limit:]:
         bars.append({
-            "open_time": k[0],
-            "open": float(k[1]),
-            "high": float(k[2]),
-            "low": float(k[3]),
-            "close": float(k[4]),
-            "volume": float(k[5]),
-            "close_time": k[6],
+            "open_time": r[0] * 1000,
+            "open": float(r[3]),
+            "high": float(r[2]),
+            "low": float(r[1]),
+            "close": float(r[4]),
+            "volume": float(r[5]),
+            "close_time": r[0] * 1000,
         })
     return bars
 
