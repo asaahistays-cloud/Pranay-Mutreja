@@ -1,8 +1,13 @@
 {
   "status": "watching",
   "range_high": 80924,
-  "range_low": 80150,
+  "range_low": 80322,
   "direction": null,
   "entry_price": null,
-  "stop_loss": null
+  "stop_loss": null,
+  "extreme_since_entry": null,
+  "capital_usd": 122.11,
+  "consecutive_losses": 0,
+  "last_alert": {},
+  "trade_journal": []
 }
