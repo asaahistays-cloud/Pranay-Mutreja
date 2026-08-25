@@ -112,15 +112,10 @@ def main():
         lines.append(f"{symbol}: {pct:+.2f}% | {current_price:,.4g}{news_str}")
     if not tradable:
         lines.append("\n(Analysis only -- not paper-tradable on TradingView, use your own broker if acting on any of these.)")
-    news_caveat = (
-        "\n(News headlines are best-effort from a free search API -- reasonably relevant for US names, "
-        "often mismatched for Indian tickers (tested: several NSE stocks got completely unrelated articles). "
-        "Price is always accurate; treat news as a loose pointer, verify before acting on it.)"
-        if market == "india" else
-        "\n(News headlines are best-effort from a free search API -- usually relevant but occasionally off-topic. "
-        "Price is always accurate.)"
+    lines.append(
+        "\n(News shown only when a headline is genuinely tagged to that ticker -- no match means no news line, "
+        "rather than a guessed/irrelevant one. Indian tickers often won't have a match; that's expected, not a bug.)"
     )
-    lines.append(news_caveat)
     lines.append("\n(Actual trade setups, if any fire during the session, come as separate BUY/SELL alerts.)")
 
     monitor.send_telegram("\n".join(lines))

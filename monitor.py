@@ -120,17 +120,31 @@ def save_state(state):
 
 
 def fetch_news(symbol, limit=2):
-    """A couple of recent headlines for the symbol, via Yahoo's free search
-    endpoint (same data source already used for equity prices -- no new
-    API/key needed). Best-effort: returns [] on any failure rather than
-    breaking the alert that's asking for it."""
+    """Recent headlines for the symbol, via Yahoo's free search endpoint
+    (same data source already used for equity prices -- no new API/key
+    needed) -- but ONLY headlines Yahoo itself tags as related to this
+    exact ticker (via the response's relatedTickers field), not just
+    whatever comes back from the query. Yahoo's news search is generic
+    and often returns unrelated global finance news for a plain query;
+    the relatedTickers check is what actually filters for relevance.
+    In practice this means real matches for most US tickers, and
+    honestly nothing for most Indian ones (Yahoo doesn't have matched
+    coverage for NSE symbols) -- silence is the correct, honest result
+    there rather than showing a wrong headline.
+    Best-effort: returns [] on any failure or when nothing genuinely
+    matches, rather than forcing an irrelevant headline into an alert."""
     query = symbol.replace("-USD", "").replace(".NS", "")
-    url = f"https://query1.finance.yahoo.com/v1/finance/search?q={query}&newsCount={limit}&quotesCount=0"
+    url = f"https://query1.finance.yahoo.com/v1/finance/search?q={query}&newsCount=8&quotesCount=0"
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
         with urllib.request.urlopen(req, timeout=10) as resp:
             data = json.loads(resp.read())
-        return [item["title"] for item in data.get("news", [])[:limit] if item.get("title")]
+        matched = []
+        for item in data.get("news", []):
+            related = item.get("relatedTickers") or []
+            if (symbol in related or query in related) and item.get("title"):
+                matched.append(item["title"])
+        return matched[:limit]
     except Exception as e:
         print(f"{symbol}: news fetch failed ({e})")
         return []
