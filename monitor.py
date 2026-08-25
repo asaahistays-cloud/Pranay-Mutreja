@@ -27,6 +27,7 @@ import sys
 import time
 import urllib.request
 import urllib.error
+from datetime import datetime, timezone
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -221,9 +222,17 @@ def send_heartbeat(symbol, sym_state, close):
         direction = sym_state["direction"]
         entry = sym_state["entry_price"]
         stop = sym_state["stop_loss"]
+        qty = sym_state.get("entry_qty")
+        pnl_per_unit = (close - entry) if direction == "long" else (entry - close)
+        pnl_pct = (pnl_per_unit / entry * 100) if entry else 0
+        if qty:
+            pnl_str = f"{pnl_per_unit * qty:+,.4g} ({pnl_pct:+.2f}%)"
+        else:
+            pnl_str = f"{pnl_pct:+.2f}% (qty not set, no $ figure)"
         text = (
             f"{symbol} update -- {direction} open\n"
-            f"Entry: {entry:,.4g} | Current: {close:,.4g} | Stop: {stop:,.4g}"
+            f"Entry: {entry:,.4g} | Current: {close:,.4g} | Stop: {stop:,.4g}\n"
+            f"Unrealized P&L: {pnl_str}"
         )
     else:
         text = (
@@ -238,7 +247,7 @@ def default_symbol_state(closed_bars):
     recent_low = min(b["low"] for b in closed_bars[-10:])
     return {
         "status": "watching", "range_high": recent_high, "range_low": recent_low,
-        "direction": None, "entry_price": None, "stop_loss": None,
+        "direction": None, "entry_price": None, "entry_qty": None, "stop_loss": None,
         "extreme_since_entry": None, "consecutive_losses": 0, "last_alert": {},
         "trade_journal": [],
     }
@@ -335,6 +344,17 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         sym_state["range_low"] = recent_low
 
 
+def log_trade(sym_state, direction, entry, exit_price, pnl_per_unit, exit_reason):
+    qty = sym_state.get("entry_qty")
+    sym_state.setdefault("trade_journal", []).append({
+        "direction": direction, "entry": entry, "exit": exit_price,
+        "qty": qty, "pnl_per_unit": pnl_per_unit,
+        "pnl_total": pnl_per_unit * qty if qty else None,
+        "exit_reason": exit_reason,
+        "closed_at": datetime.now(timezone.utc).isoformat(),
+    })
+
+
 def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
     direction = sym_state["direction"]
     stop = sym_state["stop_loss"]
@@ -351,7 +371,7 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
             send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
             sym_state["status"] = "closed"
             pnl = close - entry
-            sym_state.setdefault("trade_journal", []).append({"direction": "long", "entry": entry, "exit": close, "pnl_per_unit": pnl, "exit_reason": "stop_hit"})
+            log_trade(sym_state, "long", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
             return
         candidate_stop = extreme - 1.5 * n
@@ -371,7 +391,7 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
             send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
             sym_state["status"] = "closed"
             pnl = entry - close
-            sym_state.setdefault("trade_journal", []).append({"direction": "short", "entry": entry, "exit": close, "pnl_per_unit": pnl, "exit_reason": "stop_hit"})
+            log_trade(sym_state, "short", entry, close, pnl, "stop_hit")
             sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
             return
         candidate_stop = extreme + 1.5 * n
