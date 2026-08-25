@@ -160,12 +160,21 @@ def fetch_news(symbol, limit=2):
         return []
 
 
-def send_telegram(text, symbol=None, price=None):
+def build_alert_text(text, symbol=None, price=None):
+    """The price/news enrichment send_telegram() does, split out so a
+    caller can build a fully-formed alert without sending it immediately
+    -- needed to batch several setup alerts from one scan into a single
+    Telegram message instead of one send per symbol."""
     if symbol is not None and price is not None:
         text += f"\n\nCurrent price: {price:,.4g}"
         headlines = fetch_news(symbol)
         if headlines:
             text += "\nRecent news:\n" + "\n".join(f"- {h}" for h in headlines)
+    return text
+
+
+def send_telegram(text, symbol=None, price=None):
+    text = build_alert_text(text, symbol, price)
 
     if not BOT_TOKEN or not CHAT_ID:
         print("WARNING: TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID not set, skipping send.")
@@ -218,19 +227,21 @@ def position_size(capital_usd, entry, stop, consecutive_losses):
     return risk_amount / stop_distance
 
 
-def expected_profit_line(entry, stop, qty, target=None):
+def expected_profit_line(entry, stop, qty, target=None, currency="$"):
     """Range-rejection trades have a real fixed target, so the expected
     profit is exact. Breakout/breakdown trades don't (they're trail-only
     by design -- a fixed target would contradict "let it run"), so this
     quotes a 2R estimate off the known risk instead, clearly labeled as
-    an estimate rather than implying a real target exists."""
+    an estimate rather than implying a real target exists. currency is
+    "$" for crypto/US or "Rs" for India -- capital_usd and capital_inr
+    are different currencies, so a bare number would be misleading."""
     risk_per_unit = abs(entry - stop)
     if target is not None:
         reward_per_unit = abs(target - entry)
         r_multiple = reward_per_unit / risk_per_unit if risk_per_unit else 0
-        return f"Expected profit: {reward_per_unit * qty:+,.4g} at target ({r_multiple:.1f}R)"
+        return f"Expected profit: +{currency}{reward_per_unit * qty:,.4g} at target ({r_multiple:.1f}R)"
     reward_per_unit = 2 * risk_per_unit
-    return f"Expected profit: ~{reward_per_unit * qty:,.4g} at 2R (no fixed target -- keep trailing, actual depends on how far it runs)"
+    return f"Expected profit: ~{currency}{reward_per_unit * qty:,.4g} at 2R (no fixed target -- keep trailing, actual depends on how far it runs)"
 
 
 def send_heartbeat(symbol, sym_state, close):
@@ -523,6 +534,11 @@ def open_position(sym_state, direction, entry_price, stop, qty, take_profit_targ
 # ---------------------------------------------------------------- logic ----
 
 def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital):
+    """Returns the fully-formed alert text for a fired signal (with price
+    and news already baked in via build_alert_text), or None if nothing
+    fired. Does NOT send -- main() collects these across the whole scan
+    and sends them as one batched message, instead of one Telegram
+    message per symbol."""
     range_high = sym_state["range_high"]
     range_low = sym_state["range_low"]
     close = last_closed["close"]
@@ -534,44 +550,45 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     already_alerted = sym_state.get("last_alert", {})
     bar_time = last_closed["close_time"]
     tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
+    currency = "Rs" if symbol.endswith(".NS") else "$"
 
     if close > range_high and vol > vol_avg:
         if trend_ema and close < trend_ema:
-            return
+            return None
         if already_alerted.get("type") == "breakout_long" and already_alerted.get("level") == range_high:
-            return
+            return None
         stop = last_closed["low"] - 0.5 * n
         qty = position_size(capital, close, stop, losses)
-        send_telegram(
+        text = build_alert_text(
             f"{symbol} BREAKOUT (confirmed close){tag}\n\n"
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n"
-            f"{expected_profit_line(close, stop, qty)}\n\n"
+            f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).\n\n"
             f"Took this? Reply: open {symbol} long",
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
-        return
+        return text
 
     if close < range_low and vol > vol_avg:
         if trend_ema and close > trend_ema:
-            return
+            return None
         if already_alerted.get("type") == "breakdown_short" and already_alerted.get("level") == range_low:
-            return
+            return None
         stop = last_closed["high"] + 0.5 * n
         qty = position_size(capital, close, stop, losses)
-        send_telegram(
+        text = build_alert_text(
             f"{symbol} BREAKDOWN (confirmed close){tag}\n\n"
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n"
-            f"{expected_profit_line(close, stop, qty)}\n\n"
+            f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).\n\n"
             f"Took this? Reply: open {symbol} short",
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
-        return
+        return text
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
     bullish_rejection = close > (last_closed["low"] + last_closed["high"]) / 2
@@ -582,41 +599,43 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         # losses (-$38 combined, vs +$53 for the trend-agreeing long
         # rejections, over the same 60-day sample).
         if trend_ema and close < trend_ema:
-            return
+            return None
         if already_alerted.get("type") != "range_long_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["low"] - 0.3 * n
             qty = position_size(capital, close, stop, losses)
-            send_telegram(
+            text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bullish){tag}\n\n"
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_high:,.4g} (range high)\n"
-                f"{expected_profit_line(close, stop, qty, range_high)}\n\n"
+                f"{expected_profit_line(close, stop, qty, range_high, currency=currency)}\n\n"
                 f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.\n\n"
                 f"Took this? Reply: open {symbol} long",
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
-        return
+            return text
+        return None
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
     bearish_rejection = close < (last_closed["low"] + last_closed["high"]) / 2
     if near_high and bearish_rejection and close > range_low:
         if trend_ema and close > trend_ema:
-            return
+            return None
         if already_alerted.get("type") != "range_short_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["high"] + 0.3 * n
             qty = position_size(capital, close, stop, losses)
-            send_telegram(
+            text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bearish){tag}\n\n"
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_low:,.4g} (range low)\n"
-                f"{expected_profit_line(close, stop, qty, range_low)}\n\n"
+                f"{expected_profit_line(close, stop, qty, range_low, currency=currency)}\n\n"
                 f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.\n\n"
                 f"Took this? Reply: open {symbol} short",
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
-        return
+            return text
+        return None
 
     if range_low < close < range_high:
         sym_state["last_alert"] = {}
@@ -626,6 +645,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         sym_state["range_high"] = recent_high
     if recent_low < range_low:
         sym_state["range_low"] = recent_low
+    return None
 
 
 def log_trade(sym_state, direction, entry, exit_price, pnl_per_unit, exit_reason):
@@ -766,6 +786,7 @@ def main():
             # advanced telegram_update_offset). An early return here used
             # to skip save_state() below and silently discard all of that.
 
+    fired_setups = []
     for entry in watchlist:
         symbol, market, tradable = entry["symbol"], entry["market"], entry["tradable"]
         try:
@@ -788,7 +809,9 @@ def main():
         status = sym_state.get("status", "watching")
         capital = capital_inr if market == "india" else capital_usd
         if status == "watching":
-            check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
+            alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
+            if alert:
+                fired_setups.append(alert)
         elif status == "open":
             check_open(symbol, tradable, sym_state, closed_bars, last_closed)
         # No "closed" status anymore -- check_open() re-arms straight back
@@ -798,6 +821,14 @@ def main():
 
         if symbol == "BTC-USD" or sym_state.get("status") == "open":
             send_heartbeat(symbol, sym_state, last_closed["close"])
+
+    if fired_setups:
+        # One message per scan covering every setup that fired, instead
+        # of a separate Telegram send per symbol -- so 5 setups in one
+        # scan is 1 notification to react to, not 5.
+        divider = "\n\n" + ("=" * 20) + "\n\n"
+        header = f"{len(fired_setups)} setup(s) this scan:\n\n"
+        send_telegram(header + divider.join(fired_setups))
 
     save_state(state)
 

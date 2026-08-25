@@ -75,15 +75,29 @@ jobs:
           git add state.json "Trade Results.md" 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Update state / trade results [skip ci]"
-            # With 4 cron triggers now firing independently, two runs can
-            # occasionally overlap and race to push. Retry with a rebase
-            # a few times before giving up, instead of failing outright.
-            for i in 1 2 3 4 5; do
+            # With multiple cron triggers firing every ~5 min, overlapping
+            # runs racing to push is routine, not rare -- 5 fixed-interval
+            # retries could exhaust under real contention. More attempts,
+            # randomized backoff (spreads out competing runs instead of
+            # them retrying in lockstep), and critically: fail the step
+            # (exit 1) if every attempt is exhausted, instead of silently
+            # discarding this run's state changes while still reporting
+            # "success". A previous version of this loop did exactly that
+            # -- its last command on the exhausted path was `sleep`, which
+            # exits 0, so a fully-failed push still looked like a clean
+            # run with nothing to investigate.
+            pushed=false
+            for i in $(seq 1 15); do
               if git push; then
+                pushed=true
                 break
               fi
               echo "Push rejected (attempt $i), pulling and retrying..."
               git pull --rebase origin main
-              sleep 2
+              sleep "$(( (RANDOM % 4) + 1 ))"
             done
+            if [ "$pushed" != "true" ]; then
+              echo "::error::Failed to push state.json after 15 attempts -- this run's state changes were NOT saved."
+              exit 1
+            fi
           fi
