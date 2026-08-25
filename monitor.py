@@ -386,7 +386,8 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed):
 def main():
     state = load_state()
     symbols_state = state.setdefault("symbols", {})
-    capital = state.get("capital_usd", 100)
+    capital_usd = state.get("capital_usd", 100)
+    capital_inr = state.get("capital_inr", 100)
     watchlist = build_watchlist(state)
 
     for entry in watchlist:
@@ -409,6 +410,7 @@ def main():
             symbols_state[symbol] = default_symbol_state(closed_bars)
         sym_state = symbols_state[symbol]
         status = sym_state.get("status", "watching")
+        capital = capital_inr if market == "india" else capital_usd
         if status == "watching":
             check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital)
         elif status == "open":
