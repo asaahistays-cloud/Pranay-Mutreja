@@ -251,6 +251,91 @@ def send_heartbeat(symbol, sym_state, close):
     send_telegram(text)
 
 
+def resolve_symbol(raw, symbols_state):
+    raw = raw.strip().upper()
+    for candidate in (raw, f"{raw}-USD", f"{raw}.NS"):
+        if candidate in symbols_state:
+            return candidate
+    open_matches = [s for s in symbols_state if symbols_state[s].get("status") == "open" and raw in s]
+    return open_matches[0] if len(open_matches) == 1 else None
+
+
+def sync_fills(state):
+    """Auto-tracking opens a position off the alert's snapshot price the
+    instant a signal fires -- but the trade is placed manually, seconds to
+    minutes later, so the real fill price is almost never exactly that.
+    Rather than requiring a chat session to correct it, the user can just
+    reply directly in the Telegram thread and this picks it up on the next
+    cycle (every ~5 min), from wherever they are:
+
+      fill SYMBOL price [qty]  -- correct entry_price (and entry_qty, or
+                                   qty is re-derived from the existing
+                                   stop-loss and current risk settings)
+      skip SYMBOL               -- this alert wasn't actually taken; stop
+                                   tracking it without logging a fake trade
+
+    Runs at the top of every invocation, regardless of mode, so a
+    correction lands as fast as possible. Only messages from the
+    configured TELEGRAM_CHAT_ID are honored."""
+    if not BOT_TOKEN or not CHAT_ID:
+        return
+    offset = state.get("telegram_update_offset", 0)
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates?offset={offset}&timeout=0"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "btc-monitor-bot"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read())
+    except Exception as e:
+        print(f"sync_fills: getUpdates failed ({e})")
+        return
+    if not data.get("ok"):
+        return
+
+    symbols_state = state.setdefault("symbols", {})
+    for update in data["result"]:
+        state["telegram_update_offset"] = update["update_id"] + 1
+        msg = update.get("message") or update.get("edited_message")
+        if not msg or str(msg.get("chat", {}).get("id")) != str(CHAT_ID):
+            continue
+        parts = (msg.get("text") or "").strip().split()
+        if not parts:
+            continue
+        cmd = parts[0].lower()
+
+        if cmd == "fill" and len(parts) >= 3:
+            symbol = resolve_symbol(parts[1], symbols_state)
+            sym_state = symbols_state.get(symbol) if symbol else None
+            if not sym_state or sym_state.get("status") != "open":
+                send_telegram(f"sync: no open position found for '{parts[1]}'")
+                continue
+            try:
+                price = float(parts[2])
+                qty = float(parts[3]) if len(parts) >= 4 else None
+            except ValueError:
+                send_telegram(f"sync: couldn't parse '{' '.join(parts)}' -- use: fill SYMBOL price [qty]")
+                continue
+            sym_state["entry_price"] = price
+            sym_state["extreme_since_entry"] = price
+            sym_state["peak_profit_per_unit"] = 0
+            if qty is not None:
+                sym_state["entry_qty"] = qty
+            elif sym_state.get("stop_loss") is not None:
+                capital = state.get("capital_inr", 100) if symbol.endswith(".NS") else state.get("capital_usd", 100)
+                sym_state["entry_qty"] = position_size(
+                    capital, price, sym_state["stop_loss"], sym_state.get("consecutive_losses", 0))
+            qty_str = f", qty {sym_state['entry_qty']:.6g}" if sym_state.get("entry_qty") else ""
+            send_telegram(f"{symbol} entry corrected -> {price:,.4g}{qty_str}")
+
+        elif cmd == "skip" and len(parts) >= 2:
+            symbol = resolve_symbol(parts[1], symbols_state)
+            sym_state = symbols_state.get(symbol) if symbol else None
+            if not sym_state or sym_state.get("status") != "open":
+                send_telegram(f"sync: no open position found for '{parts[1]}'")
+                continue
+            rearm_to_watching(sym_state)
+            send_telegram(f"{symbol}: marked not taken, back to watching (no trade logged).")
+
+
 def default_symbol_state(closed_bars):
     recent_high = max(b["high"] for b in closed_bars[-10:])
     recent_low = min(b["low"] for b in closed_bars[-10:])
@@ -263,20 +348,24 @@ def default_symbol_state(closed_bars):
     }
 
 
-def rearm_to_watching(sym_state, closed_bars):
-    """Re-arm a symbol to 'watching' right after a trade closes, so the bot
-    keeps tracking the next signal on its own -- no human has to manually
-    flip state.json back to watching. Range resets off the most recent 10
-    bars, same as a fresh default_symbol_state()."""
-    recent = closed_bars[-10:]
+def rearm_to_watching(sym_state, closed_bars=None):
+    """Re-arm a symbol to 'watching' right after a trade closes (or is
+    marked as never actually taken -- see sync_fills' "skip" command), so
+    the bot keeps tracking the next signal on its own -- no human has to
+    manually flip state.json back to watching. Range resets off the most
+    recent 10 bars when they're available (a real close); when they're
+    not (a chat-driven "skip"), the existing range is left as-is and will
+    self-correct on the next check_watching() pass."""
     sym_state.update({
         "status": "watching",
-        "range_high": max(b["high"] for b in recent),
-        "range_low": min(b["low"] for b in recent),
         "direction": None, "entry_price": None, "entry_qty": None, "stop_loss": None,
         "extreme_since_entry": None, "peak_profit_per_unit": 0, "take_profit_target": None,
         "last_alert": {},
     })
+    if closed_bars:
+        recent = closed_bars[-10:]
+        sym_state["range_high"] = max(b["high"] for b in recent)
+        sym_state["range_low"] = min(b["low"] for b in recent)
 
 
 def open_position(sym_state, direction, entry_price, stop, qty, take_profit_target):
@@ -322,7 +411,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"Take profit: Keep trailing (no fixed target)\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).\n\n"
             f"Auto-tracking this as open -- you'll get trail/stop updates until it closes. "
-            f"Ignore the updates if you didn't actually take this trade.",
+            f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
             symbol=symbol, price=close,
         )
         open_position(sym_state, "long", close, stop, qty, None)
@@ -341,7 +430,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"Take profit: Keep trailing (no fixed target)\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).\n\n"
             f"Auto-tracking this as open -- you'll get trail/stop updates until it closes. "
-            f"Ignore the updates if you didn't actually take this trade.",
+            f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
             symbol=symbol, price=close,
         )
         open_position(sym_state, "short", close, stop, qty, None)
@@ -366,7 +455,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"Take profit: {range_high:,.4g} (range high)\n\n"
                 f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.\n\n"
                 f"Auto-tracking this as open -- you'll get trail/stop/target updates until it closes. "
-                f"Ignore the updates if you didn't actually take this trade.",
+                f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
                 symbol=symbol, price=close,
             )
             open_position(sym_state, "long", close, stop, qty, range_high)
@@ -386,7 +475,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"Take profit: {range_low:,.4g} (range low)\n\n"
                 f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.\n\n"
                 f"Auto-tracking this as open -- you'll get trail/stop/target updates until it closes. "
-                f"Ignore the updates if you didn't actually take this trade.",
+                f"Different fill? Reply: fill {symbol} <price> [qty]. Didn't take it? Reply: skip {symbol}.",
                 symbol=symbol, price=close,
             )
             open_position(sym_state, "short", close, stop, qty, range_low)
@@ -524,6 +613,7 @@ def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "full"
 
     state = load_state()
+    sync_fills(state)
     symbols_state = state.setdefault("symbols", {})
     capital_usd = state.get("capital_usd", 100)
     capital_inr = state.get("capital_inr", 100)
