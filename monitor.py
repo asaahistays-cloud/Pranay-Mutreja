@@ -141,47 +141,13 @@ def save_state(state):
         json.dump(state, f, indent=2)
 
 
-def fetch_news(symbol, limit=2):
-    """Recent headlines for the symbol, via Yahoo's free search endpoint
-    (same data source already used for equity prices -- no new API/key
-    needed) -- but ONLY headlines Yahoo itself tags as related to this
-    exact ticker (via the response's relatedTickers field), not just
-    whatever comes back from the query. Yahoo's news search is generic
-    and often returns unrelated global finance news for a plain query;
-    the relatedTickers check is what actually filters for relevance.
-    In practice this means real matches for most US tickers, and
-    honestly nothing for most Indian ones (Yahoo doesn't have matched
-    coverage for NSE symbols) -- silence is the correct, honest result
-    there rather than showing a wrong headline.
-    Best-effort: returns [] on any failure or when nothing genuinely
-    matches, rather than forcing an irrelevant headline into an alert."""
-    query = symbol.replace("-USD", "").replace(".NS", "")
-    url = f"https://query1.finance.yahoo.com/v1/finance/search?q={query}&newsCount=8&quotesCount=0"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read())
-        matched = []
-        for item in data.get("news", []):
-            related = item.get("relatedTickers") or []
-            if (symbol in related or query in related) and item.get("title"):
-                matched.append(item["title"])
-        return matched[:limit]
-    except Exception as e:
-        print(f"{symbol}: news fetch failed ({e})")
-        return []
-
-
 def build_alert_text(text, symbol=None, price=None):
-    """The price/news enrichment send_telegram() does, split out so a
-    caller can build a fully-formed alert without sending it immediately
-    -- needed to batch several setup alerts from one scan into a single
+    """The price enrichment send_telegram() does, split out so a caller
+    can build a fully-formed alert without sending it immediately --
+    needed to batch several setup alerts from one scan into a single
     Telegram message instead of one send per symbol."""
     if symbol is not None and price is not None:
         text += f"\n\nCurrent price: {price:,.4g}"
-        headlines = fetch_news(symbol)
-        if headlines:
-            text += "\nRecent news:\n" + "\n".join(f"- {h}" for h in headlines)
     return text
 
 
@@ -334,8 +300,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n"
             f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
-            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).\n\n"
-            f"Took this? Reply: open {symbol} long",
+            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).",
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
@@ -353,8 +318,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
             f"Take profit: Keep trailing (no fixed target)\n"
             f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
-            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).\n\n"
-            f"Took this? Reply: open {symbol} short",
+            f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).",
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
@@ -378,8 +342,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_high:,.4g} (range high)\n"
                 f"{expected_profit_line(close, stop, qty, range_high, currency=currency)}\n\n"
-                f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.\n\n"
-                f"Took this? Reply: open {symbol} long",
+                f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.",
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
@@ -399,8 +362,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
                 f"Take profit: {range_low:,.4g} (range low)\n"
                 f"{expected_profit_line(close, stop, qty, range_low, currency=currency)}\n\n"
-                f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.\n\n"
-                f"Took this? Reply: open {symbol} short",
+                f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.",
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}

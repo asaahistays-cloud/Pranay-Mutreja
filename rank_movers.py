@@ -107,15 +107,9 @@ def main():
             "extreme_since_entry": None, "consecutive_losses": 0, "last_alert": {},
             "trade_journal": [],
         }
-        headlines = monitor.fetch_news(symbol, limit=1)
-        news_str = f" | {headlines[0]}" if headlines else ""
-        lines.append(f"{symbol}: {pct:+.2f}% | {current_price:,.4g}{news_str}")
+        lines.append(f"{symbol}: {pct:+.2f}% | {current_price:,.4g}")
     if not tradable:
         lines.append("\n(Analysis only -- not paper-tradable on TradingView, use your own broker if acting on any of these.)")
-    lines.append(
-        "\n(News shown only when a headline is genuinely tagged to that ticker -- no match means no news line, "
-        "rather than a guessed/irrelevant one. Indian tickers often won't have a match; that's expected, not a bug.)"
-    )
     lines.append("\n(Actual trade setups, if any fire during the session, come as separate BUY/SELL alerts.)")
 
     monitor.send_telegram("\n".join(lines))
