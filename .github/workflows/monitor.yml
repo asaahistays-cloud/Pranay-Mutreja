@@ -72,9 +72,9 @@ jobs:
         run: |
           git config user.name "multi-market-monitor-bot"
           git config user.email "actions@github.com"
-          if ! git diff --quiet -- state.json; then
-            git add state.json
-            git commit -m "Update state [skip ci]"
+          git add state.json "Trade Results.md" 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update state / trade results [skip ci]"
             # With 4 cron triggers now firing independently, two runs can
             # occasionally overlap and race to push. Retry with a rebase
             # a few times before giving up, instead of failing outright.
