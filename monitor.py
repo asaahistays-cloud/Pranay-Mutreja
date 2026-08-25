@@ -408,6 +408,18 @@ def sync_fills(state):
             open_position(sym_state, direction, entry, stop, qty, None)
             send_telegram(f"{symbol} now tracked -- {direction}, entry {entry:,.4g}, stop {stop:,.4g}, qty {qty:.6g}. You'll get trail/stop updates until it closes.")
 
+        elif cmd in ("fill", "skip", "open"):
+            # Right command, wrong number of args -- e.g. "fill dot" with
+            # no price. Anything unmatched falls all the way through
+            # silently otherwise (the offset still advances so the update
+            # isn't retried), which is exactly what could hide a real sync
+            # failure. Always reply so a mistyped command is visibly a
+            # mistyped command, not radio silence.
+            send_telegram(f"sync: '{' '.join(parts)}' is missing arguments -- see the command formats in any recent alert, or ask Claude.")
+
+        elif cmd not in ("fill", "skip", "open"):
+            continue  # not a bot command at all -- ordinary chat, ignore quietly
+
 
 def default_symbol_state(closed_bars):
     recent_high = max(b["high"] for b in closed_bars[-10:])
