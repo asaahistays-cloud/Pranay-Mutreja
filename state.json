@@ -45,8 +45,8 @@
       "direction": "short",
       "entry_price": 98.72,
       "entry_qty": 3.125,
-      "stop_loss": 98.7275,
-      "extreme_since_entry": 97.79,
+      "stop_loss": 98.48,
+      "extreme_since_entry": 97.48,
       "consecutive_losses": 0,
       "last_alert": {
         "type": "breakdown_short",
