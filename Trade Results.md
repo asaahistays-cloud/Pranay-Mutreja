@@ -11,3 +11,10 @@ No setups logged yet.
 
 ---
 
+## 2026-08-26 00:15 IST
+
+**SIGNAL QUALITY** (every setup fired, taken or not -- shadow-tracked automatically)
+- Fired: 3 | Resolved: 0 | Still open: 3
+
+---
+
