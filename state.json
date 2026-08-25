@@ -72,9 +72,8 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {
-        "type": "breakdown_short",
-        "level": 0.21881,
-        "bar_time": 1787651100000
+        "type": "range_long_rejection",
+        "bar_time": 1787652000000
       },
       "trade_journal": []
     },
