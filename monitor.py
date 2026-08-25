@@ -826,7 +826,7 @@ def main():
         # (stop or take-profit), so the bot picks up the next signal on
         # its own instead of waiting on a human to re-arm it.
 
-        if symbol == "BTC-USD" or sym_state.get("status") == "open":
+        if sym_state.get("status") == "open":
             send_heartbeat(symbol, sym_state, last_closed["close"])
 
     if fired_setups:
