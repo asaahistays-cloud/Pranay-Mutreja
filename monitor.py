@@ -252,7 +252,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         qty = position_size(capital, close, stop, losses)
         send_telegram(
             f"{symbol} BREAKOUT (confirmed close){tag}\n\n"
-            f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
+            f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+            f"Take profit: Keep trailing (no fixed target)\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, above 10-EMA ({trend_ema:,.4g}).",
             symbol=symbol, price=close,
         )
@@ -268,7 +269,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         qty = position_size(capital, close, stop, losses)
         send_telegram(
             f"{symbol} BREAKDOWN (confirmed close){tag}\n\n"
-            f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
+            f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+            f"Take profit: Keep trailing (no fixed target)\n\n"
             f"Vol {vol:,.1f} vs avg {vol_avg:,.1f}, below 10-EMA ({trend_ema:,.4g}).",
             symbol=symbol, price=close,
         )
@@ -283,9 +285,9 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             qty = position_size(capital, close, stop, losses)
             send_telegram(
                 f"{symbol} RANGE REJECTION (bullish){tag}\n\n"
-                f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
-                f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half -- "
-                f"target range high {range_high:,.4g}.",
+                f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+                f"Take profit: {range_high:,.4g} (range high)\n\n"
+                f"Wicked to {last_closed['low']:,.4g} near range low {range_low:,.4g}, closed upper half.",
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
@@ -299,9 +301,9 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
             qty = position_size(capital, close, stop, losses)
             send_telegram(
                 f"{symbol} RANGE REJECTION (bearish){tag}\n\n"
-                f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n\n"
-                f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half -- "
-                f"target range low {range_low:,.4g}.",
+                f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+                f"Take profit: {range_low:,.4g} (range low)\n\n"
+                f"Wicked to {last_closed['high']:,.4g} near range high {range_high:,.4g}, closed lower half.",
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
