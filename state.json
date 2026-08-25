@@ -3,8 +3,8 @@
   "symbols": {
     "BTC-USD": {
       "status": "watching",
-      "range_high": 80529,
-      "range_low": 79370,
+      "range_high": 80891.43,
+      "range_low": 79339.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -12,7 +12,14 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": [
-        {"direction": "short", "entry": 79781.99, "exit": 80180, "pnl_per_unit": -398, "exit_reason": "stop_hit", "note": "manually placed and manually closed via TradingView paper account -- stop executed on price touch (wick to 80,203.9), not candle close"}
+        {
+          "direction": "short",
+          "entry": 79781.99,
+          "exit": 80180,
+          "pnl_per_unit": -398,
+          "exit_reason": "stop_hit",
+          "note": "manually placed and manually closed via TradingView paper account -- stop executed on price touch (wick to 80,203.9), not candle close"
+        }
       ]
     },
     "ETH-USD": {
@@ -176,7 +183,7 @@
     },
     "ICICIBANK.NS": {
       "status": "watching",
-      "range_high": 1423.9000244140625,
+      "range_high": 1424.9000244140625,
       "range_low": 1415.0999755859375,
       "direction": null,
       "entry_price": null,
@@ -264,7 +271,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787645700000
+      },
       "trade_journal": []
     },
     "AXISBANK.NS": {
@@ -291,10 +301,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787645700000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "HINDUNILVR.NS": {
@@ -318,12 +325,15 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787645700000
+      },
       "trade_journal": []
     },
     "MARUTI.NS": {
       "status": "watching",
-      "range_high": 13548.0,
+      "range_high": 13580.0,
       "range_low": 13450.0,
       "direction": null,
       "entry_price": null,
@@ -342,10 +352,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787645700000
-      },
+      "last_alert": {},
       "trade_journal": []
     }
   }
