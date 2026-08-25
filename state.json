@@ -5,16 +5,13 @@
     "BTC-USD": {
       "status": "watching",
       "range_high": 80891.43,
-      "range_low": 78849.5,
+      "range_low": 78742.01,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787661000000
-      },
+      "last_alert": {},
       "trade_journal": [
         {
           "direction": "short",
@@ -29,22 +26,19 @@
     "ETH-USD": {
       "status": "watching",
       "range_high": 2514.72,
-      "range_low": 2461.92,
+      "range_low": 2456.41,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787661000000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "SOL-USD": {
       "status": "watching",
       "range_high": 99.84,
-      "range_low": 97.47,
+      "range_low": 97.45,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -70,17 +64,13 @@
     "XRP-USD": {
       "status": "watching",
       "range_high": 1.5259,
-      "range_low": 1.47,
+      "range_low": 1.4611,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 1.47,
-        "bar_time": 1787661000000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "ADA-USD": {
@@ -94,14 +84,14 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "range_long_rejection",
-        "bar_time": 1787661000000
+        "bar_time": 1787681700000
       },
       "trade_journal": []
     },
     "DOGE-USD": {
       "status": "watching",
       "range_high": 0.09296,
-      "range_low": 0.08979,
+      "range_low": 0.08821,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -116,7 +106,7 @@
     "AVAX-USD": {
       "status": "watching",
       "range_high": 7.688,
-      "range_low": 7.481,
+      "range_low": 7.434,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -128,7 +118,7 @@
     "LINK-USD": {
       "status": "watching",
       "range_high": 11.823,
-      "range_low": 11.489,
+      "range_low": 11.436,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -155,7 +145,7 @@
     "LTC-USD": {
       "status": "watching",
       "range_high": 52.743,
-      "range_low": 50.832,
+      "range_low": 50.718,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -173,13 +163,17 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 1.9017,
+        "bar_time": 1787681700000
+      },
       "trade_journal": []
     },
     "SUI-USD": {
       "status": "watching",
       "range_high": 0.8302,
-      "range_low": 0.7955,
+      "range_low": 0.7749,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -598,7 +592,7 @@
     },
     "SNAP": {
       "status": "watching",
-      "range_high": 5.559999942779541,
+      "range_high": 5.78000020980835,
       "range_low": 5.434999942779541,
       "direction": null,
       "entry_price": null,
@@ -610,7 +604,7 @@
     },
     "RIOT": {
       "status": "watching",
-      "range_high": 20.209999084472656,
+      "range_high": 21.540000915527344,
       "range_low": 19.795000076293945,
       "direction": null,
       "entry_price": null,
@@ -634,7 +628,7 @@
     },
     "UBER": {
       "status": "watching",
-      "range_high": 79.3949966430664,
+      "range_high": 80.0,
       "range_low": 78.5999984741211,
       "direction": null,
       "entry_price": null,
@@ -647,7 +641,7 @@
     "NKE": {
       "status": "watching",
       "range_high": 41.099998474121094,
-      "range_low": 40.67499923706055,
+      "range_low": 39.40999984741211,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -694,7 +688,7 @@
     },
     "CLF": {
       "status": "watching",
-      "range_high": 11.335000038146973,
+      "range_high": 11.53499984741211,
       "range_low": 11.229999542236328,
       "direction": null,
       "entry_price": null,
@@ -707,7 +701,7 @@
     "MO": {
       "status": "watching",
       "range_high": 68.5,
-      "range_low": 68.00499725341797,
+      "range_low": 67.80000305175781,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -725,12 +719,15 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787682600000
+      },
       "trade_journal": []
     },
     "WBD": {
       "status": "watching",
-      "range_high": 28.854999542236328,
+      "range_high": 28.979999542236328,
       "range_low": 28.690000534057617,
       "direction": null,
       "entry_price": null,
@@ -742,7 +739,7 @@
     },
     "INTC": {
       "status": "watching",
-      "range_high": 87.93599700927734,
+      "range_high": 89.06999969482422,
       "range_low": 86.88999938964844,
       "direction": null,
       "entry_price": null,
@@ -786,5 +783,76 @@
     "SOFI",
     "WBD",
     "INTC"
+  ],
+  "setup_log": [
+    {
+      "symbol": "ADA-USD",
+      "type": "range_long_rejection",
+      "direction": "long",
+      "entry": 0.21552,
+      "stop": 0.21480442857142856,
+      "target": 0.22795,
+      "qty": 1397.4845278498742,
+      "fired_at": "2026-08-25T18:38:56.584870+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 0.21552,
+        "entry_qty": 1397.4845278498742,
+        "stop_loss": 0.21480442857142856,
+        "extreme_since_entry": 0.21552,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": 0.22795,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "NEAR-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 1.8916,
+      "stop": 1.9120892857142857,
+      "target": null,
+      "qty": 48.80599616524304,
+      "fired_at": "2026-08-25T18:38:57.012333+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 1.8916,
+        "entry_qty": 48.80599616524304,
+        "stop_loss": 1.9120892857142857,
+        "extreme_since_entry": 1.8916,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "SOFI",
+      "type": "range_short_rejection",
+      "direction": "short",
+      "entry": 18.770099639892578,
+      "stop": 18.872848442622594,
+      "target": 18.219999313354492,
+      "qty": 5.3276222246294,
+      "fired_at": "2026-08-25T18:38:59.044078+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 18.770099639892578,
+        "entry_qty": 5.3276222246294,
+        "stop_loss": 18.872848442622594,
+        "extreme_since_entry": 18.770099639892578,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": 18.219999313354492,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    }
   ]
 }
