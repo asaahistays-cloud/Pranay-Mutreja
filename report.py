@@ -30,7 +30,7 @@ IST_OFFSET = timedelta(hours=5, minutes=30)
 
 
 def currency_for(symbol):
-    return "INR" if symbol.endswith(".NS") else "USD"
+    return "INR" if symbol.endswith(".NS") or symbol.endswith("-FUT") else "USD"
 
 
 def to_ist_date(iso_str):
@@ -45,6 +45,8 @@ def market_of(symbol):
         return "india"
     if "-USD" in symbol:
         return "crypto"
+    if symbol.endswith("-FUT"):
+        return "india_futures"
     return "us"
 
 
@@ -125,6 +127,17 @@ def main():
         build_daily_report(state, label="CRYPTO -- SIGNAL QUALITY", market="crypto"),
         build_daily_report(state, label="US -- SIGNAL QUALITY", market="us"),
     ]
+    # India futures (NIFTY/SENSEX) aren't scanned by the automated pipeline
+    # -- no scriptable intraday data source exists, so they're tracked
+    # manually (TradingView, checked by hand) and logged into the same
+    # setup_log. Only shown when there's actually something logged today,
+    # unlike the always-on markets above, since most days will have none.
+    day_ist = (datetime.now(timezone.utc) + IST_OFFSET).strftime("%Y-%m-%d")
+    futures_today = [e for e in state.get("setup_log", [])
+                      if market_of(e["symbol"]) == "india_futures" and to_ist_date(e["fired_at"]) == day_ist]
+    if futures_today:
+        sections.append(build_daily_report(state, label="INDIA FUTURES (MANUAL) -- SIGNAL QUALITY", market="india_futures"))
+
     report_text = "\n\n".join(sections)
     append_to_file(report_text)
     monitor.send_telegram("TRADE PERFORMANCE REPORT\n\n" + report_text)
