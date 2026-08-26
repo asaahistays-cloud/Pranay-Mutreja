@@ -955,11 +955,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 281.0,
-        "bar_time": 1787718600000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "TATAPOWER.NS": {
