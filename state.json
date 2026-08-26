@@ -1127,7 +1127,7 @@
     },
     "FET-USD": {
       "status": "watching",
-      "range_high": 0.16651,
+      "range_high": 0.16722,
       "range_low": 0.15777,
       "direction": null,
       "entry_price": null,
