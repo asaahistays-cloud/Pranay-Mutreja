@@ -28,6 +28,18 @@ import monitor
 RESULTS_FILE = os.path.join(os.path.dirname(__file__), "Trade Results.md")
 IST_OFFSET = timedelta(hours=5, minutes=30)
 
+# Per-market UTC timestamp of when that market's CURRENTLY-LIVE entry
+# strategy went live. Entries fired before this are from a superseded
+# strategy (e.g. US's old unfiltered check_watching_default() logic,
+# replaced by Gap and Go on 2026-08-26) -- blending them into "today's"
+# numbers would misrepresent how the strategy actually in production
+# right now is performing. A market with no entry here has run its
+# current strategy for the whole day, so no cutoff is needed. Update
+# this whenever a market's strategy changes.
+STRATEGY_LAUNCHED_AT = {
+    "us": "2026-08-26T14:35:00+00:00",  # Gap and Go (short-only)
+}
+
 
 def currency_for(symbol):
     return "INR" if symbol.endswith(".NS") or symbol.endswith("-FUT") else "USD"
@@ -64,11 +76,18 @@ def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY
     one scan, only the top few by conviction get sent (see main()'s
     best-of-N selection), so "suggested" means what you actually saw,
     not everything that structurally fired. Older entries predating
-    that change have no "surfaced" field and default to counted."""
+    that change have no "surfaced" field and default to counted. If
+    market has an entry in STRATEGY_LAUNCHED_AT, entries fired before
+    that cutoff are excluded too -- otherwise a strategy that changed
+    mid-day would have its numbers diluted by a superseded strategy's
+    results on the very day it shipped."""
     day_ist = day_ist or (datetime.now(timezone.utc) + IST_OFFSET).strftime("%Y-%m-%d")
     log = [e for e in state.get(log_key, []) if to_ist_date(e["fired_at"]) == day_ist and e.get("surfaced", True)]
     if market:
         log = [e for e in log if market_of(e["symbol"]) == market]
+        launched_at = STRATEGY_LAUNCHED_AT.get(market)
+        if launched_at:
+            log = [e for e in log if e["fired_at"] >= launched_at]
 
     if not log:
         return f"**{label}** ({day_ist})\nNo setups fired today."
