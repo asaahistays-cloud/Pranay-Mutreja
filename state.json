@@ -2766,7 +2766,7 @@
       "symbol": "RECLTD.NS",
       "type": "breakdown_short",
       "direction": "short",
-      "entry": 324.0,
+      "entry": 323.7,
       "stop": 325.6785659790039,
       "target": null,
       "qty": 1191.0,
@@ -2776,11 +2776,11 @@
       "surfaced": true,
       "shadow": {
         "direction": "short",
-        "entry_price": 324.0,
+        "entry_price": 323.7,
         "entry_qty": 1191.0,
         "stop_loss": 323.65,
         "extreme_since_entry": 323.5,
-        "peak_profit_per_unit": 0.5,
+        "peak_profit_per_unit": 0.19999999999998863,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
