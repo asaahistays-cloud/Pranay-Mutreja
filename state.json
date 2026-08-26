@@ -513,7 +513,7 @@
     "CANBK.NS": {
       "status": "watching",
       "range_high": 130.8800048828125,
-      "range_low": 127.81999969482422,
+      "range_low": 127.30000305175781,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -541,7 +541,7 @@
     "BANKINDIA.NS": {
       "status": "watching",
       "range_high": 147.89999389648438,
-      "range_low": 143.00999450683594,
+      "range_low": 142.42999267578125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -553,7 +553,7 @@
     "NTPC.NS": {
       "status": "watching",
       "range_high": 344.3999938964844,
-      "range_low": 338.1499938964844,
+      "range_low": 336.70001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -913,7 +913,7 @@
     "INDIANB.NS": {
       "status": "watching",
       "range_high": 899.3499755859375,
-      "range_low": 875.7999877929688,
+      "range_low": 873.0999755859375,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -955,13 +955,17 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakout_long",
+        "level": 281.0,
+        "bar_time": 1787718600000
+      },
       "trade_journal": []
     },
     "TATAPOWER.NS": {
       "status": "watching",
-      "range_high": 376.0,
-      "range_low": 370.0,
+      "range_high": 376.3500061035156,
+      "range_low": 368.6000061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1009,7 +1013,7 @@
     "IOB.NS": {
       "status": "watching",
       "range_high": 33.52000045776367,
-      "range_low": 32.970001220703125,
+      "range_low": 32.939998626708984,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -2647,6 +2651,29 @@
         "entry_qty": 4014.3334047961775,
         "stop_loss": 326.5589141845703,
         "extreme_since_entry": 329.04998779296875,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "VEDL.NS",
+      "type": "breakout_long",
+      "direction": "long",
+      "entry": 283.04998779296875,
+      "stop": 278.75355420793807,
+      "target": null,
+      "qty": 2327.5118309383997,
+      "fired_at": "2026-08-26T04:45:25.820375+00:00",
+      "resolved": false,
+      "outcome": null,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 283.04998779296875,
+        "entry_qty": 2327.5118309383997,
+        "stop_loss": 278.75355420793807,
+        "extreme_since_entry": 283.04998779296875,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
