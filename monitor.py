@@ -56,6 +56,7 @@ RISK_PCT_PER_TRADE = 0.01
 LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 1}
 GAP_THRESHOLD_PCT_US = 0.015  # overnight gap that locks check_watching_us()'s directional bias
 LOSS_THROTTLE_AFTER = 2
+WIN_THROTTLE_AFTER = 3  # guard against overconfidence-driven oversizing after a streak, symmetric to the loss throttle above
 STALE_THRESHOLD_SECONDS = 45 * 60  # skip a symbol if its latest bar is older than this
 
 # Trailing-stop tuning -- backtested against 60 days / 2,127 trades across
@@ -287,16 +288,22 @@ def day_vwap(closed_bars, last_closed):
     return cum_pv / cum_vol if cum_vol else last_closed["close"]
 
 
-def position_size(capital_usd, entry, stop, consecutive_losses, leverage=1):
+def position_size(capital_usd, entry, stop, consecutive_losses, leverage=1, consecutive_wins=0):
     """Risk-based sizing (fixed % of capital / stop distance) alone can
     suggest a qty whose notional value exceeds what the account can
     actually hold -- e.g. a $0.30 stop on an $87 stock sizes to $290
     notional off $100 capital, 2.9x, more than the 1x the user actually
     has for US stocks. leverage is the max notional per unit of capital
     actually available on that market (LEVERAGE_BY_MARKET); the
-    risk-based qty is capped at what that leverage can actually hold."""
+    risk-based qty is capped at what that leverage can actually hold.
+    consecutive_wins throttles the opposite failure mode from
+    consecutive_losses -- overconfidence after a win streak leading to
+    oversized bets is as real a discipline failure as revenge-sizing
+    after losses, so it gets the same halving treatment, symmetric by
+    design rather than separately tuned (no backtested reason yet to
+    treat the two directions differently)."""
     risk_amount = capital_usd * RISK_PCT_PER_TRADE
-    if consecutive_losses >= LOSS_THROTTLE_AFTER:
+    if consecutive_losses >= LOSS_THROTTLE_AFTER or consecutive_wins >= WIN_THROTTLE_AFTER:
         risk_amount *= 0.5
     stop_distance = abs(entry - stop)
     if stop_distance <= 0 or entry <= 0:
@@ -330,7 +337,7 @@ def default_symbol_state(closed_bars):
         "status": "watching", "range_high": recent_high, "range_low": recent_low,
         "direction": None, "entry_price": None, "entry_qty": None, "stop_loss": None,
         "extreme_since_entry": None, "peak_profit_per_unit": 0, "take_profit_target": None,
-        "consecutive_losses": 0, "last_alert": {},
+        "consecutive_losses": 0, "consecutive_wins": 0, "last_alert": {},
         "trade_journal": [],
     }
 
@@ -492,7 +499,8 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
     n = atr(closed_bars)
     stop = range_high + 0.5 * n
     losses = sym_state.get("consecutive_losses", 0)
-    qty = position_size(capital, close, stop, losses, leverage=LEVERAGE_BY_MARKET.get(market, 1))
+    wins = sym_state.get("consecutive_wins", 0)
+    qty = position_size(capital, close, stop, losses, leverage=LEVERAGE_BY_MARKET.get(market, 1), consecutive_wins=wins)
     vol = last_closed["volume"]
     vol_avg = avg_volume(closed_bars[-10:-1])
     tag = "" if tradable else " (analysis only)"
@@ -535,6 +543,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
     trend_ema = ema([b["close"] for b in closed_bars[-(EMA_PERIOD * 3):]], EMA_PERIOD)
     n = atr(closed_bars)
     losses = sym_state.get("consecutive_losses", 0)
+    wins = sym_state.get("consecutive_wins", 0)
     leverage = LEVERAGE_BY_MARKET.get(market, 1)
     already_alerted = sym_state.get("last_alert", {})
     bar_time = last_closed["close_time"]
@@ -559,7 +568,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             return None
         sym_state["pending"] = None
         stop = last_closed["low"] - 0.5 * n
-        qty = position_size(capital, close, stop, losses, leverage=leverage)
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
         text = build_alert_text(
             f"{symbol} BREAKOUT (confirmed + retest held)\n\n"
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -588,7 +597,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             return None
         sym_state["pending"] = None
         stop = last_closed["high"] + 0.5 * n
-        qty = position_size(capital, close, stop, losses, leverage=leverage)
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
         text = build_alert_text(
             f"{symbol} BREAKDOWN (confirmed + retest held)\n\n"
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -612,7 +621,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             if len(closed_bars) >= 2 and not (closed_bars[-2]["low"] <= range_low * (1 + REJECTION_BUFFER_PCT * 3)):
                 return None
             stop = last_closed["low"] - 0.3 * n
-            qty = position_size(capital, close, stop, losses, leverage=leverage)
+            qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
             adx_display = f"{adx_val:.0f}" if adx_val is not None else "n/a"
             text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bullish)\n\n"
@@ -639,7 +648,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             if len(closed_bars) >= 2 and not (closed_bars[-2]["high"] >= range_high * (1 - REJECTION_BUFFER_PCT * 3)):
                 return None
             stop = last_closed["high"] + 0.3 * n
-            qty = position_size(capital, close, stop, losses, leverage=leverage)
+            qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
             adx_display = f"{adx_val:.0f}" if adx_val is not None else "n/a"
             text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bearish)\n\n"
@@ -682,6 +691,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
     trend_ema = ema([b["close"] for b in closed_bars[-(EMA_PERIOD * 3):]], EMA_PERIOD)
     n = atr(closed_bars)
     losses = sym_state.get("consecutive_losses", 0)
+    wins = sym_state.get("consecutive_wins", 0)
     leverage = LEVERAGE_BY_MARKET.get(market, 1)
     already_alerted = sym_state.get("last_alert", {})
     bar_time = last_closed["close_time"]
@@ -694,7 +704,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
         if already_alerted.get("type") == "breakout_long" and already_alerted.get("level") == range_high:
             return None
         stop = last_closed["low"] - 0.5 * n
-        qty = position_size(capital, close, stop, losses, leverage=leverage)
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
         text = build_alert_text(
             f"{symbol} BREAKOUT (confirmed close){tag}\n\n"
             f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -712,7 +722,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
         if already_alerted.get("type") == "breakdown_short" and already_alerted.get("level") == range_low:
             return None
         stop = last_closed["high"] + 0.5 * n
-        qty = position_size(capital, close, stop, losses, leverage=leverage)
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
         text = build_alert_text(
             f"{symbol} BREAKDOWN (confirmed close){tag}\n\n"
             f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -736,7 +746,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
             return None
         if already_alerted.get("type") != "range_long_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["low"] - 0.3 * n
-            qty = position_size(capital, close, stop, losses, leverage=leverage)
+            qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
             text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bullish){tag}\n\n"
                 f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -756,7 +766,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
             return None
         if already_alerted.get("type") != "range_short_rejection" or already_alerted.get("bar_time") != bar_time:
             stop = last_closed["high"] + 0.3 * n
-            qty = position_size(capital, close, stop, losses, leverage=leverage)
+            qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
             text = build_alert_text(
                 f"{symbol} RANGE REJECTION (bearish){tag}\n\n"
                 f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
@@ -826,6 +836,7 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
             pnl = close - entry
             log_trade(sym_state, "long", entry, close, pnl, "take_profit")
             sym_state["consecutive_losses"] = 0
+            sym_state["consecutive_wins"] = sym_state.get("consecutive_wins", 0) + 1
             rearm_to_watching(sym_state, closed_bars)
             return
 
@@ -834,7 +845,12 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
             pnl = close - entry
             log_trade(sym_state, "long", entry, close, pnl, "stop_hit")
-            sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
+            if pnl >= 0:
+                sym_state["consecutive_losses"] = 0
+                sym_state["consecutive_wins"] = sym_state.get("consecutive_wins", 0) + 1
+            else:
+                sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
+                sym_state["consecutive_wins"] = 0
             rearm_to_watching(sym_state, closed_bars)
             return
 
@@ -886,7 +902,12 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
             pnl = entry - close
             log_trade(sym_state, "short", entry, close, pnl, "stop_hit")
-            sym_state["consecutive_losses"] = 0 if pnl >= 0 else sym_state.get("consecutive_losses", 0) + 1
+            if pnl >= 0:
+                sym_state["consecutive_losses"] = 0
+                sym_state["consecutive_wins"] = sym_state.get("consecutive_wins", 0) + 1
+            else:
+                sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
+                sym_state["consecutive_wins"] = 0
             rearm_to_watching(sym_state, closed_bars)
             return
 
@@ -962,6 +983,22 @@ def main():
             if len(shadow["trade_journal"]) > before:
                 log_entry["resolved"] = True
                 log_entry["outcome"] = shadow["trade_journal"][-1]
+                # check_open() only updates the throttle counters on the
+                # ephemeral shadow dict it was handed, not the real
+                # per-symbol sym_state that position_size() actually
+                # reads (a leftover from the older live-position-tracking
+                # architecture) -- so the loss/win throttle in
+                # position_size() was permanently inert regardless of
+                # real streaks. Propagate the resolution to sym_state
+                # here, the one place that's guaranteed to run for every
+                # resolution regardless of whether the user took it.
+                pnl = log_entry["outcome"]["pnl_per_unit"]
+                if pnl >= 0:
+                    sym_state["consecutive_losses"] = 0
+                    sym_state["consecutive_wins"] = sym_state.get("consecutive_wins", 0) + 1
+                else:
+                    sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
+                    sym_state["consecutive_wins"] = 0
 
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log)
         if alert:
@@ -977,6 +1014,14 @@ def main():
     # picking better trades or just fewer of them. Ranked per market,
     # not globally -- crypto/India/US are separate capital pools, so a
     # strong US signal shouldn't crowd out an India one.
+    #
+    # Correlation guard: at most 1 surfaced per direction per market per
+    # scan. Two same-direction fires in one market in one cycle (e.g.
+    # BTC and ETH both breaking down together) usually means one macro
+    # move set off multiple correlated symbols, not two independent
+    # opportunities -- surfacing both would look like double conviction
+    # when it's really the same bet twice. A different direction still
+    # gets its own slot, since that's a genuinely different position.
     SURFACE_TOP_N = 2
     by_market = {}
     for market, symbol, alert in fired_this_scan:
@@ -984,8 +1029,16 @@ def main():
     surfaced_keys = set()
     for market, items in by_market.items():
         ranked = sorted(items, key=lambda x: x[1].get("vol_ratio", 0), reverse=True)
-        for symbol, alert in ranked[:SURFACE_TOP_N]:
+        directions_used = set()
+        picked = 0
+        for symbol, alert in ranked:
+            if picked >= SURFACE_TOP_N:
+                break
+            if alert["direction"] in directions_used:
+                continue
+            directions_used.add(alert["direction"])
             surfaced_keys.add((symbol, alert["type"], alert["entry"]))
+            picked += 1
 
     fired_setups = []
     for market, symbol, alert in fired_this_scan:
@@ -1001,7 +1054,7 @@ def main():
                 "direction": alert["direction"], "entry_price": alert["entry"],
                 "entry_qty": alert["qty"], "stop_loss": alert["stop"],
                 "extreme_since_entry": alert["entry"], "peak_profit_per_unit": 0,
-                "take_profit_target": alert["target"], "consecutive_losses": 0,
+                "take_profit_target": alert["target"], "consecutive_losses": 0, "consecutive_wins": 0,
                 "trade_journal": [],
             },
         })
