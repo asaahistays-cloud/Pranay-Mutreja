@@ -688,3 +688,71 @@ No setups fired today.
 
 ---
 
+## 2026-08-27 00:08 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-08-26)
+- Suggested: 17 trade(s) | Resolved: 12 | Still playing out: 5
+- If you'd taken all 12 resolved trades: 5 right, 7 wrong (42% correct)
+- Net loss (INR): -1.664e+04
+  [-] CANBK.NS breakout_long (long): -149.8
+  [+] BANKINDIA.NS breakout_long (long): +3,765
+  [+] NTPC.NS breakout_long (long): +7,862
+  [-] RECLTD.NS breakout_long (long): -1.244e+04
+  [-] VEDL.NS breakout_long (long): -4,073
+  [+] RECLTD.NS breakdown_short (short): +595.5
+  [+] TATAPOWER.NS breakdown_short (short): +1,425
+  [-] SAIL.NS breakout_long (long): -5,320
+  [+] IDFCFIRSTB.NS breakdown_short (short): +4,095
+  [-] RECLTD.NS breakdown_short (short): -3,413
+  [-] HINDCOPPER.NS breakout_long (long): -8,579
+  [-] IRCON.NS breakdown_short (short): -403.3
+- 5 trade(s) still open, not yet counted above: IOC.NS (breakout_long), PFC.NS (breakout_long), GAIL.NS (breakout_long), NATIONALUM.NS (breakout_long), SAIL.NS (breakout_long)
+
+**CRYPTO -- SIGNAL QUALITY** (2026-08-26)
+- Suggested: 18 trade(s) | Resolved: 14 | Still playing out: 4
+- If you'd taken all 14 resolved trades: 4 right, 10 wrong (29% correct)
+- Net loss (USD): -5.495
+  [-] ADA-USD range_long_rejection (long): -2.054
+  [+] NEAR-USD breakdown_short (short): +0.4637
+  [-] ADA-USD range_long_rejection (long): -1.658
+  [-] DOT-USD range_long_rejection (long): -1.379
+  [+] ADA-USD breakdown_short (short): +0.6654
+  [-] ETH-USD breakdown_short (short): -0.01408
+  [-] NEAR-USD breakdown_short (short): -0.3435
+  [+] SUI-USD breakdown_short (short): +0.4932
+  [+] XRP-USD breakdown_short (short): +1.166
+  [-] SOL-USD breakdown_short (short): -0.3327
+  [-] XRP-USD breakdown_short (short): -0.01393
+  [-] BTC-USD breakdown_short (short): -1.197
+  [-] ETH-USD breakdown_short (short): -0.6545
+  [-] SOL-USD range_long_rejection (long): -0.636
+- 4 trade(s) still open, not yet counted above: DOGE-USD (breakdown_short), SUI-USD (breakdown_short), LINK-USD (breakdown_short), FET-USD (range_short_rejection)
+
+**US -- SIGNAL QUALITY** (2026-08-26)
+- Suggested: 21 trade(s) | Resolved: 20 | Still playing out: 1
+- If you'd taken all 20 resolved trades: 5 right, 15 wrong (25% correct)
+- Net loss (USD): -3.557
+  [-] SOFI range_short_rejection (short): -0.9052
+  [-] HOOD breakout_long (long): -3.188
+  [+] SNAP breakout_long (long): +0.8951
+  [-] RIVN breakout_long (long): -0.238
+  [-] AAL range_short_rejection (short): -0.6548
+  [-] MARA breakout_long (long): -0.9938
+  [-] NKE breakdown_short (short): -0.4951
+  [-] RIVN range_short_rejection (short): -0.02975
+  [-] UBER breakout_long (long): -0.3677
+  [+] NEM breakout_long (long): +0.0965
+  [-] AAL range_short_rejection (short): -0.6914
+  [+] MARA range_short_rejection (short): +4.298
+  [+] RIVN range_short_rejection (short): +2.151
+  [-] AAL range_short_rejection (short): -0.6182
+  [-] NKE range_long_rejection (long): -2.539
+  [-] AAL breakout_long (long): -0.1446
+  [+] MARA gap_and_go_short (short): +0.2649
+  [-] NEM gap_and_go_short (short): -0.09916
+  [-] MARA gap_and_go_short (short): -0.065
+  [-] HOOD gap_and_go_short (short): -0.2323
+- 1 trade(s) still open, not yet counted above: SOFI (breakout_long)
+
+---
+
