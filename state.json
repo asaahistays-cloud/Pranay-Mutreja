@@ -484,8 +484,8 @@
     },
     "PAYTM.NS": {
       "status": "watching",
-      "range_high": 1727.199951171875,
-      "range_low": 1710.0,
+      "range_high": 1732.0,
+      "range_low": 1708.5,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -564,8 +564,8 @@
     },
     "IRCON.NS": {
       "status": "watching",
-      "range_high": 125.2300033569336,
-      "range_low": 124.5199966430664,
+      "range_high": 126.7300033569336,
+      "range_low": 124.0999984741211,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -577,7 +577,7 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 329.45001220703125,
-      "range_low": 325.79998779296875,
+      "range_low": 325.70001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1016,8 +1016,8 @@
     },
     "SAIL.NS": {
       "status": "watching",
-      "range_high": 185.47000122070312,
-      "range_low": 182.50999450683594,
+      "range_high": 186.6699981689453,
+      "range_low": 182.39999389648438,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
