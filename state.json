@@ -2769,7 +2769,7 @@
       "entry": 324.0,
       "stop": 325.6785659790039,
       "target": null,
-      "qty": 5957.4661497275165,
+      "qty": 1191.0,
       "fired_at": "2026-08-26T07:12:43.579004+00:00",
       "resolved": false,
       "outcome": null,
@@ -2777,14 +2777,15 @@
       "shadow": {
         "direction": "short",
         "entry_price": 324.0,
-        "entry_qty": 5957.4661497275165,
+        "entry_qty": 1191.0,
         "stop_loss": 324.9848164149693,
         "extreme_since_entry": 323.6499938964844,
         "peak_profit_per_unit": 0.350006103515625,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
-      }
+      },
+      "taken": true
     }
   ]
 }
