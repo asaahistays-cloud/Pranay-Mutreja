@@ -75,6 +75,27 @@
   .refresh-note { color: var(--text-faint); font-size: 11px; }
 
   .loading { color: var(--text-faint); font-size: 13px; padding: 40px; text-align: center; }
+
+  .taken-btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: -apple-system, sans-serif; }
+  .taken-btn:hover { opacity: 0.85; }
+  .taken-window { color: var(--text-faint); font-size: 11px; }
+
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
+  .modal-overlay.hidden { display: none; }
+  .modal { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 12px; padding: 24px; width: 100%; max-width: 380px; }
+  .modal h3 { margin: 0 0 4px; font-size: 16px; }
+  .modal .modal-sub { color: var(--text-dim); font-size: 12px; margin-bottom: 18px; }
+  .modal label { display: block; font-size: 12px; color: var(--text-dim); margin: 12px 0 4px; }
+  .modal input { width: 100%; background: #0e121a; border: 1px solid var(--panel-border); border-radius: 6px; padding: 8px 10px; color: var(--text); font-family: var(--mono); font-size: 14px; }
+  .modal input:focus { outline: none; border-color: var(--accent); }
+  .modal-actions { display: flex; gap: 8px; margin-top: 20px; }
+  .modal-actions button { flex: 1; padding: 10px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; font-family: -apple-system, sans-serif; }
+  .btn-cancel { background: #1a2030; color: var(--text-dim); }
+  .btn-submit { background: var(--accent); color: #fff; }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .modal-status { font-size: 12px; margin-top: 10px; min-height: 16px; }
+  .modal-status.error { color: var(--red); }
+  .modal-status.ok { color: var(--green); }
 </style>
 </head>
 <body>
@@ -125,11 +146,34 @@
 
 <footer>
   Data from <a href="https://github.com/asaahistays-cloud/Pranay-Mutreja" target="_blank" rel="noopener">the bot's repo</a> &middot;
-  auto-refreshes every 60s &middot; read-only, this page never places trades
+  auto-refreshes every 60s &middot; this page only ever flags a setup as taken, it never places trades
 </footer>
+
+<div class="modal-overlay hidden" id="takenModal">
+  <div class="modal">
+    <h3 id="takenModalTitle">Mark as taken</h3>
+    <div class="modal-sub" id="takenModalSub"></div>
+    <label>Entry price</label>
+    <input type="number" step="any" id="takenEntry">
+    <label>Quantity</label>
+    <input type="number" step="any" id="takenQty">
+    <label>Stoploss</label>
+    <input type="number" step="any" id="takenStop">
+    <label>Take profit (optional)</label>
+    <input type="number" step="any" id="takenTarget">
+    <div class="modal-status" id="takenModalStatus"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeTakenModal()">Cancel</button>
+      <button class="btn-submit" id="takenSubmitBtn" onclick="submitTaken()">Confirm</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const REPO = "asaahistays-cloud/Pranay-Mutreja";
+const WORKER_URL = "https://multi-market-monitor-taken.asaahistays.workers.dev";
+const TAKEN_WINDOW_MS = 5 * 60 * 1000;
+let currentTakenEntry = null;
 const RAW_STATE_URL = `https://raw.githubusercontent.com/${REPO}/main/state.json?_=${Date.now()}`;
 const COMMITS_API = `https://api.github.com/repos/${REPO}/commits?path=state.json&per_page=1`;
 const IST_OFFSET_MS = (5 * 60 + 30) * 60 * 1000;
@@ -306,7 +350,9 @@ function renderRecentSetups(state) {
     el.innerHTML = `<div class="empty-state">No setups yet.</div>`;
     return;
   }
-  const rows = log.map(e => {
+  window.__recentSetupsLog = log; // referenced by index from the Taken button's onclick
+
+  const rows = log.map((e, i) => {
     const market = marketOf(e.symbol);
     const cur = currencyFor(e.symbol);
     let outcomeCell = `<span style="color:var(--text-faint)">pending</span>`;
@@ -317,14 +363,23 @@ function renderRecentSetups(state) {
         : `<span class="pnl-neg">${cur}${fmtNum(pnl)}</span>`;
     }
     const surfacedTag = e.surfaced === false ? `<span style="color:var(--text-faint);font-size:11px">(not surfaced)</span>` : "";
-    const takenTag = e.taken ? `<span style="color:var(--accent);font-size:11px">taken</span>` : "";
+    const withinWindow = (Date.now() - new Date(e.fired_at).getTime()) < TAKEN_WINDOW_MS;
+    let statusCell;
+    if (e.taken) {
+      statusCell = `<span style="color:var(--accent);font-size:11px">taken</span>`;
+    } else if (!e.resolved && e.surfaced !== false && withinWindow) {
+      const minsLeft = Math.max(0, Math.ceil((TAKEN_WINDOW_MS - (Date.now() - new Date(e.fired_at).getTime())) / 60000));
+      statusCell = `<button class="taken-btn" onclick="openTakenModal(${i})">Taken</button> <span class="taken-window">${minsLeft}m left</span>`;
+    } else {
+      statusCell = surfacedTag || `<span style="color:var(--text-faint);font-size:11px">–</span>`;
+    }
     return `<tr>
       <td>${e.symbol} <span class="tag market-${market}">${market}</span></td>
       <td><span class="tag ${e.direction}">${e.direction}</span></td>
       <td style="color:var(--text-faint)">${e.type}</td>
       <td>${cur}${fmtNum(e.entry, 4)}</td>
       <td>${outcomeCell}</td>
-      <td>${takenTag} ${surfacedTag}</td>
+      <td>${statusCell}</td>
       <td style="color:var(--text-faint)">${fmtIST(e.fired_at)}</td>
     </tr>`;
   }).join("");
@@ -354,6 +409,78 @@ async function loadDashboard() {
   } catch (e) {
     document.getElementById("statusBar").innerHTML = `<div class="status-chip"><span class="dot bad"></span> Failed to load: ${e.message}</div>`;
     console.error(e);
+  }
+}
+
+function openTakenModal(index) {
+  const e = window.__recentSetupsLog[index];
+  currentTakenEntry = e;
+  document.getElementById("takenModalTitle").textContent = `${e.symbol} -- ${e.direction} (${e.type})`;
+  document.getElementById("takenModalSub").textContent = `Bot suggested: entry ${e.entry} / stop ${e.stop}${e.target ? ` / target ${e.target}` : ""}. Enter what you actually got.`;
+  document.getElementById("takenEntry").value = e.entry ?? "";
+  document.getElementById("takenQty").value = "";
+  document.getElementById("takenStop").value = e.stop ?? "";
+  document.getElementById("takenTarget").value = e.target ?? "";
+  document.getElementById("takenModalStatus").textContent = "";
+  document.getElementById("takenModalStatus").className = "modal-status";
+  document.getElementById("takenSubmitBtn").disabled = false;
+  document.getElementById("takenSubmitBtn").textContent = "Confirm";
+  document.getElementById("takenModal").classList.remove("hidden");
+}
+
+function closeTakenModal() {
+  document.getElementById("takenModal").classList.add("hidden");
+  currentTakenEntry = null;
+}
+
+async function submitTaken() {
+  if (!currentTakenEntry) return;
+  const statusEl = document.getElementById("takenModalStatus");
+  const btn = document.getElementById("takenSubmitBtn");
+
+  const entryVal = parseFloat(document.getElementById("takenEntry").value);
+  const qtyVal = parseFloat(document.getElementById("takenQty").value);
+  const stopVal = parseFloat(document.getElementById("takenStop").value);
+  const targetRaw = document.getElementById("takenTarget").value;
+  const targetVal = targetRaw === "" ? null : parseFloat(targetRaw);
+
+  if (isNaN(entryVal) || isNaN(qtyVal) || isNaN(stopVal)) {
+    statusEl.textContent = "Entry, quantity, and stop are required.";
+    statusEl.className = "modal-status error";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+  statusEl.textContent = "";
+  statusEl.className = "modal-status";
+
+  try {
+    const resp = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        symbol: currentTakenEntry.symbol,
+        fired_at: currentTakenEntry.fired_at,
+        entry: entryVal,
+        qty: qtyVal,
+        stop: stopVal,
+        target: targetVal,
+      }),
+    });
+    const data = await resp.json();
+    if (!resp.ok || !data.ok) {
+      throw new Error(data.error || `HTTP ${resp.status}`);
+    }
+    statusEl.textContent = "Confirmed -- will show as taken within about a minute.";
+    statusEl.className = "modal-status ok";
+    btn.textContent = "Done";
+    setTimeout(() => { closeTakenModal(); loadDashboard(); }, 2000);
+  } catch (e) {
+    statusEl.textContent = `Failed: ${e.message}`;
+    statusEl.className = "modal-status error";
+    btn.disabled = false;
+    btn.textContent = "Confirm";
   }
 }
 
