@@ -585,17 +585,14 @@
     },
     "MARA": {
       "status": "watching",
-      "range_high": 11.40999984741211,
-      "range_low": 11.100000381469727,
+      "range_high": 12.100000381469727,
+      "range_low": 11.819999694824219,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_short_rejection",
-        "bar_time": 1787685300000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "SNAP": {
@@ -629,7 +626,7 @@
     "RIVN": {
       "status": "watching",
       "range_high": 16.94499969482422,
-      "range_low": 16.570999145507812,
+      "range_low": 16.690000534057617,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -640,18 +637,14 @@
     },
     "UBER": {
       "status": "watching",
-      "range_high": 80.0199966430664,
-      "range_low": 78.5999984741211,
+      "range_high": 80.43000030517578,
+      "range_low": 79.8949966430664,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 80.0199966430664,
-        "bar_time": 1787684400000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "NKE": {
@@ -668,18 +661,14 @@
     },
     "NEM": {
       "status": "watching",
-      "range_high": 134.22959899902344,
-      "range_low": 130.94000244140625,
+      "range_high": 135.2899932861328,
+      "range_low": 134.1699981689453,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 134.22959899902344,
-        "bar_time": 1787684400000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "LYFT": {
@@ -696,18 +685,14 @@
     },
     "AAL": {
       "status": "watching",
-      "range_high": 13.760000228881836,
-      "range_low": 13.609999656677246,
+      "range_high": 13.970000267028809,
+      "range_low": 13.729999542236328,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 13.760000228881836,
-        "bar_time": 1787686200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "CLF": {
@@ -725,7 +710,7 @@
     "MO": {
       "status": "watching",
       "range_high": 68.56999969482422,
-      "range_low": 67.80000305175781,
+      "range_low": 68.0199966430664,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -773,6 +758,114 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": []
+    },
+    "CCL": {
+      "status": "watching",
+      "range_high": 26.229999542236328,
+      "range_low": 25.735000610351562,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "GOLD": {
+      "status": "watching",
+      "range_high": 46.939998626708984,
+      "range_low": 46.15999984741211,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "OXY": {
+      "status": "watching",
+      "range_high": 59.05500030517578,
+      "range_low": 58.369998931884766,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "GM": {
+      "status": "watching",
+      "range_high": 86.70999908447266,
+      "range_low": 85.69999694824219,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "NCLH": {
+      "status": "watching",
+      "range_high": 17.280000686645508,
+      "range_low": 17.114999771118164,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "KMI": {
+      "status": "watching",
+      "range_high": 31.299999237060547,
+      "range_low": 30.920000076293945,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "PFE": {
+      "status": "watching",
+      "range_high": 28.579999923706055,
+      "range_low": 28.329999923706055,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "DAL": {
+      "status": "watching",
+      "range_high": 83.87000274658203,
+      "range_low": 83.19000244140625,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "PLTR": {
+      "status": "watching",
+      "range_high": 173.69949340820312,
+      "range_low": 172.2003936767578,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
     }
   },
   "active_india_symbols": [
@@ -793,21 +886,21 @@
     "COALINDIA.NS"
   ],
   "active_us_symbols": [
-    "HOOD",
     "MARA",
-    "SNAP",
-    "RIOT",
-    "RIVN",
-    "UBER",
-    "NKE",
-    "NEM",
-    "LYFT",
+    "CCL",
+    "GOLD",
     "AAL",
-    "CLF",
-    "MO",
-    "SOFI",
-    "WBD",
-    "INTC"
+    "RIVN",
+    "OXY",
+    "GM",
+    "NCLH",
+    "KMI",
+    "PFE",
+    "NEM",
+    "DAL",
+    "PLTR",
+    "UBER",
+    "MO"
   ],
   "setup_log": [
     {
