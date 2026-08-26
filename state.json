@@ -2830,8 +2830,19 @@
       "target": null,
       "qty": 1500.0,
       "fired_at": "2026-08-26T07:45:28.008500+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 366.45,
+        "exit": 365.5,
+        "qty": 1500.0,
+        "pnl_per_unit": 0.9499999999999886,
+        "pnl_total": 1425.0,
+        "exit_reason": "manual_exit",
+        "closed_at": "2026-08-26T08:03:21.719207+00:00",
+        "charges": 240.73,
+        "net_pnl": 1184.27
+      },
       "surfaced": true,
       "taken": true,
       "shadow": {
@@ -2843,7 +2854,20 @@
         "peak_profit_per_unit": 1.1500122070312386,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 366.45,
+            "exit": 365.5,
+            "qty": 1500.0,
+            "pnl_per_unit": 0.9499999999999886,
+            "pnl_total": 1425.0,
+            "exit_reason": "manual_exit",
+            "closed_at": "2026-08-26T08:03:21.719207+00:00",
+            "charges": 240.73,
+            "net_pnl": 1184.27
+          }
+        ]
       }
     },
     {
