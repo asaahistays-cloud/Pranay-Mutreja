@@ -55,8 +55,13 @@ RISK_PCT_PER_TRADE = 0.01
 # balance or the sizing would suggest more money than the account has.
 LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 1}
 GAP_THRESHOLD_PCT_US = 0.015  # overnight gap that locks check_watching_us()'s directional bias
+# Not currently applied to sizing (see position_size()'s docstring --
+# backtested, both cost real profit for no measured drawdown benefit).
+# Left defined since consecutive_wins/losses are still tracked and
+# these were the actual thresholds tested, in case a re-tuned version
+# is worth revisiting later.
 LOSS_THROTTLE_AFTER = 2
-WIN_THROTTLE_AFTER = 3  # guard against overconfidence-driven oversizing after a streak, symmetric to the loss throttle above
+WIN_THROTTLE_AFTER = 3
 STALE_THRESHOLD_SECONDS = 45 * 60  # skip a symbol if its latest bar is older than this
 
 # Trailing-stop tuning -- backtested against 60 days / 2,127 trades across
@@ -296,15 +301,21 @@ def position_size(capital_usd, entry, stop, consecutive_losses, leverage=1, cons
     has for US stocks. leverage is the max notional per unit of capital
     actually available on that market (LEVERAGE_BY_MARKET); the
     risk-based qty is capped at what that leverage can actually hold.
-    consecutive_wins throttles the opposite failure mode from
-    consecutive_losses -- overconfidence after a win streak leading to
-    oversized bets is as real a discipline failure as revenge-sizing
-    after losses, so it gets the same halving treatment, symmetric by
-    design rather than separately tuned (no backtested reason yet to
-    treat the two directions differently)."""
+    consecutive_wins/consecutive_losses are tracked (see check_open()'s
+    propagation to the real per-symbol sym_state) but deliberately NOT
+    used to throttle size here anymore -- backtested on 2 years of real
+    crypto data (7-symbol watchlist, both throttles correctly wired,
+    the first time either was ever actually tested end to end) and both
+    cost real profit for no measured drawdown benefit: loss-throttle
+    alone cut net P&L ~7% with zero drawdown improvement, win-throttle
+    alone cut it ~21%. Several symbols had genuine serial correlation in
+    win streaks (AVAX hit 9-in-a-row) rather than reversion, so halving
+    size after a streak mostly just shaved profit off the best
+    stretches instead of protecting against a reversal that usually
+    didn't come. Left as tracked-but-inert rather than deleted, in case
+    a properly-tuned version (different threshold, different reduction
+    fraction) is worth revisiting later with real evidence behind it."""
     risk_amount = capital_usd * RISK_PCT_PER_TRADE
-    if consecutive_losses >= LOSS_THROTTLE_AFTER or consecutive_wins >= WIN_THROTTLE_AFTER:
-        risk_amount *= 0.5
     stop_distance = abs(entry - stop)
     if stop_distance <= 0 or entry <= 0:
         return 0
