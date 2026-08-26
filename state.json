@@ -67,7 +67,7 @@
     "XRP-USD": {
       "status": "watching",
       "range_high": 1.5259,
-      "range_low": 1.3965,
+      "range_low": 1.3763,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -165,7 +165,7 @@
     "NEAR-USD": {
       "status": "watching",
       "range_high": 1.9976,
-      "range_low": 1.8309,
+      "range_low": 1.8256,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -624,7 +624,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": "short",
+      "gap_fired": false
     },
     "SNAP": {
       "status": "watching",
@@ -664,7 +667,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "UBER": {
       "status": "watching",
@@ -676,7 +682,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "NKE": {
       "status": "watching",
@@ -700,7 +709,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": "short",
+      "gap_fired": false
     },
     "LYFT": {
       "status": "watching",
@@ -724,7 +736,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "CLF": {
       "status": "watching",
@@ -748,7 +763,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "SOFI": {
       "status": "watching",
@@ -800,7 +818,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "GOLD": {
       "status": "watching",
@@ -812,7 +833,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "OXY": {
       "status": "watching",
@@ -824,7 +848,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "GM": {
       "status": "watching",
@@ -836,7 +863,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "NCLH": {
       "status": "watching",
@@ -848,7 +878,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "KMI": {
       "status": "watching",
@@ -860,7 +893,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "PFE": {
       "status": "watching",
@@ -872,7 +908,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "DAL": {
       "status": "watching",
@@ -884,7 +923,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "PLTR": {
       "status": "watching",
@@ -896,7 +938,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "HINDCOPPER.NS": {
       "status": "watching",
@@ -1867,9 +1912,9 @@
         "direction": "short",
         "entry_price": 11.854999542236328,
         "entry_qty": 5.399601306653656,
-        "stop_loss": 12.040198401042394,
-        "extreme_since_entry": 11.819999694824219,
-        "peak_profit_per_unit": 0.034999847412109375,
+        "stop_loss": 11.595999622344971,
+        "extreme_since_entry": 11.484999656677246,
+        "peak_profit_per_unit": 0.36999988555908203,
         "take_profit_target": 11.100000381469727,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -1884,18 +1929,43 @@
       "target": 16.570999145507812,
       "qty": 5.979180161850977,
       "fired_at": "2026-08-25T19:30:34.426746+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "short",
-        "entry_price": 16.724700927734375,
-        "entry_qty": 5.979180161850977,
-        "stop_loss": 16.816205705915177,
-        "extreme_since_entry": 16.690000534057617,
-        "peak_profit_per_unit": 0.03470039367675781,
-        "take_profit_target": 16.570999145507812,
+        "entry": 16.724700927734375,
+        "exit": 16.364999771118164,
+        "qty": 5.979180161850977,
+        "pnl_per_unit": 0.35970115661621094,
+        "pnl_total": 2.1507180198344997,
+        "exit_reason": "take_profit",
+        "closed_at": "2026-08-26T14:35:44.205637+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
         "consecutive_losses": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 16.724700927734375,
+            "exit": 16.364999771118164,
+            "qty": 5.979180161850977,
+            "pnl_per_unit": 0.35970115661621094,
+            "pnl_total": 2.1507180198344997,
+            "exit_reason": "take_profit",
+            "closed_at": "2026-08-26T14:35:44.205637+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 16.94499969482422,
+        "range_low": 16.309999465942383
       }
     },
     {
