@@ -3807,7 +3807,7 @@
         "direction": "long",
         "entry_price": 0.1644,
         "entry_qty": 489.082969432318,
-        "stop_loss": 0.16235535714285715,
+        "stop_loss": 0.16278839285714286,
         "extreme_since_entry": 0.1644,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
