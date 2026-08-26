@@ -122,21 +122,36 @@ def append_to_file(report_text):
 
 def main():
     state = monitor.load_state()
+    ist_now = datetime.now(timezone.utc) + IST_OFFSET
+
+    # The nightly cron fires right at 00:00 IST -- at that instant "today"
+    # (IST calendar day) has existed for seconds, so scoping to "today"
+    # always produces an empty report ("No setups fired today", every
+    # single night). What the nightly run actually means to summarize is
+    # the day that JUST ENDED. Heuristic: before 6 AM IST, this is either
+    # the scheduled midnight run or someone manually checking in that dead
+    # window -- either way "yesterday" is the day with anything to show.
+    # From 6 AM onward, a manual on-demand check should keep showing the
+    # current in-progress day, same as it always has during the day.
+    if ist_now.hour < 6:
+        day_ist = (ist_now - timedelta(days=1)).strftime("%Y-%m-%d")
+    else:
+        day_ist = ist_now.strftime("%Y-%m-%d")
+
     sections = [
-        build_daily_report(state, label="INDIA -- SIGNAL QUALITY", market="india"),
-        build_daily_report(state, label="CRYPTO -- SIGNAL QUALITY", market="crypto"),
-        build_daily_report(state, label="US -- SIGNAL QUALITY", market="us"),
+        build_daily_report(state, label="INDIA -- SIGNAL QUALITY", market="india", day_ist=day_ist),
+        build_daily_report(state, label="CRYPTO -- SIGNAL QUALITY", market="crypto", day_ist=day_ist),
+        build_daily_report(state, label="US -- SIGNAL QUALITY", market="us", day_ist=day_ist),
     ]
     # India futures (NIFTY/SENSEX) aren't scanned by the automated pipeline
     # -- no scriptable intraday data source exists, so they're tracked
     # manually (TradingView, checked by hand) and logged into the same
     # setup_log. Only shown when there's actually something logged today,
     # unlike the always-on markets above, since most days will have none.
-    day_ist = (datetime.now(timezone.utc) + IST_OFFSET).strftime("%Y-%m-%d")
     futures_today = [e for e in state.get("setup_log", [])
                       if market_of(e["symbol"]) == "india_futures" and to_ist_date(e["fired_at"]) == day_ist]
     if futures_today:
-        sections.append(build_daily_report(state, label="INDIA FUTURES (MANUAL) -- SIGNAL QUALITY", market="india_futures"))
+        sections.append(build_daily_report(state, label="INDIA FUTURES (MANUAL) -- SIGNAL QUALITY", market="india_futures", day_ist=day_ist))
 
     report_text = "\n\n".join(sections)
     append_to_file(report_text)
