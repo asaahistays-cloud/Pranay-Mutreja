@@ -965,7 +965,7 @@
     "TATAPOWER.NS": {
       "status": "watching",
       "range_high": 376.3500061035156,
-      "range_low": 367.8999938964844,
+      "range_low": 365.29998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1035,7 +1035,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakout_long",
+        "level": 187.19000244140625,
+        "bar_time": 1787730300000
+      },
       "trade_journal": []
     },
     "PNB.NS": {
@@ -2832,8 +2836,33 @@
         "direction": "short",
         "entry_price": 366.45,
         "entry_qty": 1500.0,
-        "stop_loss": 368.6,
-        "extreme_since_entry": 366.45,
+        "stop_loss": 365.6449914550781,
+        "extreme_since_entry": 365.29998779296875,
+        "peak_profit_per_unit": 1.1500122070312386,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "SAIL.NS",
+      "type": "breakout_long",
+      "direction": "long",
+      "entry": 187.85000610351562,
+      "stop": 186.39893286568778,
+      "target": null,
+      "qty": 5323.3961538917665,
+      "fired_at": "2026-08-26T08:00:49.077859+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 187.85000610351562,
+        "entry_qty": 5323.3961538917665,
+        "stop_loss": 186.39893286568778,
+        "extreme_since_entry": 187.85000610351562,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
