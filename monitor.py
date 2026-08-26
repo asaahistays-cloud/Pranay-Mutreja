@@ -34,6 +34,7 @@ import time
 import urllib.request
 import urllib.error
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -53,6 +54,7 @@ RISK_PCT_PER_TRADE = 0.01
 # available, a suggested position's notional must never exceed that
 # balance or the sizing would suggest more money than the account has.
 LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 1}
+GAP_THRESHOLD_PCT_US = 0.015  # overnight gap that locks check_watching_us()'s directional bias
 LOSS_THROTTLE_AFTER = 2
 STALE_THRESHOLD_SECONDS = 45 * 60  # skip a symbol if its latest bar is older than this
 
@@ -258,6 +260,14 @@ def ist_date(open_time_ms):
     return (datetime.fromtimestamp(open_time_ms / 1000, tz=timezone.utc) + timedelta(hours=5, minutes=30)).date()
 
 
+def us_date(open_time_ms):
+    """NYSE-session calendar date (America/New_York wall clock) -- used
+    only by check_watching_us()'s gap/opening-range day-boundary logic.
+    Separate from ist_date() since India and US run on different session
+    clocks; DST-aware via zoneinfo, unlike the fixed IST offset above."""
+    return datetime.fromtimestamp(open_time_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo("America/New_York")).date()
+
+
 def day_vwap(closed_bars, last_closed):
     """Cumulative volume-weighted average price from the start of the
     current IST trading day through last_closed -- production only
@@ -344,14 +354,18 @@ def rearm_to_watching(sym_state, closed_bars=None):
 def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
     """Dispatches to the market-specific entry logic -- each market got
     its own backtested filter set (crypto: retest/2-bar/ADX; India:
-    RSI momentum + VWAP alignment) since a combo that helps one market
-    can actively hurt another (confirmed: the crypto combo hurt India,
-    and vice versa). US still runs the original, unfiltered logic --
-    not yet backtested with a market-specific filter set."""
+    RSI momentum + VWAP alignment; US: Gap and Go, short-only) since a
+    combo that helps one market can actively hurt another (confirmed:
+    the crypto combo hurt India, the India combo and an approximation
+    of the crypto combo both did nothing/hurt on US data, and US's own
+    Gap and Go strategy didn't transfer to India either -- every market
+    genuinely needed its own from-scratch strategy, not a shared one)."""
     if market == "crypto":
         return check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if market == "india":
         return check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+    if market == "us":
+        return check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     return check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
 
@@ -382,6 +396,84 @@ def check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, 
     if alert["direction"] == "short" and not (r < 40 and close <= vwap):
         return None
     return alert
+
+
+def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+    """Gap and Go, short-only -- a standalone entry strategy, not a filter
+    on check_watching_default() (that base breakout/breakdown/range-
+    rejection logic backtested as a net LOSER on US data, PF 0.78, and
+    neither India's RSI+VWAP combo nor an approximation of crypto's
+    retest/2-bar/ADX combo rescued it when transplanted here -- US
+    genuinely needed its own strategy, researched from real US
+    day-trading practice rather than reused from another market).
+
+    Mechanic: an overnight gap down of >=1.5% (today's session open vs.
+    the prior session's close) locks the day to short-only. Once the
+    first 30 minutes (first two 15m bars) of the session complete,
+    their high/low become the confirmation range. A confirmed close
+    below that range's low fires the entry (stop = range high + 0.5x
+    ATR, no fixed target -- trail via check_open(), same as every other
+    strategy in this file). Only long-only fired more (56.9% win, PF
+    1.14) but was much weaker and isn't implemented -- this is short
+    only, deliberately.
+
+    Backtest (real 40-symbol US_UNIVERSE, 60 days of 15m data -- Yahoo's
+    history cap): 113 trades, 64.6% win, PF 2.17, +$9.48 per $100.
+    Held up on a chronological first/second-half out-of-sample split
+    (PF 1.94 -> 2.38, improved rather than decayed) and isn't driven by
+    one lucky trade (PF only drops to 1.89 with the single largest
+    trade removed). The real caveat, shipped anyway with eyes open:
+    it IS symbol-concentrated -- MARA/AAL/GM alone are ~76% of the net
+    profit, and the full long+short combo (not what's implemented here)
+    was 85% concentrated in just 3 symbols. n=113 is also thin next to
+    crypto's 2,127-trade or India's 488-trade validation. Tested and
+    explicitly does NOT transfer to India (gap frequency there is 4.9%
+    of symbol-days vs US's 24.3% -- PSU banks/energy stocks don't gap
+    like US mid-caps -- so this function is US-only by design, not
+    reused for India's dispatch path)."""
+    day = us_date(last_closed["open_time"])
+    today_bars = [b for b in closed_bars if us_date(b["open_time"]) == day]
+
+    if sym_state.get("gap_date") != day:
+        prior_bars = [b for b in closed_bars if us_date(b["open_time"]) != day]
+        sym_state["gap_date"] = day
+        sym_state["gap_direction"] = None
+        sym_state["gap_fired"] = False
+        if prior_bars and today_bars:
+            prior_close = prior_bars[-1]["close"]
+            today_open = today_bars[0]["open"]
+            gap_pct = (today_open - prior_close) / prior_close if prior_close else 0
+            if gap_pct <= -GAP_THRESHOLD_PCT_US:
+                sym_state["gap_direction"] = "short"
+
+    if sym_state.get("gap_direction") != "short" or sym_state.get("gap_fired"):
+        return None
+    if len(today_bars) < 2:
+        return None  # opening range not established yet
+
+    range_high = max(b["high"] for b in today_bars[:2])
+    range_low = min(b["low"] for b in today_bars[:2])
+    close = last_closed["close"]
+    if close >= range_low:
+        return None
+
+    n = atr(closed_bars)
+    stop = range_high + 0.5 * n
+    losses = sym_state.get("consecutive_losses", 0)
+    qty = position_size(capital, close, stop, losses, leverage=LEVERAGE_BY_MARKET.get(market, 1))
+    vol = last_closed["volume"]
+    vol_avg = avg_volume(closed_bars[-10:-1])
+    tag = "" if tradable else " (analysis only)"
+    text = build_alert_text(
+        f"{symbol} GAP AND GO (breakdown){tag}\n\n"
+        f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+        f"Take profit: Keep trailing (no fixed target)\n"
+        f"{expected_profit_line(close, stop, qty, currency='$')}\n\n"
+        f"Gapped down and broke the opening-range low {range_low:,.4g} on a confirmed close.",
+        symbol=symbol, price=close,
+    )
+    sym_state["gap_fired"] = True
+    return {"text": text, "type": "gap_and_go_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
 
 
 def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
