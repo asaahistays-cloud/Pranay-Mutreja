@@ -26,7 +26,7 @@
     },
     "ETH-USD": {
       "status": "watching",
-      "range_high": 2514.72,
+      "range_high": 2515.77,
       "range_low": 2415.0,
       "direction": null,
       "entry_price": null,
@@ -62,7 +62,11 @@
           "note": "Manually placed and closed on TradingView. Peak unrealized profit reached ~$3.88 (price dipped to 97.48) before reversing all the way back through the old 1.5x-ATR trailing stop. This is exactly the giveback problem that led to reworking the trail/take-profit logic (tighter ATR trail + profit-lock floor + fixed take-profit heuristic) -- that improved logic wasn't live yet when this trade happened, so it didn't get the benefit."
         }
       ],
-      "pending": null
+      "pending": {
+        "type": "breakout_long",
+        "level": 99.84,
+        "expires": 1787790600000
+      }
     },
     "XRP-USD": {
       "status": "watching",
@@ -1123,7 +1127,7 @@
     },
     "FET-USD": {
       "status": "watching",
-      "range_high": 0.16284,
+      "range_high": 0.16651,
       "range_low": 0.15777,
       "direction": null,
       "entry_price": null,
@@ -1139,7 +1143,8 @@
         "bar_time": 1787780700000
       },
       "trade_journal": [],
-      "pending": null
+      "pending": null,
+      "consecutive_wins": 1
     },
     "DKNG": {
       "status": "watching",
@@ -3792,8 +3797,17 @@
       "target": null,
       "qty": 489.082969432318,
       "fired_at": "2026-08-26T22:00:50.603984+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "long",
+        "entry": 0.1644,
+        "exit": 0.16473,
+        "qty": 489.082969432318,
+        "pnl_per_unit": 0.00032999999999999696,
+        "pnl_total": 0.16139737991266345,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-26T23:00:41.028106+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -3804,16 +3818,32 @@
       "fired_hour_utc": 22,
       "fired_weekday_utc": 2,
       "shadow": {
-        "direction": "long",
-        "entry_price": 0.1644,
-        "entry_qty": 489.082969432318,
-        "stop_loss": 0.165541,
-        "extreme_since_entry": 0.16603,
-        "peak_profit_per_unit": 0.0016300000000000203,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
+        "consecutive_wins": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 0.1644,
+            "exit": 0.16473,
+            "qty": 489.082969432318,
+            "pnl_per_unit": 0.00032999999999999696,
+            "pnl_total": 0.16139737991266345,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-26T23:00:41.028106+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 0.16651,
+        "range_low": 0.15979
       }
     }
   ],
