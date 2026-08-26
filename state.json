@@ -577,17 +577,13 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 329.45001220703125,
-      "range_low": 322.70001220703125,
+      "range_low": 322.20001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 322.70001220703125,
-        "bar_time": 1787731200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "COALINDIA.NS": {
@@ -900,7 +896,7 @@
     },
     "HINDCOPPER.NS": {
       "status": "watching",
-      "range_high": 557.5499877929688,
+      "range_high": 557.8499755859375,
       "range_low": 526.5999755859375,
       "direction": null,
       "entry_price": null,
@@ -961,7 +957,7 @@
     "TATAPOWER.NS": {
       "status": "watching",
       "range_high": 376.3500061035156,
-      "range_low": 365.20001220703125,
+      "range_low": 364.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1031,7 +1027,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakout_long",
+        "level": 188.10000610351562,
+        "bar_time": 1787733900000
+      },
       "trade_journal": []
     },
     "PNB.NS": {
@@ -3038,6 +3038,31 @@
         "pending": null,
         "range_high": 370.3500061035156,
         "range_low": 364.0
+      }
+    },
+    {
+      "symbol": "SAIL.NS",
+      "type": "breakout_long",
+      "direction": "long",
+      "entry": 188.60000610351562,
+      "stop": 186.0996491568429,
+      "target": null,
+      "qty": 3999.4289668549936,
+      "fired_at": "2026-08-26T09:00:47.060514+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 188.60000610351562,
+        "entry_qty": 3999.4289668549936,
+        "stop_loss": 186.0996491568429,
+        "extreme_since_entry": 188.60000610351562,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
       }
     }
   ]
