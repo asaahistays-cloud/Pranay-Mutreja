@@ -821,16 +821,20 @@ def main():
 
         # Shadow-track every setup this symbol has ever fired, whether or
         # not the user took it -- reuses check_open()'s exact trailing
-        # stop/target/stop-hit logic (notify=False, so zero extra
-        # Telegram messages) against the bars already fetched this cycle,
-        # so "did it actually reach the expected profit" has a real
-        # answer instead of just the alert's promise.
+        # stop/target/stop-hit logic against the bars already fetched
+        # this cycle, so "did it actually reach the expected profit" has
+        # a real answer instead of just the alert's promise. Silent
+        # (notify=False) unless the entry is flagged "taken" (see
+        # mark_taken.py) -- then the exact same trail/profit-lock/
+        # stop/target Telegram messages check_open() already sends for
+        # a real position fire for real, since this now IS the position
+        # the user is actually in.
         for log_entry in setup_log:
             if log_entry["resolved"] or log_entry["symbol"] != symbol:
                 continue
             shadow = log_entry["shadow"]
             before = len(shadow["trade_journal"])
-            check_open(symbol, tradable, shadow, closed_bars, last_closed, notify=False)
+            check_open(symbol, tradable, shadow, closed_bars, last_closed, notify=log_entry.get("taken", False))
             if len(shadow["trade_journal"]) > before:
                 log_entry["resolved"] = True
                 log_entry["outcome"] = shadow["trade_journal"][-1]
@@ -868,7 +872,7 @@ def main():
             "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
             "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
             "qty": alert["qty"], "fired_at": datetime.now(timezone.utc).isoformat(),
-            "resolved": False, "outcome": None, "surfaced": surfaced,
+            "resolved": False, "outcome": None, "surfaced": surfaced, "taken": False,
             "shadow": {
                 "direction": alert["direction"], "entry_price": alert["entry"],
                 "entry_qty": alert["qty"], "stop_loss": alert["stop"],
