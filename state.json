@@ -409,7 +409,7 @@
     "JSWENERGY.NS": {
       "status": "watching",
       "range_high": 553.4500122070312,
-      "range_low": 539.25,
+      "range_low": 542.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -485,7 +485,7 @@
     "PAYTM.NS": {
       "status": "watching",
       "range_high": 1727.199951171875,
-      "range_low": 1682.0,
+      "range_low": 1710.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -513,7 +513,7 @@
     "CANBK.NS": {
       "status": "watching",
       "range_high": 130.8800048828125,
-      "range_low": 127.30000305175781,
+      "range_low": 127.81999969482422,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -541,7 +541,7 @@
     "BANKINDIA.NS": {
       "status": "watching",
       "range_high": 147.89999389648438,
-      "range_low": 142.42999267578125,
+      "range_low": 143.00999450683594,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -564,8 +564,8 @@
     },
     "IRCON.NS": {
       "status": "watching",
-      "range_high": 126.7300033569336,
-      "range_low": 122.25,
+      "range_high": 125.2300033569336,
+      "range_low": 124.5199966430664,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -576,18 +576,14 @@
     },
     "RECLTD.NS": {
       "status": "watching",
-      "range_high": 326.95001220703125,
-      "range_low": 323.5,
+      "range_high": 329.45001220703125,
+      "range_low": 325.79998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 326.95001220703125,
-        "bar_time": 1787716800000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "COALINDIA.NS": {
@@ -913,7 +909,7 @@
     "INDIANB.NS": {
       "status": "watching",
       "range_high": 899.3499755859375,
-      "range_low": 873.0999755859375,
+      "range_low": 875.7999877929688,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -925,7 +921,7 @@
     "UNIONBANK.NS": {
       "status": "watching",
       "range_high": 192.25999450683594,
-      "range_low": 185.22999572753906,
+      "range_low": 186.0500030517578,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -961,7 +957,7 @@
     "TATAPOWER.NS": {
       "status": "watching",
       "range_high": 376.3500061035156,
-      "range_low": 368.6000061035156,
+      "range_low": 370.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -985,7 +981,7 @@
     "BANKBARODA.NS": {
       "status": "watching",
       "range_high": 245.50999450683594,
-      "range_low": 239.89999389648438,
+      "range_low": 240.6199951171875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1009,7 +1005,43 @@
     "IOB.NS": {
       "status": "watching",
       "range_high": 33.52000045776367,
-      "range_low": 32.939998626708984,
+      "range_low": 32.970001220703125,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "SAIL.NS": {
+      "status": "watching",
+      "range_high": 185.47000122070312,
+      "range_low": 182.50999450683594,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "PNB.NS": {
+      "status": "watching",
+      "range_high": 118.12999725341797,
+      "range_low": 115.93000030517578,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "IDFCFIRSTB.NS": {
+      "status": "watching",
+      "range_high": 86.58000183105469,
+      "range_low": 85.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1021,20 +1053,20 @@
   },
   "active_india_symbols": [
     "HINDCOPPER.NS",
-    "BANKINDIA.NS",
-    "INDIANB.NS",
+    "SAIL.NS",
     "UNIONBANK.NS",
-    "RVNL.NS",
-    "CANBK.NS",
-    "VEDL.NS",
+    "PAYTM.NS",
+    "BANKINDIA.NS",
+    "PNB.NS",
+    "IOB.NS",
+    "IDFCFIRSTB.NS",
+    "RECLTD.NS",
+    "INDIANB.NS",
     "JSWENERGY.NS",
-    "NTPC.NS",
-    "IRCON.NS",
     "TATAPOWER.NS",
-    "SUZLON.NS",
+    "CANBK.NS",
     "BANKBARODA.NS",
-    "IRFC.NS",
-    "IOB.NS"
+    "IRCON.NS"
   ],
   "active_us_symbols": [
     "MARA",
@@ -2639,18 +2671,43 @@
       "target": null,
       "qty": 4014.3334047961775,
       "fired_at": "2026-08-26T04:15:29.549196+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 329.04998779296875,
-        "entry_qty": 4014.3334047961775,
-        "stop_loss": 326.5589141845703,
-        "extreme_since_entry": 329.04998779296875,
+        "entry": 329.04998779296875,
+        "exit": 325.95001220703125,
+        "qty": 4014.3334047961775,
+        "pnl_per_unit": -3.0999755859375,
+        "pnl_total": -12444.33554868151,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-26T05:59:05.580192+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 329.04998779296875,
+            "exit": 325.95001220703125,
+            "qty": 4014.3334047961775,
+            "pnl_per_unit": -3.0999755859375,
+            "pnl_total": -12444.33554868151,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-26T05:59:05.580192+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 329.45001220703125,
+        "range_low": 325.79998779296875
       }
     },
     {
