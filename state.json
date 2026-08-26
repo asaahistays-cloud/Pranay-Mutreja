@@ -67,7 +67,7 @@
     "XRP-USD": {
       "status": "watching",
       "range_high": 1.5259,
-      "range_low": 1.3763,
+      "range_low": 1.3737,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -627,7 +627,7 @@
       "trade_journal": [],
       "gap_date": "2026-08-26",
       "gap_direction": "short",
-      "gap_fired": false
+      "gap_fired": true
     },
     "SNAP": {
       "status": "watching",
@@ -1912,9 +1912,9 @@
         "direction": "short",
         "entry_price": 11.854999542236328,
         "entry_qty": 5.399601306653656,
-        "stop_loss": 11.480499649047852,
-        "extreme_since_entry": 11.319999694824219,
-        "peak_profit_per_unit": 0.5349998474121094,
+        "stop_loss": 11.452499675750733,
+        "extreme_since_entry": 11.279999732971191,
+        "peak_profit_per_unit": 0.5749998092651367,
         "take_profit_target": 11.100000381469727,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -3300,6 +3300,31 @@
         "pending": null,
         "range_high": 124.5999984741211,
         "range_low": 123.5999984741211
+      }
+    },
+    {
+      "symbol": "MARA",
+      "type": "gap_and_go_short",
+      "direction": "short",
+      "entry": 11.3149995803833,
+      "stop": 11.825067792619977,
+      "target": null,
+      "qty": 1.9605220949075537,
+      "fired_at": "2026-08-26T15:00:49.043180+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 11.3149995803833,
+        "entry_qty": 1.9605220949075537,
+        "stop_loss": 11.825067792619977,
+        "extreme_since_entry": 11.3149995803833,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
       }
     }
   ],
