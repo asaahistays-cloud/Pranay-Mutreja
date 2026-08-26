@@ -408,8 +408,8 @@
     },
     "JSWENERGY.NS": {
       "status": "watching",
-      "range_high": 552.5,
-      "range_low": 542.25,
+      "range_high": 552.75,
+      "range_low": 539.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -997,7 +997,7 @@
     "IRFC.NS": {
       "status": "watching",
       "range_high": 86.79000091552734,
-      "range_low": 85.43000030517578,
+      "range_low": 85.05000305175781,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
