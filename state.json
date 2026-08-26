@@ -3754,8 +3754,8 @@
         "entry_price": 0.16033,
         "entry_qty": 707.1421355692461,
         "stop_loss": 0.16174414285714286,
-        "extreme_since_entry": 0.16033,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 0.16021,
+        "peak_profit_per_unit": 0.00012000000000000899,
         "take_profit_target": 0.15777,
         "consecutive_losses": 0,
         "trade_journal": []
