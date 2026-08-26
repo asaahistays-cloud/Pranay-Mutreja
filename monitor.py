@@ -78,8 +78,14 @@ PROFIT_LOCK_FRACTION = 0.7  # once engaged, guarantee at least this fraction of 
 # in-sample but flipped to losing money out-of-sample, while XRP and
 # NEAR held. Combined with the entry filters below, this watchlist is
 # a genuine backtested choice, not a guess.
+# FET-USD added per explicit user instruction despite a thin sample --
+# a later sweep of 31 more candidates found it was the only one that
+# didn't collapse out-of-sample (71.4%/PF2.09 in-sample -> 66.7%/PF1.79
+# out-of-sample), but that's only 13 total trades across both halves,
+# nowhere near XRP/NEAR's validation depth. Added anyway, caveat on
+# record: this is a watch-and-see addition, not a fully validated one.
 CRYPTO_WATCHLIST = [{"symbol": s, "market": "crypto", "tradable": True} for s in [
-    "BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "AVAX-USD", "NEAR-USD",
+    "BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "AVAX-USD", "NEAR-USD", "FET-USD",
 ]]
 
 
