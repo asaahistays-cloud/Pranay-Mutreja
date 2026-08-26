@@ -571,7 +571,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787734800000
+      },
       "trade_journal": []
     },
     "RECLTD.NS": {
@@ -903,7 +906,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakout_long",
+        "level": 557.8499755859375,
+        "bar_time": 1787734800000
+      },
       "trade_journal": []
     },
     "INDIANB.NS": {
@@ -963,11 +970,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 365.20001220703125,
-        "bar_time": 1787731200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "SUZLON.NS": {
@@ -3057,8 +3060,33 @@
         "direction": "long",
         "entry_price": 188.60000610351562,
         "entry_qty": 3999.4289668549936,
-        "stop_loss": 186.0996491568429,
-        "extreme_since_entry": 188.60000610351562,
+        "stop_loss": 192.2050018310547,
+        "extreme_since_entry": 193.75,
+        "peak_profit_per_unit": 5.149993896484375,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "HINDCOPPER.NS",
+      "type": "breakout_long",
+      "direction": "long",
+      "entry": 559.5,
+      "stop": 555.0142996651786,
+      "target": null,
+      "qty": 1787.3100983020554,
+      "fired_at": "2026-08-26T09:15:31.924714+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 559.5,
+        "entry_qty": 1787.3100983020554,
+        "stop_loss": 555.0142996651786,
+        "extreme_since_entry": 559.5,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
