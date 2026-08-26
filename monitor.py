@@ -48,7 +48,11 @@ RISK_PCT_PER_TRADE = 0.01
 # available leverage on each platform. Risk amount ($ willing to lose)
 # stays tied to real capital regardless of leverage; only the ceiling on
 # how much notional that risk can control changes.
-LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 5}
+# India is 1, not the broker's real 5x -- the virtual paper trader only
+# ever hands out capital_inr (Rs 10,00,000) total, so even with leverage
+# available, a suggested position's notional must never exceed that
+# balance or the sizing would suggest more money than the account has.
+LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 1}
 LOSS_THROTTLE_AFTER = 2
 STALE_THRESHOLD_SECONDS = 45 * 60  # skip a symbol if its latest bar is older than this
 
