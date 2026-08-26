@@ -357,7 +357,7 @@ def rearm_to_watching(sym_state, closed_bars=None):
 
 # ---------------------------------------------------------------- logic ----
 
-def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None):
     """Dispatches to the market-specific entry logic -- each market got
     its own backtested filter set (crypto: retest/2-bar/ADX; India:
     RSI momentum + VWAP alignment; US: Gap and Go, short-only) since a
@@ -365,13 +365,15 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     the crypto combo hurt India, the India combo and an approximation
     of the crypto combo both did nothing/hurt on US data, and US's own
     Gap and Go strategy didn't transfer to India either -- every market
-    genuinely needed its own from-scratch strategy, not a shared one)."""
+    genuinely needed its own from-scratch strategy, not a shared one).
+    setup_log is optional and only used by check_watching_us() (see its
+    docstring) -- crypto/India ignore it, unchanged from before."""
     if market == "crypto":
         return check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if market == "india":
         return check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if market == "us":
-        return check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+        return check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log)
     return check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
 
@@ -404,7 +406,7 @@ def check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, 
     return alert
 
 
-def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None):
     """Gap and Go, short-only -- a standalone entry strategy, not a filter
     on check_watching_default() (that base breakout/breakdown/range-
     rejection logic backtested as a net LOSER on US data, PF 0.78, and
@@ -436,7 +438,21 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
     explicitly does NOT transfer to India (gap frequency there is 4.9%
     of symbol-days vs US's 24.3% -- PSU banks/energy stocks don't gap
     like US mid-caps -- so this function is US-only by design, not
-    reused for India's dispatch path)."""
+    reused for India's dispatch path).
+
+    setup_log (optional) is a defense-in-depth guard on top of the
+    sym_state.gap_fired flag above: on 2026-08-26, MARA fired twice on
+    the same NY trading day (20:30 and 22:25 IST) despite gap_fired
+    being correctly True and persisted the whole time -- confirmed via
+    git history that state.json was NOT stale or racing (the second
+    run's push landed cleanly on top of the first, no rejected push,
+    no retry). The exact mechanism was never pinned down (reproducing
+    with fresh live data doesn't trigger it, so it likely depended on
+    the specific bar window Yahoo returned at that moment), but the
+    fix doesn't require knowing why: cross-checking the append-only
+    setup_log for an existing gap_and_go_short fired for this symbol
+    on this NY date is a second, independent check that can't desync
+    from sym_state the same way, whatever the original cause was."""
     day = us_date(last_closed["open_time"])
     day_str = day.isoformat()
     today_bars = [b for b in closed_bars if us_date(b["open_time"]) == day]
@@ -457,6 +473,15 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
         return None
     if len(today_bars) < 2:
         return None  # opening range not established yet
+
+    if setup_log:
+        for e in setup_log:
+            if e["symbol"] != symbol or e["type"] != "gap_and_go_short":
+                continue
+            fired_ms = int(datetime.fromisoformat(e["fired_at"]).timestamp() * 1000)
+            if us_date(fired_ms) == day:
+                sym_state["gap_fired"] = True  # resync the flag since setup_log caught what it missed
+                return None
 
     range_high = max(b["high"] for b in today_bars[:2])
     range_low = min(b["low"] for b in today_bars[:2])
@@ -938,7 +963,7 @@ def main():
                 log_entry["resolved"] = True
                 log_entry["outcome"] = shadow["trade_journal"][-1]
 
-        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log)
         if alert:
             fired_this_scan.append((market, symbol, alert))
 
