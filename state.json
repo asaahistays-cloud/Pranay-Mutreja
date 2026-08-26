@@ -1137,11 +1137,7 @@
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 0.16284,
-        "bar_time": 1787780700000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "pending": null,
       "consecutive_wins": 1
