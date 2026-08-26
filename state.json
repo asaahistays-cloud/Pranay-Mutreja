@@ -604,20 +604,23 @@
     },
     "HOOD": {
       "status": "watching",
-      "range_high": 112.44999694824219,
-      "range_low": 103.13999938964844,
+      "range_high": 109.20999908447266,
+      "range_low": 108.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": "short",
+      "gap_fired": true
     },
     "MARA": {
       "status": "watching",
-      "range_high": 12.100000381469727,
-      "range_low": 11.819999694824219,
+      "range_high": 11.1899995803833,
+      "range_low": 10.989999771118164,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -631,19 +634,18 @@
     },
     "SNAP": {
       "status": "watching",
-      "range_high": 5.78000020980835,
-      "range_low": 5.434999942779541,
+      "range_high": 5.440000057220459,
+      "range_low": 5.349999904632568,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 5.78000020980835,
-        "bar_time": 1787682600000
-      },
-      "trade_journal": []
+      "last_alert": {},
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "RIOT": {
       "status": "watching",
@@ -674,8 +676,8 @@
     },
     "UBER": {
       "status": "watching",
-      "range_high": 80.43000030517578,
-      "range_low": 79.8949966430664,
+      "range_high": 79.63999938964844,
+      "range_low": 79.26000213623047,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -689,20 +691,23 @@
     },
     "NKE": {
       "status": "watching",
-      "range_high": 41.099998474121094,
-      "range_low": 39.330501556396484,
+      "range_high": 38.68000030517578,
+      "range_low": 38.5,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "NEM": {
       "status": "watching",
-      "range_high": 135.2899932861328,
-      "range_low": 134.1699981689453,
+      "range_high": 132.47000122070312,
+      "range_low": 132.01499938964844,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -712,19 +717,22 @@
       "trade_journal": [],
       "gap_date": "2026-08-26",
       "gap_direction": "short",
-      "gap_fired": true
+      "gap_fired": false
     },
     "LYFT": {
       "status": "watching",
-      "range_high": 17.7450008392334,
-      "range_low": 17.459999084472656,
+      "range_high": 17.18000030517578,
+      "range_low": 17.065000534057617,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "AAL": {
       "status": "watching",
@@ -798,15 +806,18 @@
     },
     "INTC": {
       "status": "watching",
-      "range_high": 89.06999969482422,
-      "range_low": 86.88999938964844,
+      "range_high": 87.11000061035156,
+      "range_low": 86.42469787597656,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "CCL": {
       "status": "watching",
@@ -825,8 +836,8 @@
     },
     "GOLD": {
       "status": "watching",
-      "range_high": 46.939998626708984,
-      "range_low": 46.15999984741211,
+      "range_high": 45.93000030517578,
+      "range_low": 45.63999938964844,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -840,8 +851,8 @@
     },
     "OXY": {
       "status": "watching",
-      "range_high": 59.05500030517578,
-      "range_low": 58.369998931884766,
+      "range_high": 58.97999954223633,
+      "range_low": 58.65999984741211,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1124,6 +1135,81 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": []
+    },
+    "DKNG": {
+      "status": "watching",
+      "range_high": 24.885000228881836,
+      "range_low": 24.670000076293945,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
+    },
+    "VZ": {
+      "status": "watching",
+      "range_high": 50.474998474121094,
+      "range_low": 50.209999084472656,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
+    },
+    "PINS": {
+      "status": "watching",
+      "range_high": 23.385000228881836,
+      "range_low": 23.25,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
+    },
+    "C": {
+      "status": "watching",
+      "range_high": 133.82000732421875,
+      "range_low": 133.2899932861328,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
+    },
+    "CSCO": {
+      "status": "watching",
+      "range_high": 112.05000305175781,
+      "range_low": 111.62000274658203,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": [],
+      "gap_date": "2026-08-26",
+      "gap_direction": null,
+      "gap_fired": false
     }
   },
   "active_india_symbols": [
@@ -1144,21 +1230,21 @@
     "IRCON.NS"
   ],
   "active_us_symbols": [
+    "DKNG",
     "MARA",
-    "CCL",
     "GOLD",
-    "AAL",
-    "RIVN",
     "OXY",
-    "GM",
-    "NCLH",
-    "KMI",
-    "PFE",
-    "NEM",
-    "DAL",
-    "PLTR",
+    "SNAP",
+    "HOOD",
     "UBER",
-    "MO"
+    "VZ",
+    "PINS",
+    "C",
+    "INTC",
+    "LYFT",
+    "NKE",
+    "CSCO",
+    "NEM"
   ],
   "setup_log": [
     {
@@ -1311,18 +1397,43 @@
       "target": null,
       "qty": 0.8930963553612082,
       "fired_at": "2026-08-25T18:45:25.499059+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 111.97000122070312,
-        "entry_qty": 0.8930963553612082,
-        "stop_loss": 111.31986427307129,
-        "extreme_since_entry": 112.36000061035156,
-        "peak_profit_per_unit": 0.3899993896484375,
+        "entry": 111.97000122070312,
+        "exit": 108.4000015258789,
+        "qty": 0.8930963553612082,
+        "pnl_per_unit": -3.5699996948242188,
+        "pnl_total": -3.1883537160881352,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-26T16:55:34.688049+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 111.97000122070312,
+            "exit": 108.4000015258789,
+            "qty": 0.8930963553612082,
+            "pnl_per_unit": -3.5699996948242188,
+            "pnl_total": -3.1883537160881352,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-26T16:55:34.688049+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 110.89990234375,
+        "range_low": 108.25
       }
     },
     {
@@ -2064,18 +2175,43 @@
       "target": 41.099998474121094,
       "qty": 2.526528432890052,
       "fired_at": "2026-08-25T19:45:16.381739+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 39.58000183105469,
-        "entry_qty": 2.526528432890052,
-        "stop_loss": 39.404045854296,
-        "extreme_since_entry": 39.59000015258789,
-        "peak_profit_per_unit": 0.009998321533203125,
-        "take_profit_target": 41.099998474121094,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "entry": 39.58000183105469,
+        "exit": 38.57500076293945,
+        "qty": 2.526528432890052,
+        "pnl_per_unit": -1.0050010681152344,
+        "pnl_total": -2.5391637736780117,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-26T16:55:35.442083+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 39.58000183105469,
+            "exit": 38.57500076293945,
+            "qty": 2.526528432890052,
+            "pnl_per_unit": -1.0050010681152344,
+            "pnl_total": -2.5391637736780117,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-26T16:55:35.442083+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 39.02000045776367,
+        "range_low": 38.413700103759766
       }
     },
     {
@@ -3437,6 +3573,56 @@
         "stop_loss": 132.56374713352747,
         "extreme_since_entry": 131.6199951171875,
         "peak_profit_per_unit": 0.30999755859375,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "MARA",
+      "type": "gap_and_go_short",
+      "direction": "short",
+      "entry": 11.074999809265137,
+      "stop": 11.794896296092443,
+      "target": null,
+      "qty": 1.3890885957884767,
+      "fired_at": "2026-08-26T16:55:36.905230+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 11.074999809265137,
+        "entry_qty": 1.3890885957884767,
+        "stop_loss": 11.794896296092443,
+        "extreme_since_entry": 11.074999809265137,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "HOOD",
+      "type": "gap_and_go_short",
+      "direction": "short",
+      "entry": 108.4000015258789,
+      "stop": 112.03825732639858,
+      "target": null,
+      "qty": 0.2748569795057193,
+      "fired_at": "2026-08-26T16:55:36.905251+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 108.4000015258789,
+        "entry_qty": 0.2748569795057193,
+        "stop_loss": 112.03825732639858,
+        "extreme_since_entry": 108.4000015258789,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
