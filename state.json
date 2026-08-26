@@ -1,6 +1,6 @@
 {
   "capital_usd": 100,
-  "capital_inr": 1000000,
+  "capital_inr": 500000,
   "symbols": {
     "BTC-USD": {
       "status": "watching",
