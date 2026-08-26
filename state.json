@@ -577,7 +577,7 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 329.45001220703125,
-      "range_low": 325.25,
+      "range_low": 324.8500061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
