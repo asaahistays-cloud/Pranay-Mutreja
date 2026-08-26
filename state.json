@@ -583,7 +583,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 324.8500061035156,
+        "bar_time": 1787727600000
+      },
       "trade_journal": []
     },
     "COALINDIA.NS": {
@@ -957,7 +961,7 @@
     "TATAPOWER.NS": {
       "status": "watching",
       "range_high": 376.3500061035156,
-      "range_low": 370.0,
+      "range_low": 368.75,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1020,7 +1024,7 @@
     },
     "SAIL.NS": {
       "status": "watching",
-      "range_high": 186.6699981689453,
+      "range_high": 186.8800048828125,
       "range_low": 182.39999389648438,
       "direction": null,
       "entry_price": null,
@@ -2760,6 +2764,30 @@
         "pending": null,
         "range_high": 283.5,
         "range_low": 273.3999938964844
+      }
+    },
+    {
+      "symbol": "RECLTD.NS",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 324.0,
+      "stop": 325.6785659790039,
+      "target": null,
+      "qty": 5957.4661497275165,
+      "fired_at": "2026-08-26T07:12:43.579004+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 324.0,
+        "entry_qty": 5957.4661497275165,
+        "stop_loss": 325.6785659790039,
+        "extreme_since_entry": 324.0,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "trade_journal": []
       }
     }
   ]
