@@ -441,7 +441,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
-        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None}
+        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
 
     if close < range_low and vol > vol_avg:
         if trend_ema and close > trend_ema:
@@ -470,7 +470,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
-        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None}
+        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
     bullish_rejection = close > (last_closed["low"] + last_closed["high"]) / 2
@@ -496,7 +496,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high}
+            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high, "vol_ratio": vol / vol_avg if vol_avg else 0}
         return None
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
@@ -523,7 +523,7 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low}
+            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low, "vol_ratio": vol / vol_avg if vol_avg else 0}
         return None
 
     if range_low < close < range_high:
@@ -576,7 +576,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
-        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None}
+        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
 
     if close < range_low and vol > vol_avg:
         if trend_ema and close > trend_ema:
@@ -594,7 +594,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
-        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None}
+        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
     bullish_rejection = close > (last_closed["low"] + last_closed["high"]) / 2
@@ -618,7 +618,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high}
+            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high, "vol_ratio": vol / vol_avg if vol_avg else 0}
         return None
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
@@ -638,7 +638,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low}
+            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low, "vol_ratio": vol / vol_avg if vol_avg else 0}
         return None
 
     if range_low < close < range_high:
@@ -793,7 +793,7 @@ def main():
     watchlist = build_watchlist(state)
 
     setup_log = state.setdefault("setup_log", [])
-    fired_setups = []
+    fired_this_scan = []  # (market, alert dict) -- ranked and trimmed after the full watchlist loop
     for entry in watchlist:
         symbol, market, tradable = entry["symbol"], entry["market"], entry["tradable"]
         try:
@@ -833,25 +833,51 @@ def main():
 
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
         if alert:
+            fired_this_scan.append((market, symbol, alert))
+
+    # Best-of-N per market per scan: when multiple setups fire in the
+    # same cycle, only the top 2 by volume ratio (how unusual this
+    # bar's volume is vs. its own recent average -- the one conviction
+    # signal every setup type already computes) actually get surfaced
+    # to Telegram. Every fired setup still gets logged and shadow-
+    # tracked regardless ("surfaced": False for the rest), so the
+    # nightly report can later show whether this filtering is actually
+    # picking better trades or just fewer of them. Ranked per market,
+    # not globally -- crypto/India/US are separate capital pools, so a
+    # strong US signal shouldn't crowd out an India one.
+    SURFACE_TOP_N = 2
+    by_market = {}
+    for market, symbol, alert in fired_this_scan:
+        by_market.setdefault(market, []).append((symbol, alert))
+    surfaced_keys = set()
+    for market, items in by_market.items():
+        ranked = sorted(items, key=lambda x: x[1].get("vol_ratio", 0), reverse=True)
+        for symbol, alert in ranked[:SURFACE_TOP_N]:
+            surfaced_keys.add((symbol, alert["type"], alert["entry"]))
+
+    fired_setups = []
+    for market, symbol, alert in fired_this_scan:
+        surfaced = (symbol, alert["type"], alert["entry"]) in surfaced_keys
+        if surfaced:
             fired_setups.append(alert["text"])
-            setup_log.append({
-                "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
-                "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
-                "qty": alert["qty"], "fired_at": datetime.now(timezone.utc).isoformat(),
-                "resolved": False, "outcome": None,
-                "shadow": {
-                    "direction": alert["direction"], "entry_price": alert["entry"],
-                    "entry_qty": alert["qty"], "stop_loss": alert["stop"],
-                    "extreme_since_entry": alert["entry"], "peak_profit_per_unit": 0,
-                    "take_profit_target": alert["target"], "consecutive_losses": 0,
-                    "trade_journal": [],
-                },
-            })
+        setup_log.append({
+            "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
+            "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
+            "qty": alert["qty"], "fired_at": datetime.now(timezone.utc).isoformat(),
+            "resolved": False, "outcome": None, "surfaced": surfaced,
+            "shadow": {
+                "direction": alert["direction"], "entry_price": alert["entry"],
+                "entry_qty": alert["qty"], "stop_loss": alert["stop"],
+                "extreme_since_entry": alert["entry"], "peak_profit_per_unit": 0,
+                "take_profit_target": alert["target"], "consecutive_losses": 0,
+                "trade_journal": [],
+            },
+        })
 
     if fired_setups:
-        # One message per scan covering every setup that fired, instead
-        # of a separate Telegram send per symbol -- so 5 setups in one
-        # scan is 1 notification to react to, not 5.
+        # One message per scan covering every surfaced setup, instead
+        # of a separate Telegram send per symbol -- so several setups
+        # in one scan is 1 notification to react to, not several.
         divider = "\n\n" + ("=" * 20) + "\n\n"
         header = f"{len(fired_setups)} setup(s) this scan:\n\n"
         send_telegram(header + divider.join(fired_setups))

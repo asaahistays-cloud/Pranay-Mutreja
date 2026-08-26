@@ -57,9 +57,14 @@ def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY
     market="india"/"crypto"/"us" to scope the report to just that
     market -- each one now runs different entry logic (see
     monitor.check_watching()), so blending them into one number hides
-    which market is actually driving the result."""
+    which market is actually driving the result. Only counts setups
+    that were actually surfaced to Telegram -- when several fire in
+    one scan, only the top few by conviction get sent (see main()'s
+    best-of-N selection), so "suggested" means what you actually saw,
+    not everything that structurally fired. Older entries predating
+    that change have no "surfaced" field and default to counted."""
     day_ist = day_ist or (datetime.now(timezone.utc) + IST_OFFSET).strftime("%Y-%m-%d")
-    log = [e for e in state.get(log_key, []) if to_ist_date(e["fired_at"]) == day_ist]
+    log = [e for e in state.get(log_key, []) if to_ist_date(e["fired_at"]) == day_ist and e.get("surfaced", True)]
     if market:
         log = [e for e in log if market_of(e["symbol"]) == market]
 
