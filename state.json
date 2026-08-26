@@ -1123,7 +1123,7 @@
     },
     "FET-USD": {
       "status": "watching",
-      "range_high": 0.16129,
+      "range_high": 0.1626,
       "range_low": 0.15777,
       "direction": null,
       "entry_price": null,
@@ -1133,10 +1133,7 @@
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_short_rejection",
-        "bar_time": 1787766300000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "pending": {
         "type": "breakout_long",
@@ -3753,9 +3750,9 @@
         "direction": "short",
         "entry_price": 0.16033,
         "entry_qty": 707.1421355692461,
-        "stop_loss": 0.16174414285714286,
-        "extreme_since_entry": 0.16021,
-        "peak_profit_per_unit": 0.00012000000000000899,
+        "stop_loss": 0.16148374999999998,
+        "extreme_since_entry": 0.15979,
+        "peak_profit_per_unit": 0.0005400000000000127,
         "take_profit_target": 0.15777,
         "consecutive_losses": 0,
         "trade_journal": []
