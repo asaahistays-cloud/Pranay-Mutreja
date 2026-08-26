@@ -2792,7 +2792,9 @@
         "pnl_per_unit": 0.5,
         "pnl_total": 595.5,
         "exit_reason": "stop_hit",
-        "closed_at": "2026-08-26T07:59:18.452329+00:00"
+        "closed_at": "2026-08-26T07:59:18.452329+00:00",
+        "charges": 183.04,
+        "net_pnl": 412.46
       },
       "surfaced": true,
       "shadow": {
