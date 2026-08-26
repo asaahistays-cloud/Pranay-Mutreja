@@ -948,7 +948,7 @@
     },
     "VEDL.NS": {
       "status": "watching",
-      "range_high": 281.0,
+      "range_high": 283.5,
       "range_low": 273.3999938964844,
       "direction": null,
       "entry_price": null,
@@ -2666,18 +2666,43 @@
       "target": null,
       "qty": 2327.5118309383997,
       "fired_at": "2026-08-26T04:45:25.820375+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 283.04998779296875,
-        "entry_qty": 2327.5118309383997,
-        "stop_loss": 281.30355998447965,
-        "extreme_since_entry": 283.5,
-        "peak_profit_per_unit": 0.45001220703125,
+        "entry": 283.04998779296875,
+        "exit": 281.29998779296875,
+        "qty": 2327.5118309383997,
+        "pnl_per_unit": -1.75,
+        "pnl_total": -4073.1457041421995,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-26T05:15:27.631526+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 283.04998779296875,
+            "exit": 281.29998779296875,
+            "qty": 2327.5118309383997,
+            "pnl_per_unit": -1.75,
+            "pnl_total": -4073.1457041421995,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-26T05:15:27.631526+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 283.5,
+        "range_low": 273.3999938964844
       }
     }
   ]
