@@ -1906,18 +1906,43 @@
       "target": 11.100000381469727,
       "qty": 5.399601306653656,
       "fired_at": "2026-08-25T19:30:34.190863+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "short",
-        "entry_price": 11.854999542236328,
-        "entry_qty": 5.399601306653656,
-        "stop_loss": 11.304544414792742,
-        "extreme_since_entry": 11.079999923706055,
-        "peak_profit_per_unit": 0.7749996185302734,
-        "take_profit_target": 11.100000381469727,
+        "entry": 11.854999542236328,
+        "exit": 11.059000015258789,
+        "qty": 5.399601306653656,
+        "pnl_per_unit": 0.7959995269775391,
+        "pnl_total": 4.298080085963612,
+        "exit_reason": "take_profit",
+        "closed_at": "2026-08-26T16:30:33.920984+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
         "consecutive_losses": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 11.854999542236328,
+            "exit": 11.059000015258789,
+            "qty": 5.399601306653656,
+            "pnl_per_unit": 0.7959995269775391,
+            "pnl_total": 4.298080085963612,
+            "exit_reason": "take_profit",
+            "closed_at": "2026-08-26T16:30:33.920984+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 11.729999542236328,
+        "range_low": 11.039999961853027
       }
     },
     {
@@ -3319,9 +3344,9 @@
         "direction": "short",
         "entry_price": 11.3149995803833,
         "entry_qty": 1.9605220949075537,
-        "stop_loss": 11.150499820709229,
-        "extreme_since_entry": 11.079999923706055,
-        "peak_profit_per_unit": 0.2349996566772461,
+        "stop_loss": 11.12249984741211,
+        "extreme_since_entry": 11.039999961853027,
+        "peak_profit_per_unit": 0.27499961853027344,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
@@ -3344,7 +3369,7 @@
         "direction": "long",
         "entry_price": 96.25,
         "entry_qty": 0.8594229588704716,
-        "stop_loss": 95.36607142857142,
+        "stop_loss": 95.51160714285713,
         "extreme_since_entry": 96.35,
         "peak_profit_per_unit": 0.09999999999999432,
         "take_profit_target": 99.84,
