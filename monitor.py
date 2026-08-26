@@ -432,11 +432,12 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
     like US mid-caps -- so this function is US-only by design, not
     reused for India's dispatch path)."""
     day = us_date(last_closed["open_time"])
+    day_str = day.isoformat()
     today_bars = [b for b in closed_bars if us_date(b["open_time"]) == day]
 
-    if sym_state.get("gap_date") != day:
+    if sym_state.get("gap_date") != day_str:
         prior_bars = [b for b in closed_bars if us_date(b["open_time"]) != day]
-        sym_state["gap_date"] = day
+        sym_state["gap_date"] = day_str
         sym_state["gap_direction"] = None
         sym_state["gap_fired"] = False
         if prior_bars and today_bars:
