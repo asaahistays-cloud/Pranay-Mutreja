@@ -3344,9 +3344,9 @@
         "direction": "short",
         "entry_price": 11.3149995803833,
         "entry_qty": 1.9605220949075537,
-        "stop_loss": 11.12249984741211,
-        "extreme_since_entry": 11.039999961853027,
-        "peak_profit_per_unit": 0.27499961853027344,
+        "stop_loss": 11.087499713897705,
+        "extreme_since_entry": 10.989999771118164,
+        "peak_profit_per_unit": 0.3249998092651367,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
