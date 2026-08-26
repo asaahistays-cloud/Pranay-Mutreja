@@ -801,6 +801,51 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
     return None
 
 
+def market_of(symbol):
+    """Same derivation as report.py's market_of() -- duplicated rather than
+    imported since monitor.py and report.py are meant to stay independently
+    runnable. Used here only to recover which market a HISTORICAL setup_log
+    entry belongs to (entries don't store market explicitly), for
+    compute_bucket_confidence() below."""
+    if symbol.endswith(".NS"):
+        return "india"
+    if "-USD" in symbol:
+        return "crypto"
+    if symbol.endswith("-FUT"):
+        return "india_futures"
+    return "us"
+
+
+def compute_bucket_confidence(setup_log, market, setup_type, direction):
+    """Self-learning groundwork, step 1: a smoothed historical win rate for
+    this exact (market, setup_type, direction) bucket -- e.g. "crypto
+    breakdown_short" or "us gap_and_go_short". Beta(1,1)/Laplace-smoothed
+    ((wins+1)/(total+2)) so it starts neutral at 0.5 with zero data and can
+    never read as false 100%/0% certainty off a thin sample -- the exact
+    NIFTY-futures trap (a 20-trade sample read as validated) this project
+    already got burned by once.
+
+    Deliberately NOT wired into which setups fire, get surfaced, or how
+    they're sized -- purely observational, logged on every new setup so a
+    real history exists to eventually design a confidence-weighted ranking
+    from. Doing that FOR REAL requires the same backtested proof every
+    other live change in this bot needed (see tonight's win-throttle: an
+    idea that sounded obviously right and measurably wasn't once tested).
+    There isn't remotely enough accumulated data yet for that -- this
+    function's whole job right now is making sure that data starts
+    existing, not making decisions with it prematurely."""
+    matches = [
+        e for e in setup_log
+        if e.get("resolved") and e.get("outcome") is not None
+        and e.get("type") == setup_type and e.get("direction") == direction
+        and market_of(e["symbol"]) == market
+    ]
+    total = len(matches)
+    wins = sum(1 for e in matches if e["outcome"]["pnl_per_unit"] > 0)
+    confidence = (wins + 1) / (total + 2)
+    return {"wins": wins, "total": total, "confidence": round(confidence, 4)}
+
+
 def log_trade(sym_state, direction, entry, exit_price, pnl_per_unit, exit_reason):
     qty = sym_state.get("entry_qty")
     sym_state.setdefault("trade_journal", []).append({
@@ -1056,11 +1101,24 @@ def main():
         surfaced = (symbol, alert["type"], alert["entry"]) in surfaced_keys
         if surfaced:
             fired_setups.append(alert["text"])
+        fired_at_dt = datetime.now(timezone.utc)
         setup_log.append({
             "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
             "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
-            "qty": alert["qty"], "fired_at": datetime.now(timezone.utc).isoformat(),
+            "qty": alert["qty"], "fired_at": fired_at_dt.isoformat(),
             "resolved": False, "outcome": None, "surfaced": surfaced, "taken": False,
+            # Self-learning groundwork -- see compute_bucket_confidence()'s
+            # docstring. Purely observational: not read anywhere that
+            # affects which setups fire, surface, or how they're sized.
+            # confidence_at_fire is computed from history strictly BEFORE
+            # this entry (setup_log doesn't include it yet at append time),
+            # so it can never leak this trade's own outcome into itself.
+            # fired_hour_utc/fired_weekday_utc are cheap now, expensive to
+            # reconstruct retroactively later if a time-of-day/day-of-week
+            # pattern turns out to matter.
+            "confidence_at_fire": compute_bucket_confidence(setup_log, market, alert["type"], alert["direction"]),
+            "fired_hour_utc": fired_at_dt.hour,
+            "fired_weekday_utc": fired_at_dt.weekday(),
             "shadow": {
                 "direction": alert["direction"], "entry_price": alert["entry"],
                 "entry_qty": alert["qty"], "stop_loss": alert["stop"],
