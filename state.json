@@ -976,7 +976,7 @@
     },
     "SUZLON.NS": {
       "status": "watching",
-      "range_high": 47.349998474121094,
+      "range_high": 47.400001525878906,
       "range_low": 46.38999938964844,
       "direction": null,
       "entry_price": null,
@@ -2672,9 +2672,9 @@
         "direction": "long",
         "entry_price": 283.04998779296875,
         "entry_qty": 2327.5118309383997,
-        "stop_loss": 278.75355420793807,
-        "extreme_since_entry": 283.04998779296875,
-        "peak_profit_per_unit": 0,
+        "stop_loss": 281.30355998447965,
+        "extreme_since_entry": 283.5,
+        "peak_profit_per_unit": 0.45001220703125,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
