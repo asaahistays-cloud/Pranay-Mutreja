@@ -577,7 +577,7 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 329.45001220703125,
-      "range_low": 324.8500061035156,
+      "range_low": 322.70001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -900,7 +900,7 @@
     },
     "HINDCOPPER.NS": {
       "status": "watching",
-      "range_high": 551.5499877929688,
+      "range_high": 555.8499755859375,
       "range_low": 526.5999755859375,
       "direction": null,
       "entry_price": null,
@@ -965,17 +965,13 @@
     "TATAPOWER.NS": {
       "status": "watching",
       "range_high": 376.3500061035156,
-      "range_low": 365.29998779296875,
+      "range_low": 365.20001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 367.8999938964844,
-        "bar_time": 1787729400000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "SUZLON.NS": {
@@ -2887,9 +2883,9 @@
         "direction": "long",
         "entry_price": 187.85000610351562,
         "entry_qty": 5323.3961538917665,
-        "stop_loss": 186.39893286568778,
-        "extreme_since_entry": 187.85000610351562,
-        "peak_profit_per_unit": 0,
+        "stop_loss": 186.90714754377092,
+        "extreme_since_entry": 188.10000610351562,
+        "peak_profit_per_unit": 0.25,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
