@@ -1133,7 +1133,10 @@
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787766300000
+      },
       "trade_journal": [],
       "pending": {
         "type": "breakout_long",
@@ -3642,20 +3645,45 @@
       "target": null,
       "qty": 1.3,
       "fired_at": "2026-08-26T16:55:36.905230+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 11.074999809265137,
+        "exit": 11.125,
+        "qty": 1.3,
+        "pnl_per_unit": -0.05000019073486328,
+        "pnl_total": -0.06500024795532226,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-26T18:00:47.819380+00:00"
+      },
       "surfaced": true,
       "taken": true,
       "shadow": {
-        "direction": "short",
-        "entry_price": 11.074999809265137,
-        "entry_qty": 1.3,
-        "stop_loss": 11.029500102996826,
-        "extreme_since_entry": 11.010000228881836,
-        "peak_profit_per_unit": 0.06499958038330078,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 11.074999809265137,
+            "exit": 11.125,
+            "qty": 1.3,
+            "pnl_per_unit": -0.05000019073486328,
+            "pnl_total": -0.06500024795532226,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-26T18:00:47.819380+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 11.34000015258789,
+        "range_low": 10.989999771118164
       }
     },
     {
@@ -3706,6 +3734,31 @@
         "pending": null,
         "range_high": 109.76000213623047,
         "range_low": 108.25
+      }
+    },
+    {
+      "symbol": "FET-USD",
+      "type": "range_short_rejection",
+      "direction": "short",
+      "entry": 0.16033,
+      "stop": 0.16174414285714286,
+      "target": 0.15777,
+      "qty": 707.1421355692461,
+      "fired_at": "2026-08-26T18:00:54.058560+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 0.16033,
+        "entry_qty": 707.1421355692461,
+        "stop_loss": 0.16174414285714286,
+        "extreme_since_entry": 0.16033,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": 0.15777,
+        "consecutive_losses": 0,
+        "trade_journal": []
       }
     }
   ],
