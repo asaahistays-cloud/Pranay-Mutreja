@@ -1137,8 +1137,8 @@
       "trade_journal": [],
       "pending": {
         "type": "breakout_long",
-        "level": 0.16129,
-        "expires": 1787772600000
+        "level": 0.16284,
+        "expires": 1787786100000
       }
     },
     "DKNG": {
