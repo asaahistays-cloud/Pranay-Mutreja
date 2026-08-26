@@ -577,7 +577,7 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 329.45001220703125,
-      "range_low": 325.70001220703125,
+      "range_low": 325.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -963,7 +963,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 370.0,
+        "bar_time": 1787724900000
+      },
       "trade_journal": []
     },
     "SUZLON.NS": {
