@@ -2931,12 +2931,14 @@
       "outcome": {
         "direction": "short",
         "entry": 85.09,
-        "exit": 84.9800033569336,
+        "exit": 84.74,
         "qty": 11700.0,
-        "pnl_per_unit": 0.10999664306640966,
-        "pnl_total": 1286.9607238769931,
-        "exit_reason": "stop_hit",
-        "closed_at": "2026-08-26T08:45:28.438859+00:00"
+        "pnl_per_unit": 0.3500000000000085,
+        "pnl_total": 4095.0,
+        "exit_reason": "manual_exit",
+        "closed_at": "2026-08-26T10:46:50.161326+00:00",
+        "charges": 397.82,
+        "net_pnl": 3697.18
       },
       "surfaced": true,
       "taken": true,
@@ -2959,6 +2961,18 @@
             "pnl_total": 1286.9607238769931,
             "exit_reason": "stop_hit",
             "closed_at": "2026-08-26T08:45:28.438859+00:00"
+          },
+          {
+            "direction": "short",
+            "entry": 85.09,
+            "exit": 84.74,
+            "qty": 11700.0,
+            "pnl_per_unit": 0.3500000000000085,
+            "pnl_total": 4095.0,
+            "exit_reason": "manual_exit",
+            "closed_at": "2026-08-26T10:46:50.161326+00:00",
+            "charges": 397.82,
+            "net_pnl": 3697.18
           }
         ],
         "status": "watching",
