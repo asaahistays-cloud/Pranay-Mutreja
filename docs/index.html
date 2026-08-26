@@ -33,6 +33,7 @@
   .dot.ok { background: var(--green); box-shadow: 0 0 8px var(--green); }
   .dot.warn { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
   .dot.bad { background: var(--red); box-shadow: 0 0 8px var(--red); }
+  .dot.neutral { background: var(--text-faint); }
 
   section { margin-bottom: 28px; }
   section > h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); margin: 0 0 12px; font-weight: 600; }
@@ -256,6 +257,7 @@ function dismissToast(id) {
 }
 const RAW_STATE_URL = `https://raw.githubusercontent.com/${REPO}/main/state.json?_=${Date.now()}`;
 const COMMITS_API = `https://api.github.com/repos/${REPO}/commits?path=state.json&per_page=1`;
+const RUNS_API = `https://api.github.com/repos/${REPO}/actions/workflows/monitor.yml/runs?per_page=1&status=completed`;
 const IST_OFFSET_MS = (5 * 60 + 30) * 60 * 1000;
 
 function marketOf(symbol) {
@@ -302,14 +304,37 @@ async function fetchLivePrice(symbol) {
   }
 }
 
-function renderStatus(state, lastCommitDate) {
+function renderStatus(state, lastCommitDate, lastRun) {
   const el = document.getElementById("statusBar");
   el.innerHTML = "";
 
-  const commitAgeMin = (Date.now() - new Date(lastCommitDate).getTime()) / 60000;
-  const pipelineDot = commitAgeMin < 25 ? "ok" : commitAgeMin < 90 ? "warn" : "bad";
-  const pipelineText = commitAgeMin < 25 ? "Scanning normally" : commitAgeMin < 90 ? "Running late" : "No recent scans";
-  el.innerHTML += `<div class="status-chip"><span class="dot ${pipelineDot}"></span> ${pipelineText} &middot; last state update ${timeAgo(lastCommitDate)}</div>`;
+  // Pipeline health = did the bot actually execute recently, not "did state.json
+  // change" -- a quiet market can go a while with nothing to write, and that's
+  // not a failure. lastRun comes from the Actions API (every completed run,
+  // whether or not it produced a commit); lastCommitDate is shown separately
+  // as "last setup data change" for context, not used to judge health.
+  let pipelineDot = "bad";
+  let pipelineText = "No recent scans";
+  if (lastRun && lastRun.date) {
+    const runAgeMin = (Date.now() - new Date(lastRun.date).getTime()) / 60000;
+    if (lastRun.conclusion !== "success") {
+      pipelineDot = "bad";
+      pipelineText = `Last scan failed (${lastRun.conclusion || "unknown"})`;
+    } else if (runAgeMin < 25) {
+      pipelineDot = "ok";
+      pipelineText = "Scanning normally";
+    } else if (runAgeMin < 90) {
+      pipelineDot = "warn";
+      pipelineText = "Running late";
+    } else {
+      pipelineDot = "bad";
+      pipelineText = "No recent scans";
+    }
+    el.innerHTML += `<div class="status-chip"><span class="dot ${pipelineDot}"></span> ${pipelineText} &middot; last scan ${timeAgo(lastRun.date)}</div>`;
+  } else {
+    el.innerHTML += `<div class="status-chip"><span class="dot warn"></span> Couldn't check scan history</div>`;
+  }
+  el.innerHTML += `<div class="status-chip"><span class="dot neutral"></span> last setup data change ${timeAgo(lastCommitDate)}</div>`;
 
   const openCount = (state.setup_log || []).filter(e => e.taken && !e.resolved).length;
   el.innerHTML += `<div class="status-chip"><span class="dot ${openCount > 0 ? "ok" : "warn"}"></span> ${openCount} open position${openCount === 1 ? "" : "s"}</div>`;
@@ -471,17 +496,25 @@ function renderRecentSetups(state) {
 
 async function loadDashboard() {
   try {
-    const [stateResp, commitsResp] = await Promise.all([
+    const [stateResp, commitsResp, runsResp] = await Promise.all([
       fetch(RAW_STATE_URL),
       fetch(COMMITS_API),
+      fetch(RUNS_API).catch(() => null),
     ]);
     const state = await stateResp.json();
     const commits = await commitsResp.json();
     const lastCommitDate = commits[0]?.commit?.author?.date || new Date().toISOString();
 
+    let lastRun = null;
+    if (runsResp && runsResp.ok) {
+      const runs = await runsResp.json();
+      const r = runs.workflow_runs && runs.workflow_runs[0];
+      if (r) lastRun = { date: r.updated_at || r.created_at, conclusion: r.conclusion };
+    }
+
     document.getElementById("lastFetched").textContent = `Page data refreshed ${timeAgo(new Date().toISOString())}`;
 
-    renderStatus(state, lastCommitDate);
+    renderStatus(state, lastCommitDate, lastRun);
     renderPerfCards(state);
     renderTrend(state);
     renderRecentSetups(state);
