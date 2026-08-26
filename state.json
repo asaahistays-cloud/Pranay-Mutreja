@@ -3782,58 +3782,6 @@
         "range_high": 0.1626,
         "range_low": 0.15884
       }
-    },
-    {
-      "symbol": "TEST-USD",
-      "type": "breakdown_short",
-      "direction": "short",
-      "entry": 250.75,
-      "stop": 258.3,
-      "target": null,
-      "qty": 100,
-      "fired_at": "2026-08-26T20:06:47.971010+00:00",
-      "resolved": false,
-      "outcome": null,
-      "surfaced": true,
-      "taken": true,
-      "shadow": {
-        "direction": "short",
-        "entry_price": 250.75,
-        "entry_qty": 100,
-        "stop_loss": 258.3,
-        "extreme_since_entry": 250.75,
-        "peak_profit_per_unit": 0,
-        "take_profit_target": null,
-        "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
-      }
-    },
-    {
-      "symbol": "TEST2-USD",
-      "type": "breakout_long",
-      "direction": "long",
-      "entry": 88.4,
-      "stop": 85.1,
-      "target": null,
-      "qty": 1.2,
-      "fired_at": "2026-08-26T20:08:52.286302+00:00",
-      "resolved": false,
-      "outcome": null,
-      "surfaced": true,
-      "taken": false,
-      "shadow": {
-        "direction": "long",
-        "entry_price": 88.4,
-        "entry_qty": 1.2,
-        "stop_loss": 85.1,
-        "extreme_since_entry": 88.4,
-        "peak_profit_per_unit": 0,
-        "take_profit_target": null,
-        "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
-      }
     }
   ],
   "capital_inr_futures": 500000
