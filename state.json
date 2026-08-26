@@ -1133,13 +1133,13 @@
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
       "consecutive_losses": 0,
-      "last_alert": {},
-      "trade_journal": [],
-      "pending": {
+      "last_alert": {
         "type": "breakout_long",
         "level": 0.16284,
-        "expires": 1787786100000
-      }
+        "bar_time": 1787780700000
+      },
+      "trade_journal": [],
+      "pending": null
     },
     "DKNG": {
       "status": "watching",
@@ -3781,6 +3781,39 @@
         "pending": null,
         "range_high": 0.1626,
         "range_low": 0.15884
+      }
+    },
+    {
+      "symbol": "FET-USD",
+      "type": "breakout_long",
+      "direction": "long",
+      "entry": 0.1644,
+      "stop": 0.16235535714285715,
+      "target": null,
+      "qty": 489.082969432318,
+      "fired_at": "2026-08-26T22:00:50.603984+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 0,
+        "total": 0,
+        "confidence": 0.5
+      },
+      "fired_hour_utc": 22,
+      "fired_weekday_utc": 2,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 0.1644,
+        "entry_qty": 489.082969432318,
+        "stop_loss": 0.16235535714285715,
+        "extreme_since_entry": 0.1644,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
       }
     }
   ],
