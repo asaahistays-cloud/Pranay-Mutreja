@@ -3782,32 +3782,6 @@
         "range_high": 0.1626,
         "range_low": 0.15884
       }
-    },
-    {
-      "symbol": "E2ETEST",
-      "type": "breakdown_short",
-      "direction": "short",
-      "entry": 10.5,
-      "stop": 11.2,
-      "target": null,
-      "qty": 2,
-      "fired_at": "2026-08-26T20:04:52.262947+00:00",
-      "resolved": false,
-      "outcome": null,
-      "surfaced": true,
-      "taken": true,
-      "shadow": {
-        "direction": "short",
-        "entry_price": 10.5,
-        "entry_qty": 2,
-        "stop_loss": 11.2,
-        "extreme_since_entry": 10.5,
-        "peak_profit_per_unit": 0,
-        "take_profit_target": null,
-        "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
-      }
     }
   ],
   "capital_inr_futures": 500000
