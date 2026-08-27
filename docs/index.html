@@ -87,8 +87,10 @@
   .modal h3 { margin: 0 0 4px; font-size: 16px; }
   .modal .modal-sub { color: var(--text-dim); font-size: 12px; margin-bottom: 18px; }
   .modal label { display: block; font-size: 12px; color: var(--text-dim); margin: 12px 0 4px; }
-  .modal input { width: 100%; background: #0e121a; border: 1px solid var(--panel-border); border-radius: 6px; padding: 8px 10px; color: var(--text); font-family: var(--mono); font-size: 14px; }
-  .modal input:focus { outline: none; border-color: var(--accent); }
+  .modal input, .modal select { width: 100%; background: #0e121a; border: 1px solid var(--panel-border); border-radius: 6px; padding: 8px 10px; color: var(--text); font-family: var(--mono); font-size: 14px; }
+  .modal input:focus, .modal select:focus { outline: none; border-color: var(--accent); }
+  .section-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .btn-header { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: -apple-system, sans-serif; }
   .modal-actions { display: flex; gap: 8px; margin-top: 20px; }
   .modal-actions button { flex: 1; padding: 10px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; font-family: -apple-system, sans-serif; }
   .btn-cancel { background: #1a2030; color: var(--text-dim); }
@@ -127,7 +129,10 @@
 </div>
 
 <section>
-  <h2>Open Positions (Taken)</h2>
+  <div class="section-header">
+    <h2>Open Positions (Taken)</h2>
+    <button class="btn-header" onclick="openManualTradeModal()">+ Log Trade</button>
+  </div>
   <div class="panel table-wrap" id="openPositions"><div class="loading">Loading&hellip;</div></div>
 </section>
 
@@ -179,6 +184,33 @@
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeTakenModal()">Cancel</button>
       <button class="btn-submit" id="takenSubmitBtn" onclick="submitTaken()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="manualTradeModal">
+  <div class="modal">
+    <h3>Log a manual trade</h3>
+    <div class="modal-sub">A trade you took on your own, that the bot never suggested. Symbol must be one the bot is currently watching so it can track the outcome.</div>
+    <label>Symbol</label>
+    <select id="manualSymbol"></select>
+    <label>Direction</label>
+    <select id="manualDirection">
+      <option value="long">Long</option>
+      <option value="short">Short</option>
+    </select>
+    <label>Entry price</label>
+    <input type="number" step="any" id="manualEntry">
+    <label>Quantity</label>
+    <input type="number" step="any" id="manualQty">
+    <label>Stoploss</label>
+    <input type="number" step="any" id="manualStop">
+    <label>Take profit (optional)</label>
+    <input type="number" step="any" id="manualTarget">
+    <div class="modal-status" id="manualModalStatus"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeManualTradeModal()">Cancel</button>
+      <button class="btn-submit" id="manualSubmitBtn" onclick="submitManualTrade()">Log trade</button>
     </div>
   </div>
 </div>
@@ -537,6 +569,7 @@ async function loadDashboard() {
       if (r) lastRun = { date: r.updated_at || r.created_at, conclusion: r.conclusion };
     }
 
+    window.__lastState = state;
     document.getElementById("lastFetched").textContent = `Page data refreshed ${timeAgo(new Date().toISOString())}`;
 
     renderStatus(state, lastCommitDate, lastRun);
@@ -602,6 +635,7 @@ async function submitTaken() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        action: "mark_taken",
         symbol: currentTakenEntry.symbol,
         fired_at: currentTakenEntry.fired_at,
         entry: entryVal,
@@ -623,6 +657,94 @@ async function submitTaken() {
     statusEl.className = "modal-status error";
     btn.disabled = false;
     btn.textContent = "Confirm";
+  }
+}
+
+// Symbols the bot is actively scanning -- only these get walked by
+// main()'s shadow-resolution loop each run, so a manual trade on
+// anything outside this set would never resolve (stuck open forever).
+// Crypto's watchlist is fixed in monitor.py; India/US rotate daily and
+// come from state.json.
+const CRYPTO_WATCHLIST_SYMBOLS = ["BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "AVAX-USD", "NEAR-USD", "FET-USD"];
+
+function activeSymbols(state) {
+  return [
+    ...CRYPTO_WATCHLIST_SYMBOLS,
+    ...(state.active_india_symbols || []),
+    ...(state.active_us_symbols || []),
+  ];
+}
+
+function openManualTradeModal() {
+  const state = window.__lastState;
+  if (!state) return;
+  const sel = document.getElementById("manualSymbol");
+  sel.innerHTML = activeSymbols(state).map(s => `<option value="${s}">${s}</option>`).join("");
+  document.getElementById("manualDirection").value = "long";
+  document.getElementById("manualEntry").value = "";
+  document.getElementById("manualQty").value = "";
+  document.getElementById("manualStop").value = "";
+  document.getElementById("manualTarget").value = "";
+  document.getElementById("manualModalStatus").textContent = "";
+  document.getElementById("manualModalStatus").className = "modal-status";
+  document.getElementById("manualSubmitBtn").disabled = false;
+  document.getElementById("manualSubmitBtn").textContent = "Log trade";
+  document.getElementById("manualTradeModal").classList.remove("hidden");
+}
+
+function closeManualTradeModal() {
+  document.getElementById("manualTradeModal").classList.add("hidden");
+}
+
+async function submitManualTrade() {
+  const statusEl = document.getElementById("manualModalStatus");
+  const btn = document.getElementById("manualSubmitBtn");
+
+  const symbol = document.getElementById("manualSymbol").value;
+  const direction = document.getElementById("manualDirection").value;
+  const entryVal = parseFloat(document.getElementById("manualEntry").value);
+  const qtyVal = parseFloat(document.getElementById("manualQty").value);
+  const stopVal = parseFloat(document.getElementById("manualStop").value);
+  const targetRaw = document.getElementById("manualTarget").value;
+  const targetVal = targetRaw === "" ? null : parseFloat(targetRaw);
+
+  if (!symbol || isNaN(entryVal) || isNaN(qtyVal) || isNaN(stopVal)) {
+    statusEl.textContent = "Symbol, entry, quantity, and stop are required.";
+    statusEl.className = "modal-status error";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+  statusEl.textContent = "";
+  statusEl.className = "modal-status";
+
+  try {
+    const resp = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "log_manual",
+        symbol, direction,
+        entry: entryVal,
+        qty: qtyVal,
+        stop: stopVal,
+        target: targetVal,
+      }),
+    });
+    const data = await resp.json();
+    if (!resp.ok || !data.ok) {
+      throw new Error(data.error || `HTTP ${resp.status}`);
+    }
+    statusEl.textContent = "Logged -- will show as an open position within about a minute.";
+    statusEl.className = "modal-status ok";
+    btn.textContent = "Done";
+    setTimeout(() => { closeManualTradeModal(); loadDashboard(); }, 2000);
+  } catch (e) {
+    statusEl.textContent = `Failed: ${e.message}`;
+    statusEl.className = "modal-status error";
+    btn.disabled = false;
+    btn.textContent = "Log trade";
   }
 }
 
