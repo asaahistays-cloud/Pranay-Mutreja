@@ -4559,12 +4559,12 @@
       "outcome": {
         "direction": "short",
         "entry": 539,
-        "exit": 538.9500122070312,
+        "exit": 537.7,
         "qty": 927,
-        "pnl_per_unit": 0.04998779296875,
-        "pnl_total": 46.33868408203125,
-        "exit_reason": "stop_hit",
-        "closed_at": "2026-08-27T08:49:14.834069+00:00"
+        "pnl_per_unit": 1.2999999999999545,
+        "pnl_total": 981.83,
+        "exit_reason": "manual_close",
+        "closed_at": "2026-08-27T09:05:11.371553+00:00"
       },
       "surfaced": true,
       "taken": true,
