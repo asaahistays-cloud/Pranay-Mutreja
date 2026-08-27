@@ -293,6 +293,26 @@ def day_vwap(closed_bars, last_closed):
     return cum_pv / cum_vol if cum_vol else last_closed["close"]
 
 
+def committed_capital(setup_log, pool_markets):
+    """Sum of entry*qty across currently open (taken, unresolved)
+    positions sharing this capital pool -- crypto and US draw from the
+    same capital_usd pot (see main()'s capital assignment below), India
+    has its own separate capital_inr pot. Without this, every new
+    suggestion was sized off the FULL pot regardless of what's already
+    committed to other open positions -- as if 100% of capital were
+    always free, when in reality taking one trade should leave less
+    room for the next (a different symbol, or adding to the same one),
+    not none tracked at all. Only accounts for positions open as of the
+    START of this scan -- multiple new fires within the same scan don't
+    reduce each other's sizing, a minor gap vs. a much larger refactor
+    for a case best-of-N filtering already keeps rare."""
+    total = 0
+    for e in setup_log:
+        if e.get("taken") and not e.get("resolved") and market_of(e["symbol"]) in pool_markets:
+            total += abs((e.get("entry") or 0) * (e.get("qty") or 0))
+    return total
+
+
 def position_size(capital_usd, entry, stop, consecutive_losses, leverage=1, consecutive_wins=0):
     """Risk-based sizing (fixed % of capital / stop distance) alone can
     suggest a qty whose notional value exceeds what the account can
@@ -385,7 +405,14 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     Gap and Go strategy didn't transfer to India either -- every market
     genuinely needed its own from-scratch strategy, not a shared one).
     setup_log is optional and only used by check_watching_us() (see its
-    docstring) -- crypto/India ignore it, unchanged from before."""
+    docstring) -- crypto/India ignore it, unchanged from before.
+    capital already has committed_capital() subtracted by the caller
+    (main()) -- if that leaves nothing free, skip outright rather than
+    let position_size() size a qty=0 alert (no minimum-qty guard exists
+    downstream, so a fully-committed pool would otherwise still fire a
+    signal suggesting 0 units, which isn't a real trade)."""
+    if capital <= 0:
+        return None
     if market == "crypto":
         return check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if market == "india":
@@ -1019,6 +1046,8 @@ def main():
             symbols_state[symbol] = default_symbol_state(closed_bars)
         sym_state = symbols_state[symbol]
         capital = capital_inr if market == "india" else capital_usd
+        pool_markets = ("india",) if market == "india" else ("crypto", "us")
+        capital = max(capital - committed_capital(setup_log, pool_markets), 0)
 
         # Shadow-track every setup this symbol has ever fired, whether or
         # not the user took it -- reuses check_open()'s exact trailing
