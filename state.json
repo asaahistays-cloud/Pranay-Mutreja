@@ -1190,7 +1190,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 86.66000366210938,
+        "bar_time": 1787815800000
+      },
       "trade_journal": []
     },
     "POWERGRID.NS": {
@@ -4488,8 +4492,41 @@
         "direction": "short",
         "entry_price": 171.95,
         "entry_qty": 2900,
-        "stop_loss": 172.7,
-        "extreme_since_entry": 171.95,
+        "stop_loss": 172.26161003112793,
+        "extreme_since_entry": 171.8000030517578,
+        "peak_profit_per_unit": 0.14999694824217613,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "NMDC.NS",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 86.62999725341797,
+      "stop": 86.84071459089007,
+      "target": null,
+      "qty": 5771.672813717798,
+      "fired_at": "2026-08-27T07:45:36.259938+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 8,
+        "total": 14,
+        "confidence": 0.5625
+      },
+      "fired_hour_utc": 7,
+      "fired_weekday_utc": 3,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 86.62999725341797,
+        "entry_qty": 5771.672813717798,
+        "stop_loss": 86.84071459089007,
+        "extreme_since_entry": 86.62999725341797,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
