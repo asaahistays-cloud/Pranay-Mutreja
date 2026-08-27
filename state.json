@@ -43,7 +43,7 @@
     },
     "SOL-USD": {
       "status": "watching",
-      "range_high": 109.96,
+      "range_high": 110.65,
       "range_low": 94.99,
       "direction": null,
       "entry_price": null,
@@ -4696,7 +4696,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-27T22:45:25.540365+00:00",
+    "date": "2026-08-27T23:00:40.995483+00:00",
     "assessment": {
       "key_events": [
         {
