@@ -45,26 +45,64 @@ jobs:
         with:
           python-version: "3.12"
 
+      # These three used to gate purely on `github.event.schedule` matching
+      # an exact cron string -- which is ONLY ever set for a native GitHub
+      # `schedule` trigger. Every run is actually arriving via the external
+      # cron-job.org backup (workflow_dispatch, per the concurrency comment
+      # above) -- confirmed directly: 0 of the last 71 runs today were
+      # schedule-triggered, all workflow_dispatch. That silently disabled
+      # all three: no India/US opening-range refresh all day (explains a
+      # user report of zero US alerts -- the day's active symbol list
+      # never got refreshed), and "Trade performance report" was never
+      # wired to run automatically AT ALL -- no schedule entry maps to
+      # mode=report anywhere, so every report ever sent was a manual
+      # workflow_dispatch during testing, not a real running automation.
+      # Fix: check real wall-clock UTC time instead of the trigger type,
+      # so it works whether the schedule or the cron-job.org backup
+      # delivered this run. `mode=X` still force-runs it for manual testing
+      # regardless of time.
       - name: India opening-range scan
-        if: github.event.schedule == '20 4 * * 1-5' || github.event.inputs.mode == 'india'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python3 rank_movers.py india
+        run: |
+          h=$((10#$(date -u +%H))); m=$((10#$(date -u +%M))); now=$((h*60+m)); wd=$(date -u +%u)
+          # 9:50 IST = 4:20 UTC, weekdays only
+          if [ "${{ github.event.inputs.mode }}" = "india" ] || { [ "$wd" -le 5 ] && [ "$now" -ge $((4*60+15)) ] && [ "$now" -lt $((4*60+30)) ]; }; then
+            python3 rank_movers.py india
+          else
+            echo "Skipping (now=$now UTC, weekday=$wd, not in window and mode != india)"
+          fi
 
       - name: US opening-range scan
-        if: github.event.schedule == '5 14 * * 1-5' || github.event.inputs.mode == 'us'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python3 rank_movers.py us
+        run: |
+          h=$((10#$(date -u +%H))); m=$((10#$(date -u +%M))); now=$((h*60+m)); wd=$(date -u +%u)
+          # 10:05 AM ET (EDT) = 14:05 UTC, weekdays only -- nudge +1h
+          # around US DST transitions (~early Nov, ~early Mar) same as
+          # the old cron comment used to note.
+          if [ "${{ github.event.inputs.mode }}" = "us" ] || { [ "$wd" -le 5 ] && [ "$now" -ge $((14*60)) ] && [ "$now" -lt $((14*60+15)) ]; }; then
+            python3 rank_movers.py us
+          else
+            echo "Skipping (now=$now UTC, weekday=$wd, not in window and mode != us)"
+          fi
 
       - name: Trade performance report
-        if: github.event.inputs.mode == 'report'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python3 report.py
+        run: |
+          h=$((10#$(date -u +%H))); m=$((10#$(date -u +%M))); now=$((h*60+m))
+          # Midnight IST = 18:30 UTC, every day (crypto trades weekends
+          # too). report.py's own day_ist logic already treats an
+          # hour<6 IST call as "yesterday" for this exact case.
+          if [ "${{ github.event.inputs.mode }}" = "report" ] || { [ "$now" -ge $((18*60+30)) ] && [ "$now" -lt $((18*60+45)) ]; }; then
+            python3 report.py
+          else
+            echo "Skipping (now=$now UTC, not in window and mode != report)"
+          fi
 
       - name: Run monitor (full scan)
         if: github.event.inputs.mode != 'report'
