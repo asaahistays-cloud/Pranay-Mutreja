@@ -42,6 +42,8 @@
 
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   @media (max-width: 720px) { .grid-3 { grid-template-columns: 1fr; } }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
 
   .market-card h3 { margin: 0 0 10px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
   .market-card .stat-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; color: var(--text-dim); }
@@ -155,11 +157,13 @@
 
 <section>
   <h2>News &amp; Sentiment</h2>
-  <div class="panel coming-soon">
-    Not built yet &mdash; a reliable, backtestable free data source hasn't been confirmed.
-    Every other signal in this bot only shipped after real historical data proved it out;
-    this section will stay empty until the same bar is cleared, rather than show something
-    unvalidated.
+  <div class="grid-2" id="newsSentiment">
+    <div class="panel"><div class="loading">Loading&hellip;</div></div>
+  </div>
+  <div class="modal-sub" style="margin-top:8px">
+    Display only -- backtested and confirmed NOT to improve trade decisions (crypto Fear &amp; Greed),
+    or not yet backtestable at all (India news has no free historical archive). Neither affects what
+    fires, gets surfaced, or how it's sized -- same rule as everything else in this bot.
   </div>
 </section>
 
@@ -605,6 +609,70 @@ function renderTrend(state) {
   el.innerHTML = rows;
 }
 
+// Fear & Greed classification -> a rough color, red (fear) to green (greed).
+function fngColor(value) {
+  if (value <= 25) return "var(--red)";
+  if (value <= 45) return "#e0a030";
+  if (value <= 55) return "var(--text-faint)";
+  if (value <= 75) return "#7fd058";
+  return "var(--green)";
+}
+
+async function fetchFearGreed() {
+  try {
+    const r = await fetch("https://api.alternative.me/fng/?limit=1");
+    if (!r.ok) return null;
+    const d = await r.json();
+    const item = d?.data?.[0];
+    if (!item) return null;
+    return { value: parseInt(item.value, 10), classification: item.value_classification };
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchIndiaNews() {
+  try {
+    const r = await fetch(`${WORKER_URL}?feed=india-news`);
+    if (!r.ok) return null;
+    const xmlText = await r.text();
+    const xml = new DOMParser().parseFromString(xmlText, "text/xml");
+    const items = [...xml.querySelectorAll("item")].slice(0, 6).map(item => ({
+      title: item.querySelector("title")?.textContent?.trim() || "",
+      link: item.querySelector("link")?.textContent?.trim() || "#",
+    }));
+    return items.length ? items : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+async function renderNewsSentiment() {
+  const el = document.getElementById("newsSentiment");
+  const [fng, news] = await Promise.all([fetchFearGreed(), fetchIndiaNews()]);
+
+  const fngCard = fng
+    ? `<div class="panel">
+        <h3><span class="tag market-crypto">crypto</span> Fear &amp; Greed Index</h3>
+        <div style="font-size:42px;font-weight:700;color:${fngColor(fng.value)};line-height:1.1;margin:8px 0 2px">${fng.value}</div>
+        <div style="color:var(--text-dim);font-size:14px">${fng.classification}</div>
+        <div class="modal-sub" style="margin-top:12px">Backtested at multiple thresholds and sizing approaches (2yr real data) -- doesn't improve results in any tested form. Shown for context only.</div>
+      </div>`
+    : `<div class="panel"><h3><span class="tag market-crypto">crypto</span> Fear &amp; Greed Index</h3><div class="empty-state">Couldn't load right now.</div></div>`;
+
+  const newsCard = news
+    ? `<div class="panel">
+        <h3><span class="tag market-india">india</span> Market Headlines</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+          ${news.map(item => `<a href="${item.link}" target="_blank" rel="noopener" style="color:var(--text);font-size:13px;text-decoration:none;line-height:1.4;display:block">${item.title}</a>`).join("")}
+        </div>
+        <div class="modal-sub" style="margin-top:12px">No free historical archive exists for India news, so this can't be backtested yet -- display only, not a trading signal.</div>
+      </div>`
+    : `<div class="panel"><h3><span class="tag market-india">india</span> Market Headlines</h3><div class="empty-state">Couldn't load right now.</div></div>`;
+
+  el.innerHTML = fngCard + newsCard;
+}
+
 function renderRecentSetups(state) {
   const el = document.getElementById("recentSetups");
   const log = [...(state.setup_log || [])].sort((a, b) => new Date(b.fired_at) - new Date(a.fired_at)).slice(0, 25);
@@ -712,6 +780,7 @@ async function loadDashboard() {
     renderPerfCards(state);
     renderTrend(state);
     renderRecentSetups(state);
+    renderNewsSentiment(); // independent of state.json, fires without blocking the rest
     checkForNewSetups(state);
     await renderOpenPositions(state); // last -- does live price fetches, can take a moment
   } catch (e) {
