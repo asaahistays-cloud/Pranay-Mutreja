@@ -888,7 +888,21 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
     """notify=False runs the exact same trailing-stop/target/stop-hit
     logic silently -- used to shadow-track every fired setup's real
     outcome (hit target vs stopped out) whether or not the user actually
-    took it, without generating a single extra Telegram message."""
+    took it, without generating a single extra Telegram message.
+
+    notify=True (a real, taken position) is asymmetric with notify=False
+    on stop/target hits specifically: it sends the STOP HIT / TAKE PROFIT
+    HIT alert (once, not every scan -- see exit_alert_sent) but does NOT
+    call log_trade() or rearm_to_watching() -- the position stays
+    unresolved in setup_log until the user explicitly closes it via the
+    dashboard's Closed button (apply_close_trade.py). Reported directly:
+    the bot's own simulated exit (price/time it thinks the stop/target
+    was hit) doesn't always match what the user's real broker actually
+    filled at, so auto-resolving a taken position from the simulation
+    alone was recording the wrong outcome. Trailing-stop suggestions and
+    the giveback heads-up below are unaffected either way -- still fire
+    normally for a taken position, only the terminal stop/target-hit
+    branches changed."""
     direction = sym_state["direction"]
     stop = sym_state["stop_loss"]
     entry = sym_state["entry_price"]
@@ -923,7 +937,18 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
         # else instead of banking at the promised level.
         if tp is not None and close >= tp:
             if notify:
-                send_telegram(f"{symbol} TAKE PROFIT HIT -- long{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+                # Real, taken position -- alert only, never auto-resolve.
+                # The bot's own simulated exit can diverge from the
+                # user's real fill (confirmed directly: a taken position
+                # auto-resolved at a simulated price/time that didn't
+                # match what the user actually got from their broker).
+                # Only the dashboard's Closed button (apply_close_trade.py)
+                # marks a taken position resolved now. Alerts once per
+                # exit signal, not every scan, via exit_alert_sent.
+                if not sym_state.get("exit_alert_sent"):
+                    send_telegram(f"{symbol} TAKE PROFIT HIT -- long{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+                    sym_state["exit_alert_sent"] = True
+                return
             pnl = close - entry
             log_trade(sym_state, "long", entry, close, pnl, "take_profit")
             sym_state["consecutive_losses"] = 0
@@ -933,7 +958,10 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
 
         if close < stop:
             if notify:
-                send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
+                if not sym_state.get("exit_alert_sent"):
+                    send_telegram(f"{symbol} STOP HIT -- long{tag}\n\nClose {close:,.4g} broke below stop {stop:,.4g}. Sell now if you haven't already.", symbol=symbol, price=close)
+                    sym_state["exit_alert_sent"] = True
+                return
             pnl = close - entry
             log_trade(sym_state, "long", entry, close, pnl, "stop_hit")
             if pnl >= 0:
@@ -992,7 +1020,10 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
 
         if tp is not None and close <= tp:
             if notify:
-                send_telegram(f"{symbol} TAKE PROFIT HIT -- short{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+                if not sym_state.get("exit_alert_sent"):
+                    send_telegram(f"{symbol} TAKE PROFIT HIT -- short{tag}\n\nClose {close:,.4g} reached target {tp:,.4g}. Close now if you haven't already.", symbol=symbol, price=close)
+                    sym_state["exit_alert_sent"] = True
+                return
             pnl = entry - close
             log_trade(sym_state, "short", entry, close, pnl, "take_profit")
             sym_state["consecutive_losses"] = 0
@@ -1001,7 +1032,10 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
 
         if close > stop:
             if notify:
-                send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
+                if not sym_state.get("exit_alert_sent"):
+                    send_telegram(f"{symbol} STOP HIT -- short{tag}\n\nClose {close:,.4g} broke above stop {stop:,.4g}. Buy back / close now if you haven't already.", symbol=symbol, price=close)
+                    sym_state["exit_alert_sent"] = True
+                return
             pnl = entry - close
             log_trade(sym_state, "short", entry, close, pnl, "stop_hit")
             if pnl >= 0:
