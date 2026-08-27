@@ -27,7 +27,6 @@ export default {
     }
     if (request.method === "GET") {
       const url = new URL(request.url);
-      if (url.searchParams.get("feed") === "india-news") return handleNewsProxy();
       return handlePriceProxy(request);
     }
     if (request.method !== "POST") {
@@ -87,24 +86,6 @@ async function handlePriceProxy(request) {
     const price = data?.chart?.result?.[0]?.meta?.regularMarketPrice;
     if (typeof price !== "number") return json({ error: "no price in Yahoo response" }, 502);
     return json({ symbol, price });
-  } catch (e) {
-    return json({ error: `fetch failed: ${e.message}` }, 502);
-  }
-}
-
-async function handleNewsProxy() {
-  // Economic Times Markets RSS -- confirmed live/real (not stale, unlike
-  // Moneycontrol's feed which was found stuck at an old date) and free,
-  // no key. No CORS headers of its own, so this proxies the raw XML
-  // through with this Worker's CORS headers; the dashboard parses it
-  // client-side with DOMParser.
-  try {
-    const resp = await fetch("https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms", {
-      headers: { "User-Agent": "Mozilla/5.0 (compatible; multi-market-monitor-worker/1.0)" },
-    });
-    if (!resp.ok) return json({ error: `ET RSS returned ${resp.status}` }, 502);
-    const xml = await resp.text();
-    return new Response(xml, { headers: { "Content-Type": "text/xml", ...corsHeaders() } });
   } catch (e) {
     return json({ error: `fetch failed: ${e.message}` }, 502);
   }
