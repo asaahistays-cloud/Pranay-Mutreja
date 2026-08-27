@@ -215,6 +215,20 @@
   </div>
 </div>
 
+<div class="modal-overlay hidden" id="closeModal">
+  <div class="modal">
+    <h3 id="closeModalTitle">Close position</h3>
+    <div class="modal-sub" id="closeModalSub"></div>
+    <label>Exit price</label>
+    <input type="number" step="any" id="closeExit">
+    <div class="modal-status" id="closeModalStatus"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeCloseModal()">Cancel</button>
+      <button class="btn-submit" id="closeSubmitBtn" onclick="submitClose()">Confirm close</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast-stack" id="toastStack"></div>
 
 <script>
@@ -394,16 +408,18 @@ function renderStatus(state, lastCommitDate, lastRun) {
 async function renderOpenPositions(state) {
   const el = document.getElementById("openPositions");
   const open = (state.setup_log || []).filter(e => e.taken && !e.resolved);
+  window.__openPositionsLog = open;
   if (!open.length) {
     el.innerHTML = `<div class="empty-state">No open positions right now.</div>`;
     return;
   }
 
-  const rows = await Promise.all(open.map(async e => {
+  const rows = await Promise.all(open.map(async (e, i) => {
     const market = marketOf(e.symbol);
     const cur = currencyFor(e.symbol);
     const shadow = e.shadow || {};
     const livePrice = await fetchLivePrice(e.symbol);
+    e.__livePriceForClose = livePrice; // stashed for the Closed button's modal to pre-fill
     let pnlCell = "–";
     if (livePrice !== null) {
       const perUnit = e.direction === "long" ? livePrice - e.entry : e.entry - livePrice;
@@ -421,11 +437,12 @@ async function renderOpenPositions(state) {
       <td>${cur}${fmtNum(shadow.stop_loss, 4)}</td>
       <td>${pnlCell}</td>
       <td style="color:var(--text-faint)">${fmtIST(e.fired_at)}</td>
+      <td><button class="btn-header" style="padding:5px 10px;font-size:12px" onclick="openCloseModal(${i})">Closed</button></td>
     </tr>`;
   }));
 
   el.innerHTML = `<table>
-    <thead><tr><th>Symbol</th><th>Dir</th><th>Type</th><th>Entry</th><th>Stop (trailed)</th><th>P&amp;L</th><th>Fired</th></tr></thead>
+    <thead><tr><th>Symbol</th><th>Dir</th><th>Type</th><th>Entry</th><th>Stop (trailed)</th><th>P&amp;L</th><th>Fired</th><th></th></tr></thead>
     <tbody>${rows.join("")}</tbody>
   </table>`;
 }
@@ -796,6 +813,72 @@ async function submitManualTrade() {
     statusEl.className = "modal-status error";
     btn.disabled = false;
     btn.textContent = "Log trade";
+  }
+}
+
+let currentCloseEntry = null;
+
+function openCloseModal(index) {
+  const e = window.__openPositionsLog[index];
+  if (!e) return;
+  currentCloseEntry = e;
+  const cur = currencyFor(e.symbol);
+  document.getElementById("closeModalTitle").textContent = `Close ${e.symbol} -- ${e.direction}`;
+  document.getElementById("closeModalSub").textContent = `Entered at ${cur}${fmtNum(e.entry, 4)}. Enter the price you actually exited at -- this resolves the position and counts it in Net P&L.`;
+  document.getElementById("closeExit").value = e.__livePriceForClose ?? "";
+  document.getElementById("closeModalStatus").textContent = "";
+  document.getElementById("closeModalStatus").className = "modal-status";
+  document.getElementById("closeSubmitBtn").disabled = false;
+  document.getElementById("closeSubmitBtn").textContent = "Confirm close";
+  document.getElementById("closeModal").classList.remove("hidden");
+}
+
+function closeCloseModal() {
+  document.getElementById("closeModal").classList.add("hidden");
+  currentCloseEntry = null;
+}
+
+async function submitClose() {
+  if (!currentCloseEntry) return;
+  const statusEl = document.getElementById("closeModalStatus");
+  const btn = document.getElementById("closeSubmitBtn");
+
+  const exitVal = parseFloat(document.getElementById("closeExit").value);
+  if (isNaN(exitVal)) {
+    statusEl.textContent = "Exit price is required.";
+    statusEl.className = "modal-status error";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+  statusEl.textContent = "";
+  statusEl.className = "modal-status";
+
+  try {
+    const resp = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "close_trade",
+        symbol: currentCloseEntry.symbol,
+        fired_at: currentCloseEntry.fired_at,
+        exit: exitVal,
+      }),
+    });
+    const data = await resp.json();
+    if (!resp.ok || !data.ok) {
+      throw new Error(data.error || `HTTP ${resp.status}`);
+    }
+    statusEl.textContent = "Closed -- will move out of open positions within about a minute.";
+    statusEl.className = "modal-status ok";
+    btn.textContent = "Done";
+    setTimeout(() => { closeCloseModal(); loadDashboard(); }, 2000);
+  } catch (e) {
+    statusEl.textContent = `Failed: ${e.message}`;
+    statusEl.className = "modal-status error";
+    btn.disabled = false;
+    btn.textContent = "Confirm close";
   }
 }
 

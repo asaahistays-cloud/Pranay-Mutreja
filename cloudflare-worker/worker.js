@@ -42,6 +42,7 @@ export default {
     const action = body.action || "mark_taken";
     if (action === "mark_taken") return handleMarkTaken(body, env);
     if (action === "log_manual") return handleLogManual(body, env);
+    if (action === "close_trade") return handleCloseTrade(body, env);
     return json({ error: `unknown action "${action}"` }, 400);
   },
 };
@@ -86,6 +87,19 @@ async function handlePriceProxy(request) {
   } catch (e) {
     return json({ error: `fetch failed: ${e.message}` }, 502);
   }
+}
+
+async function handleCloseTrade(body, env) {
+  const { symbol, fired_at, exit } = body;
+  if (!symbol || !fired_at) {
+    return json({ error: "symbol and fired_at are required" }, 400);
+  }
+  if (typeof exit !== "number" || !isFinite(exit)) {
+    return json({ error: "exit must be a number" }, 400);
+  }
+
+  const payload = { symbol: String(symbol), fired_at: String(fired_at), exit };
+  return dispatchToGitHub("close_trade", payload, env);
 }
 
 async function handleLogManual(body, env) {

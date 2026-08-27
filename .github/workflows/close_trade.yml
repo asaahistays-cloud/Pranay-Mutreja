@@ -1,0 +1,52 @@
+name: Close a trade (from dashboard)
+
+# Triggered by the "Closed" button on docs/index.html via a Cloudflare
+# Worker bridge (the Worker holds the GitHub write credential privately
+# -- a static page can never hold that itself without exposing it to
+# anyone who views the page source). Never triggered by hand.
+on:
+  repository_dispatch:
+    types: [close_trade]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor-bot-state
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Close trade
+        run: python3 apply_close_trade.py '${{ toJson(github.event.client_payload) }}'
+
+      - name: Commit updated state
+        run: |
+          git config user.name "multi-market-monitor-bot"
+          git config user.email "actions@github.com"
+          git add state.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Close trade via dashboard [skip ci]"
+            pushed=false
+            for i in $(seq 1 15); do
+              if git push; then
+                pushed=true
+                break
+              fi
+              echo "Push rejected (attempt $i), pulling and retrying..."
+              git pull --rebase origin main
+              sleep "$(( (RANDOM % 4) + 1 ))"
+            done
+            if [ "$pushed" != "true" ]; then
+              echo "::error::Failed to push state.json after 15 attempts -- this run's state changes were NOT saved."
+              exit 1
+            fi
+          fi
