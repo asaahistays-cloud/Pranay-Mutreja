@@ -471,17 +471,13 @@
     "GAIL.NS": {
       "status": "watching",
       "range_high": 175.11000061035156,
-      "range_low": 171.3699951171875,
+      "range_low": 171.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 1,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 171.3699951171875,
-        "bar_time": 1787821200000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "consecutive_wins": 0
     },
@@ -1210,7 +1206,7 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": [],
-      "consecutive_wins": 1
+      "consecutive_wins": 2
     },
     "POWERGRID.NS": {
       "status": "watching",
@@ -4534,8 +4530,17 @@
       "target": null,
       "qty": 5771.672813717798,
       "fired_at": "2026-08-27T07:45:36.259938+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 86.62999725341797,
+        "exit": 86.31999969482422,
+        "qty": 5771.672813717798,
+        "pnl_per_unit": 0.30999755859375,
+        "pnl_total": 1789.204481254437,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-27T09:30:39.911373+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -4546,16 +4551,32 @@
       "fired_hour_utc": 7,
       "fired_weekday_utc": 3,
       "shadow": {
-        "direction": "short",
-        "entry_price": 86.62999725341797,
-        "entry_qty": 5771.672813717798,
-        "stop_loss": 86.25899810791016,
-        "extreme_since_entry": 86.0999984741211,
-        "peak_profit_per_unit": 0.529998779296875,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
+        "consecutive_wins": 1,
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 86.62999725341797,
+            "exit": 86.31999969482422,
+            "qty": 5771.672813717798,
+            "pnl_per_unit": 0.30999755859375,
+            "pnl_total": 1789.204481254437,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-27T09:30:39.911373+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 86.83999633789062,
+        "range_low": 86.0999984741211
       }
     },
     {
@@ -4832,8 +4853,8 @@
         "entry_price": 535.4000244140625,
         "entry_qty": 0.10966035317771808,
         "stop_loss": 540.7857448032925,
-        "extreme_since_entry": 535.4000244140625,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 534.3499755859375,
+        "peak_profit_per_unit": 1.050048828125,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4864,9 +4885,9 @@
         "direction": "short",
         "entry_price": 123.25,
         "entry_qty": 0.4791886409731397,
-        "stop_loss": 123.72571645464215,
-        "extreme_since_entry": 123.25,
-        "peak_profit_per_unit": 0,
+        "stop_loss": 123.56428350721087,
+        "extreme_since_entry": 123.19999694824219,
+        "peak_profit_per_unit": 0.0500030517578125,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
