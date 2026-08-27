@@ -473,11 +473,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 1,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 172.44000244140625,
-        "bar_time": 1787812200000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "consecutive_wins": 0
     },
@@ -1188,7 +1184,7 @@
     "NMDC.NS": {
       "status": "watching",
       "range_high": 89.0,
-      "range_low": 86.72000122070312,
+      "range_low": 86.66000366210938,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
