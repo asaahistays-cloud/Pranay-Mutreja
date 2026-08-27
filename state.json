@@ -4694,5 +4694,30 @@
       }
     }
   ],
-  "capital_inr_futures": 500000
+  "capital_inr_futures": 500000,
+  "news_briefing": {
+    "date": "2026-08-27T20:33:08.333010+00:00",
+    "assessment": {
+      "key_events": [
+        {
+          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
+          "why_it_matters": "This shift in oil market influence could impact global energy prices and, in turn, affect economies and stock markets."
+        },
+        {
+          "headline": "Iran and Oman reach agreements on share of Hormuz and revenues, Revolutionary Guards say",
+          "why_it_matters": "Any agreement related to the Strait of Hormuz could significantly impact oil shipping and prices, influencing market sentiment."
+        },
+        {
+          "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
+          "why_it_matters": "Comments from Federal Reserve officials can move markets, especially when they pertain to inflation and interest rate policy, which can affect the US economy and stock market."
+        }
+      ],
+      "risk": {
+        "crypto": "normal",
+        "india": "normal",
+        "us": "elevated"
+      },
+      "summary": "The ongoing Iran war and its impact on global oil markets, along with geopolitical tensions, are key factors influencing market risk today. The situation in the Middle East, particularly the Iran-Oman talks and the Strait of Hormuz accord, is being closely watched by investors. Overall, market risk is somewhat elevated due to these geopolitical uncertainties."
+    }
+  }
 }
