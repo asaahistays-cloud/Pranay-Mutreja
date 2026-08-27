@@ -464,12 +464,29 @@ function statsFromEntries(resolved) {
 // capital base with a tight stop) -- blending that into one "Net P&L"
 // number made hypothetical, never-traded setups look like real losses
 // on real money. Real P&L only ever uses the qty actually filled.
+// Bot-suggested qty scales with whatever paper-trading capital is
+// active at fire time (position_size() in monitor.py). India's capital
+// dropped ~1,000,000 -> 500,000 overnight on 2026-08-26/27, so blending
+// pre/post-change signal-quality P&L would add numbers computed at very
+// different scales -- same problem, same fix pattern as report.py's
+// STRATEGY_LAUNCHED_AT: exclude data computed under a superseded
+// parameter from the current aggregate. Your Real Trades is unaffected
+// (uses the actual filled qty, not the bot's capital-scaled suggestion),
+// so this cutoff only applies to the hypothetical signal-quality side.
+const SIGNAL_QUALITY_CUTOFF = {
+  india: "2026-08-27T00:00:00+00:00",
+};
+
 function computeMarketStats(state, market) {
   const log = (state.setup_log || []).filter(e => marketOf(e.symbol) === market && e.surfaced !== false);
-  const resolvedAll = log.filter(e => e.resolved && e.outcome);
-  const resolvedReal = resolvedAll.filter(e => e.taken);
+  const resolvedReal = log.filter(e => e.resolved && e.outcome && e.taken);
+
+  const cutoff = SIGNAL_QUALITY_CUTOFF[market];
+  const signalLog = cutoff ? log.filter(e => e.fired_at >= cutoff) : log;
+  const resolvedAll = signalLog.filter(e => e.resolved && e.outcome);
+
   return {
-    total: log.length,
+    total: signalLog.length,
     real: statsFromEntries(resolvedReal),
     signal: statsFromEntries(resolvedAll),
   };
