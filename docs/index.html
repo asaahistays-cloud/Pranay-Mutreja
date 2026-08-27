@@ -381,7 +381,7 @@ function renderStatus(state, lastCommitDate, lastRun) {
   } else {
     el.innerHTML += `<div class="status-chip"><span class="dot warn"></span> Couldn't check scan history</div>`;
   }
-  el.innerHTML += `<div class="status-chip"><span class="dot neutral"></span> last setup data change ${timeAgo(lastCommitDate)}</div>`;
+  el.innerHTML += `<div class="status-chip"><span class="dot neutral"></span> last setup data change ${lastCommitDate ? timeAgo(lastCommitDate) : "unknown"}</div>`;
 
   const openCount = (state.setup_log || []).filter(e => e.taken && !e.resolved).length;
   el.innerHTML += `<div class="status-chip"><span class="dot ${openCount > 0 ? "ok" : "warn"}"></span> ${openCount} open position${openCount === 1 ? "" : "s"}</div>`;
@@ -566,14 +566,31 @@ function renderRecentSetups(state) {
   </table>`;
 }
 
-async function loadDashboard() {
+// GitHub's unauthenticated REST API caps out at 60 requests/hour PER
+// VIEWER IP. The dashboard auto-refreshes every 60s -- calling both
+// COMMITS_API and RUNS_API on every refresh is 120 requests/hour, over
+// the cap on its own, before counting manual reloads or the viewer
+// having the tab open a while. These two calls are cached in
+// localStorage and only actually re-fetched every GITHUB_API_TTL_MS;
+// state.json and live prices (the data that actually needs to look
+// live) still refresh every 60s as before.
+const GITHUB_API_TTL_MS = 5 * 60 * 1000;
+
+async function fetchGithubHealthCached() {
+  let cached = null;
   try {
-    const [stateResp, commitsResp, runsResp] = await Promise.all([
-      fetch(RAW_STATE_URL),
+    cached = JSON.parse(localStorage.getItem("githubHealthCache") || "null");
+  } catch (e) { /* ignore -- treat as no cache */ }
+
+  if (cached && (Date.now() - cached.cachedAt) < GITHUB_API_TTL_MS) {
+    return { lastCommitDate: cached.lastCommitDate, lastRun: cached.lastRun };
+  }
+
+  try {
+    const [commitsResp, runsResp] = await Promise.all([
       fetch(COMMITS_API),
       fetch(RUNS_API).catch(() => null),
     ]);
-    const state = await stateResp.json();
     const commits = await commitsResp.json();
     const lastCommitDate = commits[0]?.commit?.author?.date || new Date().toISOString();
 
@@ -583,6 +600,25 @@ async function loadDashboard() {
       const r = runs.workflow_runs && runs.workflow_runs[0];
       if (r) lastRun = { date: r.updated_at || r.created_at, conclusion: r.conclusion };
     }
+
+    const fresh = { lastCommitDate, lastRun, cachedAt: Date.now() };
+    try { localStorage.setItem("githubHealthCache", JSON.stringify(fresh)); } catch (e) { /* ignore */ }
+    return fresh;
+  } catch (e) {
+    // Fetch failed (e.g. rate limited) -- prefer stale cache over nothing.
+    if (cached) return { lastCommitDate: cached.lastCommitDate, lastRun: cached.lastRun };
+    return { lastCommitDate: null, lastRun: null };
+  }
+}
+
+async function loadDashboard() {
+  try {
+    const [stateResp, health] = await Promise.all([
+      fetch(RAW_STATE_URL),
+      fetchGithubHealthCached(),
+    ]);
+    const state = await stateResp.json();
+    const { lastCommitDate, lastRun } = health;
 
     window.__lastState = state;
     document.getElementById("lastFetched").textContent = `Page data refreshed ${timeAgo(new Date().toISOString())}`;
