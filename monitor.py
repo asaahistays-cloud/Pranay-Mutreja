@@ -895,7 +895,15 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
     close = last_closed["close"]
     n = atr(closed_bars)
     extreme = sym_state.get("extreme_since_entry", entry)
-    tag = "" if tradable else " (analysis only)"
+    # Real-money tag uses `notify`, not the static per-market `tradable`
+    # flag -- this function only ever notifies (sends a real Telegram
+    # message) for a position the user has actually taken (see main()'s
+    # notify=log_entry.get("taken", False)), so a message that reaches
+    # the user here is never "analysis only" regardless of which market
+    # it's in. `tradable` still governs the tag on a setup's FIRST-fire
+    # alert (check_watching_*), where nothing has been taken yet and the
+    # warning is genuinely correct.
+    tag = "" if notify else " (analysis only)"
 
     tp = sym_state.get("take_profit_target")
 
