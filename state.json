@@ -447,11 +447,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 356.6000061035156,
-        "bar_time": 1787804100000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "consecutive_wins": 1
     },
@@ -1214,10 +1210,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787809500000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "consecutive_wins": 1
     }
