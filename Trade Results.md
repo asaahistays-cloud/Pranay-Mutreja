@@ -807,3 +807,30 @@ No setups fired today.
 
 ---
 
+## 2026-08-28 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-08-27)
+- Suggested: 11 trade(s) | Resolved: 7 | Still playing out: 4
+- If you'd taken all 7 resolved trades: 5 right, 2 wrong (71% correct)
+- Net loss (INR): -1,297
+  [+] IDFCFIRSTB.NS breakdown_short (short): +178
+  [-] TATAPOWER.NS breakdown_short (short): -2,572
+  [-] NTPC.NS breakdown_short (short): -2,278
+  [+] GAIL.NS manual (short): -19.93
+  [+] NMDC.NS breakdown_short (short): +1,789
+  [+] HINDCOPPER.NS breakdown_short (short): +981.8
+  [+] GAIL.NS breakdown_short (short): +622.9
+- 4 trade(s) still open, not yet counted above: TATAPOWER.NS (breakdown_short), BHEL.NS (breakout_long), GAIL.NS (breakdown_short), HINDCOPPER.NS (breakdown_short)
+
+**CRYPTO -- SIGNAL QUALITY** (2026-08-27)
+- Suggested: 2 trade(s) | Resolved: 2 | Still playing out: 0
+- If you'd taken all 2 resolved trades: 2 right, 0 wrong (100% correct)
+- Net profit (USD): +0.4049
+  [+] FET-USD breakout_long (long): +0.1614
+  [+] SOL-USD breakout_long (long): +0.2435
+
+**US -- SIGNAL QUALITY** (2026-08-27)
+No setups fired today.
+
+---
+
