@@ -1831,9 +1831,9 @@
         "direction": "long",
         "entry_price": 18.940000534057617,
         "entry_qty": 5.085915919921425,
-        "stop_loss": 19.241000747680665,
-        "extreme_since_entry": 19.3700008392334,
-        "peak_profit_per_unit": 0.43000030517578125,
+        "stop_loss": 19.31099967956543,
+        "extreme_since_entry": 19.469999313354492,
+        "peak_profit_per_unit": 0.529998779296875,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "trade_journal": []
