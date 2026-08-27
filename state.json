@@ -413,7 +413,7 @@
     "JSWENERGY.NS": {
       "status": "watching",
       "range_high": 553.4500122070312,
-      "range_low": 542.25,
+      "range_low": 540.2999877929688,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -495,7 +495,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787802300000
+      },
       "trade_journal": []
     },
     "NATIONALUM.NS": {
@@ -576,16 +579,15 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {
-        "type": "breakdown_short",
-        "level": 124.0999984741211,
-        "bar_time": 1787736600000
+        "type": "range_long_rejection",
+        "bar_time": 1787802300000
       },
       "trade_journal": []
     },
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 329.45001220703125,
-      "range_low": 322.20001220703125,
+      "range_low": 321.70001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -923,17 +925,14 @@
     },
     "HINDCOPPER.NS": {
       "status": "watching",
-      "range_high": 557.8499755859375,
+      "range_high": 562.5999755859375,
       "range_low": 526.5999755859375,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_short_rejection",
-        "bar_time": 1787737500000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "INDIANB.NS": {
@@ -993,7 +992,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 364.0,
+        "bar_time": 1787802300000
+      },
       "trade_journal": []
     },
     "SUZLON.NS": {
@@ -1058,7 +1061,8 @@
         "level": 188.10000610351562,
         "bar_time": 1787733900000
       },
-      "trade_journal": []
+      "trade_journal": [],
+      "consecutive_wins": 1
     },
     "PNB.NS": {
       "status": "watching",
@@ -1075,7 +1079,7 @@
     "IDFCFIRSTB.NS": {
       "status": "watching",
       "range_high": 86.58000183105469,
-      "range_low": 85.0,
+      "range_low": 84.4000015258789,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -3344,20 +3348,46 @@
       "target": null,
       "qty": 3999.4289668549936,
       "fired_at": "2026-08-26T09:00:47.060514+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "long",
+        "entry": 188.60000610351562,
+        "exit": 193.50999450683594,
+        "qty": 3999.4289668549936,
+        "pnl_per_unit": 4.9099884033203125,
+        "pnl_total": 19637.149847161356,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-27T04:00:41.982396+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "shadow": {
-        "direction": "long",
-        "entry_price": 188.60000610351562,
-        "entry_qty": 3999.4289668549936,
-        "stop_loss": 194.51964351109095,
-        "extreme_since_entry": 196.5,
-        "peak_profit_per_unit": 7.899993896484375,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 188.60000610351562,
+            "exit": 193.50999450683594,
+            "qty": 3999.4289668549936,
+            "pnl_per_unit": 4.9099884033203125,
+            "pnl_total": 19637.149847161356,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-27T04:00:41.982396+00:00"
+          }
+        ],
+        "consecutive_wins": 1,
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 196.5,
+        "range_low": 186.60000610351562
       }
     },
     {
@@ -3816,6 +3846,39 @@
         "pending": null,
         "range_high": 0.16651,
         "range_low": 0.15979
+      }
+    },
+    {
+      "symbol": "TATAPOWER.NS",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 351.95001220703125,
+      "stop": 358.5964366367885,
+      "target": null,
+      "qty": 752.2841872111107,
+      "fired_at": "2026-08-27T04:00:43.003654+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 3,
+        "total": 6,
+        "confidence": 0.5
+      },
+      "fired_hour_utc": 4,
+      "fired_weekday_utc": 3,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 351.95001220703125,
+        "entry_qty": 752.2841872111107,
+        "stop_loss": 358.5964366367885,
+        "extreme_since_entry": 351.95001220703125,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
       }
     }
   ],
