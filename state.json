@@ -4696,28 +4696,392 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-27T20:33:08.333010+00:00",
+    "date": "2026-08-27T20:42:46.055632+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "This shift in oil market influence could impact global energy prices and, in turn, affect economies and stock markets."
+          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say",
+          "why_it_matters": "This meeting could lead to policy decisions affecting oil prices and inflation, impacting various markets."
         },
         {
-          "headline": "Iran and Oman reach agreements on share of Hormuz and revenues, Revolutionary Guards say",
-          "why_it_matters": "Any agreement related to the Strait of Hormuz could significantly impact oil shipping and prices, influencing market sentiment."
+          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
+          "why_it_matters": "Shifts in oil market influence can significantly impact global energy prices and, by extension, economies and markets worldwide."
         },
         {
           "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-          "why_it_matters": "Comments from Federal Reserve officials can move markets, especially when they pertain to inflation and interest rate policy, which can affect the US economy and stock market."
+          "why_it_matters": "Comments from Fed officials can move markets, especially when discussing inflation and potential rate changes, influencing investor expectations and decisions."
         }
       ],
       "risk": {
-        "crypto": "normal",
-        "india": "normal",
+        "crypto": "elevated",
+        "india": "elevated",
         "us": "elevated"
       },
-      "summary": "The ongoing Iran war and its impact on global oil markets, along with geopolitical tensions, are key factors influencing market risk today. The situation in the Middle East, particularly the Iran-Oman talks and the Strait of Hormuz accord, is being closely watched by investors. Overall, market risk is somewhat elevated due to these geopolitical uncertainties."
-    }
-  }
+      "summary": "Today's news is dominated by the ongoing Iran war and its effects on global markets, particularly oil prices, with some experts seeing a costly stalemate. The situation continues to pose risks to various markets, including US and Indian equities, due to potential inflation and geopolitical instability. Crypto markets may also be affected by broader economic trends and investor sentiment."
+    },
+    "headlines": [
+      {
+        "id": 8411849,
+        "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say - Reuters",
+        "summary": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQUTVfLVZrNnM2eTJJcmZaVjN5Ym83a094ZUYxR3RqenVKVUxyWGpIaldFZTJpZUVaRFJ4TkpJUkctd0VIc1Nzb05qamt6cnZVU3lqSkw3NUdUYmE3WXpXNTUyTjNnLUFUZERfYXp6SjMzV2hrOV9nN1FDWTI4QUxSWGpIMnhwUURoeWRoOUNsYVRMOGx3d1BwdFF1LVNYejhVSjJpT201YWxKTWNBeEdJNm5nZjEyNE1zMWg4TTN4QXNORzN1akNuVEgyWQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787856801
+      },
+      {
+        "id": 8411843,
+        "headline": "What's expected at Apple's September event \u2014 plus, an uneven rally in AI stocks",
+        "summary": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
+        "url": "https://www.cnbc.com/2026/08/27/what-to-expect-from-apples-september-event-and-whats-driving-rally.html",
+        "source": "CNBC",
+        "datetime": 1787856513
+      },
+      {
+        "id": 8411736,
+        "headline": "What Warsh will say and how the market will react, according to prediction markets",
+        "summary": "Kalshi sees a low chance that Federal Reserve Chairman Kevin Warsh will mention \"bond market\" or \"rate cut\" at the annual Jackson Hole Symposium.",
+        "url": "https://www.cnbc.com/2026/08/27/what-warsh-will-say-and-how-the-market-will-react-according-to-prediction-markets.html",
+        "source": "CNBC",
+        "datetime": 1787854497
+      },
+      {
+        "id": 8411630,
+        "headline": "Donald Trump Jr. told Republican state attorneys not to fight prediction markets, NY Times reports",
+        "summary": "The president's son, who is an advisor to two prediction market platforms, told Republican attorneys general to back off on the industry, the Times reported.",
+        "url": "https://www.cnbc.com/2026/08/27/trump-jr-told-gop-state-attorneys-general-dont-fight-prediction-markets-nyt-reports.html",
+        "source": "CNBC",
+        "datetime": 1787854194
+      },
+      {
+        "id": 8410133,
+        "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
+        "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
+        "source": "Reuters",
+        "datetime": 1787853820
+      },
+      {
+        "id": 8411737,
+        "headline": "Jim Cramer says the 'worst is over' at Salesforce, sees another 20% upside from here",
+        "summary": "Jim Cramer believes the comeback rally in Salesforce is far from over.",
+        "url": "https://www.cnbc.com/2026/08/27/jim-cramer-says-the-worst-is-over-at-salesforce-sees-another-20percent-upside-from-here.html",
+        "source": "CNBC",
+        "datetime": 1787849940
+      },
+      {
+        "id": 8411099,
+        "headline": "We went 3 for 3 \u2014 what we learned from wins at Nvidia, Salesforce, and CrowdStrike",
+        "summary": "The Investing Club holds its \"Morning Meeting\" every weekday at 10:20 a.m. ET.",
+        "url": "https://www.cnbc.com/2026/08/27/we-went-3-for-3-what-we-learned-from-wins-at-nvidia-salesforce-and-crowdstrike.html",
+        "source": "CNBC",
+        "datetime": 1787843838
+      },
+      {
+        "id": 8411850,
+        "headline": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation - Reuters",
+        "summary": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZi1lT1VCQkw2VXZWdVpNN2QtRzh3RllkOG9zcC1qUWpzRW1lenhSbm5fVU5nQVFVNFRyZ1VnYkstZTNhYUVlNDVWVFpzMnVlZUN1MFdPOTc4UWpjVXRkakg0dHlMelZYWGpJaDF3dE11SU50OVBqc2pPVER2THMwRkQxeDBhZHRnNjFmWHY1V0JRcnhDcjZYSDg0NFZvQjJVR3d2U1Y0NEYzRnR4dlZjSGNjTTduNkRueXhhWDNrenhDbHM?oc=5",
+        "source": "Reuters",
+        "datetime": 1787839818
+      },
+      {
+        "id": 8410670,
+        "headline": "Family offices are making a bullish bet on the stock market, according to CNBC Family Office Portfolio Tracker",
+        "summary": "The data includes the portfolios of hundreds of family offices, representing a total of $1.4 trillion in assets.",
+        "url": "https://www.cnbc.com/2026/08/27/family-offices-making-bullish-bet-on-stocks-according-to-cnbc-tracker.html",
+        "source": "CNBC",
+        "datetime": 1787838029
+      },
+      {
+        "id": 8410669,
+        "headline": "This is \u2018one of the worst\u2019 credit card habits, experts say\u201441% of cardholders do it",
+        "summary": "Missing a credit card payment can damage your credit for years, while paying only the minimum can leave you in debt for decades.",
+        "url": "https://www.cnbc.com/2026/08/27/this-is-one-of-the-worst-credit-card-habits-41percent-of-cardholders-do-it.html",
+        "source": "CNBC",
+        "datetime": 1787835602
+      },
+      {
+        "id": 8412056,
+        "headline": "Bosnian Serb general Ratko Mladic, convicted of genocide, has died, Serbian TV reports - Reuters",
+        "summary": "Bosnian Serb general Ratko Mladic, convicted of genocide, has died, Serbian TV reports\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVkp0T1VGVEpXeG5sVDFpSjhkQlUxQlp5Nmk4aUE5dU9NcXFuTERSVVhlcHJFRGRzNFZFWmthamFIaHRsMzFidTJRU3p4WUJXM2pYYjlJaWhobURXd25CM0hNMV96NThFaU5zLUNfa1VRX1dmOWdCd24tekpNbms3QzVzX2RkaVUyRUc5SzhrY2h1X3kyXzdGdklRUTVTNldUb21CNks3ejhtOGFVcEtfODVCazhXS2Fhblo0d3laTQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787834961
+      },
+      {
+        "id": 8410452,
+        "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
+        "summary": "The policymaker stopped just short of calling for an interest rate hike.",
+        "url": "https://www.cnbc.com/2026/08/27/kansas-city-feds-schmid-says-inflation-stubborn-and-sticky-policy-rate-not-restrictive.html",
+        "source": "CNBC",
+        "datetime": 1787833230
+      },
+      {
+        "id": 8410345,
+        "headline": "American Airlines adds batch of new international routes on its XLR planes",
+        "summary": "American is adding seven routes to its 2027 schedule, with the majority heading to smaller European cities from its Philadelphia hub or from New York City.",
+        "url": "https://www.cnbc.com/2026/08/27/american-airlines-routes-xlr.html",
+        "source": "CNBC",
+        "datetime": 1787832001
+      },
+      {
+        "id": 8410234,
+        "headline": "What the Buss family Lakers dispute can teach the wealthy about trusts",
+        "summary": "Jeanie Buss, governor of the Lakers, is contesting her siblings' decision to sell the family's remaining stake in the NBA team.",
+        "url": "https://www.cnbc.com/2026/08/27/buss-family-lakers-trust-dispute.html",
+        "source": "CNBC",
+        "datetime": 1787830494
+      },
+      {
+        "id": 8410782,
+        "headline": "Canada excludes US seafood from retaliatory tariffs - Reuters",
+        "summary": "Canada excludes US seafood from retaliatory tariffs\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQX0p0OFRPcVc3Q084cGZoNWw1ZHJ6NGRZb0JWMFdzUW9VU09rQnM2LTRKbVQtV1hPVDJ6V2s1em9YaElyNjJkellVQm9EUV9CanVIR0Y1SWRDLVBCaVByZVVTcXNGcUw4NmpIOEh2aC1zWkpyTG00MlhYYmNQNlBTYnFULUlWVDEzdEprUEtJVG1lQkloanc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787819077
+      },
+      {
+        "id": 8412055,
+        "headline": "Russia expels Romanian diplomat - Reuters",
+        "summary": "Russia expels Romanian diplomat\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE81c1plRE1hVUoxOU81VmFvanVyT3lJaElDZGJtY1Bzbk0yb0VOU3dwSjlYTkk5WFZFR2VtRUI0c0xoNG45MzktSEpFOFg5TDU2WFRWdkNBMjBZMmZEZDllTkNCclN1WUJld214VjhTNTRDRUM5bndfNVFmdUhUUQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787818057
+      },
+      {
+        "id": 8409487,
+        "headline": "OPEC+ loses oil market sway in Iran war as China gains influence - Reuters",
+        "summary": "OPEC+ loses oil market sway in Iran war as China gains influence\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOdzQ5cjA0LVhLZTN3aEpkcDBvMXNmV3BnTHVtMFBzZnFfN05PSXFjZFAyUTZ3OEtBTnVCRDhIQXkwbGMwUFZSSTBLek9IbmNqTG16bGdlVlVjOHZ1ZER2c3Z5aXJuaV95ZFFObV9XZlYwNHNqdXcxN2FzeVRkSDF1OURPRThrUHhjOThzTEFyY1NBSG10Zlh4VXRTQWhzMXg3TGJINkRyWGhHLTd1NHc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787814865
+      },
+      {
+        "id": 8409489,
+        "headline": "Six months of war: How the Middle East conflict has shaped financial markets - Reuters",
+        "summary": "Six months of war: How the Middle East conflict has shaped financial markets\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQdzZPbXZOMTI2d1doSndZUnZ4VTVxV2hlUzFvRmJyUHpXRnlTNUV2bk13WS1rVTNnYmRLbzE4VkN0RlpiUG1MakRKUUpRNkNkYVg3d2s4aXhBaWpUb3ZYd0poN1BlRndYTVk5enNRckZmWS1lQklIRWtTMFBUdW5raDJUWTRzeUdCQTBCRDBpTkhVcDBnMlo4dTFPVXJqT3ExcTQ0aFUzV1pjak1YSzNYdkJDZ0h1UjhKRG91Qw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787810760
+      },
+      {
+        "id": 8409702,
+        "headline": "Pernod warns weak US, China will weigh in years to come - Reuters",
+        "summary": "Pernod warns weak US, China will weigh in years to come\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQZ25ZQWhhZ0E1SWliYi1GZ3RSQTNwUFZtZkN2Qmw4R2RBUXVfSGhhZ09Oc0ZXMWk0enNhYmxkR0F6WWJYU0NkVDFDUHZmb2NpbkFIZzhhM1dWMkEwRGtmT3UwTG9vVXpaY0d1Vkc0Q1I4VXMzckEtSlIzbVEwbTNWVDlZamRlWUVYdWdCcFVFakxKbEJYbU85c2FNRm9CWG1hcjhmdXpWb0VqOVRFMmNmbnVDSE5vY2xINWhLVWNoTE91bnBDTHJZVnpTQUU?oc=5",
+        "source": "Reuters",
+        "datetime": 1787808900
+      },
+      {
+        "id": 8410134,
+        "headline": "Bessent, Warsh diverge on who should set the price of money - Reuters",
+        "summary": "Bessent, Warsh diverge on who should set the price of money\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQaFNYemtDLVI0aVJranpORkVlX0ppenZITDhaMnRYU2xVV0VIajlPb1g0a1FXMXJENnByeEFYODExUUVZUWluUUZKU2FvRy1ZcFNTMm91azBEWmFvTU5fbUd4UnFjOTFPSC1GQjVVdG9NbnAySkstMkdtcXpZNWZXVThlX2FzQWN4ZmxZazZCNVd5NTF3MnkxNXlEV1hSWTQ2RkFn?oc=5",
+        "source": "Reuters",
+        "datetime": 1787806980
+      },
+      {
+        "id": 8410460,
+        "headline": "EXCLUSIVE: Pentagon's NATO review preparing troop options for Hegseth by November 6 - Reuters",
+        "summary": "EXCLUSIVE: Pentagon's NATO review preparing troop options for Hegseth by November 6\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdWRFTVVLeWNzcWswcTRJV0xyVkRqUkhkY0M4M01xck5KRDlyakVkaVU2Rk1FX2NBM1ZiRFVHUUczS19BbmpjVXBXeWNtOENJbFMyVjNDbGlnZEpHdVl3NEc1aEhJd3Nvem5ybFlacDlCWWQybkhDUVhqOTVHWXhaMjNleFVUZWxJVktnaHRMS2pRWUd1OXctZXRVa08wbTJCTGxSVEFjdDB6eFhfNEE?oc=5",
+        "source": "Reuters",
+        "datetime": 1787806860
+      },
+      {
+        "id": 8409061,
+        "headline": "Shipping traffic through Strait of Hormuz rises slightly, data shows - Reuters",
+        "summary": "Shipping traffic through Strait of Hormuz rises slightly, data shows\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbC0zcXlqQ0pPcmt1dVA0OGJwY3NmTTdYaGVLY3RrX2JnVHdxSDVFVjNxRTQwTXM1OGlNTEFtZE52M2VMQzRhOUFfMUxEVFB6bW5OQkc3bzF4bzhibEt0WUdyNERfYUVBTERCX0Q4bVFKX0NPMWN1NkJhZGdqZVVSeWt5MTVSNHNCXzJ5cC1lWm1kQlNuRHZYT3pIdVo2WUxoblVKTE9QN2NSdFZUQkhSM2FCVWpEUmV4VGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787801940
+      },
+      {
+        "id": 8408335,
+        "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms - Reuters",
+        "summary": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS3BzVVdsbG9iUHJoaGxwVFYzR256VFBDQnlQRlh1YVZfVnZmUE1jeXQzRXFHRDhuSnpyanlNZ1NHR0RHUy1TSm8teHRiVHJ1cTZSMDRJaW1MMFJXQ2ZpTmZrN081Y3V4OUM0Qk9lRXJMY2ZONzVZN0J4eWtZT1d4TTR1Uzg1bjR5NU9TRGFQdmpZb2RPQUpYbWI4NzdyVVhsczZkOWVjTzV1ZTRKbHV3RDMwcUJ5U2xTT1M2VFhrMlVpQQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787793600
+      },
+      {
+        "id": 8409596,
+        "headline": "Six consequences after six months of war in Iran - Reuters",
+        "summary": "Six consequences after six months of war in Iran\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUEV1S2tFLUNEVG9hdmJ3dEF5YlBmWk8xT0wwWXN3MzZGOVYzX0xITXRLbGNuTUtscXl1Sy10NHlaelVXUHMzZVNYMm42TUVmNVN6UW1pLXV3MDF4YXpaLV82VE5QdXI3R19HemNya2U5LTg1RGFTZXdvdjZ6blJwUWllYVEyaE02cmoyVmdSU3o3SzNZ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787790681
+      },
+      {
+        "id": 8408336,
+        "headline": "Qatar PM pursues mediation in Tehran as US ramps up 'economic war' - Reuters",
+        "summary": "Qatar PM pursues mediation in Tehran as US ramps up 'economic war'\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNdWtVN3R2dUFBREVJWjhxV1pXUEs4WUx1Ry1ReVRLQzZhS0ZBaEl1NlZ3T2cxcTdEU1Q1RnZqTC1aNWlUVjRpc3VpdTRtaTdub2RiQW5BamhkMGM2VUZjWlV4YnpkM0Q1ZS1YcVBwR2cxNlVXWjlCcUhHRDQ3VWtMWEt3Q0N5U2hQTlJETmRSeXFWUWltWktCYVNKLVo1enNRTGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787786100
+      },
+      {
+        "id": 8403455,
+        "headline": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source - Reuters",
+        "summary": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSlNYeEdXSk9RSTdWVnZwNWVQQzdPMDRqZmpxbW5rYlN6emhXUDZWbHhPTjRaUU1LejhXZnpPNUg4dlMxbER4WE9vQnhDN2ZLUHFzUHN5czhKc245Ny1xMFR5Q0U5VzQtYWVXNnlBaTJDYU5RcklwVmlEZWxGd0ljSlFPcjAwTkRWMVNnRFUtNFljYmhaZEc2QjJjZEZDZDhPdW9WNUVwUmZMQU5DbzAxQkNudw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787780192
+      },
+      {
+        "id": 8407070,
+        "headline": "Okta pops 15% after topping estimates as AI threat spikes demand for identity security",
+        "summary": "New products accounted for 30% of total bookings and Okta said it closed dozens of AI deals during the period",
+        "url": "https://www.cnbc.com/2026/08/26/okta-okta-earnings-q2-2027.html",
+        "source": "CNBC",
+        "datetime": 1787775205
+      },
+      {
+        "id": 8408019,
+        "headline": "NEWSLETTER: Can US pressure stem cash flows to Iran? - Reuters",
+        "summary": "NEWSLETTER: Can US pressure stem cash flows to Iran?\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQRTU4bDAweWpxVjVSanl3VWdoMTQzQkRoRDdBam45NzdTbFRRU0hKZ3k1V2xYODZMZnNHdkdSaGpSNHFSSTJ5R3hoY0I5N3RydTFZdTZ0RmU2SWlwcFJ0bDduSFVtakQ0aUpJU0R2UGswejY4Vll6ZlM3d0VEZmFZVld4Y3p2SElPLV9IQ1d0ZHhLXzhj?oc=5",
+        "source": "Reuters",
+        "datetime": 1787772435
+      },
+      {
+        "id": 8406761,
+        "headline": "Micron elevates two executives. Plus, what the Meta settlement means for its top line",
+        "summary": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
+        "url": "https://www.cnbc.com/2026/08/26/micron-elevates-two-executives-plus-what-the-meta-settlement-means-for-its-top-line.html",
+        "source": "CNBC",
+        "datetime": 1787769086
+      },
+      {
+        "id": 8406657,
+        "headline": "How Dolly Parton inspired women in leadership: 'We all owe Dolly a debt'",
+        "summary": "The legendary Dolly Parton inspired women to dream bigger and fight for what they deserve. Female business leaders and workers share what the icon meant to them.",
+        "url": "https://www.cnbc.com/2026/08/26/dolly-parton-women-leadership.html",
+        "source": "CNBC",
+        "datetime": 1787767465
+      },
+      {
+        "id": 8410569,
+        "headline": "Mourning Dolly: Photos of fan tributes around the world - Reuters",
+        "summary": "Mourning Dolly: Photos of fan tributes around the world\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcWdLNnd1eTRDM1dSQXFGcjN0WFV4dk1LWk9Id083RWQwVDd5endwaHFQTDk1TEZzSDlCVjhncWlhMC1FUUs5TjZQdFd2OFNBSTRFZHlGR1FYSDVSTDRFSHZQVk9XUjQ0Y2JLUXhvMzBYRzJPa0M1SUI3Yzc5d0tKRzVzOWEydXRVMWx6OURpRE1xakdIUENuSVQtX0hfUQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787766540
+      },
+      {
+        "id": 8406446,
+        "headline": "Nvidia, CrowdStike and Salesforce face big tests tonight. Here's what we need to see",
+        "summary": "The Investing Club holds its \"Morning Meeting\" every weekday at 10:20 a.m. ET.",
+        "url": "https://www.cnbc.com/2026/08/26/nvidia-crowdstike-and-salesforce-face-big-tests-tonight.html",
+        "source": "CNBC",
+        "datetime": 1787764055
+      },
+      {
+        "id": 8406445,
+        "headline": "Economists want Warsh to share more on his view of the economy at Jackson Hole, says CNBC survey",
+        "summary": "Eighty percent of CNBC Fed Survey respondents say the Federal Reserve Chairman Warsh should provide more insight into his economic views.",
+        "url": "https://www.cnbc.com/2026/08/26/fed-survey-warsh-economy-view.html",
+        "source": "CNBC",
+        "datetime": 1787763744
+      },
+      {
+        "id": 8406444,
+        "headline": "Why we need \u2018Human Reserved\u2019 jobs, says Bill Gates\u2014and how we can combat the worst of the AI upheaval",
+        "summary": "\"This unprecedented technology demands an unprecedented global response,\" Bill Gates wrote in a 6,000-word memo.",
+        "url": "https://www.cnbc.com/2026/08/26/why-we-need-human-reserved-jobs-bill-gates-ai-memo.html",
+        "source": "CNBC",
+        "datetime": 1787762648
+      },
+      {
+        "id": 8406659,
+        "headline": "European shares muted as investors assess Iran-Oman talks, U.S. inflation - Reuters",
+        "summary": "European shares muted as investors assess Iran-Oman talks, U.S. inflation\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNV1pZeWdGeTdjVWRoOE0zZi1zQzhRVTdhU3g3U3VPV2J4dHVRQWtiRF9CUHlWVGllbFpPYnIyUmc5TDZPVlJrX0lrNDZCME5rcWZEYmN2a1JFY1diVE5oeDk1WEFDNmhIeDZfUmdFMFBBVUh6M1ZibFFvdkNzSDRVc1NEcFdZZmVhRDVjTGtxQWZwd2JDd3hzS1lHalBGUmMwRkZDUTRidDZIQ3lM?oc=5",
+        "source": "Reuters",
+        "datetime": 1787762506
+      },
+      {
+        "id": 8407077,
+        "headline": "FTSE 100 edges lower as healthcare, energy stocks weigh; Iran-Oman talks in focus - Reuters",
+        "summary": "FTSE 100 edges lower as healthcare, energy stocks weigh; Iran-Oman talks in focus\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOckdmamQ0VmdHQmliNFdqSkc5WXhHb0xoWnd5eXdEQ0JnZV9TUjVzWndHV1VYMFU0M29rNWdYMXB2RmI3QlNQaGVrMmpwM3V3dHF0empEa0hvTDVBaXVUOHEwaVlOUEhDd1h1el9MWENBeVN3eVh3bjRGejRMbmJ0WUFNU19GQzIyR1k1ZDVtYS1LdkJQVU9SbHRBQVFQZw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787760863
+      },
+      {
+        "id": 8409488,
+        "headline": "German firms report rising cyber threat from foreign intelligence services, study shows - Reuters",
+        "summary": "German firms report rising cyber threat from foreign intelligence services, study shows\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQbEtJSHlyQi1FMExDMHJ6QW9vZEtQTllmYVBHb0RWdWZLOV9uN3A3dEVaNmFJeU1Bakc4TzgtMEUwaDZWa1lTNTVuMjdHdUdKd2M0ai1fLWJidVV6U2E0bVV4YnBzZFNfeVprY1dtVmcteUJwNlR1U2NnWG1yOHNwUXpmTDIwZjB4cUgyX01pOTlNaUJHM1BwSkxHODBqUUpnZ0ZRRVd6RWkyN0dNdV9MWkdVbWF5SnJGUzRXWHB4SkdrRzd3Qm5j?oc=5",
+        "source": "Reuters",
+        "datetime": 1787758995
+      },
+      {
+        "id": 8406014,
+        "headline": "We're buying the dip \u2014 again \u2014 in a retailer not getting credit for addressing weak sales",
+        "summary": "Wednesday's decline can be attributed to a downgrade at Jefferies, which we disagree with.",
+        "url": "https://www.cnbc.com/2026/08/26/were-buying-the-dip-again-in-a-retailer-not-getting-credit-for-addressing-weak-sales.html",
+        "source": "CNBC",
+        "datetime": 1787755733
+      },
+      {
+        "id": 8406450,
+        "headline": "Gulf markets mixed as oil slides, investors assess Iran diplomacy - Reuters",
+        "summary": "Gulf markets mixed as oil slides, investors assess Iran diplomacy\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPN3JlYl82UGFSWkd5eTQyMmpXcnI1OV9IQXdoSnBJMkxPTFI1RW5sclRra2hmUDBYMWlkRUx1c0pleTFZXzA0MFQ4R2FSN002bTZ2YmF5VERYOTY2bmFfZld1SVNDRHZ2SHF4LTg1OU5rMmE4ajdtUFN1ZV9IWEo4Q19YT1NGUzhFbThjbnJoeVp4dDFsd1NCcFBFekdfOGtNTWJiM3NmXzdFbGRUdTVCYTV6eGlyel9BRklF?oc=5",
+        "source": "Reuters",
+        "datetime": 1787750415
+      },
+      {
+        "id": 8405690,
+        "headline": "Jim Cramer's top 10 things to watch in the stock market Wednesday",
+        "summary": "It's a monumental day of earnings, led by Nvidia.",
+        "url": "https://www.cnbc.com/2026/08/26/jim-cramers-top-10-things-to-watch-in-the-stock-market-wednesday.html",
+        "source": "CNBC",
+        "datetime": 1787748938
+      }
+    ]
+  },
+  "news_seen_ids": [
+    8411849,
+    8411843,
+    8411736,
+    8411630,
+    8410133,
+    8411737,
+    8411099,
+    8411850,
+    8410670,
+    8410669,
+    8412056,
+    8410452,
+    8410345,
+    8410234,
+    8410782,
+    8412055,
+    8409487,
+    8409489,
+    8409702,
+    8410134,
+    8410460,
+    8409061,
+    8408335,
+    8409596,
+    8408336,
+    8403455,
+    8407070,
+    8408019,
+    8406761,
+    8406657,
+    8410569,
+    8406446,
+    8406445,
+    8406444,
+    8406659,
+    8407077,
+    8409488,
+    8406014,
+    8406450,
+    8405690
+  ]
 }
