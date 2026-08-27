@@ -383,16 +383,32 @@ async function renderOpenPositions(state) {
   </table>`;
 }
 
-function computeMarketStats(state, market) {
-  const log = (state.setup_log || []).filter(e => marketOf(e.symbol) === market && e.surfaced !== false);
-  const resolved = log.filter(e => e.resolved && e.outcome);
+function statsFromEntries(resolved) {
   const wins = resolved.filter(e => e.outcome.pnl_per_unit > 0);
   const winRate = resolved.length ? (wins.length / resolved.length * 100) : null;
   const grossWin = resolved.filter(e => e.outcome.pnl_total > 0).reduce((s, e) => s + e.outcome.pnl_total, 0);
   const grossLoss = -resolved.filter(e => e.outcome.pnl_total < 0).reduce((s, e) => s + e.outcome.pnl_total, 0);
   const pf = grossLoss > 0 ? grossWin / grossLoss : (grossWin > 0 ? Infinity : null);
   const net = resolved.reduce((s, e) => s + (e.outcome.pnl_total || 0), 0);
-  return { total: log.length, resolved: resolved.length, winRate, pf, net };
+  return { resolved: resolved.length, winRate, pf, net };
+}
+
+// Real P&L (taken trades only) and "signal quality" (every surfaced
+// suggestion, taken or not) are kept strictly separate. Signal-quality
+// entries that were never taken carry the BOT's own risk-sized qty
+// (position_size(), often thousands of shares on India's ₹500,000
+// capital base with a tight stop) -- blending that into one "Net P&L"
+// number made hypothetical, never-traded setups look like real losses
+// on real money. Real P&L only ever uses the qty actually filled.
+function computeMarketStats(state, market) {
+  const log = (state.setup_log || []).filter(e => marketOf(e.symbol) === market && e.surfaced !== false);
+  const resolvedAll = log.filter(e => e.resolved && e.outcome);
+  const resolvedReal = resolvedAll.filter(e => e.taken);
+  return {
+    total: log.length,
+    real: statsFromEntries(resolvedReal),
+    signal: statsFromEntries(resolvedAll),
+  };
 }
 
 function renderPerfCards(state) {
@@ -404,14 +420,23 @@ function renderPerfCards(state) {
   ];
   el.innerHTML = markets.map(m => {
     const s = computeMarketStats(state, m.key);
-    const netClass = s.net >= 0 ? "pnl-pos" : "pnl-neg";
+    const realNetClass = s.real.net >= 0 ? "pnl-pos" : "pnl-neg";
+    const sigNetClass = s.signal.net >= 0 ? "pnl-pos" : "pnl-neg";
+    const fmtPf = pf => pf === null ? "–" : pf === Infinity ? "∞" : pf.toFixed(2);
+    const fmtWr = wr => wr !== null ? wr.toFixed(0) + "%" : "–";
     return `<div class="panel market-card">
       <h3><span class="tag market-${m.key}">${m.label}</span></h3>
+      <div class="stat-row" style="color:var(--text-faint);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:2px">Your real trades</div>
+      <div class="stat-row"><span>Taken &amp; resolved</span><b>${s.real.resolved}</b></div>
+      <div class="stat-row"><span>Win rate</span><b>${fmtWr(s.real.winRate)}</b></div>
+      <div class="stat-row"><span>Profit factor</span><b>${fmtPf(s.real.pf)}</b></div>
+      <div class="stat-row"><span>Net P&amp;L</span><b class="${realNetClass}">${s.real.net >= 0 ? "+" : ""}${m.cur}${fmtNum(s.real.net)}</b></div>
+      <div class="stat-row" style="color:var(--text-faint);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:10px">Signal quality (all suggested, hypothetical)</div>
       <div class="stat-row"><span>All-time suggested</span><b>${s.total}</b></div>
-      <div class="stat-row"><span>Resolved</span><b>${s.resolved}</b></div>
-      <div class="stat-row"><span>Win rate</span><b>${s.winRate !== null ? s.winRate.toFixed(0) + "%" : "–"}</b></div>
-      <div class="stat-row"><span>Profit factor</span><b>${s.pf === null ? "–" : s.pf === Infinity ? "∞" : s.pf.toFixed(2)}</b></div>
-      <div class="stat-row"><span>Net P&amp;L</span><b class="${netClass}">${s.net >= 0 ? "+" : ""}${m.cur}${fmtNum(s.net)}</b></div>
+      <div class="stat-row"><span>Resolved</span><b>${s.signal.resolved}</b></div>
+      <div class="stat-row"><span>Win rate</span><b>${fmtWr(s.signal.winRate)}</b></div>
+      <div class="stat-row"><span>Profit factor</span><b>${fmtPf(s.signal.pf)}</b></div>
+      <div class="stat-row"><span>Net P&amp;L</span><b class="${sigNetClass}" style="color:var(--text-faint)">${s.signal.net >= 0 ? "+" : ""}${m.cur}${fmtNum(s.signal.net)}</b></div>
     </div>`;
   }).join("");
 }
