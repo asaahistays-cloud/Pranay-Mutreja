@@ -891,10 +891,22 @@ async function submitClose() {
     if (!resp.ok || !data.ok) {
       throw new Error(data.error || `HTTP ${resp.status}`);
     }
-    statusEl.textContent = "Closed -- will move out of open positions within about a minute.";
+
+    const cur = currencyFor(currentCloseEntry.symbol);
+    const dir = currentCloseEntry.direction;
+    const entryPrice = currentCloseEntry.entry;
+    const qty = currentCloseEntry.qty || 0;
+    const pnlPerUnit = dir === "long" ? (exitVal - entryPrice) : (entryPrice - exitVal);
+    const pnlTotal = pnlPerUnit * qty;
+    const pnlClass = pnlTotal >= 0 ? "pnl-pos" : "pnl-neg";
+
+    statusEl.innerHTML = `Closed at ${cur}${fmtNum(exitVal, 4)}. `
+      + `Net P&amp;L: <span class="${pnlClass}">${pnlTotal >= 0 ? "+" : ""}${cur}${fmtNum(pnlTotal)}</span><br>`
+      + `<span style="color:var(--text-faint);font-size:12px">This is gross P&amp;L only -- brokerage, STT, and other real trading `
+      + `taxes/charges aren't tracked here, so your actual take-home will be a bit less than this.</span>`;
     statusEl.className = "modal-status ok";
     btn.textContent = "Done";
-    setTimeout(() => { closeCloseModal(); loadDashboard(); }, 2000);
+    setTimeout(() => { closeCloseModal(); loadDashboard(); }, 4500);
   } catch (e) {
     statusEl.textContent = `Failed: ${e.message}`;
     statusEl.className = "modal-status error";
