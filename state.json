@@ -4696,20 +4696,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-27T22:30:33.652792+00:00",
+    "date": "2026-08-27T22:45:25.540365+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "This development suggests ongoing tensions and potential further increases in oil prices, which could impact inflation and economic growth."
+          "why_it_matters": "This development could lead to further increases in oil prices, impacting inflation and potentially influencing monetary policy decisions."
         },
         {
-          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "Shifts in global oil market influence could lead to changes in pricing and supply dynamics, affecting energy-dependent economies and markets."
+          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
+          "why_it_matters": "The reopening of the Strait of Hormuz could ease oil supply concerns, but the conditions set by Iran may lead to further tensions and market volatility."
         },
         {
           "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-          "why_it_matters": "Comments from Fed officials can influence market expectations for interest rates and monetary policy, which in turn affect equity and other asset markets."
+          "why_it_matters": "This statement suggests that the US Federal Reserve may need to maintain or increase interest rates to combat inflation, which could impact the US equity market."
         }
       ],
       "risk": {
@@ -4717,9 +4717,25 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran conflict and its implications on global markets, with oil prices and geopolitical tensions remaining key concerns. The situation continues to evolve, with potential impacts on energy prices and broader market stability. Overall, the environment remains cautious, with investors closely watching developments."
+      "summary": "Today's news is dominated by the ongoing Iran war and its implications on global markets, with oil prices rising after Trump rejects a return to ceasefire deal terms. The conflict's impact on financial markets and the potential for further escalation are key concerns. Earnings reports from major US companies like Nvidia and Salesforce are also in focus, with some analysts seeing positive signs for the market."
     },
     "headlines": [
+      {
+        "id": 8412577,
+        "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
+        "summary": "CNBC\u2019s Jim Cramer said strong earnings from Nvidia and Salesforce shattered two major bear cases that had weighed on the tech stocks.",
+        "url": "https://www.cnbc.com/2026/08/27/cramer-nvidia-salesforce-earnings-upended-two-bear-narratives.html",
+        "source": "CNBC",
+        "datetime": 1787869214
+      },
+      {
+        "id": 8412477,
+        "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says - Reuters",
+        "summary": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNcmkxelpGUFVScGp3akpHZlFURmRaaF9haHpzOVVkdnphX3pDd2hhUTIzZk9UeEJqd3RwOUU3cXc4b0hITEpkY1pkbjZWTVpaRzZVWnZyZi1wa3l4UjVfa0NDNlNQNGtFYk5QbU5wc2VTVkdYbENjc093UW84bE9mTE9DNEJkRFIzdC1Hc1JlSS1hZVUzME9KVTBmeDlUVi1fTXlMaF94RW1aU2NNS3JKUGIwMURObWs5cVhtbXVYcTZpUTZwY01GQVVYd1o?oc=5",
+        "source": "Reuters",
+        "datetime": 1787863857
+      },
       {
         "id": 8412169,
         "headline": "Iran's security chief denies report about a potential plot against Trump's son - Reuters",
@@ -5023,22 +5039,6 @@
         "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOckdmamQ0VmdHQmliNFdqSkc5WXhHb0xoWnd5eXdEQ0JnZV9TUjVzWndHV1VYMFU0M29rNWdYMXB2RmI3QlNQaGVrMmpwM3V3dHF0empEa0hvTDVBaXVUOHEwaVlOUEhDd1h1el9MWENBeVN3eVh3bjRGejRMbmJ0WUFNU19GQzIyR1k1ZDVtYS1LdkJQVU9SbHRBQVFQZw?oc=5",
         "source": "Reuters",
         "datetime": 1787760863
-      },
-      {
-        "id": 8409488,
-        "headline": "German firms report rising cyber threat from foreign intelligence services, study shows - Reuters",
-        "summary": "German firms report rising cyber threat from foreign intelligence services, study shows\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQbEtJSHlyQi1FMExDMHJ6QW9vZEtQTllmYVBHb0RWdWZLOV9uN3A3dEVaNmFJeU1Bakc4TzgtMEUwaDZWa1lTNTVuMjdHdUdKd2M0ai1fLWJidVV6U2E0bVV4YnBzZFNfeVprY1dtVmcteUJwNlR1U2NnWG1yOHNwUXpmTDIwZjB4cUgyX01pOTlNaUJHM1BwSkxHODBqUUpnZ0ZRRVd6RWkyN0dNdV9MWkdVbWF5SnJGUzRXWHB4SkdrRzd3Qm5j?oc=5",
-        "source": "Reuters",
-        "datetime": 1787758995
-      },
-      {
-        "id": 8406014,
-        "headline": "We're buying the dip \u2014 again \u2014 in a retailer not getting credit for addressing weak sales",
-        "summary": "Wednesday's decline can be attributed to a downgrade at Jefferies, which we disagree with.",
-        "url": "https://www.cnbc.com/2026/08/26/were-buying-the-dip-again-in-a-retailer-not-getting-credit-for-addressing-weak-sales.html",
-        "source": "CNBC",
-        "datetime": 1787755733
       }
     ]
   },
@@ -5084,6 +5084,8 @@
     8406450,
     8405690,
     8412169,
-    8402527
+    8402527,
+    8412577,
+    8412477
   ]
 }
