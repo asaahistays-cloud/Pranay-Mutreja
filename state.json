@@ -3136,7 +3136,7 @@
           }
         ]
       },
-      "taken": true
+      "taken": false
     },
     {
       "symbol": "TATAPOWER.NS",
@@ -3161,7 +3161,7 @@
         "net_pnl": 1184.27
       },
       "surfaced": true,
-      "taken": true,
+      "taken": false,
       "shadow": {
         "direction": "short",
         "entry_price": 366.45,
@@ -3210,7 +3210,7 @@
         "net_pnl": -5717.99
       },
       "surfaced": true,
-      "taken": true,
+      "taken": false,
       "shadow": {
         "direction": "long",
         "entry_price": 187.9,
@@ -3259,7 +3259,7 @@
         "net_pnl": 3697.18
       },
       "surfaced": true,
-      "taken": true,
+      "taken": false,
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -3722,7 +3722,7 @@
         "closed_at": "2026-08-26T18:00:47.819380+00:00"
       },
       "surfaced": true,
-      "taken": true,
+      "taken": false,
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -4459,39 +4459,6 @@
         "extreme_since_entry": 171.77999877929688,
         "peak_profit_per_unit": 0.1199951171875,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
-      }
-    },
-    {
-      "symbol": "BTC-USD",
-      "type": "manual",
-      "direction": "long",
-      "entry": 1,
-      "stop": 0.9,
-      "target": 1.1,
-      "qty": 0.001,
-      "fired_at": "2026-08-27T07:35:31.667376+00:00",
-      "resolved": false,
-      "outcome": null,
-      "surfaced": true,
-      "taken": true,
-      "confidence_at_fire": {
-        "wins": 0,
-        "total": 0,
-        "confidence": 0.5
-      },
-      "fired_hour_utc": 7,
-      "fired_weekday_utc": 3,
-      "shadow": {
-        "direction": "long",
-        "entry_price": 1,
-        "entry_qty": 0.001,
-        "stop_loss": 0.9,
-        "extreme_since_entry": 1,
-        "peak_profit_per_unit": 0,
-        "take_profit_target": 1.1,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
         "trade_journal": []
