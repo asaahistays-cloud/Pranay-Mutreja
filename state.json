@@ -4696,7 +4696,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-27T22:00:43.245363+00:00",
+    "date": "2026-08-27T22:15:25.569885+00:00",
     "assessment": {
       "key_events": [
         {
@@ -4929,6 +4929,14 @@
         "datetime": 1787786100
       },
       {
+        "id": 8403455,
+        "headline": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source - Reuters",
+        "summary": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSlNYeEdXSk9RSTdWVnZwNWVQQzdPMDRqZmpxbW5rYlN6emhXUDZWbHhPTjRaUU1LejhXZnpPNUg4dlMxbER4WE9vQnhDN2ZLUHFzUHN5czhKc245Ny1xMFR5Q0U5VzQtYWVXNnlBaTJDYU5RcklwVmlEZWxGd0ljSlFPcjAwTkRWMVNnRFUtNFljYmhaZEc2QjJjZEZDZDhPdW9WNUVwUmZMQU5DbzAxQkNudw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787780192
+      },
+      {
         "id": 8407070,
         "headline": "Okta pops 15% after topping estimates as AI threat spikes demand for identity security",
         "summary": "New products accounted for 30% of total bookings and Okta said it closed dozens of AI deals during the period",
@@ -5031,14 +5039,6 @@
         "url": "https://www.cnbc.com/2026/08/26/were-buying-the-dip-again-in-a-retailer-not-getting-credit-for-addressing-weak-sales.html",
         "source": "CNBC",
         "datetime": 1787755733
-      },
-      {
-        "id": 8406450,
-        "headline": "Gulf markets mixed as oil slides, investors assess Iran diplomacy - Reuters",
-        "summary": "Gulf markets mixed as oil slides, investors assess Iran diplomacy\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPN3JlYl82UGFSWkd5eTQyMmpXcnI1OV9IQXdoSnBJMkxPTFI1RW5sclRra2hmUDBYMWlkRUx1c0pleTFZXzA0MFQ4R2FSN002bTZ2YmF5VERYOTY2bmFfZld1SVNDRHZ2SHF4LTg1OU5rMmE4ajdtUFN1ZV9IWEo4Q19YT1NGUzhFbThjbnJoeVp4dDFsd1NCcFBFekdfOGtNTWJiM3NmXzdFbGRUdTVCYTV6eGlyel9BRklF?oc=5",
-        "source": "Reuters",
-        "datetime": 1787750415
       }
     ]
   },
