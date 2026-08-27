@@ -4463,6 +4463,39 @@
         "consecutive_wins": 0,
         "trade_journal": []
       }
+    },
+    {
+      "symbol": "BTC-USD",
+      "type": "manual",
+      "direction": "long",
+      "entry": 1,
+      "stop": 0.9,
+      "target": 1.1,
+      "qty": 0.001,
+      "fired_at": "2026-08-27T07:35:31.667376+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": true,
+      "confidence_at_fire": {
+        "wins": 0,
+        "total": 0,
+        "confidence": 0.5
+      },
+      "fired_hour_utc": 7,
+      "fired_weekday_utc": 3,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 1,
+        "entry_qty": 0.001,
+        "stop_loss": 0.9,
+        "extreme_since_entry": 1,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": 1.1,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
     }
   ],
   "capital_inr_futures": 500000
