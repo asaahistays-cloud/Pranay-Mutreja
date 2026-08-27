@@ -4696,20 +4696,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-27T23:15:25.636483+00:00",
+    "date": "2026-08-27T23:30:37.074460+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "This development could lead to further increases in oil prices, impacting inflation and potentially influencing monetary policy decisions."
+          "why_it_matters": "This development could lead to further increases in oil prices, impacting inflation and potentially influencing US monetary policy."
         },
         {
-          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
-          "why_it_matters": "The reopening of the Strait of Hormuz could ease oil supply concerns, but the conditions set by Iran may lead to further tensions and market volatility."
+          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
+          "why_it_matters": "Shifts in global oil market dynamics could have significant implications for energy prices and the broader economy."
         },
         {
           "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-          "why_it_matters": "This statement suggests that the US Federal Reserve may need to maintain or increase interest rates to combat inflation, which could impact the US equity market."
+          "why_it_matters": "The Fed's stance on inflation and interest rates could impact US equity markets and the overall economic outlook."
         }
       ],
       "risk": {
@@ -4717,7 +4717,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran war and its implications on global markets, with oil prices rising after Trump rejects a return to ceasefire deal terms. The conflict's impact on financial markets and the potential for further escalation are key concerns. Earnings reports from major US companies like Nvidia and Salesforce are also in focus, with some analysts seeing positive signs for the market."
+      "summary": "Today's news is dominated by the ongoing Iran conflict and its potential economic implications, with oil prices rising after Trump rejects a return to ceasefire deal terms. The conflict's impact on global markets, particularly oil and US equities, is a key area of concern. Overall, market risk is somewhat elevated due to geopolitical tensions."
     },
     "headlines": [
       {
@@ -4759,6 +4759,22 @@
         "url": "https://www.cnbc.com/2026/08/27/what-to-expect-from-apples-september-event-and-whats-driving-rally.html",
         "source": "CNBC",
         "datetime": 1787856513
+      },
+      {
+        "id": 8412681,
+        "headline": "NEWSLETTER: Trump's brief Iran strike morphs into an open-ended conflict - Reuters",
+        "summary": "NEWSLETTER: Trump's brief Iran strike morphs into an open-ended conflict\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNbVd2VnhxYXdDSUhoQ1oxd08yUHAyOVlDQi1vYkhhVVRvZVVER2NkZURLSkJtNEpNLU9JSE4yNW90REFqWFQ2XzVNUjJWMW9SeU5LazNqbTRLTHpGOWtRQ244OEw0TkRvcnZmcFFWek9ROFAtem5RS19SQTZ2aTNoZ0xpcF9mSS1yRVRYSUFMQlhTenZDVWg4OXNqaTU0cGpKaE9ZQXlsOA?oc=5",
+        "source": "Reuters",
+        "datetime": 1787855700
+      },
+      {
+        "id": 8412680,
+        "headline": "Trump says the U.S. is not talking with Iran as economic war in focus - Reuters",
+        "summary": "Trump says the U.S. is not talking with Iran as economic war in focus\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOU3V4QnUxMjhRcWJmZGRDdmJSWWZuWjdnMkQ0bEZxX05lME5tNEx0dHpTUGt1UHZDbmd3WXJMS0hjWDlxRlhYblh2VUNLLXIxSkZIclZxTmd4M2VpdUdRU2NGSTgxd3VqSzZ2S2dlSUEwdnZ2aVhEWGdxQmhwOWZIYWNTMVV3bk5pS3FqMXJZYU9GbDlPRWJKR0d3YkR1QU5rUi1tR3M0Q3UzTzVsQmsyXw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787854663
       },
       {
         "id": 8411736,
@@ -4945,6 +4961,14 @@
         "datetime": 1787786100
       },
       {
+        "id": 8403455,
+        "headline": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source - Reuters",
+        "summary": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSlNYeEdXSk9RSTdWVnZwNWVQQzdPMDRqZmpxbW5rYlN6emhXUDZWbHhPTjRaUU1LejhXZnpPNUg4dlMxbER4WE9vQnhDN2ZLUHFzUHN5czhKc245Ny1xMFR5Q0U5VzQtYWVXNnlBaTJDYU5RcklwVmlEZWxGd0ljSlFPcjAwTkRWMVNnRFUtNFljYmhaZEc2QjJjZEZDZDhPdW9WNUVwUmZMQU5DbzAxQkNudw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787780192
+      },
+      {
         "id": 8407070,
         "headline": "Okta pops 15% after topping estimates as AI threat spikes demand for identity security",
         "summary": "New products accounted for 30% of total bookings and Okta said it closed dozens of AI deals during the period",
@@ -5015,30 +5039,6 @@
         "url": "https://www.cnbc.com/2026/08/26/why-we-need-human-reserved-jobs-bill-gates-ai-memo.html",
         "source": "CNBC",
         "datetime": 1787762648
-      },
-      {
-        "id": 8406659,
-        "headline": "European shares muted as investors assess Iran-Oman talks, U.S. inflation - Reuters",
-        "summary": "European shares muted as investors assess Iran-Oman talks, U.S. inflation\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNV1pZeWdGeTdjVWRoOE0zZi1zQzhRVTdhU3g3U3VPV2J4dHVRQWtiRF9CUHlWVGllbFpPYnIyUmc5TDZPVlJrX0lrNDZCME5rcWZEYmN2a1JFY1diVE5oeDk1WEFDNmhIeDZfUmdFMFBBVUh6M1ZibFFvdkNzSDRVc1NEcFdZZmVhRDVjTGtxQWZwd2JDd3hzS1lHalBGUmMwRkZDUTRidDZIQ3lM?oc=5",
-        "source": "Reuters",
-        "datetime": 1787762506
-      },
-      {
-        "id": 8407077,
-        "headline": "FTSE 100 edges lower as healthcare, energy stocks weigh; Iran-Oman talks in focus - Reuters",
-        "summary": "FTSE 100 edges lower as healthcare, energy stocks weigh; Iran-Oman talks in focus\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOckdmamQ0VmdHQmliNFdqSkc5WXhHb0xoWnd5eXdEQ0JnZV9TUjVzWndHV1VYMFU0M29rNWdYMXB2RmI3QlNQaGVrMmpwM3V3dHF0empEa0hvTDVBaXVUOHEwaVlOUEhDd1h1el9MWENBeVN3eVh3bjRGejRMbmJ0WUFNU19GQzIyR1k1ZDVtYS1LdkJQVU9SbHRBQVFQZw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787760863
-      },
-      {
-        "id": 8409488,
-        "headline": "German firms report rising cyber threat from foreign intelligence services, study shows - Reuters",
-        "summary": "German firms report rising cyber threat from foreign intelligence services, study shows\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQbEtJSHlyQi1FMExDMHJ6QW9vZEtQTllmYVBHb0RWdWZLOV9uN3A3dEVaNmFJeU1Bakc4TzgtMEUwaDZWa1lTNTVuMjdHdUdKd2M0ai1fLWJidVV6U2E0bVV4YnBzZFNfeVprY1dtVmcteUJwNlR1U2NnWG1yOHNwUXpmTDIwZjB4cUgyX01pOTlNaUJHM1BwSkxHODBqUUpnZ0ZRRVd6RWkyN0dNdV9MWkdVbWF5SnJGUzRXWHB4SkdrRzd3Qm5j?oc=5",
-        "source": "Reuters",
-        "datetime": 1787758995
       }
     ]
   },
@@ -5086,6 +5086,8 @@
     8412169,
     8402527,
     8412577,
-    8412477
+    8412477,
+    8412681,
+    8412680
   ]
 }
