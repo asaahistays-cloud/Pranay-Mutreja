@@ -4480,7 +4480,7 @@
         "exit": 171.88,
         "qty": 2900,
         "pnl_per_unit": 0.06999999999999318,
-        "pnl_total": 202.99999999998022,
+        "pnl_total": -19.93,
         "exit_reason": "manual_close",
         "closed_at": "2026-08-27T08:06:48.075441+00:00"
       },
