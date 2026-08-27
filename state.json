@@ -4696,30 +4696,38 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-27T20:45:24.547767+00:00",
+    "date": "2026-08-27T21:00:43.055375+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say",
-          "why_it_matters": "This meeting could lead to policy decisions affecting oil prices and inflation, impacting various markets."
+          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
+          "why_it_matters": "This development suggests ongoing tensions and potential further increases in oil prices, which could impact inflation and economic growth."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "Shifts in oil market influence can significantly impact global energy prices and, by extension, economies and markets worldwide."
+          "why_it_matters": "Shifts in global oil market influence could lead to changes in pricing and supply dynamics, affecting energy-dependent economies and markets."
         },
         {
           "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-          "why_it_matters": "Comments from Fed officials can move markets, especially when discussing inflation and potential rate changes, influencing investor expectations and decisions."
+          "why_it_matters": "Comments from Fed officials can influence market expectations for interest rates and monetary policy, which in turn affect equity and other asset markets."
         }
       ],
       "risk": {
-        "crypto": "elevated",
-        "india": "elevated",
+        "crypto": "normal",
+        "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran war and its effects on global markets, particularly oil prices, with some experts seeing a costly stalemate. The situation continues to pose risks to various markets, including US and Indian equities, due to potential inflation and geopolitical instability. Crypto markets may also be affected by broader economic trends and investor sentiment."
+      "summary": "Today's news is dominated by the ongoing Iran conflict and its implications on global markets, with oil prices and geopolitical tensions remaining key concerns. The situation continues to evolve, with potential impacts on energy prices and broader market stability. Overall, the environment remains cautious, with investors closely watching developments."
     },
     "headlines": [
+      {
+        "id": 8412169,
+        "headline": "Iran's security chief denies report about a potential plot against Trump's son - Reuters",
+        "summary": "Iran's security chief denies report about a potential plot against Trump's son\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOMmxfUzFLX1V3NWtDWmZFZ3dsUGIzWV9VZmNZVUo1NjV6dUxQM1VpRTNPS3UtQzg3TWtPaHBuUDJ5STJNSGFnZlMwT2w4UHlpWjMtejRnbUllbWtFeVpXWUJSVkMyeGZjU1hwc1ZSU0xTdHN2eFlMNXd2SEFIWG9EeFlxNkh4TjBOM0J0dUFFV1FrYmp4NVJXZXZjbWM2UGtrRWYyMFlJeEJOb3lBSXdoRm03bmZucjhUN05yejhTRWV6cUpsV1lHVHBDZWJWdw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787860544
+      },
       {
         "id": 8411849,
         "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say - Reuters",
@@ -4910,7 +4918,7 @@
         "summary": "Six consequences after six months of war in Iran\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUEV1S2tFLUNEVG9hdmJ3dEF5YlBmWk8xT0wwWXN3MzZGOVYzX0xITXRLbGNuTUtscXl1Sy10NHlaelVXUHMzZVNYMm42TUVmNVN6UW1pLXV3MDF4YXpaLV82VE5QdXI3R19HemNya2U5LTg1RGFTZXdvdjZ6blJwUWllYVEyaE02cmoyVmdSU3o3SzNZ?oc=5",
         "source": "Reuters",
-        "datetime": 1787790681
+        "datetime": 1787790863
       },
       {
         "id": 8408336,
@@ -4921,20 +4929,28 @@
         "datetime": 1787786100
       },
       {
-        "id": 8403455,
-        "headline": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source - Reuters",
-        "summary": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSlNYeEdXSk9RSTdWVnZwNWVQQzdPMDRqZmpxbW5rYlN6emhXUDZWbHhPTjRaUU1LejhXZnpPNUg4dlMxbER4WE9vQnhDN2ZLUHFzUHN5czhKc245Ny1xMFR5Q0U5VzQtYWVXNnlBaTJDYU5RcklwVmlEZWxGd0ljSlFPcjAwTkRWMVNnRFUtNFljYmhaZEc2QjJjZEZDZDhPdW9WNUVwUmZMQU5DbzAxQkNudw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787780192
-      },
-      {
         "id": 8407070,
         "headline": "Okta pops 15% after topping estimates as AI threat spikes demand for identity security",
         "summary": "New products accounted for 30% of total bookings and Okta said it closed dozens of AI deals during the period",
         "url": "https://www.cnbc.com/2026/08/26/okta-okta-earnings-q2-2027.html",
         "source": "CNBC",
         "datetime": 1787775205
+      },
+      {
+        "id": 8402527,
+        "headline": "U.S. Secret Service aware of Iranian video threat against Barron Trump - Reuters",
+        "summary": "U.S. Secret Service aware of Iranian video threat against Barron Trump\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdkJKLVFhNWZCTm9nbWRDa0FEZklXZzJIa1pDQmF6aFFndlBpVHRMWnBsS2kzaGhjWXd2ZFBfN1A2czRPY2xmZ0lzVm12OHU2dXBWa3lvclpHZENUMFlEN1JMUW9kM3VMbmtnNTRNUmlzY1daSVJ0MjUzV2x2d2ZENS1VdklOZWtON3NRN2ZaRHdmeFR1Q2tDTWJVblFHNEE1YlBHZ3NaRkdPSkRIWWcwT0Rnd094UmNHTWZUVnQyZ1RFZw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787773734
+      },
+      {
+        "id": 8410569,
+        "headline": "Mourning Dolly: Photos of fan tributes around the world - Reuters",
+        "summary": "Mourning Dolly: Photos of fan tributes around the world\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcWdLNnd1eTRDM1dSQXFGcjN0WFV4dk1LWk9Id083RWQwVDd5endwaHFQTDk1TEZzSDlCVjhncWlhMC1FUUs5TjZQdFd2OFNBSTRFZHlGR1FYSDVSTDRFSHZQVk9XUjQ0Y2JLUXhvMzBYRzJPa0M1SUI3Yzc5d0tKRzVzOWEydXRVMWx6OURpRE1xakdIUENuSVQtX0hfUQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787773013
       },
       {
         "id": 8408019,
@@ -4959,14 +4975,6 @@
         "url": "https://www.cnbc.com/2026/08/26/dolly-parton-women-leadership.html",
         "source": "CNBC",
         "datetime": 1787767465
-      },
-      {
-        "id": 8410569,
-        "headline": "Mourning Dolly: Photos of fan tributes around the world - Reuters",
-        "summary": "Mourning Dolly: Photos of fan tributes around the world\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcWdLNnd1eTRDM1dSQXFGcjN0WFV4dk1LWk9Id083RWQwVDd5endwaHFQTDk1TEZzSDlCVjhncWlhMC1FUUs5TjZQdFd2OFNBSTRFZHlGR1FYSDVSTDRFSHZQVk9XUjQ0Y2JLUXhvMzBYRzJPa0M1SUI3Yzc5d0tKRzVzOWEydXRVMWx6OURpRE1xakdIUENuSVQtX0hfUQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787766540
       },
       {
         "id": 8406446,
@@ -5031,14 +5039,6 @@
         "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPN3JlYl82UGFSWkd5eTQyMmpXcnI1OV9IQXdoSnBJMkxPTFI1RW5sclRra2hmUDBYMWlkRUx1c0pleTFZXzA0MFQ4R2FSN002bTZ2YmF5VERYOTY2bmFfZld1SVNDRHZ2SHF4LTg1OU5rMmE4ajdtUFN1ZV9IWEo4Q19YT1NGUzhFbThjbnJoeVp4dDFsd1NCcFBFekdfOGtNTWJiM3NmXzdFbGRUdTVCYTV6eGlyel9BRklF?oc=5",
         "source": "Reuters",
         "datetime": 1787750415
-      },
-      {
-        "id": 8405690,
-        "headline": "Jim Cramer's top 10 things to watch in the stock market Wednesday",
-        "summary": "It's a monumental day of earnings, led by Nvidia.",
-        "url": "https://www.cnbc.com/2026/08/26/jim-cramers-top-10-things-to-watch-in-the-stock-market-wednesday.html",
-        "source": "CNBC",
-        "datetime": 1787748938
       }
     ]
   },
@@ -5082,6 +5082,8 @@
     8409488,
     8406014,
     8406450,
-    8405690
+    8405690,
+    8412169,
+    8402527
   ]
 }
