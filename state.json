@@ -1139,7 +1139,11 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": [],
-      "pending": null,
+      "pending": {
+        "type": "breakout_long",
+        "level": 0.16722,
+        "expires": 1787795100000
+      },
       "consecutive_wins": 1
     },
     "DKNG": {
