@@ -441,7 +441,7 @@
     "PFC.NS": {
       "status": "watching",
       "range_high": 365.6499938964844,
-      "range_low": 356.6000061035156,
+      "range_low": 352.3500061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1198,7 +1198,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 87.08999633789062,
+        "bar_time": 1787809500000
+      },
       "trade_journal": []
     },
     "POWERGRID.NS": {
@@ -1210,7 +1214,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787809500000
+      },
       "trade_journal": [],
       "consecutive_wins": 1
     }
