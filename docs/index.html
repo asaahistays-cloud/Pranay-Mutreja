@@ -325,12 +325,27 @@ function fmtNum(n, digits = 2) {
 }
 
 async function fetchLivePrice(symbol) {
-  if (!symbol.includes("-USD")) return null; // only crypto is live client-side (Yahoo blocks CORS)
+  if (symbol.includes("-USD")) {
+    try {
+      const r = await fetch(`https://api.exchange.coinbase.com/products/${symbol}/ticker`);
+      if (!r.ok) return null;
+      const d = await r.json();
+      return parseFloat(d.price);
+    } catch (e) {
+      return null;
+    }
+  }
+  // India/US -- Yahoo Finance blocks direct browser fetches via CORS, but
+  // that's a browser-only restriction (confirmed: a plain server-to-server
+  // request gets a normal 200 with real price data). The Worker proxies it
+  // server-side and returns its own CORS headers. Falls back to null (peak
+  // profit as of last scan) on any failure, including Yahoo's occasional
+  // per-symbol rate limiting.
   try {
-    const r = await fetch(`https://api.exchange.coinbase.com/products/${symbol}/ticker`);
+    const r = await fetch(`${WORKER_URL}?symbol=${encodeURIComponent(symbol)}`);
     if (!r.ok) return null;
     const d = await r.json();
-    return parseFloat(d.price);
+    return typeof d.price === "number" ? d.price : null;
   } catch (e) {
     return null;
   }

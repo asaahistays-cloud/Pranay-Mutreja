@@ -7,6 +7,14 @@
  * repo's own mark_taken.yml / log_manual_trade.yml workflow does the
  * actual state.json update using the safe commit/retry logic already
  * used everywhere else in this project.
+ *
+ * Also proxies live India/US quotes from Yahoo Finance (GET ?symbol=X).
+ * Yahoo blocks direct browser fetches via CORS, but that's a browser-only
+ * restriction -- confirmed a plain server-to-server request still gets a
+ * normal 200 with real price data, so this Worker (server-side, not a
+ * browser) fetches it and returns it with this Worker's own CORS headers.
+ * No credentials involved, read-only, so no action/auth gating needed
+ * here the way the write paths below have.
  */
 
 const REPO = "asaahistays-cloud/Pranay-Mutreja";
@@ -17,8 +25,11 @@ export default {
     if (request.method === "OPTIONS") {
       return new Response(null, { headers: corsHeaders() });
     }
+    if (request.method === "GET") {
+      return handlePriceProxy(request);
+    }
     if (request.method !== "POST") {
-      return json({ error: "POST only" }, 405);
+      return json({ error: "GET or POST only" }, 405);
     }
 
     let body;
@@ -56,6 +67,25 @@ async function handleMarkTaken(body, env) {
   if (target !== undefined && target !== null) payload.target = target;
 
   return dispatchToGitHub("mark_taken", payload, env);
+}
+
+async function handlePriceProxy(request) {
+  const url = new URL(request.url);
+  const symbol = url.searchParams.get("symbol");
+  if (!symbol) return json({ error: "symbol query param required" }, 400);
+
+  try {
+    const resp = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}`, {
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; multi-market-monitor-worker/1.0)" },
+    });
+    if (!resp.ok) return json({ error: `Yahoo returned ${resp.status}` }, 502);
+    const data = await resp.json();
+    const price = data?.chart?.result?.[0]?.meta?.regularMarketPrice;
+    if (typeof price !== "number") return json({ error: "no price in Yahoo response" }, 502);
+    return json({ symbol, price });
+  } catch (e) {
+    return json({ error: `fetch failed: ${e.message}` }, 502);
+  }
 }
 
 async function handleLogManual(body, env) {
@@ -104,7 +134,7 @@ async function dispatchToGitHub(eventType, clientPayload, env) {
 function corsHeaders() {
   return {
     "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 }
