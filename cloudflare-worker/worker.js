@@ -45,6 +45,7 @@ export default {
     if (action === "mark_taken") return handleMarkTaken(body, env);
     if (action === "log_manual") return handleLogManual(body, env);
     if (action === "close_trade") return handleCloseTrade(body, env);
+    if (action === "news_briefing") return handleNewsBriefing(body, env);
     return json({ error: `unknown action "${action}"` }, 400);
   },
 };
@@ -106,6 +107,33 @@ async function handleNewsProxy() {
     return new Response(xml, { headers: { "Content-Type": "text/xml", ...corsHeaders() } });
   } catch (e) {
     return json({ error: `fetch failed: ${e.message}` }, 502);
+  }
+}
+
+async function handleNewsBriefing(body, env) {
+  // Free LLM call via Cloudflare Workers AI's env.AI binding -- no
+  // separate API key/credential needed anywhere (unlike Anthropic,
+  // which is a paid API). The Worker itself gets AI access through
+  // this binding at deploy time; scripts calling this Worker never see
+  // or need a model-provider credential at all.
+  const { prompt, model } = body;
+  if (!prompt || typeof prompt !== "string") {
+    return json({ error: "prompt (string) is required" }, 400);
+  }
+  try {
+    const result = await env.AI.run(model || "@cf/meta/llama-3.3-70b-instruct-fp8-fast", {
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 2048,
+    });
+    // Some models/configs return result.response already parsed as an
+    // object when the content looks like JSON (confirmed directly --
+    // same model, same prompt shape, sometimes a string sometimes not).
+    // Always hand back a plain string so callers have one consistent
+    // contract regardless of that quirk.
+    const text = typeof result.response === "string" ? result.response : JSON.stringify(result.response);
+    return json({ text });
+  } catch (e) {
+    return json({ error: `AI call failed: ${e.message}` }, 502);
   }
 }
 

@@ -157,6 +157,7 @@
 
 <section>
   <h2>News &amp; Sentiment</h2>
+  <div class="panel" id="newsBriefing" style="margin-bottom:12px"><div class="loading">Loading&hellip;</div></div>
   <div class="grid-2" id="newsSentiment">
     <div class="panel"><div class="loading">Loading&hellip;</div></div>
   </div>
@@ -647,6 +648,32 @@ async function fetchIndiaNews() {
   }
 }
 
+const RISK_COLOR = { elevated: "var(--red)", normal: "var(--green)", positive: "#5b9bff" };
+
+function renderNewsBriefing(state) {
+  const el = document.getElementById("newsBriefing");
+  const briefing = state.news_briefing;
+  if (!briefing) {
+    el.innerHTML = `<h3>Daily News Briefing</h3><div class="empty-state">No briefing yet -- runs once daily at 8:30 IST, before India market open.</div>`;
+    return;
+  }
+  const a = briefing.assessment;
+  const risks = ["crypto", "india", "us"].map(m => {
+    const lvl = a.risk?.[m] || "normal";
+    return `<span class="tag market-${m}">${m}</span> <b style="color:${RISK_COLOR[lvl] || "var(--text)"}">${lvl}</b>`;
+  }).join(`<span style="color:var(--text-faint);margin:0 10px">|</span>`);
+  const events = (a.key_events || []).map(e =>
+    `<div style="margin-top:8px"><b style="font-size:13px">${e.headline}</b><div style="color:var(--text-dim);font-size:12px;margin-top:2px">${e.why_it_matters}</div></div>`
+  ).join("");
+  el.innerHTML = `
+    <h3>Daily News Briefing <span style="color:var(--text-faint);font-size:11px;font-weight:400">${fmtIST(briefing.date)}</span></h3>
+    <div style="margin:10px 0">${risks}</div>
+    <div style="font-size:14px;color:var(--text-dim);line-height:1.5">${a.summary || ""}</div>
+    ${events}
+    <div class="modal-sub" style="margin-top:12px">An LLM's real-time read of today's actual world finance headlines -- not backtestable the way a price-based signal is (every macro event is a one-off), so this stays informational: it doesn't gate, resize, or suppress any trade. You're the one who decides what to do with it.</div>
+  `;
+}
+
 async function renderNewsSentiment() {
   const el = document.getElementById("newsSentiment");
   const [fng, news] = await Promise.all([fetchFearGreed(), fetchIndiaNews()]);
@@ -780,6 +807,7 @@ async function loadDashboard() {
     renderPerfCards(state);
     renderTrend(state);
     renderRecentSetups(state);
+    renderNewsBriefing(state);
     renderNewsSentiment(); // independent of state.json, fires without blocking the rest
     checkForNewSetups(state);
     await renderOpenPositions(state); // last -- does live price fetches, can take a moment
