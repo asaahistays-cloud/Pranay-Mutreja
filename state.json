@@ -412,8 +412,8 @@
     },
     "JSWENERGY.NS": {
       "status": "watching",
-      "range_high": 553.4500122070312,
-      "range_low": 540.2999877929688,
+      "range_high": 549.7000122070312,
+      "range_low": 539.5499877929688,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -440,51 +440,41 @@
     },
     "PFC.NS": {
       "status": "watching",
-      "range_high": 367.0,
-      "range_low": 362.54998779296875,
+      "range_high": 365.6499938964844,
+      "range_low": 356.6000061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 367.0,
-        "bar_time": 1787715900000
-      },
-      "trade_journal": []
+      "consecutive_losses": 1,
+      "last_alert": {},
+      "trade_journal": [],
+      "consecutive_wins": 0
     },
     "BHEL.NS": {
       "status": "watching",
-      "range_high": 417.0,
-      "range_low": 412.1499938964844,
+      "range_high": 428.8999938964844,
+      "range_low": 415.5,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 417.0,
-        "bar_time": 1787715900000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "GAIL.NS": {
       "status": "watching",
-      "range_high": 175.5,
-      "range_low": 173.49000549316406,
+      "range_high": 174.80999755859375,
+      "range_low": 173.5800018310547,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 175.5,
-        "bar_time": 1787716800000
-      },
-      "trade_journal": []
+      "consecutive_losses": 1,
+      "last_alert": {},
+      "trade_journal": [],
+      "consecutive_wins": 0
     },
     "PAYTM.NS": {
       "status": "watching",
@@ -528,18 +518,14 @@
     },
     "BEL.NS": {
       "status": "watching",
-      "range_high": 413.25,
-      "range_low": 409.70001220703125,
+      "range_high": 412.8500061035156,
+      "range_low": 406.8999938964844,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 409.70001220703125,
-        "bar_time": 1787715900000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "BANKINDIA.NS": {
@@ -556,8 +542,8 @@
     },
     "NTPC.NS": {
       "status": "watching",
-      "range_high": 344.3999938964844,
-      "range_low": 336.70001220703125,
+      "range_high": 336.95001220703125,
+      "range_low": 333.04998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -568,8 +554,8 @@
     },
     "IRCON.NS": {
       "status": "watching",
-      "range_high": 126.7300033569336,
-      "range_low": 123.5999984741211,
+      "range_high": 125.91999816894531,
+      "range_low": 123.80000305175781,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -580,8 +566,8 @@
     },
     "RECLTD.NS": {
       "status": "watching",
-      "range_high": 329.45001220703125,
-      "range_low": 321.3500061035156,
+      "range_high": 324.5,
+      "range_low": 320.54998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -920,7 +906,7 @@
     "HINDCOPPER.NS": {
       "status": "watching",
       "range_high": 562.5999755859375,
-      "range_low": 526.5999755859375,
+      "range_low": 541.9500122070312,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -979,19 +965,16 @@
     },
     "TATAPOWER.NS": {
       "status": "watching",
-      "range_high": 376.3500061035156,
-      "range_low": 364.0,
+      "range_high": 365.5,
+      "range_low": 349.3500061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 364.0,
-        "bar_time": 1787802300000
-      },
-      "trade_journal": []
+      "consecutive_losses": 1,
+      "last_alert": {},
+      "trade_journal": [],
+      "consecutive_wins": 0
     },
     "SUZLON.NS": {
       "status": "watching",
@@ -1044,19 +1027,14 @@
     "SAIL.NS": {
       "status": "watching",
       "range_high": 196.5,
-      "range_low": 182.39999389648438,
+      "range_low": 186.60000610351562,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 188.10000610351562,
-        "bar_time": 1787733900000
-      },
-      "trade_journal": [],
-      "consecutive_wins": 1
+      "last_alert": {},
+      "trade_journal": []
     },
     "PNB.NS": {
       "status": "watching",
@@ -1072,18 +1050,14 @@
     },
     "IDFCFIRSTB.NS": {
       "status": "watching",
-      "range_high": 86.58000183105469,
-      "range_low": 84.4000015258789,
+      "range_high": 85.1500015258789,
+      "range_low": 83.86000061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 84.4000015258789,
-        "bar_time": 1787803200000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "FET-USD": {
@@ -1190,24 +1164,60 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": []
+    },
+    "NHPC.NS": {
+      "status": "watching",
+      "range_high": 76.37000274658203,
+      "range_low": 75.36000061035156,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "NMDC.NS": {
+      "status": "watching",
+      "range_high": 89.0,
+      "range_low": 87.27999877929688,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "POWERGRID.NS": {
+      "status": "watching",
+      "range_high": 267.3999938964844,
+      "range_low": 263.6499938964844,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
     }
   },
   "active_india_symbols": [
-    "HINDCOPPER.NS",
-    "SAIL.NS",
-    "UNIONBANK.NS",
-    "PAYTM.NS",
-    "BANKINDIA.NS",
-    "PNB.NS",
-    "IOB.NS",
-    "IDFCFIRSTB.NS",
-    "RECLTD.NS",
-    "INDIANB.NS",
-    "JSWENERGY.NS",
     "TATAPOWER.NS",
-    "CANBK.NS",
-    "BANKBARODA.NS",
-    "IRCON.NS"
+    "HINDCOPPER.NS",
+    "BHEL.NS",
+    "PFC.NS",
+    "IRCON.NS",
+    "NTPC.NS",
+    "IDFCFIRSTB.NS",
+    "SAIL.NS",
+    "BEL.NS",
+    "NHPC.NS",
+    "NMDC.NS",
+    "RECLTD.NS",
+    "POWERGRID.NS",
+    "JSWENERGY.NS",
+    "GAIL.NS"
   ],
   "active_us_symbols": [
     "AAL",
@@ -2724,18 +2734,44 @@
       "target": null,
       "qty": 5318.099195014282,
       "fired_at": "2026-08-26T04:00:46.469356+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 367.25,
-        "entry_qty": 5318.099195014282,
-        "stop_loss": 368.50999145507814,
-        "extreme_since_entry": 369.04998779296875,
-        "peak_profit_per_unit": 1.79998779296875,
+        "entry": 367.25,
+        "exit": 356.8999938964844,
+        "qty": 5318.099195014282,
+        "pnl_per_unit": -10.350006103515625,
+        "pnl_total": -55042.359127499345,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-27T04:20:34.389391+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 367.25,
+            "exit": 356.8999938964844,
+            "qty": 5318.099195014282,
+            "pnl_per_unit": -10.350006103515625,
+            "pnl_total": -55042.359127499345,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-27T04:20:34.389391+00:00"
+          }
+        ],
+        "consecutive_wins": 0,
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 365.6499938964844,
+        "range_low": 356.6000061035156
       }
     },
     {
@@ -2891,18 +2927,44 @@
       "target": null,
       "qty": 7885.097231204223,
       "fired_at": "2026-08-26T04:15:28.418595+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 175.97999572753906,
-        "entry_qty": 7885.097231204223,
-        "stop_loss": 174.7117805480957,
-        "extreme_since_entry": 175.97999572753906,
+        "entry": 175.97999572753906,
+        "exit": 173.7100067138672,
+        "qty": 7885.097231204223,
+        "pnl_per_unit": -2.269989013671875,
+        "pnl_total": -17899.084086568106,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-27T04:20:35.875236+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 175.97999572753906,
+            "exit": 173.7100067138672,
+            "qty": 7885.097231204223,
+            "pnl_per_unit": -2.269989013671875,
+            "pnl_total": -17899.084086568106,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-27T04:20:35.875236+00:00"
+          }
+        ],
+        "consecutive_wins": 0,
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 175.11000061035156,
+        "range_low": 173.5800018310547
       }
     },
     {
@@ -3851,8 +3913,17 @@
       "target": null,
       "qty": 752.2841872111107,
       "fired_at": "2026-08-27T04:00:43.003654+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 351.95001220703125,
+        "exit": 352.6000061035156,
+        "qty": 752.2841872111107,
+        "pnl_per_unit": -0.649993896484375,
+        "pnl_total": -488.9801301089309,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-27T04:20:34.031124+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -3863,16 +3934,32 @@
       "fired_hour_utc": 4,
       "fired_weekday_utc": 3,
       "shadow": {
-        "direction": "short",
-        "entry_price": 351.95001220703125,
-        "entry_qty": 752.2841872111107,
-        "stop_loss": 350.93500366210935,
-        "extreme_since_entry": 350.5,
-        "peak_profit_per_unit": 1.45001220703125,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
+        "consecutive_losses": 1,
         "consecutive_wins": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 351.95001220703125,
+            "exit": 352.6000061035156,
+            "qty": 752.2841872111107,
+            "pnl_per_unit": -0.649993896484375,
+            "pnl_total": -488.9801301089309,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-27T04:20:34.031124+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 365.5,
+        "range_low": 349.3500061035156
       }
     },
     {
@@ -3899,9 +3986,9 @@
         "direction": "short",
         "entry_price": 84.2699966430664,
         "entry_qty": 5933.309836451016,
-        "stop_loss": 85.00464003426688,
-        "extreme_since_entry": 84.2699966430664,
-        "peak_profit_per_unit": 0,
+        "stop_loss": 83.98299942016601,
+        "extreme_since_entry": 83.86000061035156,
+        "peak_profit_per_unit": 0.40999603271484375,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
