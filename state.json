@@ -1184,17 +1184,13 @@
     "NMDC.NS": {
       "status": "watching",
       "range_high": 89.0,
-      "range_low": 86.52999877929688,
+      "range_low": 86.51000213623047,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 86.66000366210938,
-        "bar_time": 1787815800000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "POWERGRID.NS": {
@@ -4534,9 +4530,9 @@
         "direction": "short",
         "entry_price": 86.62999725341797,
         "entry_qty": 5771.672813717798,
-        "stop_loss": 86.84071459089007,
-        "extreme_since_entry": 86.52999877929688,
-        "peak_profit_per_unit": 0.09999847412109375,
+        "stop_loss": 86.54600067138672,
+        "extreme_since_entry": 86.51000213623047,
+        "peak_profit_per_unit": 0.1199951171875,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
