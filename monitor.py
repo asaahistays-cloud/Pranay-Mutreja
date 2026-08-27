@@ -955,7 +955,18 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
         candidate_stop = extreme - TRAIL_ATR_MULT * n
         if peak_profit > PROFIT_LOCK_FLOOR_ATR_MULT * n:
             candidate_stop = max(candidate_stop, entry + PROFIT_LOCK_FRACTION * peak_profit)
-        if candidate_stop > stop * 1.001:
+        # candidate_stop must stay BELOW the current close for a long --
+        # the profit-lock floor is anchored to the peak (the best price
+        # since entry), which can sit well above where price has since
+        # retraced to within the same bar. If price pulled back enough,
+        # "lock 70% of peak gain" can compute a candidate ABOVE the
+        # current close -- a stop already on the wrong side of price,
+        # which would fire a false STOP HIT on the very next check even
+        # though nothing has moved against the position since. Reported
+        # directly against the mirrored short case (HINDCOPPER.NS: a
+        # trail suggested moving stop to 537.9 while price was at 538.9
+        # -- already broken the moment it was suggested).
+        if candidate_stop > stop * 1.001 and candidate_stop < close:
             sym_state["stop_loss"] = candidate_stop
             locked_pct = (candidate_stop - entry) / peak_profit * 100 if peak_profit > 0 else 0
             if notify:
@@ -1005,7 +1016,16 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
         candidate_stop = extreme + TRAIL_ATR_MULT * n
         if peak_profit > PROFIT_LOCK_FLOOR_ATR_MULT * n:
             candidate_stop = min(candidate_stop, entry - PROFIT_LOCK_FRACTION * peak_profit)
-        if candidate_stop < stop * 0.999:
+        # candidate_stop must stay ABOVE the current close for a short --
+        # confirmed real bug: the profit-lock floor is anchored to the
+        # peak (deepest low since entry), which can sit well below where
+        # price has since retraced to within the same bar. HINDCOPPER.NS
+        # hit a low of 537.5 but closed the bar at 538.9; "lock 70% of
+        # peak gain" from that 537.5 extreme computed a candidate stop of
+        # 537.9 -- already BELOW the 538.9 current price the moment it
+        # was suggested, which would fire a false STOP HIT on the very
+        # next check even though nothing had moved against the position.
+        if candidate_stop < stop * 0.999 and candidate_stop > close:
             sym_state["stop_loss"] = candidate_stop
             locked_pct = (entry - candidate_stop) / peak_profit * 100 if peak_profit > 0 else 0
             if notify:
