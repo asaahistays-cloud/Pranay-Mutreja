@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Daily world finance news briefing -- fetches that day's real headlines
-(Finnhub general news, confirmed live/working, no historical claim
-needed since this only ever reads TODAY's news) and has an LLM read and
-assess them for risk relevant to crypto/India/US markets.
+"""World finance news briefing -- fetches real headlines (Finnhub
+general news, confirmed live/working) and has an LLM read and assess
+them for risk relevant to crypto/India/US markets.
 
 Explicitly NOT wired into any trading decision -- no gating, no sizing
 change, nothing here touches check_watching()/position_size(). This is
@@ -10,14 +9,19 @@ a judgment call ("is this headline bearish"), not a backtestable number
 like everything else in this bot, and there's no historical archive of
 world news to prove a rule against the way Fear & Greed or the
 throttles were tested. Surfacing it as real, live, human-readable
-context -- attached to the dashboard and sent as its own daily Telegram
+context -- attached to the dashboard and sent as its own Telegram
 message -- keeps a person in the loop on the actual judgment, same as
 every other alert this bot has ever sent (it never auto-executes).
 
-Run once daily, gated the same wall-clock way as the other special
-steps in monitor.yml (see that file's comment on why -- github's
-`schedule` trigger alone isn't reliable enough for this repo's actual
-trigger mix of native schedule + external cron-job.org backup)."""
+Runs every scan (same ~15min cadence as monitor.py, no wall-clock
+window -- see monitor.yml), but is deliberately cheap on both the LLM
+call and Telegram: fetches fresh headlines every time (free, no cost
+either way) and always updates state.json so the dashboard's list is
+never stale, but only calls the LLM and sends a Telegram message when
+at least one headline is genuinely new since the last check (tracked
+by Finnhub's own numeric id, not text -- immune to formatting
+differences). Most 15-min windows won't have new world-news items, so
+this naturally rate-limits itself without an arbitrary schedule."""
 import json
 import os
 import sys
@@ -42,7 +46,11 @@ def fetch_world_news(limit=40):
     with urllib.request.urlopen(req, timeout=15) as resp:
         items = json.loads(resp.read())
     items.sort(key=lambda x: x.get("datetime", 0), reverse=True)
-    return [{"headline": i["headline"], "summary": i.get("summary", "")[:200]} for i in items[:limit]]
+    return [{
+        "id": i.get("id"), "headline": i["headline"], "summary": i.get("summary", "")[:200],
+        "url": i.get("url", ""), "source": i.get("source", ""),
+        "datetime": i.get("datetime", 0),
+    } for i in items[:limit]]
 
 
 def build_prompt(headlines):
@@ -110,6 +118,27 @@ def main():
         print("No headlines fetched, skipping.")
         return 1
 
+    state = monitor.load_state()
+    seen_ids_list = state.get("news_seen_ids", [])
+    seen_ids_set = set(seen_ids_list)
+    new_headlines = [h for h in headlines if h.get("id") is not None and h["id"] not in seen_ids_set]
+
+    # Always refresh the full readable list + fetch timestamp, even with
+    # nothing new to assess -- explicitly requested: the user wants to
+    # read the real headlines themselves, so the dashboard's list should
+    # never go stale even on a quiet scan with no new items.
+    existing_briefing = state.get("news_briefing") or {}
+    state["news_briefing"] = {
+        "date": datetime.now(timezone.utc).isoformat(),
+        "assessment": existing_briefing.get("assessment"),
+        "headlines": headlines,
+    }
+
+    if not new_headlines:
+        monitor.save_state(state)
+        print(f"No new headlines since last check ({len(headlines)} fetched, all already seen) -- list refreshed, LLM/Telegram skipped.")
+        return 0
+
     prompt = build_prompt(headlines)
     try:
         raw = call_llm(prompt)
@@ -127,15 +156,16 @@ def main():
             return 1
         assessment = json.loads(raw[start:end + 1])
 
-    state = monitor.load_state()
-    state["news_briefing"] = {
-        "date": datetime.now(timezone.utc).isoformat(),
-        "assessment": assessment,
-    }
+    state["news_briefing"]["assessment"] = assessment
+    # Chronological list (not a set) so "keep the most recent 1000" via
+    # a plain slice actually keeps the most recent ones, not an
+    # arbitrary subset -- a set has no reliable insertion order.
+    seen_ids_list = seen_ids_list + [h["id"] for h in new_headlines]
+    state["news_seen_ids"] = seen_ids_list[-1000:]
     monitor.save_state(state)
 
     monitor.send_telegram(format_telegram(assessment))
-    print("Briefing sent and saved.")
+    print(f"{len(new_headlines)} new headline(s) -- briefing sent and saved.")
     return 0
 
 

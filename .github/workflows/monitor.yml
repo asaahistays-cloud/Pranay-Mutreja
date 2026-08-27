@@ -28,7 +28,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "monitor / india / us / report / news (for manual testing)"
+        description: "monitor / india / us / report (for manual testing; news briefing always runs)"
         required: false
         default: "monitor"
 
@@ -89,22 +89,22 @@ jobs:
             echo "Skipping (now=$now UTC, weekday=$wd, not in window and mode != us)"
           fi
 
-      - name: Daily news briefing
+      - name: World news briefing
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
-        run: |
-          h=$((10#$(date -u +%H))); m=$((10#$(date -u +%M))); now=$((h*60+m))
-          # 8:30 IST = 3:00 UTC, before India market open (9:15 IST) so
-          # the day's briefing actually lands before the trading day
-          # starts. Every day, not just weekdays -- crypto trades
-          # weekends too and world news doesn't pause for market hours.
-          if [ "${{ github.event.inputs.mode }}" = "news" ] || { [ "$now" -ge $((3*60)) ] && [ "$now" -lt $((3*60+15)) ]; }; then
-            python3 news_briefing.py
-          else
-            echo "Skipping (now=$now UTC, not in window and mode != news)"
-          fi
+        run: python3 news_briefing.py
+        # Runs every scan now (no wall-clock window, unlike the
+        # opening-range scans and report above) -- explicitly requested:
+        # the bot should be "extremely aware" of world news as it
+        # happens, not just once a day. Stays cheap and un-spammy on its
+        # own: news_briefing.py fetches fresh headlines every time (free
+        # either way) but only calls the LLM and sends a Telegram
+        # message when at least one headline is genuinely new since the
+        # last check (tracked by Finnhub's own id) -- most 15-min
+        # windows won't have new world-news items, so this rate-limits
+        # itself without an arbitrary schedule.
 
       - name: Trade performance report
         env:

@@ -654,23 +654,40 @@ function renderNewsBriefing(state) {
   const el = document.getElementById("newsBriefing");
   const briefing = state.news_briefing;
   if (!briefing) {
-    el.innerHTML = `<h3>Daily News Briefing</h3><div class="empty-state">No briefing yet -- runs once daily at 8:30 IST, before India market open.</div>`;
+    el.innerHTML = `<h3>World News Briefing</h3><div class="empty-state">No headlines fetched yet -- checks every scan (~15 min).</div>`;
     return;
   }
   const a = briefing.assessment;
-  const risks = ["crypto", "india", "us"].map(m => {
-    const lvl = a.risk?.[m] || "normal";
-    return `<span class="tag market-${m}">${m}</span> <b style="color:${RISK_COLOR[lvl] || "var(--text)"}">${lvl}</b>`;
-  }).join(`<span style="color:var(--text-faint);margin:0 10px">|</span>`);
-  const events = (a.key_events || []).map(e =>
-    `<div style="margin-top:8px"><b style="font-size:13px">${e.headline}</b><div style="color:var(--text-dim);font-size:12px;margin-top:2px">${e.why_it_matters}</div></div>`
-  ).join("");
+  let assessmentHtml = "";
+  if (a) {
+    const risks = ["crypto", "india", "us"].map(m => {
+      const lvl = a.risk?.[m] || "normal";
+      return `<span class="tag market-${m}">${m}</span> <b style="color:${RISK_COLOR[lvl] || "var(--text)"}">${lvl}</b>`;
+    }).join(`<span style="color:var(--text-faint);margin:0 10px">|</span>`);
+    const events = (a.key_events || []).map(e =>
+      `<div style="margin-top:8px"><b style="font-size:13px">${e.headline}</b><div style="color:var(--text-dim);font-size:12px;margin-top:2px">${e.why_it_matters}</div></div>`
+    ).join("");
+    assessmentHtml = `
+      <div style="margin:10px 0">${risks}</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.5">${a.summary || ""}</div>
+      ${events}
+    `;
+  }
+  const headlines = briefing.headlines || [];
+  const headlineRows = headlines.map(h => `
+    <a href="${h.url}" target="_blank" rel="noopener" style="display:block;color:var(--text);text-decoration:none;font-size:13px;line-height:1.4;padding:6px 0;border-bottom:1px solid var(--panel-border)">
+      ${h.headline}
+      <span style="color:var(--text-faint);font-size:11px"> -- ${h.source || ""}</span>
+    </a>
+  `).join("");
   el.innerHTML = `
-    <h3>Daily News Briefing <span style="color:var(--text-faint);font-size:11px;font-weight:400">${fmtIST(briefing.date)}</span></h3>
-    <div style="margin:10px 0">${risks}</div>
-    <div style="font-size:14px;color:var(--text-dim);line-height:1.5">${a.summary || ""}</div>
-    ${events}
-    <div class="modal-sub" style="margin-top:12px">An LLM's real-time read of today's actual world finance headlines -- not backtestable the way a price-based signal is (every macro event is a one-off), so this stays informational: it doesn't gate, resize, or suppress any trade. You're the one who decides what to do with it.</div>
+    <h3>World News Briefing <span style="color:var(--text-faint);font-size:11px;font-weight:400">checked ${timeAgo(briefing.date)}</span></h3>
+    ${assessmentHtml}
+    <details style="margin-top:12px">
+      <summary style="cursor:pointer;color:var(--text-dim);font-size:13px">All ${headlines.length} headlines this check (read them yourself)</summary>
+      <div style="max-height:400px;overflow-y:auto;margin-top:8px">${headlineRows}</div>
+    </details>
+    <div class="modal-sub" style="margin-top:12px">Real headlines (Finnhub) + an LLM's real-time read of them -- not backtestable the way a price-based signal is (every macro event is a one-off), so this stays informational: it doesn't gate, resize, or suppress any trade. You're the one who decides what to do with it.</div>
   `;
 }
 
