@@ -899,8 +899,28 @@ async function submitClose() {
   }
 }
 
-loadDashboard();
-setInterval(loadDashboard, 60000);
+let lastLoadAt = 0;
+async function loadDashboardTracked() {
+  lastLoadAt = Date.now();
+  await loadDashboard();
+}
+
+loadDashboardTracked();
+setInterval(loadDashboardTracked, 60000);
+
+// Mobile browsers throttle or pause setInterval in a backgrounded tab
+// (screen off, app switched, tab hidden) to save battery -- the 60s
+// auto-refresh above stalls until the tab is foregrounded again, which
+// is why prices looked stale until a manual reload. This fires an
+// immediate refresh the moment the tab becomes visible again, so just
+// switching back is enough -- skips it if a refresh already happened
+// in the last 10s (e.g. right after the initial load) to avoid a
+// redundant double-fetch.
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && (Date.now() - lastLoadAt) > 10000) {
+    loadDashboardTracked();
+  }
+});
 </script>
 
 </body>
