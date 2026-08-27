@@ -301,7 +301,22 @@ function dismissToast(id) {
   el.classList.add("leaving");
   setTimeout(() => el.remove(), 250);
 }
-const RAW_STATE_URL = `https://raw.githubusercontent.com/${REPO}/main/state.json?_=${Date.now()}`;
+// A function, not a frozen constant -- Date.now() must be evaluated on
+// EVERY call. This used to be `const RAW_STATE_URL = ...${Date.now()}`,
+// computed once at page load: every subsequent fetch (auto-refresh,
+// visibility-triggered refresh, all of it) reused that exact same URL
+// string for the entire tab's lifetime, so the browser's own HTTP cache
+// served the same first-load response forever -- the page LOOKED like
+// it was refreshing (timestamp ticking, network activity happening)
+// while the actual trade data underneath never changed without a full
+// manual reload, which computes a fresh Date.now(). This is the real
+// root cause behind tonight's "have to manually refresh to see the
+// right P&L" report -- the visibility-refresh fix made loadDashboard()
+// get CALLED more often, but every call was still hitting the same
+// stale cached URL underneath.
+function rawStateUrl() {
+  return `https://raw.githubusercontent.com/${REPO}/main/state.json?_=${Date.now()}`;
+}
 const COMMITS_API = `https://api.github.com/repos/${REPO}/commits?path=state.json&per_page=1`;
 const RUNS_API = `https://api.github.com/repos/${REPO}/actions/workflows/monitor.yml/runs?per_page=1&status=completed`;
 const IST_OFFSET_MS = (5 * 60 + 30) * 60 * 1000;
@@ -652,7 +667,7 @@ async function fetchGithubHealthCached() {
 async function loadDashboard() {
   try {
     const [stateResp, health] = await Promise.all([
-      fetch(RAW_STATE_URL),
+      fetch(rawStateUrl(), { cache: "no-store" }),
       fetchGithubHealthCached(),
     ]);
     const state = await stateResp.json();
