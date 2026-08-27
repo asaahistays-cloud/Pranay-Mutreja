@@ -43,7 +43,7 @@
     },
     "SOL-USD": {
       "status": "watching",
-      "range_high": 109.59,
+      "range_high": 109.64,
       "range_low": 94.99,
       "direction": null,
       "entry_price": null,
