@@ -4696,7 +4696,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-27T23:00:40.995483+00:00",
+    "date": "2026-08-27T23:15:25.636483+00:00",
     "assessment": {
       "key_events": [
         {
@@ -4945,14 +4945,6 @@
         "datetime": 1787786100
       },
       {
-        "id": 8403455,
-        "headline": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source - Reuters",
-        "summary": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSlNYeEdXSk9RSTdWVnZwNWVQQzdPMDRqZmpxbW5rYlN6emhXUDZWbHhPTjRaUU1LejhXZnpPNUg4dlMxbER4WE9vQnhDN2ZLUHFzUHN5czhKc245Ny1xMFR5Q0U5VzQtYWVXNnlBaTJDYU5RcklwVmlEZWxGd0ljSlFPcjAwTkRWMVNnRFUtNFljYmhaZEc2QjJjZEZDZDhPdW9WNUVwUmZMQU5DbzAxQkNudw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787780192
-      },
-      {
         "id": 8407070,
         "headline": "Okta pops 15% after topping estimates as AI threat spikes demand for identity security",
         "summary": "New products accounted for 30% of total bookings and Okta said it closed dozens of AI deals during the period",
@@ -5039,6 +5031,14 @@
         "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOckdmamQ0VmdHQmliNFdqSkc5WXhHb0xoWnd5eXdEQ0JnZV9TUjVzWndHV1VYMFU0M29rNWdYMXB2RmI3QlNQaGVrMmpwM3V3dHF0empEa0hvTDVBaXVUOHEwaVlOUEhDd1h1el9MWENBeVN3eVh3bjRGejRMbmJ0WUFNU19GQzIyR1k1ZDVtYS1LdkJQVU9SbHRBQVFQZw?oc=5",
         "source": "Reuters",
         "datetime": 1787760863
+      },
+      {
+        "id": 8409488,
+        "headline": "German firms report rising cyber threat from foreign intelligence services, study shows - Reuters",
+        "summary": "German firms report rising cyber threat from foreign intelligence services, study shows\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQbEtJSHlyQi1FMExDMHJ6QW9vZEtQTllmYVBHb0RWdWZLOV9uN3A3dEVaNmFJeU1Bakc4TzgtMEUwaDZWa1lTNTVuMjdHdUdKd2M0ai1fLWJidVV6U2E0bVV4YnBzZFNfeVprY1dtVmcteUJwNlR1U2NnWG1yOHNwUXpmTDIwZjB4cUgyX01pOTlNaUJHM1BwSkxHODBqUUpnZ0ZRRVd6RWkyN0dNdV9MWkdVbWF5SnJGUzRXWHB4SkdrRzd3Qm5j?oc=5",
+        "source": "Reuters",
+        "datetime": 1787758995
       }
     ]
   },
