@@ -429,12 +429,16 @@ async function renderOpenPositions(state) {
       const peak = shadow.peak_profit_per_unit || 0;
       pnlCell = `<span style="color:var(--text-faint)">peak +${fmtNum(peak)}/unit</span> <span style="color:var(--text-faint);font-size:11px">(as of last scan)</span>`;
     }
+    const liveCell = livePrice !== null
+      ? `${cur}${fmtNum(livePrice, 4)}`
+      : `<span style="color:var(--text-faint)">–</span>`;
     return `<tr>
       <td>${e.symbol} <span class="tag market-${market}">${market}</span></td>
       <td><span class="tag ${e.direction}">${e.direction}</span></td>
       <td>${e.type}</td>
       <td>${cur}${fmtNum(e.entry, 4)}</td>
       <td>${cur}${fmtNum(shadow.stop_loss, 4)}</td>
+      <td>${liveCell}</td>
       <td>${pnlCell}</td>
       <td style="color:var(--text-faint)">${fmtIST(e.fired_at)}</td>
       <td><button class="btn-header" style="padding:5px 10px;font-size:12px" onclick="openCloseModal(${i})">Closed</button></td>
@@ -442,7 +446,7 @@ async function renderOpenPositions(state) {
   }));
 
   el.innerHTML = `<table>
-    <thead><tr><th>Symbol</th><th>Dir</th><th>Type</th><th>Entry</th><th>Stop (trailed)</th><th>P&amp;L</th><th>Fired</th><th></th></tr></thead>
+    <thead><tr><th>Symbol</th><th>Dir</th><th>Type</th><th>Entry</th><th>Stop (trailed)</th><th>Live Price</th><th>P&amp;L</th><th>Fired</th><th></th></tr></thead>
     <tbody>${rows.join("")}</tbody>
   </table>`;
 }
