@@ -471,7 +471,7 @@
     "GAIL.NS": {
       "status": "watching",
       "range_high": 175.11000061035156,
-      "range_low": 171.3800048828125,
+      "range_low": 171.3699951171875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -567,11 +567,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 1,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 123.5999984741211,
-        "bar_time": 1787818500000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "consecutive_wins": 0
     },
@@ -918,7 +914,7 @@
     "HINDCOPPER.NS": {
       "status": "watching",
       "range_high": 562.5999755859375,
-      "range_low": 540.0999755859375,
+      "range_low": 537.4500122070312,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1204,11 +1200,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 86.47000122070312,
-        "bar_time": 1787818500000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "consecutive_wins": 1
     },
@@ -4475,8 +4467,8 @@
         "entry_price": 171.89999389648438,
         "entry_qty": 2908.6679334095415,
         "stop_loss": 171.55700073242187,
-        "extreme_since_entry": 171.3800048828125,
-        "peak_profit_per_unit": 0.519989013671875,
+        "extreme_since_entry": 171.3699951171875,
+        "peak_profit_per_unit": 0.529998779296875,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4757,8 +4749,8 @@
         "entry_price": 104.353,
         "entry_qty": 0.5,
         "stop_loss": 102.3,
-        "extreme_since_entry": 104.353,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 104.8,
+        "peak_profit_per_unit": 0.44700000000000273,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
