@@ -66,7 +66,11 @@
           "note": "Manually placed and closed on TradingView. Peak unrealized profit reached ~$3.88 (price dipped to 97.48) before reversing all the way back through the old 1.5x-ATR trailing stop. This is exactly the giveback problem that led to reworking the trail/take-profit logic (tighter ATR trail + profit-lock floor + fixed take-profit heuristic) -- that improved logic wasn't live yet when this trade happened, so it didn't get the benefit."
         }
       ],
-      "pending": null
+      "pending": {
+        "type": "breakout_long",
+        "level": 108.0,
+        "expires": 1787855400000
+      }
     },
     "XRP-USD": {
       "status": "watching",
