@@ -5350,9 +5350,9 @@
         "direction": "short",
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
-        "stop_loss": 19.114140701293945,
-        "extreme_since_entry": 18.924999237060547,
-        "peak_profit_per_unit": 0.595001220703125,
+        "stop_loss": 19.078999710083007,
+        "extreme_since_entry": 18.889999389648438,
+        "peak_profit_per_unit": 0.6300010681152344,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5478,7 +5478,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T18:00:40.905955+00:00",
+    "date": "2026-08-28T18:15:27.096702+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5502,6 +5502,14 @@
       "summary": "Today's news is dominated by the ongoing Iran war and its economic implications, with potential effects on oil prices and global markets. The tech sector also sees notable developments, including Apple's price hikes and Big Tech's AI spending. Overall, market risk remains elevated due to geopolitical tensions and economic uncertainty."
     },
     "headlines": [
+      {
+        "id": 8416377,
+        "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months - Reuters",
+        "summary": "US hits Egyptian bank branches with Iran sanctions as war marks six months\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZnRmTktBaHNUcXJSeXVoMEhUSDg0QlpTRkFGcllGUW5zcW84bE81NjQxTWZ0VjBSNHpxZjBnRkNmVHAyZkFaNkYtYXZ4R1VaRlpIVHF0YVIwZ3BfY1ByZVdKM0RPOXBNMnJzTDkyVnF6b0FnNlRFQ0ozTk02cWY0dHZPYm40TUY2TVlSUklxWUJWVkdZdXNYX21TM05QV1R4dnBxU3pWekdVelEwWXZObHNn?oc=5",
+        "source": "Reuters",
+        "datetime": 1787938639
+      },
       {
         "id": 8416375,
         "headline": "Apple hikes subscription prices for Apple TV and Apple One in the U.S.",
@@ -5533,14 +5541,6 @@
         "url": "https://www.cnbc.com/2026/08/28/sports-betting-gen-z-investors.html",
         "source": "CNBC",
         "datetime": 1787933401
-      },
-      {
-        "id": 8416377,
-        "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months - Reuters",
-        "summary": "US hits Egyptian bank branches with Iran sanctions as war marks six months\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZnRmTktBaHNUcXJSeXVoMEhUSDg0QlpTRkFGcllGUW5zcW84bE81NjQxTWZ0VjBSNHpxZjBnRkNmVHAyZkFaNkYtYXZ4R1VaRlpIVHF0YVIwZ3BfY1ByZVdKM0RPOXBNMnJzTDkyVnF6b0FnNlRFQ0ozTk02cWY0dHZPYm40TUY2TVlSUklxWUJWVkdZdXNYX21TM05QV1R4dnBxU3pWekdVelEwWXZObHNn?oc=5",
-        "source": "Reuters",
-        "datetime": 1787932578
       },
       {
         "id": 8416160,
@@ -5620,7 +5620,7 @@
         "summary": "Iran's disfigured supreme leader remains invisible six months into an existential war\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQW14UEoyWExDbUdTdVpKekV0R2F3VGJnZV9hTnpSTW1FeUNWQ1pxV0c4WmFzX0cxbWhyNFJmekItWkVHSmlHQ1ZBTFRvRFlYbVZMQVdiVUw2RlNlZTlXZVBUMXJydUp3RlM0RVBCR056c0IzYUZlQmM2dVV0bVdkMVdXejFkSjhKZ2FWbzZDNDRVSzg1cEhjU3dSUTgwNWdPUnkxelhmWkpLNkhLb2Fibkp0OUZUa25BNVJzRGQxREFnMWFrcmE5ZDIwSnRKR2c?oc=5",
         "source": "Reuters",
-        "datetime": 1787906931
+        "datetime": 1787893260
       },
       {
         "id": 8415109,
