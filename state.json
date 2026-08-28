@@ -5178,30 +5178,38 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T12:30:35.595228+00:00",
+    "date": "2026-08-28T13:00:42.206067+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "US Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
-          "why_it_matters": "This escalation could lead to increased oil prices, affecting various economies and potentially impacting equities markets."
+          "headline": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
+          "why_it_matters": "This event could lead to increased oil prices and have a ripple effect on the global economy, particularly in the US."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "Shifts in oil market influence could have broader implications for global economic balances and trade relationships."
+          "why_it_matters": "The shift in influence from OPEC+ to China could impact the global oil market and have implications for US and Indian economies."
         },
         {
-          "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-          "why_it_matters": "Comments from Fed officials can influence market expectations about future monetary policy decisions, potentially affecting US equities and other markets."
+          "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
+          "why_it_matters": "Positive earnings from major US companies like Nvidia and Salesforce could boost investor confidence and impact the US equities market."
         }
       ],
       "risk": {
         "crypto": "normal",
         "india": "normal",
-        "us": "normal"
+        "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran-US conflict and its potential economic implications, with a stalemate in US-Iran talks and a focus on economic warfare. The situation could impact oil prices and, by extension, various markets. However, there are no immediate, market-moving developments in the crypto, Indian equities, or US equities spaces."
+      "summary": "Today's news is dominated by the ongoing Iran war and its effects on global markets, with potential implications for oil prices and trade. The situation remains volatile, but no major market-moving events have occurred. Overall, the risk landscape remains relatively stable, with some potential for escalation in the Iran conflict."
     },
     "headlines": [
+      {
+        "id": 8415417,
+        "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
+        "summary": "BitGo is expanding its institutional capabilities just as activity in the crypto market is showing signs of picking up after a prolonged trading slump.",
+        "url": "https://www.cnbc.com/2026/08/27/bitgo-to-acquire-nydigs-institutional-trading-business-as-crypto-trading-rebounds.html",
+        "source": "CNBC",
+        "datetime": 1787920043
+      },
       {
         "id": 8415089,
         "headline": "Imax says it's open to a sale. Why is no one buying?",
@@ -5217,6 +5225,22 @@
         "url": "https://www.cnbc.com/2026/08/28/navy-blockade-iran-oil-exports-sanctions-trump.html",
         "source": "CNBC",
         "datetime": 1787914508
+      },
+      {
+        "id": 8415316,
+        "headline": "Pipelines and ports: Iran war spurs Gulf infrastructure investment - Reuters",
+        "summary": "Pipelines and ports: Iran war spurs Gulf infrastructure investment\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPMFpCNDNNRjl2ZVJGeG1nOHNCd09IQ1VQS1hJejJiX0V1TFRGalFNS1EzbjZHS1Nua0pNNlVWZzlpVl9GM0FoNGVNMGhEY1djUW9HRFRpODlUQnNLaGtXT092WVRNT3NyWHFaN2tYT1N5OW00VDljVXB0cDJ6UU5tMktQaFBwVUZCZHFmRkVfcVRrR25NTWFFd2ZhRnVpVGhKNXk1dzhVQ21YUFcwWC1YODdvUQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787913338
+      },
+      {
+        "id": 8415317,
+        "headline": "Iran war drives US transport fuel surcharges, but also industry profits - Reuters",
+        "summary": "Iran war drives US transport fuel surcharges, but also industry profits\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNNEl5QXd2UEpMZlNEOGszSng5WEotaDlSVG1qMXIxXzFNdDZiMFMxTnUxM0tIX2hYeXVkWVhYUUJMZF9PY3lSNXFVOC03TnF6dmstYzFVdFlwdWZZdVFqQ0tqS2VtSm5UU2p5bnhtQ2xPdnFhcWVmbTFpLU0zR0g5c0l4LTVMWHZFaXI2ME85a255SjdQMjRXSzloU2w1UFd5YWFPam5OOVRFanNqSEhvWVQ0cmFlUDFhWFE?oc=5",
+        "source": "Reuters",
+        "datetime": 1787913150
       },
       {
         "id": 8415107,
@@ -5497,30 +5521,6 @@
         "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQaFNYemtDLVI0aVJranpORkVlX0ppenZITDhaMnRYU2xVV0VIajlPb1g0a1FXMXJENnByeEFYODExUUVZUWluUUZKU2FvRy1ZcFNTMm91azBEWmFvTU5fbUd4UnFjOTFPSC1GQjVVdG9NbnAySkstMkdtcXpZNWZXVThlX2FzQWN4ZmxZazZCNVd5NTF3MnkxNXlEV1hSWTQ2RkFn?oc=5",
         "source": "Reuters",
         "datetime": 1787806980
-      },
-      {
-        "id": 8410460,
-        "headline": "EXCLUSIVE: Pentagon's NATO review preparing troop options for Hegseth by November 6 - Reuters",
-        "summary": "EXCLUSIVE: Pentagon's NATO review preparing troop options for Hegseth by November 6\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdWRFTVVLeWNzcWswcTRJV0xyVkRqUkhkY0M4M01xck5KRDlyakVkaVU2Rk1FX2NBM1ZiRFVHUUczS19BbmpjVXBXeWNtOENJbFMyVjNDbGlnZEpHdVl3NEc1aEhJd3Nvem5ybFlacDlCWWQybkhDUVhqOTVHWXhaMjNleFVUZWxJVktnaHRMS2pRWUd1OXctZXRVa08wbTJCTGxSVEFjdDB6eFhfNEE?oc=5",
-        "source": "Reuters",
-        "datetime": 1787806860
-      },
-      {
-        "id": 8413823,
-        "headline": "Nvidia in talks to buy AI startup Hugging Face, reports say",
-        "summary": "Nvidia is reportedly close to acquiring AI startup Hugging Face for approximately $13 billion, enhancing its AI portfolio.",
-        "url": "https://www.bloomberg.com/news/articles/2026-08-27/nvidia-discussed-buying-ai-startup-hugging-face-insider-says",
-        "source": "Bloomberg",
-        "datetime": 1787805531
-      },
-      {
-        "id": 8414140,
-        "headline": "Israel considers expelling British officials from post-war Gaza headquarters, FT reports - Reuters",
-        "summary": "Israel considers expelling British officials from post-war Gaza headquarters, FT reports\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRkxHQllqSE9tVU5CWU1aaWdYVkFwZ1hnUkJ1ZXYybGlUbnNYZ0l2VFdzR21IMENWWm0yU2NaMEozQVpqaHlNb2h2YTZ6VlI2YndYMTRMbDNpVnV4dk5vYUIwY2p6WVZYejhJWFF6RHNHeS1FaUQyN09KRkM2V2pyVEJYLXJmTnM4MkRPZFNjWmp5cDE4MEVDMjlvMlhkT1BfbHZOeTBUbi1GeXFwdm9UZ1U4QTliSEcteGgw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787804160
       }
     ]
   },
@@ -5590,6 +5590,9 @@
     8415089,
     8415107,
     8415109,
-    8415108
+    8415108,
+    8415417,
+    8415316,
+    8415317
   ]
 }
