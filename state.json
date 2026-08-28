@@ -4714,20 +4714,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T03:30:35.769369+00:00",
+    "date": "2026-08-28T03:45:26.511761+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil on track for weekly loss even as Iran tensions simmer",
-          "why_it_matters": "The situation in Iran continues to influence oil prices, which can have broader implications for global markets and economies."
+          "why_it_matters": "The ongoing Iran tensions could lead to oil price volatility, affecting global markets and economies."
         },
         {
-          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms",
-          "why_it_matters": "The meeting could lead to decisions affecting gas prices and the oil industry, potentially influencing the US economy and markets."
+          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
+          "why_it_matters": "The reopening of the Strait of Hormuz could ease oil supply concerns and impact global oil prices."
         },
         {
-          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "Shifts in oil market influence can impact global energy prices and have geopolitical implications, affecting various markets including US equities."
+          "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
+          "why_it_matters": "The Fed's comments on inflation and policy rates could influence US monetary policy and impact the US equity market."
         }
       ],
       "risk": {
@@ -4735,7 +4735,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by ongoing tensions between the US and Iran, which could impact oil prices and global markets. The conflict's progression and potential escalation are being closely watched. Despite this, there are no immediate, market-moving events reported, suggesting a relatively stable day ahead."
+      "summary": "Today's news is dominated by ongoing tensions between the US and Iran, which could impact oil prices and global markets. The situation remains volatile, but there are no major new developments that significantly alter the risk landscape. Overall, the markets are watching the situation closely, but no drastic changes are expected."
     },
     "headlines": [
       {
@@ -4987,6 +4987,14 @@
         "datetime": 1787801940
       },
       {
+        "id": 8413613,
+        "headline": "Tata Power loses $490 million arbitration challenge in Singapore",
+        "summary": "The Singapore International Commercial Court rejected Tata Power\u2019s challenge to the damages awarded to Kleros Capital Partners and its claim of a natural justice breach",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-26/tata-power-loses-490-million-arbitration-challenge-in-singapore",
+        "source": "Bloomberg",
+        "datetime": 1787800997
+      },
+      {
         "id": 8413303,
         "headline": "Nepal flash flood death toll rises to 157; Bihar, UP on high alert",
         "summary": "Almost 300 foreign nationals from countries including India, Malaysia, the UK, the US, and Australia have been confirmed missing after the disaster",
@@ -5049,14 +5057,6 @@
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdkJKLVFhNWZCTm9nbWRDa0FEZklXZzJIa1pDQmF6aFFndlBpVHRMWnBsS2kzaGhjWXd2ZFBfN1A2czRPY2xmZ0lzVm12OHU2dXBWa3lvclpHZENUMFlEN1JMUW9kM3VMbmtnNTRNUmlzY1daSVJ0MjUzV2x2d2ZENS1VdklOZWtON3NRN2ZaRHdmeFR1Q2tDTWJVblFHNEE1YlBHZ3NaRkdPSkRIWWcwT0Rnd094UmNHTWZUVnQyZ1RFZw?oc=5",
         "source": "Reuters",
         "datetime": 1787773734
-      },
-      {
-        "id": 8410569,
-        "headline": "Mourning Dolly: Photos of fan tributes around the world - Reuters",
-        "summary": "Mourning Dolly: Photos of fan tributes around the world\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcWdLNnd1eTRDM1dSQXFGcjN0WFV4dk1LWk9Id083RWQwVDd5endwaHFQTDk1TEZzSDlCVjhncWlhMC1FUUs5TjZQdFd2OFNBSTRFZHlGR1FYSDVSTDRFSHZQVk9XUjQ0Y2JLUXhvMzBYRzJPa0M1SUI3Yzc5d0tKRzVzOWEydXRVMWx6OURpRE1xakdIUENuSVQtX0hfUQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787773013
       }
     ]
   },
@@ -5113,6 +5113,7 @@
     8413303,
     8413304,
     8407286,
-    8413410
+    8413410,
+    8413613
   ]
 }
