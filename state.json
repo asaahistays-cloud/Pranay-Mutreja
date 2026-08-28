@@ -1118,7 +1118,7 @@
     "FET-USD": {
       "status": "watching",
       "range_high": 0.17072,
-      "range_low": 0.1521,
+      "range_low": 0.15069,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -5350,7 +5350,7 @@
         "direction": "short",
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
-        "stop_loss": 18.947937931333268,
+        "stop_loss": 18.91802712849208,
         "extreme_since_entry": 18.760000228881836,
         "peak_profit_per_unit": 0.7600002288818359,
         "take_profit_target": null,
@@ -5478,7 +5478,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T18:45:28.936324+00:00",
+    "date": "2026-08-28T19:02:14.370977+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5679,14 +5679,6 @@
         "datetime": 1787860544
       },
       {
-        "id": 8411849,
-        "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say - Reuters",
-        "summary": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQUTVfLVZrNnM2eTJJcmZaVjN5Ym83a094ZUYxR3RqenVKVUxyWGpIaldFZTJpZUVaRFJ4TkpJUkctd0VIc1Nzb05qamt6cnZVU3lqSkw3NUdUYmE3WXpXNTUyTjNnLUFUZERfYXp6SjMzV2hrOV9nN1FDWTI4QUxSWGpIMnhwUURoeWRoOUNsYVRMOGx3d1BwdFF1LVNYejhVSjJpT201YWxKTWNBeEdJNm5nZjEyNE1zMWg4TTN4QXNORzN1akNuVEgyWQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787856801
-      },
-      {
         "id": 8411843,
         "headline": "What's expected at Apple's September event \u2014 plus, an uneven rally in AI stocks",
         "summary": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
@@ -5709,6 +5701,14 @@
         "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOU3V4QnUxMjhRcWJmZGRDdmJSWWZuWjdnMkQ0bEZxX05lME5tNEx0dHpTUGt1UHZDbmd3WXJMS0hjWDlxRlhYblh2VUNLLXIxSkZIclZxTmd4M2VpdUdRU2NGSTgxd3VqSzZ2S2dlSUEwdnZ2aVhEWGdxQmhwOWZIYWNTMVV3bk5pS3FqMXJZYU9GbDlPRWJKR0d3YkR1QU5rUi1tR3M0Q3UzTzVsQmsyXw?oc=5",
         "source": "Reuters",
         "datetime": 1787854663
+      },
+      {
+        "id": 8411849,
+        "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say - Reuters",
+        "summary": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQUTVfLVZrNnM2eTJJcmZaVjN5Ym83a094ZUYxR3RqenVKVUxyWGpIaldFZTJpZUVaRFJ4TkpJUkctd0VIc1Nzb05qamt6cnZVU3lqSkw3NUdUYmE3WXpXNTUyTjNnLUFUZERfYXp6SjMzV2hrOV9nN1FDWTI4QUxSWGpIMnhwUURoeWRoOUNsYVRMOGx3d1BwdFF1LVNYejhVSjJpT201YWxKTWNBeEdJNm5nZjEyNE1zMWg4TTN4QXNORzN1akNuVEgyWQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787854560
       },
       {
         "id": 8411736,
