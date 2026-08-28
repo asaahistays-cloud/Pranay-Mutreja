@@ -436,10 +436,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787900400000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "PFC.NS": {
@@ -451,7 +448,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakdown_short",
+        "level": 350.6499938964844,
+        "bar_time": 1787901300000
+      },
       "trade_journal": []
     },
     "BHEL.NS": {
@@ -569,7 +570,7 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 322.8999938964844,
-      "range_low": 318.0,
+      "range_low": 317.29998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -5069,11 +5070,44 @@
         "consecutive_wins": 0,
         "trade_journal": []
       }
+    },
+    {
+      "symbol": "PFC.NS",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 350.3500061035156,
+      "stop": 351.5249938964844,
+      "target": null,
+      "qty": 1427.1442594245832,
+      "fired_at": "2026-08-28T07:30:37.485713+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 12,
+        "total": 16,
+        "confidence": 0.7222
+      },
+      "fired_hour_utc": 7,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 350.3500061035156,
+        "entry_qty": 1427.1442594245832,
+        "stop_loss": 351.5249938964844,
+        "extreme_since_entry": 350.3500061035156,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
     }
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T07:15:25.371575+00:00",
+    "date": "2026-08-28T07:30:35.034686+00:00",
     "assessment": {
       "key_events": [
         {
