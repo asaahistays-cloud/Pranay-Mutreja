@@ -4696,7 +4696,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T00:00:44.487795+00:00",
+    "date": "2026-08-28T00:15:25.322368+00:00",
     "assessment": {
       "key_events": [
         {
@@ -4937,20 +4937,20 @@
         "datetime": 1787801940
       },
       {
+        "id": 8409596,
+        "headline": "Six consequences after six months of war in Iran - Reuters",
+        "summary": "Six consequences after six months of war in Iran\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUEV1S2tFLUNEVG9hdmJ3dEF5YlBmWk8xT0wwWXN3MzZGOVYzX0xITXRLbGNuTUtscXl1Sy10NHlaelVXUHMzZVNYMm42TUVmNVN6UW1pLXV3MDF4YXpaLV82VE5QdXI3R19HemNya2U5LTg1RGFTZXdvdjZ6blJwUWllYVEyaE02cmoyVmdSU3o3SzNZ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787794855
+      },
+      {
         "id": 8408335,
         "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms - Reuters",
         "summary": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS3BzVVdsbG9iUHJoaGxwVFYzR256VFBDQnlQRlh1YVZfVnZmUE1jeXQzRXFHRDhuSnpyanlNZ1NHR0RHUy1TSm8teHRiVHJ1cTZSMDRJaW1MMFJXQ2ZpTmZrN081Y3V4OUM0Qk9lRXJMY2ZONzVZN0J4eWtZT1d4TTR1Uzg1bjR5NU9TRGFQdmpZb2RPQUpYbWI4NzdyVVhsczZkOWVjTzV1ZTRKbHV3RDMwcUJ5U2xTT1M2VFhrMlVpQQ?oc=5",
         "source": "Reuters",
         "datetime": 1787793600
-      },
-      {
-        "id": 8409596,
-        "headline": "Six consequences after six months of war in Iran - Reuters",
-        "summary": "Six consequences after six months of war in Iran\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUEV1S2tFLUNEVG9hdmJ3dEF5YlBmWk8xT0wwWXN3MzZGOVYzX0xITXRLbGNuTUtscXl1Sy10NHlaelVXUHMzZVNYMm42TUVmNVN6UW1pLXV3MDF4YXpaLV82VE5QdXI3R19HemNya2U5LTg1RGFTZXdvdjZ6blJwUWllYVEyaE02cmoyVmdSU3o3SzNZ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787790863
       },
       {
         "id": 8408336,
@@ -4975,14 +4975,6 @@
         "url": "https://www.cnbc.com/2026/08/26/okta-okta-earnings-q2-2027.html",
         "source": "CNBC",
         "datetime": 1787775205
-      },
-      {
-        "id": 8402527,
-        "headline": "U.S. Secret Service aware of Iranian video threat against Barron Trump - Reuters",
-        "summary": "U.S. Secret Service aware of Iranian video threat against Barron Trump\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdkJKLVFhNWZCTm9nbWRDa0FEZklXZzJIa1pDQmF6aFFndlBpVHRMWnBsS2kzaGhjWXd2ZFBfN1A2czRPY2xmZ0lzVm12OHU2dXBWa3lvclpHZENUMFlEN1JMUW9kM3VMbmtnNTRNUmlzY1daSVJ0MjUzV2x2d2ZENS1VdklOZWtON3NRN2ZaRHdmeFR1Q2tDTWJVblFHNEE1YlBHZ3NaRkdPSkRIWWcwT0Rnd094UmNHTWZUVnQyZ1RFZw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787773734
       },
       {
         "id": 8410569,
@@ -5039,6 +5031,14 @@
         "url": "https://www.cnbc.com/2026/08/26/why-we-need-human-reserved-jobs-bill-gates-ai-memo.html",
         "source": "CNBC",
         "datetime": 1787762648
+      },
+      {
+        "id": 8406659,
+        "headline": "European shares muted as investors assess Iran-Oman talks, U.S. inflation - Reuters",
+        "summary": "European shares muted as investors assess Iran-Oman talks, U.S. inflation\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNV1pZeWdGeTdjVWRoOE0zZi1zQzhRVTdhU3g3U3VPV2J4dHVRQWtiRF9CUHlWVGllbFpPYnIyUmc5TDZPVlJrX0lrNDZCME5rcWZEYmN2a1JFY1diVE5oeDk1WEFDNmhIeDZfUmdFMFBBVUh6M1ZibFFvdkNzSDRVc1NEcFdZZmVhRDVjTGtxQWZwd2JDd3hzS1lHalBGUmMwRkZDUTRidDZIQ3lM?oc=5",
+        "source": "Reuters",
+        "datetime": 1787762506
       }
     ]
   },
