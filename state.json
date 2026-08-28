@@ -5351,8 +5351,8 @@
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
         "stop_loss": 19.114140701293945,
-        "extreme_since_entry": 18.940200805664062,
-        "peak_profit_per_unit": 0.5797996520996094,
+        "extreme_since_entry": 18.93000030517578,
+        "peak_profit_per_unit": 0.5900001525878906,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5478,28 +5478,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T17:30:35.201333+00:00",
+    "date": "2026-08-28T17:45:27.683974+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "This could significantly impact oil prices and subsequently affect US equities and the broader economy."
+          "why_it_matters": "This development could impact oil prices and subsequently affect the US economy and stock market."
         },
         {
-          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
-          "why_it_matters": "This acquisition indicates a potential rebound in crypto trading, which could positively affect the crypto market."
+          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions",
+          "why_it_matters": "The meeting's focus on Iran sanctions and economic growth could lead to significant market-moving announcements or policies."
         },
         {
-          "headline": "Trump says the U.S. is not talking with Iran as economic war in focus",
-          "why_it_matters": "The escalation of the economic war with Iran could lead to further volatility in oil prices and global markets, affecting US equities."
+          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms",
+          "why_it_matters": "The meeting's outcome could influence gas prices, affecting consumer spending and the broader US economy, particularly ahead of the midterms."
         }
       ],
       "risk": {
-        "crypto": "positive",
+        "crypto": "normal",
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran conflict and its implications on global markets, particularly oil prices and economic sanctions. The Apple price hike and AI trade discussions may have some impact on US equities, while the crypto market sees a potential rebound with BitGo's acquisition. Overall, the situation remains volatile, especially for oil and related markets."
+      "summary": "Today's news is dominated by the ongoing Iran war and its economic implications, with potential effects on oil prices and global markets. The tech sector also sees notable developments, including Apple's price hikes and Big Tech's AI spending. Overall, market risk remains elevated due to geopolitical tensions and economic uncertainty."
     },
     "headlines": [
       {
@@ -5519,6 +5519,14 @@
         "datetime": 1787936033
       },
       {
+        "id": 8416273,
+        "headline": "QatarEnergy cancels gas deliveries to Italy's Edison until early November over Iran war - Reuters",
+        "summary": "QatarEnergy cancels gas deliveries to Italy's Edison until early November over Iran war\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNSGdXSEJxeEtGbnA4SWdCRkkyMFM4VFhkS0hHT1F5cGw3TGg1LXZneGR4Z2JBRzNjdldsUlZNMlp5T1I4RDBRLWJoUlptMms4MXVzVmhLOXJndHI3U2E0OTcwTXprQmFRSkRYMzFxRzMzZExybFVWcTBlZGduN18zZmVJcWxnR3QzcU9iclR3b3g5OUdBZ0twWlJnUnZkbGVyN2hvNFVHRWZjYW9jMmtxbUtIVlotOC10UjVfWkln?oc=5",
+        "source": "Reuters",
+        "datetime": 1787935642
+      },
+      {
         "id": 8416270,
         "headline": "52% of Gen Z investors have redirected investing money to sports bets",
         "summary": "Some Gen Z investors are choosing gambling on sports over investing for their future.",
@@ -5527,12 +5535,28 @@
         "datetime": 1787933401
       },
       {
+        "id": 8416377,
+        "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months - Reuters",
+        "summary": "US hits Egyptian bank branches with Iran sanctions as war marks six months\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZnRmTktBaHNUcXJSeXVoMEhUSDg0QlpTRkFGcllGUW5zcW84bE81NjQxTWZ0VjBSNHpxZjBnRkNmVHAyZkFaNkYtYXZ4R1VaRlpIVHF0YVIwZ3BfY1ByZVdKM0RPOXBNMnJzTDkyVnF6b0FnNlRFQ0ozTk02cWY0dHZPYm40TUY2TVlSUklxWUJWVkdZdXNYX21TM05QV1R4dnBxU3pWekdVelEwWXZObHNn?oc=5",
+        "source": "Reuters",
+        "datetime": 1787932578
+      },
+      {
         "id": 8416160,
         "headline": "Big Tech's massive AI spending is putting one of its longtime strengths to the test",
         "summary": "There's new risk emerging from Big Tech's massive artificial intelligence buildout.",
         "url": "https://www.cnbc.com/2026/08/28/big-techs-ai-spending-is-putting-a-longtime-strengths-to-the-test.html",
         "source": "CNBC",
         "datetime": 1787932258
+      },
+      {
+        "id": 8413825,
+        "headline": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait - Reuters",
+        "summary": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787930955
       },
       {
         "id": 8415633,
@@ -5557,14 +5581,6 @@
         "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNcWtFc01lWWhZVGlqMFEwQ0JNb2QtRGJXN2VaQ3NtUHpQSW9LdG50dFcwTXEyT2dUMHM4bWpaWkFJd01ZQlAzZmt3cnR0YlZuNk1uOXhGUXhjSkFrWGU3ZmxWclVOYVhhSVFvdjR1Rjg5LXVxTU1maFFPei1ueTBDbmZQTlA2QWZwVmdsVXFvWmhDeHFFanZoVlY0VEtodTd5VzU4REVuWVV4b1hIR291bQ?oc=5",
         "source": "Reuters",
         "datetime": 1787918894
-      },
-      {
-        "id": 8416273,
-        "headline": "QatarEnergy cancels gas deliveries to Italy's Edison until early November - Reuters",
-        "summary": "QatarEnergy cancels gas deliveries to Italy's Edison until early November\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNSGdXSEJxeEtGbnA4SWdCRkkyMFM4VFhkS0hHT1F5cGw3TGg1LXZneGR4Z2JBRzNjdldsUlZNMlp5T1I4RDBRLWJoUlptMms4MXVzVmhLOXJndHI3U2E0OTcwTXprQmFRSkRYMzFxRzMzZExybFVWcTBlZGduN18zZmVJcWxnR3QzcU9iclR3b3g5OUdBZ0twWlJnUnZkbGVyN2hvNFVHRWZjYW9jMmtxbUtIVlotOC10UjVfWkln?oc=5",
-        "source": "Reuters",
-        "datetime": 1787915359
       },
       {
         "id": 8415089,
@@ -5604,15 +5620,7 @@
         "summary": "Iran's disfigured supreme leader remains invisible six months into an existential war\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQW14UEoyWExDbUdTdVpKekV0R2F3VGJnZV9hTnpSTW1FeUNWQ1pxV0c4WmFzX0cxbWhyNFJmekItWkVHSmlHQ1ZBTFRvRFlYbVZMQVdiVUw2RlNlZTlXZVBUMXJydUp3RlM0RVBCR056c0IzYUZlQmM2dVV0bVdkMVdXejFkSjhKZ2FWbzZDNDRVSzg1cEhjU3dSUTgwNWdPUnkxelhmWkpLNkhLb2Fibkp0OUZUa25BNVJzRGQxREFnMWFrcmE5ZDIwSnRKR2c?oc=5",
         "source": "Reuters",
-        "datetime": 1787893260
-      },
-      {
-        "id": 8413825,
-        "headline": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait - Reuters",
-        "summary": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787880840
+        "datetime": 1787906931
       },
       {
         "id": 8415109,
@@ -5807,14 +5815,6 @@
         "datetime": 1787830494
       },
       {
-        "id": 8409061,
-        "headline": "Shipping traffic through Strait of Hormuz rises slightly, data shows - Reuters",
-        "summary": "Shipping traffic through Strait of Hormuz rises slightly, data shows\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbC0zcXlqQ0pPcmt1dVA0OGJwY3NmTTdYaGVLY3RrX2JnVHdxSDVFVjNxRTQwTXM1OGlNTEFtZE52M2VMQzRhOUFfMUxEVFB6bW5OQkc3bzF4bzhibEt0WUdyNERfYUVBTERCX0Q4bVFKX0NPMWN1NkJhZGdqZVVSeWt5MTVSNHNCXzJ5cC1lWm1kQlNuRHZYT3pIdVo2WUxoblVKTE9QN2NSdFZUQkhSM2FCVWpEUmV4VGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787826245
-      },
-      {
         "id": 8410133,
         "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
         "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
@@ -5900,6 +5900,7 @@
     8416270,
     8416375,
     8416273,
-    8416376
+    8416376,
+    8416377
   ]
 }
