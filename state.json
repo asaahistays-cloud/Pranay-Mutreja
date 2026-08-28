@@ -5504,30 +5504,38 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T19:45:26.575680+00:00",
+    "date": "2026-08-28T20:00:41.817497+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
-          "why_it_matters": "The expansion of sanctions may lead to increased economic pressure and potential market volatility."
+          "why_it_matters": "This escalation in sanctions could impact global economic stability and oil prices, indirectly affecting the US and Indian equities markets."
         },
         {
           "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "Changes in oil prices and potential deals in the Hormuz Strait could impact global energy markets and influence US equities."
+          "why_it_matters": "Changes in oil prices due to geopolitical events or Fed policy hints can influence inflation expectations and thus impact US equities."
         },
         {
-          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
-          "why_it_matters": "The reopening of the Strait of Hormuz could significantly affect global oil prices and market sentiment, particularly in the US and other oil-dependent economies."
+          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
+          "why_it_matters": "This acquisition indicates a potential increase in institutional investment in crypto, which could positively impact the crypto market."
         }
       ],
       "risk": {
         "crypto": "normal",
         "india": "normal",
-        "us": "elevated"
+        "us": "normal"
       },
-      "summary": "Today's news is dominated by the ongoing Iran conflict and its economic implications, with potential effects on global markets. The situation remains volatile, but no drastic changes occurred overnight. Overall, the risk landscape remains relatively stable, with some potential for escalation in the US and global markets."
+      "summary": "Today's news brings a mix of geopolitical tensions, economic updates, and corporate announcements, but none significantly alter the risk landscape for the watched markets. The ongoing Iran-US conflict and its implications on oil prices and global economic stability are worth monitoring. Overall, market risk remains relatively stable."
     },
     "headlines": [
+      {
+        "id": 8416894,
+        "headline": "Stock traders warm up to Warsh as volatility index touches year-to-date low",
+        "summary": "The Cboe Volatility Index (VIX), which measures the price of 30-day options on the S&P 500 Index, fell to as low as 14.1.",
+        "url": "https://www.cnbc.com/2026/08/28/stock-traders-warm-up-to-warsh-as-volatility-index-touches-year-to-date-low.html",
+        "source": "CNBC",
+        "datetime": 1787945709
+      },
       {
         "id": 8416892,
         "headline": "Bessent attacks Warren over yen intervention query, offers \u2018Foreign Exchange for Dummies\u2019 lesson",
@@ -5839,14 +5847,6 @@
         "url": "https://www.cnbc.com/2026/08/27/american-airlines-routes-xlr.html",
         "source": "CNBC",
         "datetime": 1787832001
-      },
-      {
-        "id": 8410234,
-        "headline": "What the Buss family Lakers dispute can teach the wealthy about trusts",
-        "summary": "Jeanie Buss, governor of the Lakers, is contesting her siblings' decision to sell the family's remaining stake in the NBA team.",
-        "url": "https://www.cnbc.com/2026/08/27/buss-family-lakers-trust-dispute.html",
-        "source": "CNBC",
-        "datetime": 1787830494
       }
     ]
   },
@@ -5929,6 +5929,7 @@
     8416376,
     8416377,
     8416892,
-    8416893
+    8416893,
+    8416894
   ]
 }
