@@ -5178,7 +5178,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T12:00:43.940184+00:00",
+    "date": "2026-08-28T12:15:26.627473+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5451,14 +5451,6 @@
         "datetime": 1787818057
       },
       {
-        "id": 8409061,
-        "headline": "Shipping traffic through Strait of Hormuz rises slightly, data shows - Reuters",
-        "summary": "Shipping traffic through Strait of Hormuz rises slightly, data shows\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbC0zcXlqQ0pPcmt1dVA0OGJwY3NmTTdYaGVLY3RrX2JnVHdxSDVFVjNxRTQwTXM1OGlNTEFtZE52M2VMQzRhOUFfMUxEVFB6bW5OQkc3bzF4bzhibEt0WUdyNERfYUVBTERCX0Q4bVFKX0NPMWN1NkJhZGdqZVVSeWt5MTVSNHNCXzJ5cC1lWm1kQlNuRHZYT3pIdVo2WUxoblVKTE9QN2NSdFZUQkhSM2FCVWpEUmV4VGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787817215
-      },
-      {
         "id": 8409487,
         "headline": "OPEC+ loses oil market sway in Iran war as China gains influence - Reuters",
         "summary": "OPEC+ loses oil market sway in Iran war as China gains influence\u00a0\u00a0Reuters",
@@ -5521,6 +5513,14 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-27/nvidia-discussed-buying-ai-startup-hugging-face-insider-says",
         "source": "Bloomberg",
         "datetime": 1787805531
+      },
+      {
+        "id": 8414140,
+        "headline": "Israel considers expelling British officials from post-war Gaza headquarters, FT reports - Reuters",
+        "summary": "Israel considers expelling British officials from post-war Gaza headquarters, FT reports\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRkxHQllqSE9tVU5CWU1aaWdYVkFwZ1hnUkJ1ZXYybGlUbnNYZ0l2VFdzR21IMENWWm0yU2NaMEozQVpqaHlNb2h2YTZ6VlI2YndYMTRMbDNpVnV4dk5vYUIwY2p6WVZYejhJWFF6RHNHeS1FaUQyN09KRkM2V2pyVEJYLXJmTnM4MkRPZFNjWmp5cDE4MEVDMjlvMlhkT1BfbHZOeTBUbi1GeXFwdm9UZ1U4QTliSEcteGgw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787804160
       }
     ]
   },
