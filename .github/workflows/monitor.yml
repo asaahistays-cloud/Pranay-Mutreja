@@ -61,7 +61,18 @@ jobs:
       # so it works whether the schedule or the cron-job.org backup
       # delivered this run. `mode=X` still force-runs it for manual testing
       # regardless of time.
+      # continue-on-error on all four steps below: none of them are the
+      # bot's actual job (finding setups and alerting on them) -- they're
+      # auxiliary features that should never be able to take the real
+      # scan down. Confirmed directly: news_briefing.py returning exit 1
+      # on a harmless "no headlines this cycle" condition (not a real
+      # error) skipped every step after it in the job, including "Run
+      # monitor (full scan)" -- 3 full scans today ran zero real trading
+      # logic and fired zero alerts because of it. continue-on-error
+      # still surfaces the failure (step shows as failed, still emails on
+      # it) but no longer blocks anything downstream.
       - name: India opening-range scan
+        continue-on-error: true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -75,6 +86,7 @@ jobs:
           fi
 
       - name: US opening-range scan
+        continue-on-error: true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -90,6 +102,7 @@ jobs:
           fi
 
       - name: World news briefing
+        continue-on-error: true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -107,6 +120,7 @@ jobs:
         # itself without an arbitrary schedule.
 
       - name: Trade performance report
+        continue-on-error: true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -129,6 +143,13 @@ jobs:
         run: python3 monitor.py
 
       - name: Commit updated state
+        if: always()
+        # Always attempt this, even if "Run monitor (full scan)" itself
+        # crashed -- a real crash there is worth stopping and flagging
+        # (unlike the four auxiliary steps above, deliberately NOT given
+        # continue-on-error), but whatever real state.json changes did
+        # happen before a mid-run crash should still get saved rather
+        # than silently lost.
         run: |
           git config user.name "multi-market-monitor-bot"
           git config user.email "actions@github.com"

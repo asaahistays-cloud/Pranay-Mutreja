@@ -115,8 +115,16 @@ def main():
 
     headlines = fetch_world_news()
     if not headlines:
-        print("No headlines fetched, skipping.")
-        return 1
+        # Not a real failure -- an empty/transient response from Finnhub
+        # this cycle is expected sometimes and nothing is actually wrong.
+        # Exiting 0 here matters: this step has no failure isolation of
+        # its own in monitor.yml (see that file's comment), so a non-zero
+        # exit here used to skip every subsequent step in the job,
+        # including the real monitor scan -- confirmed directly: this
+        # exact line took down 3 full scans today, meaning no trading
+        # alerts fired those cycles at all.
+        print("No headlines fetched this cycle -- nothing wrong, just nothing new to report.")
+        return 0
 
     state = monitor.load_state()
     seen_ids_list = state.get("news_seen_ids", [])
