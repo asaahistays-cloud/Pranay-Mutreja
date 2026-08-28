@@ -1128,11 +1128,7 @@
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 0.15069,
-        "bar_time": 1787954400000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "pending": null,
       "consecutive_wins": 1
@@ -5537,7 +5533,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T22:48:16.286316+00:00",
+    "date": "2026-08-28T23:00:38.441096+00:00",
     "assessment": {
       "key_events": [
         {
