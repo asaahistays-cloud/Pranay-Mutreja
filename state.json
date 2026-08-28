@@ -1132,8 +1132,8 @@
       "trade_journal": [],
       "pending": {
         "type": "breakdown_short",
-        "level": 0.15726,
-        "expires": 1787940900000
+        "level": 0.15069,
+        "expires": 1787961600000
       },
       "consecutive_wins": 1
     },
@@ -5504,7 +5504,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T22:15:25.804422+00:00",
+    "date": "2026-08-28T22:18:16.281413+00:00",
     "assessment": {
       "key_events": [
         {
