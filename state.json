@@ -1191,8 +1191,8 @@
       "consecutive_losses": 0,
       "last_alert": {
         "type": "breakdown_short",
-        "level": 75.41000366210938,
-        "bar_time": 1787894100000
+        "level": 75.05999755859375,
+        "bar_time": 1787898600000
       },
       "trade_journal": []
     },
@@ -4978,8 +4978,41 @@
         "direction": "short",
         "entry_price": 351.6,
         "entry_qty": 1421,
-        "stop_loss": 353.2,
-        "extreme_since_entry": 351.6,
+        "stop_loss": 350.93499572753905,
+        "extreme_since_entry": 350.6499938964844,
+        "peak_profit_per_unit": 0.9500061035156477,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "NHPC.NS",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 74.93000030517578,
+      "stop": 75.17535509381976,
+      "target": null,
+      "qty": 5.02335511099638,
+      "fired_at": "2026-08-28T06:45:38.295762+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 11,
+        "total": 15,
+        "confidence": 0.7059
+      },
+      "fired_hour_utc": 6,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 74.93000030517578,
+        "entry_qty": 5.02335511099638,
+        "stop_loss": 75.17535509381976,
+        "extreme_since_entry": 74.93000030517578,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
@@ -4990,20 +5023,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T06:30:32.580253+00:00",
+    "date": "2026-08-28T06:45:26.835362+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Iran war diplomacy turns toward reopening Strait of Hormuz",
-          "why_it_matters": "This development could impact global oil prices and, by extension, affect various markets including US equities."
+          "why_it_matters": "This development could significantly impact global oil prices and, by extension, affect various markets, including US equities."
         },
         {
-          "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
-          "why_it_matters": "Positive earnings reports from major tech companies can influence investor sentiment and potentially boost US equities."
+          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
+          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market due to the Iran war could lead to changes in global energy dynamics and economic policies."
         },
         {
-          "headline": "RBI ramps up rupee support as rise in forex reserves gives comfort",
-          "why_it_matters": "India's central bank supporting the rupee could stabilize the currency and have a positive effect on Indian equities."
+          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says",
+          "why_it_matters": "The discussions at the G20 finance meeting regarding Iran sanctions and global economic imbalances could have far-reaching implications for international trade and financial markets."
         }
       ],
       "risk": {
@@ -5011,7 +5044,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Tensions between the US and Iran continue, with ongoing discussions about the Strait of Hormuz and potential sanctions, but no significant escalation has occurred, and other news items such as earnings reports from major companies like Nvidia and Salesforce are also drawing attention. The situation remains a potential risk factor for markets but has not significantly changed. Overall market risk appears contained for now."
+      "summary": "Tensions surrounding the Iran war and its impact on global markets continue, with a focus on the Strait of Hormuz and potential economic sanctions. The situation remains volatile but has not significantly escalated, keeping risk levels manageable. Overall, the markets are watching for any signs of further conflict or resolution."
     },
     "headlines": [
       {
@@ -5287,6 +5320,14 @@
         "datetime": 1787805531
       },
       {
+        "id": 8414140,
+        "headline": "Israel considers expelling British officials from post-war Gaza headquarters, FT reports - Reuters",
+        "summary": "Israel considers expelling British officials from post-war Gaza headquarters, FT reports\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRkxHQllqSE9tVU5CWU1aaWdYVkFwZ1hnUkJ1ZXYybGlUbnNYZ0l2VFdzR21IMENWWm0yU2NaMEozQVpqaHlNb2h2YTZ6VlI2YndYMTRMbDNpVnV4dk5vYUIwY2p6WVZYejhJWFF6RHNHeS1FaUQyN09KRkM2V2pyVEJYLXJmTnM4MkRPZFNjWmp5cDE4MEVDMjlvMlhkT1BfbHZOeTBUbi1GeXFwdm9UZ1U4QTliSEcteGgw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787804160
+      },
+      {
         "id": 8413719,
         "headline": "Iran, Oman agree to share Strait of Hormuz revenue",
         "summary": "\u201cAgreements have been reached regarding each country\u2019s share of the strait\u2019s waters and Iran and Oman\u2019s revenue share,\u201d IRGC spokesman said",
@@ -5325,14 +5366,6 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-27/rbi-is-showing-up-whenever-rupee-weakens-in-intervention-shift",
         "source": "Bloomberg",
         "datetime": 1787795823
-      },
-      {
-        "id": 8413198,
-        "headline": "Options turnover on NSE plunges to lowest this year",
-        "summary": "India's largest stock exchange sees a significant drop in options turnover, reflecting stricter trading rules and market adjustments.",
-        "url": "https://www.bloomberg.com/news/articles/2026-08-26/options-turnover-sinks-at-india-s-top-exchange-preparing-for-ipo",
-        "source": "Bloomberg",
-        "datetime": 1787795014
       }
     ]
   },
@@ -5395,6 +5428,7 @@
     8413719,
     8404815,
     8413823,
-    8413825
+    8413825,
+    8414140
   ]
 }
