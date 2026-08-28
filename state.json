@@ -28,7 +28,7 @@
     "ETH-USD": {
       "status": "watching",
       "range_high": 2567.0,
-      "range_low": 2415.0,
+      "range_low": 2406.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -5478,7 +5478,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T16:46:12.119202+00:00",
+    "date": "2026-08-28T17:00:39.324482+00:00",
     "assessment": {
       "key_events": [
         {
