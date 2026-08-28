@@ -5113,8 +5113,17 @@
       "target": null,
       "qty": 1427,
       "fired_at": "2026-08-28T07:38:27.197446+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 350.4,
+        "exit": 351.15,
+        "qty": 1427,
+        "pnl_per_unit": -0.75,
+        "pnl_total": -1070.25,
+        "exit_reason": "manual_close",
+        "closed_at": "2026-08-28T07:47:08.371965+00:00"
+      },
       "surfaced": true,
       "taken": true,
       "confidence_at_fire": {
