@@ -434,23 +434,21 @@
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 1,
+      "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "consecutive_wins": 0
+      "trade_journal": []
     },
     "PFC.NS": {
       "status": "watching",
-      "range_high": 365.6499938964844,
-      "range_low": 352.3500061035156,
+      "range_high": 355.8500061035156,
+      "range_low": 353.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "consecutive_wins": 1
+      "trade_journal": []
     },
     "BHEL.NS": {
       "status": "watching",
@@ -493,20 +491,19 @@
     "NATIONALUM.NS": {
       "status": "watching",
       "range_high": 393.6499938964844,
-      "range_low": 388.04998779296875,
+      "range_low": 389.04998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 1,
+      "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "consecutive_wins": 0
+      "trade_journal": []
     },
     "CANBK.NS": {
       "status": "watching",
-      "range_high": 130.8800048828125,
-      "range_low": 127.81999969482422,
+      "range_high": 128.9600067138672,
+      "range_low": 127.4000015258789,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -554,24 +551,20 @@
     },
     "IRCON.NS": {
       "status": "watching",
-      "range_high": 125.91999816894531,
-      "range_low": 123.29000091552734,
+      "range_high": 124.05000305175781,
+      "range_low": 122.26000213623047,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 1,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 123.29000091552734,
-        "bar_time": 1787821200000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "consecutive_wins": 0
     },
     "RECLTD.NS": {
       "status": "watching",
-      "range_high": 322.70001220703125,
+      "range_high": 322.8999938964844,
       "range_low": 319.25,
       "direction": null,
       "entry_price": null,
@@ -992,8 +985,8 @@
     },
     "SUZLON.NS": {
       "status": "watching",
-      "range_high": 47.400001525878906,
-      "range_low": 46.38999938964844,
+      "range_high": 46.869998931884766,
+      "range_low": 46.40999984741211,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1207,7 +1200,7 @@
     "POWERGRID.NS": {
       "status": "watching",
       "range_high": 267.29998779296875,
-      "range_low": 263.8500061035156,
+      "range_low": 264.8999938964844,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1295,19 +1288,19 @@
   "active_india_symbols": [
     "SAIL.NS",
     "VEDL.NS",
-    "ETERNAL.NS",
     "NMDC.NS",
     "NATIONALUM.NS",
-    "POWERGRID.NS",
+    "SUZLON.NS",
     "RECLTD.NS",
-    "HINDCOPPER.NS",
-    "IOC.NS",
+    "ETERNAL.NS",
+    "IRCON.NS",
     "HUDCO.NS",
-    "PAYTM.NS",
-    "JPPOWER.NS",
-    "UNIONBANK.NS",
+    "IOC.NS",
+    "PFC.NS",
+    "POWERGRID.NS",
     "NHPC.NS",
-    "TATAPOWER.NS"
+    "HINDCOPPER.NS",
+    "CANBK.NS"
   ],
   "active_us_symbols": [
     "SNAP",
@@ -4727,8 +4720,17 @@
       "target": null,
       "qty": 0.4791886409731397,
       "fired_at": "2026-08-27T09:15:35.840026+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 123.25,
+        "exit": 123.55000305175781,
+        "qty": 0.4791886409731397,
+        "pnl_per_unit": -0.3000030517578125,
+        "pnl_total": -0.14375805465962066,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T04:20:27.826371+00:00"
+      },
       "surfaced": false,
       "taken": false,
       "confidence_at_fire": {
@@ -4739,16 +4741,32 @@
       "fired_hour_utc": 9,
       "fired_weekday_utc": 3,
       "shadow": {
-        "direction": "short",
-        "entry_price": 123.25,
-        "entry_qty": 0.4791886409731397,
-        "stop_loss": 123.06100234985351,
-        "extreme_since_entry": 122.26000213623047,
-        "peak_profit_per_unit": 0.9899978637695312,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
+        "consecutive_losses": 1,
         "consecutive_wins": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 123.25,
+            "exit": 123.55000305175781,
+            "qty": 0.4791886409731397,
+            "pnl_per_unit": -0.3000030517578125,
+            "pnl_total": -0.14375805465962066,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T04:20:27.826371+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 124.05000305175781,
+        "range_low": 122.26000213623047
       }
     },
     {
@@ -4775,9 +4793,9 @@
         "direction": "short",
         "entry_price": 80509.11,
         "entry_qty": 0.0020750082889170636,
-        "stop_loss": 80005.271,
-        "extreme_since_entry": 79784.56,
-        "peak_profit_per_unit": 724.5500000000029,
+        "stop_loss": 79879.362,
+        "extreme_since_entry": 79609.47,
+        "peak_profit_per_unit": 899.6399999999994,
         "take_profit_target": 77601.02,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4787,7 +4805,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T04:15:30.567395+00:00",
+    "date": "2026-08-28T04:20:26.017156+00:00",
     "assessment": {
       "key_events": [
         {
