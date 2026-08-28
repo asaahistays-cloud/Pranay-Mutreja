@@ -11,7 +11,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787881500000
+      },
       "trade_journal": [
         {
           "direction": "short",
@@ -602,63 +605,51 @@
     },
     "HOOD": {
       "status": "watching",
-      "range_high": 109.70999908447266,
-      "range_low": 108.41000366210938,
+      "range_high": 110.7699966430664,
+      "range_low": 109.6500015258789,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "MARA": {
       "status": "watching",
-      "range_high": 12.279999732971191,
-      "range_low": 11.989999771118164,
+      "range_high": 12.109999656677246,
+      "range_low": 11.8100004196167,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "SNAP": {
       "status": "watching",
-      "range_high": 5.570000171661377,
-      "range_low": 5.449999809265137,
+      "range_high": 5.460000038146973,
+      "range_low": 5.329999923706055,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "RIOT": {
       "status": "watching",
-      "range_high": 21.670000076293945,
-      "range_low": 20.969999313354492,
+      "range_high": 21.15999984741211,
+      "range_low": 20.649999618530273,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "RIVN": {
       "status": "watching",
@@ -737,33 +728,27 @@
     },
     "AAL": {
       "status": "watching",
-      "range_high": 14.050000190734863,
-      "range_low": 13.8149995803833,
+      "range_high": 13.829999923706055,
+      "range_low": 13.680000305175781,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "CLF": {
       "status": "watching",
-      "range_high": 11.8100004196167,
-      "range_low": 11.680000305175781,
+      "range_high": 11.84000015258789,
+      "range_low": 11.744999885559082,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "MO": {
       "status": "watching",
@@ -810,18 +795,15 @@
     },
     "INTC": {
       "status": "watching",
-      "range_high": 91.4000015258789,
-      "range_low": 90.43000030517578,
+      "range_high": 92.18000030517578,
+      "range_low": 90.19000244140625,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "CCL": {
       "status": "watching",
@@ -840,18 +822,15 @@
     },
     "GOLD": {
       "status": "watching",
-      "range_high": 47.095001220703125,
-      "range_low": 46.41999816894531,
+      "range_high": 46.36000061035156,
+      "range_low": 45.90999984741211,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "OXY": {
       "status": "watching",
@@ -870,48 +849,39 @@
     },
     "GM": {
       "status": "watching",
-      "range_high": 86.70999908447266,
-      "range_low": 85.69999694824219,
+      "range_high": 86.62999725341797,
+      "range_low": 86.05000305175781,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-26",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "NCLH": {
       "status": "watching",
-      "range_high": 17.280000686645508,
-      "range_low": 17.114999771118164,
+      "range_high": 16.760000228881836,
+      "range_low": 16.600000381469727,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-26",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "KMI": {
       "status": "watching",
-      "range_high": 31.450000762939453,
-      "range_low": 31.239999771118164,
+      "range_high": 31.7450008392334,
+      "range_low": 31.520000457763672,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "PFE": {
       "status": "watching",
@@ -1144,33 +1114,27 @@
     },
     "DKNG": {
       "status": "watching",
-      "range_high": 24.795000076293945,
-      "range_low": 24.540000915527344,
+      "range_high": 24.415000915527344,
+      "range_low": 24.170000076293945,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "VZ": {
       "status": "watching",
-      "range_high": 50.474998474121094,
-      "range_low": 50.209999084472656,
+      "range_high": 49.685001373291016,
+      "range_low": 49.34000015258789,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-26",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "PINS": {
       "status": "watching",
@@ -1284,6 +1248,30 @@
       "gap_date": "2026-08-27",
       "gap_direction": null,
       "gap_fired": false
+    },
+    "F": {
+      "status": "watching",
+      "range_high": 14.039999961853027,
+      "range_low": 13.949999809265137,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "KO": {
+      "status": "watching",
+      "range_high": 89.54000091552734,
+      "range_low": 89.02999877929688,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
     }
   },
   "active_india_symbols": [
@@ -1304,21 +1292,21 @@
     "GAIL.NS"
   ],
   "active_us_symbols": [
-    "RIOT",
     "SNAP",
-    "MARA",
-    "CLF",
-    "OXY",
-    "NEM",
-    "RIVN",
-    "NKE",
-    "GOLD",
     "INTC",
-    "SIRI",
+    "MARA",
+    "RIOT",
+    "HOOD",
+    "AAL",
+    "GOLD",
+    "CLF",
+    "F",
+    "KO",
+    "VZ",
     "DKNG",
-    "UBER",
-    "LYFT",
-    "KMI"
+    "NCLH",
+    "KMI",
+    "GM"
   ],
   "setup_log": [
     {
@@ -4692,32 +4680,65 @@
         "consecutive_wins": 0,
         "trade_journal": []
       }
+    },
+    {
+      "symbol": "BTC-USD",
+      "type": "range_short_rejection",
+      "direction": "short",
+      "entry": 80509.11,
+      "stop": 80991.03578571428,
+      "target": 77601.02,
+      "qty": 0.0020750082889170636,
+      "fired_at": "2026-08-28T02:05:30.871087+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 0,
+        "total": 1,
+        "confidence": 0.3333
+      },
+      "fired_hour_utc": 2,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 80509.11,
+        "entry_qty": 0.0020750082889170636,
+        "stop_loss": 80991.03578571428,
+        "extreme_since_entry": 80509.11,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": 77601.02,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
     }
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T02:00:42.656733+00:00",
+    "date": "2026-08-28T02:05:23.157859+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
-          "why_it_matters": "This development could significantly impact global oil prices and, by extension, affect US and Indian equities."
-        },
-        {
-          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "The increase in oil prices due to the rejection of ceasefire terms could lead to inflation concerns and impact stock markets."
+          "why_it_matters": "This development could significantly impact global oil prices and trade, affecting various markets."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market could lead to changes in global energy dynamics and impact markets accordingly."
+          "why_it_matters": "The shift in oil market influence from OPEC+ to China could lead to changes in global energy dynamics and prices."
+        },
+        {
+          "headline": "RBI ramps up rupee support as rise in forex reserves gives comfort",
+          "why_it_matters": "The RBI's actions to support the rupee could have implications for the Indian economy and markets, particularly in the context of the ongoing geopolitical tensions."
         }
       ],
       "risk": {
-        "crypto": "elevated",
+        "crypto": "normal",
         "india": "elevated",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran conflict and its implications on global markets, particularly oil prices, with potential impacts on US and Indian equities. The situation in the Strait of Hormuz and Trump's stance on Iran are key factors to watch. Crypto markets may see volatility due to broader market sentiment."
+      "summary": "The ongoing Iran war and its economic implications continue to influence global markets, with potential impacts on oil prices and trade. The US's stance on not talking with Iran and the conditions set for reopening the Strait of Hormuz are key factors to watch. Overall, market risk remains elevated due to geopolitical tensions and economic uncertainty."
     },
     "headlines": [
       {
@@ -4857,6 +4878,14 @@
         "datetime": 1787833230
       },
       {
+        "id": 8413199,
+        "headline": "ECB saw a further hike as likely at July meeting - Reuters",
+        "summary": "ECB saw a further hike as likely at July meeting\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQaDBJVVNFblBPSy11dmRWMWRibVZPOXZkNmY1bzZTUXI4S3hPQk50b05IbWR2VUd3RVJUNUsyRG4zNVUxWXhhUGFDSk1WN3B3QXp6YmRaeW0xUTYzMnlpZlA1TzRqc2ZYeHpHSDJ2dzZ2Y3FwS211V0JzczRSY0ZwR1h0aUZjZmNERXJoY3N1TGNiQ1R3dmZr?oc=5",
+        "source": "Reuters",
+        "datetime": 1787832854
+      },
+      {
         "id": 8410345,
         "headline": "American Airlines adds batch of new international routes on its XLR planes",
         "summary": "American is adding seven routes to its 2027 schedule, with the majority heading to smaller European cities from its Philadelphia hub or from New York City.",
@@ -4935,6 +4964,14 @@
         "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbC0zcXlqQ0pPcmt1dVA0OGJwY3NmTTdYaGVLY3RrX2JnVHdxSDVFVjNxRTQwTXM1OGlNTEFtZE52M2VMQzRhOUFfMUxEVFB6bW5OQkc3bzF4bzhibEt0WUdyNERfYUVBTERCX0Q4bVFKX0NPMWN1NkJhZGdqZVVSeWt5MTVSNHNCXzJ5cC1lWm1kQlNuRHZYT3pIdVo2WUxoblVKTE9QN2NSdFZUQkhSM2FCVWpEUmV4VGc?oc=5",
         "source": "Reuters",
         "datetime": 1787801940
+      },
+      {
+        "id": 8413299,
+        "headline": "RBI ramps up rupee support as rise in forex reserves gives comfort",
+        "summary": "The extra money strengthens the RBI\u2019s hand just as pressure starts to mount again on Asia\u2019s worst-performing currency this quarter",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-27/rbi-is-showing-up-whenever-rupee-weakens-in-intervention-shift",
+        "source": "Bloomberg",
+        "datetime": 1787795823
       },
       {
         "id": 8413198,
@@ -5023,22 +5060,6 @@
         "url": "https://www.cnbc.com/2026/08/26/nvidia-crowdstike-and-salesforce-face-big-tests-tonight.html",
         "source": "CNBC",
         "datetime": 1787764055
-      },
-      {
-        "id": 8406445,
-        "headline": "Economists want Warsh to share more on his view of the economy at Jackson Hole, says CNBC survey",
-        "summary": "Eighty percent of CNBC Fed Survey respondents say the Federal Reserve Chairman Warsh should provide more insight into his economic views.",
-        "url": "https://www.cnbc.com/2026/08/26/fed-survey-warsh-economy-view.html",
-        "source": "CNBC",
-        "datetime": 1787763744
-      },
-      {
-        "id": 8406444,
-        "headline": "Why we need \u2018Human Reserved\u2019 jobs, says Bill Gates\u2014and how we can combat the worst of the AI upheaval",
-        "summary": "\"This unprecedented technology demands an unprecedented global response,\" Bill Gates wrote in a 6,000-word memo.",
-        "url": "https://www.cnbc.com/2026/08/26/why-we-need-human-reserved-jobs-bill-gates-ai-memo.html",
-        "source": "CNBC",
-        "datetime": 1787762648
       }
     ]
   },
@@ -5089,6 +5110,8 @@
     8412477,
     8412681,
     8412680,
-    8413198
+    8413198,
+    8413199,
+    8413299
   ]
 }
