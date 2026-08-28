@@ -174,7 +174,7 @@
     "NEAR-USD": {
       "status": "watching",
       "range_high": 1.9976,
-      "range_low": 1.7996,
+      "range_low": 1.7987,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -650,7 +650,8 @@
       "trade_journal": [],
       "gap_date": "2026-08-28",
       "gap_direction": "short",
-      "gap_fired": true
+      "gap_fired": true,
+      "consecutive_wins": 1
     },
     "RIVN": {
       "status": "watching",
@@ -5335,8 +5336,17 @@
       "target": null,
       "qty": 0.8130245522375409,
       "fired_at": "2026-08-28T14:15:28.768936+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 19.520000457763672,
+        "exit": 18.940099716186523,
+        "qty": 0.8130245522375409,
+        "pnl_per_unit": 0.5799007415771484,
+        "pnl_total": 0.47147354076297904,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T19:31:15.057614+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -5347,16 +5357,32 @@
       "fired_hour_utc": 14,
       "fired_weekday_utc": 4,
       "shadow": {
-        "direction": "short",
-        "entry_price": 19.520000457763672,
-        "entry_qty": 0.8130245522375409,
-        "stop_loss": 18.91802712849208,
-        "extreme_since_entry": 18.760000228881836,
-        "peak_profit_per_unit": 0.7600002288818359,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
+        "consecutive_wins": 1,
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 19.520000457763672,
+            "exit": 18.940099716186523,
+            "qty": 0.8130245522375409,
+            "pnl_per_unit": 0.5799007415771484,
+            "pnl_total": 0.47147354076297904,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T19:31:15.057614+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 19.024999618530273,
+        "range_low": 18.7549991607666
       }
     },
     {
@@ -5478,7 +5504,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T19:15:28.372381+00:00",
+    "date": "2026-08-28T19:31:13.928942+00:00",
     "assessment": {
       "key_events": [
         {
