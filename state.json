@@ -5504,20 +5504,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T20:15:26.267091+00:00",
+    "date": "2026-08-28T20:30:34.614244+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
-          "why_it_matters": "This escalation in sanctions could impact global economic stability and oil prices, indirectly affecting the US and Indian equities markets."
+          "why_it_matters": "This escalation of sanctions could further impact global economic stability and oil prices."
         },
         {
           "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "Changes in oil prices due to geopolitical events or Fed policy hints can influence inflation expectations and thus impact US equities."
+          "why_it_matters": "Changes in oil prices can significantly affect inflation expectations and, by extension, influence monetary policy decisions."
         },
         {
           "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
-          "why_it_matters": "This acquisition indicates a potential increase in institutional investment in crypto, which could positively impact the crypto market."
+          "why_it_matters": "This acquisition indicates a potential increase in institutional investment in crypto, which could boost market confidence and trading activity."
         }
       ],
       "risk": {
@@ -5525,7 +5525,7 @@
         "india": "normal",
         "us": "normal"
       },
-      "summary": "Today's news brings a mix of geopolitical tensions, economic updates, and corporate announcements, but none significantly alter the risk landscape for the watched markets. The ongoing Iran-US conflict and its implications on oil prices and global economic stability are worth monitoring. Overall, market risk remains relatively stable."
+      "summary": "Today's news brings a mix of geopolitical tensions, economic updates, and corporate announcements, but none significantly alter the market risk landscape. The ongoing Iran conflict and related sanctions continue to influence oil prices and global economic stability. Overall, market risk remains relatively contained, with no major surprises or escalations."
     },
     "headlines": [
       {
@@ -5551,6 +5551,14 @@
         "url": "https://www.cnbc.com/2026/08/28/new-meta-safeguards-teens.html",
         "source": "CNBC",
         "datetime": 1787944025
+      },
+      {
+        "id": 8416996,
+        "headline": "What we learned from Warsh's Jackson Hole speech, and GE Vernova's CFO to retire",
+        "summary": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
+        "url": "https://www.cnbc.com/2026/08/28/what-we-learned-from-warshs-jackson-hole-speech-and-ge-vernovas-cfo-to-retire.html",
+        "source": "CNBC",
+        "datetime": 1787940185
       },
       {
         "id": 8416377,
@@ -5839,14 +5847,6 @@
         "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQaDBJVVNFblBPSy11dmRWMWRibVZPOXZkNmY1bzZTUXI4S3hPQk50b05IbWR2VUd3RVJUNUsyRG4zNVUxWXhhUGFDSk1WN3B3QXp6YmRaeW0xUTYzMnlpZlA1TzRqc2ZYeHpHSDJ2dzZ2Y3FwS211V0JzczRSY0ZwR1h0aUZjZmNERXJoY3N1TGNiQ1R3dmZr?oc=5",
         "source": "Reuters",
         "datetime": 1787832854
-      },
-      {
-        "id": 8410345,
-        "headline": "American Airlines adds batch of new international routes on its XLR planes",
-        "summary": "American is adding seven routes to its 2027 schedule, with the majority heading to smaller European cities from its Philadelphia hub or from New York City.",
-        "url": "https://www.cnbc.com/2026/08/27/american-airlines-routes-xlr.html",
-        "source": "CNBC",
-        "datetime": 1787832001
       }
     ]
   },
@@ -5930,6 +5930,7 @@
     8416377,
     8416892,
     8416893,
-    8416894
+    8416894,
+    8416996
   ]
 }
