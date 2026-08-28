@@ -4696,7 +4696,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T01:30:33.659290+00:00",
+    "date": "2026-08-28T01:45:24.112022+00:00",
     "assessment": {
       "key_events": [
         {
@@ -4720,6 +4720,14 @@
       "summary": "Today's news is dominated by the ongoing Iran conflict and its potential economic implications, with oil prices rising after Trump rejects a return to ceasefire deal terms. The conflict's impact on global markets, particularly oil and US equities, is a key area of concern. Overall, market risk is somewhat elevated due to geopolitical tensions."
     },
     "headlines": [
+      {
+        "id": 8410133,
+        "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
+        "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
+        "source": "Reuters",
+        "datetime": 1787871690
+      },
       {
         "id": 8412577,
         "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
@@ -4791,14 +4799,6 @@
         "url": "https://www.cnbc.com/2026/08/27/trump-jr-told-gop-state-attorneys-general-dont-fight-prediction-markets-nyt-reports.html",
         "source": "CNBC",
         "datetime": 1787854194
-      },
-      {
-        "id": 8410133,
-        "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
-        "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
-        "source": "Reuters",
-        "datetime": 1787853820
       },
       {
         "id": 8411737,
