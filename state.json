@@ -566,7 +566,7 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 322.8999938964844,
-      "range_low": 317.29998779296875,
+      "range_low": 316.1000061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -5146,7 +5146,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T08:15:28.798090+00:00",
+    "date": "2026-08-28T08:30:34.503974+00:00",
     "assessment": {
       "key_events": [
         {
