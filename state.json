@@ -5146,6 +5146,39 @@
         "trade_journal": [],
         "exit_alert_sent": true
       }
+    },
+    {
+      "symbol": "SAIL.NS",
+      "type": "manual",
+      "direction": "short",
+      "entry": 150,
+      "stop": 152,
+      "target": null,
+      "qty": 100,
+      "fired_at": "2026-08-28T07:53:55.774994+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": true,
+      "confidence_at_fire": {
+        "wins": 2,
+        "total": 3,
+        "confidence": 0.6
+      },
+      "fired_hour_utc": 7,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 150,
+        "entry_qty": 100,
+        "stop_loss": 152,
+        "extreme_since_entry": 150,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
     }
   ],
   "capital_inr_futures": 500000,
