@@ -1176,7 +1176,7 @@
     "NHPC.NS": {
       "status": "watching",
       "range_high": 76.55000305175781,
-      "range_low": 75.5,
+      "range_low": 75.41000366210938,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -4805,20 +4805,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T05:00:41.726283+00:00",
+    "date": "2026-08-28T05:15:25.101737+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "Oil on track for weekly loss even as Iran tensions simmer",
-          "why_it_matters": "The ongoing Iran tensions and their impact on oil prices could affect inflation and economic growth, influencing US equity markets."
+          "headline": "Iran war diplomacy turns toward reopening Strait of Hormuz",
+          "why_it_matters": "This development could impact global oil prices and, by extension, affect various markets including US equities."
         },
         {
           "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
-          "why_it_matters": "Positive earnings reports from major US tech companies can boost investor confidence and support US equity markets."
+          "why_it_matters": "Positive earnings reports from major tech companies can influence investor sentiment and potentially boost US equities."
         },
         {
-          "headline": "Trump says the U.S. is not talking with Iran as economic war in focus",
-          "why_it_matters": "The lack of diplomatic progress between the US and Iran increases the risk of further conflict, potentially destabilizing global markets and affecting oil prices."
+          "headline": "RBI ramps up rupee support as rise in forex reserves gives comfort",
+          "why_it_matters": "India's central bank supporting the rupee could stabilize the currency and have a positive effect on Indian equities."
         }
       ],
       "risk": {
@@ -4826,9 +4826,17 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Tensions with Iran continue to influence oil prices and global markets, while earnings reports from major US companies like Nvidia and Salesforce are providing optimism about the US economy. The ongoing conflict and potential for further escalation pose a risk to market stability. Overall, the situation remains volatile but without significant new developments today."
+      "summary": "Tensions between the US and Iran continue, with ongoing discussions about the Strait of Hormuz and potential sanctions, but no significant escalation has occurred, and other news items such as earnings reports from major companies like Nvidia and Salesforce are also drawing attention. The situation remains a potential risk factor for markets but has not significantly changed. Overall market risk appears contained for now."
     },
     "headlines": [
+      {
+        "id": 8413825,
+        "headline": "Iran war diplomacy turns toward reopening Strait of Hormuz - Reuters",
+        "summary": "Iran war diplomacy turns toward reopening Strait of Hormuz\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787880840
+      },
       {
         "id": 8413410,
         "headline": "Oil on track for weekly loss even as Iran tensions simmer - Reuters",
@@ -5022,6 +5030,14 @@
         "datetime": 1787818057
       },
       {
+        "id": 8409061,
+        "headline": "Shipping traffic through Strait of Hormuz rises slightly, data shows - Reuters",
+        "summary": "Shipping traffic through Strait of Hormuz rises slightly, data shows\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbC0zcXlqQ0pPcmt1dVA0OGJwY3NmTTdYaGVLY3RrX2JnVHdxSDVFVjNxRTQwTXM1OGlNTEFtZE52M2VMQzRhOUFfMUxEVFB6bW5OQkc3bzF4bzhibEt0WUdyNERfYUVBTERCX0Q4bVFKX0NPMWN1NkJhZGdqZVVSeWt5MTVSNHNCXzJ5cC1lWm1kQlNuRHZYT3pIdVo2WUxoblVKTE9QN2NSdFZUQkhSM2FCVWpEUmV4VGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787817215
+      },
+      {
         "id": 8409487,
         "headline": "OPEC+ loses oil market sway in Iran war as China gains influence - Reuters",
         "summary": "OPEC+ loses oil market sway in Iran war as China gains influence\u00a0\u00a0Reuters",
@@ -5094,14 +5110,6 @@
         "datetime": 1787803110
       },
       {
-        "id": 8409061,
-        "headline": "Shipping traffic through Strait of Hormuz rises slightly, data shows - Reuters",
-        "summary": "Shipping traffic through Strait of Hormuz rises slightly, data shows\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbC0zcXlqQ0pPcmt1dVA0OGJwY3NmTTdYaGVLY3RrX2JnVHdxSDVFVjNxRTQwTXM1OGlNTEFtZE52M2VMQzRhOUFfMUxEVFB6bW5OQkc3bzF4bzhibEt0WUdyNERfYUVBTERCX0Q4bVFKX0NPMWN1NkJhZGdqZVVSeWt5MTVSNHNCXzJ5cC1lWm1kQlNuRHZYT3pIdVo2WUxoblVKTE9QN2NSdFZUQkhSM2FCVWpEUmV4VGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787801940
-      },
-      {
         "id": 8413613,
         "headline": "Tata Power loses $490 million arbitration challenge in Singapore",
         "summary": "The Singapore International Commercial Court rejected Tata Power\u2019s challenge to the damages awarded to Kleros Capital Partners and its claim of a natural justice breach",
@@ -5140,14 +5148,6 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-26/options-turnover-sinks-at-india-s-top-exchange-preparing-for-ipo",
         "source": "Bloomberg",
         "datetime": 1787795014
-      },
-      {
-        "id": 8408335,
-        "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms - Reuters",
-        "summary": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS3BzVVdsbG9iUHJoaGxwVFYzR256VFBDQnlQRlh1YVZfVnZmUE1jeXQzRXFHRDhuSnpyanlNZ1NHR0RHUy1TSm8teHRiVHJ1cTZSMDRJaW1MMFJXQ2ZpTmZrN081Y3V4OUM0Qk9lRXJMY2ZONzVZN0J4eWtZT1d4TTR1Uzg1bjR5NU9TRGFQdmpZb2RPQUpYbWI4NzdyVVhsczZkOWVjTzV1ZTRKbHV3RDMwcUJ5U2xTT1M2VFhrMlVpQQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787793600
       }
     ]
   },
@@ -5209,6 +5209,7 @@
     8413618,
     8413719,
     8404815,
-    8413823
+    8413823,
+    8413825
   ]
 }
