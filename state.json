@@ -1189,11 +1189,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 75.05999755859375,
-        "bar_time": 1787898600000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "NMDC.NS": {
@@ -5150,7 +5146,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T07:45:28.125166+00:00",
+    "date": "2026-08-28T08:00:43.629788+00:00",
     "assessment": {
       "key_events": [
         {
