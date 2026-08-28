@@ -5178,28 +5178,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T09:45:28.229778+00:00",
+    "date": "2026-08-28T10:00:43.831576+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "Iran war diplomacy turns toward reopening Strait of Hormuz",
-          "why_it_matters": "This development could significantly impact global oil prices and, by extension, affect various markets, including US equities."
-        },
-        {
-          "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market due to the Iran war could lead to changes in global energy dynamics and economic policies."
+          "headline": "Oil on track for weekly loss even as Iran tensions simmer",
+          "why_it_matters": "This indicates that despite geopolitical tensions, oil markets are currently pricing in a managed risk, which could influence broader market sentiment."
         },
         {
           "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says",
-          "why_it_matters": "The discussions at the G20 finance meeting regarding Iran sanctions and global economic imbalances could have far-reaching implications for international trade and financial markets."
+          "why_it_matters": "The meeting's focus on Iran sanctions could lead to significant policy announcements affecting global trade and oil prices."
+        },
+        {
+          "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
+          "why_it_matters": "This move could boost India's manufacturing sector, particularly in the renewable energy space, and have a positive impact on Indian equities."
         }
       ],
       "risk": {
         "crypto": "normal",
-        "india": "normal",
+        "india": "elevated",
         "us": "elevated"
       },
-      "summary": "Tensions surrounding the Iran war and its impact on global markets continue, with a focus on the Strait of Hormuz and potential economic sanctions. The situation remains volatile but has not significantly escalated, keeping risk levels manageable. Overall, the markets are watching for any signs of further conflict or resolution."
+      "summary": "Today's news is dominated by ongoing Iran tensions and their potential impact on global markets, particularly oil prices and trade. The situation remains volatile but has not significantly escalated, keeping risks elevated but not drastically changed. Overall market sentiment remains cautious, awaiting further developments."
     },
     "headlines": [
       {
@@ -5387,6 +5387,14 @@
         "datetime": 1787830494
       },
       {
+        "id": 8414877,
+        "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
+        "summary": "Proposal aims to cut dependence on Chinese parts and close cost gap for local manufacturers",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-27/india-plans-1-4-billion-in-aid-to-spur-battery-parts-output",
+        "source": "Bloomberg",
+        "datetime": 1787824605
+      },
+      {
         "id": 8410782,
         "headline": "Canada excludes US seafood from retaliatory tariffs - Reuters",
         "summary": "Canada excludes US seafood from retaliatory tariffs\u00a0\u00a0Reuters",
@@ -5513,14 +5521,6 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-27/deadly-nepal-flood-kills-at-least-157-with-india-on-high-alert",
         "source": "Bloomberg",
         "datetime": 1787796756
-      },
-      {
-        "id": 8413299,
-        "headline": "RBI ramps up rupee support as rise in forex reserves gives comfort",
-        "summary": "The extra money strengthens the RBI\u2019s hand just as pressure starts to mount again on Asia\u2019s worst-performing currency this quarter",
-        "url": "https://www.bloomberg.com/news/articles/2026-08-27/rbi-is-showing-up-whenever-rupee-weakens-in-intervention-shift",
-        "source": "Bloomberg",
-        "datetime": 1787795823
       }
     ]
   },
@@ -5584,6 +5584,7 @@
     8404815,
     8413823,
     8413825,
-    8414140
+    8414140,
+    8414877
   ]
 }
