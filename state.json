@@ -1118,7 +1118,7 @@
     "FET-USD": {
       "status": "watching",
       "range_high": 0.17072,
-      "range_low": 0.15726,
+      "range_low": 0.1521,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -5350,9 +5350,9 @@
         "direction": "short",
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
-        "stop_loss": 19.141999816894533,
-        "extreme_since_entry": 18.959999084472656,
-        "peak_profit_per_unit": 0.5600013732910156,
+        "stop_loss": 19.114140701293945,
+        "extreme_since_entry": 18.940200805664062,
+        "peak_profit_per_unit": 0.5797996520996094,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5478,28 +5478,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T17:15:25.132121+00:00",
+    "date": "2026-08-28T17:30:35.201333+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "This could impact oil prices and subsequently affect the US economy and stock market."
+          "why_it_matters": "This could significantly impact oil prices and subsequently affect US equities and the broader economy."
         },
         {
-          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms",
-          "why_it_matters": "The meeting's outcome could influence gas prices and have broader implications for the US economy and election."
+          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
+          "why_it_matters": "This acquisition indicates a potential rebound in crypto trading, which could positively affect the crypto market."
         },
         {
-          "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
-          "why_it_matters": "This development could boost India's manufacturing sector and have a positive impact on the country's economy and stock market."
+          "headline": "Trump says the U.S. is not talking with Iran as economic war in focus",
+          "why_it_matters": "The escalation of the economic war with Iran could lead to further volatility in oil prices and global markets, affecting US equities."
         }
       ],
       "risk": {
-        "crypto": "normal",
+        "crypto": "positive",
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran war and its economic implications, which could impact oil prices and global trade. The Apple subscription price hike and Big Tech's AI spending are notable but less likely to move markets. Overall, market risk is relatively contained, with no major surprises or shocks."
+      "summary": "Today's news is dominated by the ongoing Iran conflict and its implications on global markets, particularly oil prices and economic sanctions. The Apple price hike and AI trade discussions may have some impact on US equities, while the crypto market sees a potential rebound with BitGo's acquisition. Overall, the situation remains volatile, especially for oil and related markets."
     },
     "headlines": [
       {
@@ -5509,6 +5509,14 @@
         "url": "https://www.cnbc.com/2026/08/28/apple-tv-one-price-hike-us.html",
         "source": "CNBC",
         "datetime": 1787936236
+      },
+      {
+        "id": 8416376,
+        "headline": "Cramer says he's warming back up to the AI trade, but not ready to act yet",
+        "summary": "The Investing Club holds its \"Morning Meeting\" every weekday at 10:20 a.m. ET.",
+        "url": "https://www.cnbc.com/2026/08/28/cramer-says-hes-warming-back-up-to-the-ai-trade-but-not-ready-to-act-yet.html",
+        "source": "CNBC",
+        "datetime": 1787936033
       },
       {
         "id": 8416270,
@@ -5813,14 +5821,6 @@
         "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
         "source": "Reuters",
         "datetime": 1787824620
-      },
-      {
-        "id": 8414877,
-        "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
-        "summary": "Proposal aims to cut dependence on Chinese parts and close cost gap for local manufacturers",
-        "url": "https://www.bloomberg.com/news/articles/2026-08-27/india-plans-1-4-billion-in-aid-to-spur-battery-parts-output",
-        "source": "Bloomberg",
-        "datetime": 1787824605
       }
     ]
   },
@@ -5899,6 +5899,7 @@
     8416160,
     8416270,
     8416375,
-    8416273
+    8416273,
+    8416376
   ]
 }
