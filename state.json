@@ -813,7 +813,7 @@
       "trade_journal": [],
       "gap_date": "2026-08-28",
       "gap_direction": "short",
-      "gap_fired": false
+      "gap_fired": true
     },
     "CCL": {
       "status": "watching",
@@ -1116,7 +1116,7 @@
     "FET-USD": {
       "status": "watching",
       "range_high": 0.17072,
-      "range_low": 0.15777,
+      "range_low": 0.15726,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -5348,9 +5348,9 @@
         "direction": "short",
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
-        "stop_loss": 19.376500511169432,
-        "extreme_since_entry": 19.315000534057617,
-        "peak_profit_per_unit": 0.2049999237060547,
+        "stop_loss": 19.253999710083008,
+        "extreme_since_entry": 19.139999389648438,
+        "peak_profit_per_unit": 0.3800010681152344,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5381,9 +5381,42 @@
         "direction": "short",
         "entry_price": 15.890000343322754,
         "entry_qty": 1.0858701722860864,
-        "stop_loss": 15.799000263214111,
-        "extreme_since_entry": 15.760000228881836,
-        "peak_profit_per_unit": 0.13000011444091797,
+        "stop_loss": 15.715069770812988,
+        "extreme_since_entry": 15.64009952545166,
+        "peak_profit_per_unit": 0.24990081787109375,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "INTC",
+      "type": "gap_and_go_short",
+      "direction": "short",
+      "entry": 89.91500091552734,
+      "stop": 94.25117138453892,
+      "target": null,
+      "qty": 0.2306182395610356,
+      "fired_at": "2026-08-28T16:00:46.140459+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 1,
+        "total": 5,
+        "confidence": 0.2857
+      },
+      "fired_hour_utc": 16,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 89.91500091552734,
+        "entry_qty": 0.2306182395610356,
+        "stop_loss": 94.25117138453892,
+        "extreme_since_entry": 89.91500091552734,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5393,7 +5426,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T15:45:28.809635+00:00",
+    "date": "2026-08-28T16:00:41.537410+00:00",
     "assessment": {
       "key_events": [
         {
