@@ -5504,20 +5504,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T19:31:13.928942+00:00",
+    "date": "2026-08-28T19:45:26.575680+00:00",
     "assessment": {
       "key_events": [
         {
+          "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
+          "why_it_matters": "The expansion of sanctions may lead to increased economic pressure and potential market volatility."
+        },
+        {
           "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "This development could impact oil prices and subsequently affect the US economy and stock market."
+          "why_it_matters": "Changes in oil prices and potential deals in the Hormuz Strait could impact global energy markets and influence US equities."
         },
         {
-          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions",
-          "why_it_matters": "The meeting's focus on Iran sanctions and economic growth could lead to significant market-moving announcements or policies."
-        },
-        {
-          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms",
-          "why_it_matters": "The meeting's outcome could influence gas prices, affecting consumer spending and the broader US economy, particularly ahead of the midterms."
+          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
+          "why_it_matters": "The reopening of the Strait of Hormuz could significantly affect global oil prices and market sentiment, particularly in the US and other oil-dependent economies."
         }
       ],
       "risk": {
@@ -5525,9 +5525,25 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran war and its economic implications, with potential effects on oil prices and global markets. The tech sector also sees notable developments, including Apple's price hikes and Big Tech's AI spending. Overall, market risk remains elevated due to geopolitical tensions and economic uncertainty."
+      "summary": "Today's news is dominated by the ongoing Iran conflict and its economic implications, with potential effects on global markets. The situation remains volatile, but no drastic changes occurred overnight. Overall, the risk landscape remains relatively stable, with some potential for escalation in the US and global markets."
     },
     "headlines": [
+      {
+        "id": 8416892,
+        "headline": "Bessent attacks Warren over yen intervention query, offers \u2018Foreign Exchange for Dummies\u2019 lesson",
+        "summary": "Treasury has not disclosed how much yen it bought, the execution rate or the current value of the position, despite Warren\u2019s requests for details.",
+        "url": "https://www.cnbc.com/2026/08/28/bessent-warren-yen-intervention-treasury-japan.html",
+        "source": "CNBC",
+        "datetime": 1787944998
+      },
+      {
+        "id": 8416893,
+        "headline": "Meta's $17 billion settlement mandates new safeguards for kids\u2014many are promising, says safety expert",
+        "summary": "Following a major legal settlement, Instagram and Facebook users under age 18 will soon have a daily two-hour limit and won't be able to see reactions on posts.",
+        "url": "https://www.cnbc.com/2026/08/28/new-meta-safeguards-teens.html",
+        "source": "CNBC",
+        "datetime": 1787944025
+      },
       {
         "id": 8416377,
         "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months - Reuters",
@@ -5831,22 +5847,6 @@
         "url": "https://www.cnbc.com/2026/08/27/buss-family-lakers-trust-dispute.html",
         "source": "CNBC",
         "datetime": 1787830494
-      },
-      {
-        "id": 8410133,
-        "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
-        "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
-        "source": "Reuters",
-        "datetime": 1787824620
-      },
-      {
-        "id": 8414877,
-        "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
-        "summary": "Proposal aims to cut dependence on Chinese parts and close cost gap for local manufacturers",
-        "url": "https://www.bloomberg.com/news/articles/2026-08-27/india-plans-1-4-billion-in-aid-to-spur-battery-parts-output",
-        "source": "Bloomberg",
-        "datetime": 1787824605
       }
     ]
   },
@@ -5927,6 +5927,8 @@
     8416375,
     8416273,
     8416376,
-    8416377
+    8416377,
+    8416892,
+    8416893
   ]
 }
