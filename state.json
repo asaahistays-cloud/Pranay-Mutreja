@@ -5096,8 +5096,8 @@
         "entry_price": 350.3500061035156,
         "entry_qty": 1427.1442594245832,
         "stop_loss": 351.5249938964844,
-        "extreme_since_entry": 350.3500061035156,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 350.20001220703125,
+        "peak_profit_per_unit": 0.149993896484375,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5129,18 +5129,19 @@
         "entry_price": 350.4,
         "entry_qty": 1427,
         "stop_loss": 151.5,
-        "extreme_since_entry": 350.4,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 350.20001220703125,
+        "peak_profit_per_unit": 0.19998779296872726,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
-        "trade_journal": []
+        "trade_journal": [],
+        "exit_alert_sent": true
       }
     }
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T07:30:35.034686+00:00",
+    "date": "2026-08-28T07:45:28.125166+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5165,20 +5166,20 @@
     },
     "headlines": [
       {
+        "id": 8413410,
+        "headline": "Oil on track for weekly loss even as Iran tensions simmer - Reuters",
+        "summary": "Oil on track for weekly loss even as Iran tensions simmer\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
+        "source": "Reuters",
+        "datetime": 1787899450
+      },
+      {
         "id": 8413825,
         "headline": "Iran war diplomacy turns toward reopening Strait of Hormuz - Reuters",
         "summary": "Iran war diplomacy turns toward reopening Strait of Hormuz\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
         "source": "Reuters",
         "datetime": 1787880840
-      },
-      {
-        "id": 8413410,
-        "headline": "Oil on track for weekly loss even as Iran tensions simmer - Reuters",
-        "summary": "Oil on track for weekly loss even as Iran tensions simmer\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
-        "source": "Reuters",
-        "datetime": 1787879760
       },
       {
         "id": 8413618,
