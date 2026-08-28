@@ -665,7 +665,8 @@
       "trade_journal": [],
       "gap_date": "2026-08-28",
       "gap_direction": "short",
-      "gap_fired": true
+      "gap_fired": true,
+      "consecutive_wins": 1
     },
     "UBER": {
       "status": "watching",
@@ -5349,8 +5350,8 @@
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
         "stop_loss": 19.253999710083008,
-        "extreme_since_entry": 19.139999389648438,
-        "peak_profit_per_unit": 0.3800010681152344,
+        "extreme_since_entry": 19.06999969482422,
+        "peak_profit_per_unit": 0.4500007629394531,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5366,8 +5367,17 @@
       "target": null,
       "qty": 1.0858701722860864,
       "fired_at": "2026-08-28T14:15:28.768955+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 15.890000343322754,
+        "exit": 15.765000343322754,
+        "qty": 1.0858701722860864,
+        "pnl_per_unit": 0.125,
+        "pnl_total": 0.1357337715357608,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T16:15:38.584976+00:00"
+      },
       "surfaced": false,
       "taken": false,
       "confidence_at_fire": {
@@ -5378,16 +5388,32 @@
       "fired_hour_utc": 14,
       "fired_weekday_utc": 4,
       "shadow": {
-        "direction": "short",
-        "entry_price": 15.890000343322754,
-        "entry_qty": 1.0858701722860864,
-        "stop_loss": 15.715069770812988,
-        "extreme_since_entry": 15.64009952545166,
-        "peak_profit_per_unit": 0.24990081787109375,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
+        "consecutive_wins": 1,
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 15.890000343322754,
+            "exit": 15.765000343322754,
+            "qty": 1.0858701722860864,
+            "pnl_per_unit": 0.125,
+            "pnl_total": 0.1357337715357608,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T16:15:38.584976+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 16.264999389648438,
+        "range_low": 15.630000114440918
       }
     },
     {
@@ -5414,9 +5440,9 @@
         "direction": "short",
         "entry_price": 89.91500091552734,
         "entry_qty": 0.2306182395610356,
-        "stop_loss": 94.25117138453892,
-        "extreme_since_entry": 89.91500091552734,
-        "peak_profit_per_unit": 0,
+        "stop_loss": 90.82460607801166,
+        "extreme_since_entry": 89.40299987792969,
+        "peak_profit_per_unit": 0.5120010375976562,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5426,20 +5452,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T16:00:41.537410+00:00",
+    "date": "2026-08-28T16:15:27.043277+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "This development suggests continued tensions and potential further disruptions in oil supplies, which could impact US and global economies."
-        },
-        {
-          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say",
-          "why_it_matters": "The meeting could lead to policy decisions affecting the oil and gas industry, influencing US energy prices and potentially impacting the broader economy."
+          "why_it_matters": "This development indicates continued tension and potential for increased oil prices, affecting inflation and economic growth, particularly in the US."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "Shifts in global oil market dynamics could have long-term implications for energy prices and geopolitical alliances, affecting US and international markets."
+          "why_it_matters": "The shift in influence from OPEC+ to China could lead to changes in global oil pricing and trade dynamics, impacting various economies, including the US."
+        },
+        {
+          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
+          "why_it_matters": "This acquisition suggests a potential increase in institutional investment in cryptocurrency, which could positively impact crypto markets, but its immediate effect is likely limited."
         }
       ],
       "risk": {
@@ -5447,9 +5473,17 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran war and its effects on global markets, particularly oil prices and trade. The conflict's impact on financial markets continues to unfold, with potential implications for US and global economies. However, there are no immediate, market-moving events in crypto or Indian equities."
+      "summary": "Today's news is dominated by the ongoing Iran war and its effects on global markets, particularly oil prices and trade. The conflict's escalation and potential for further economic sanctions or military actions pose risks to various markets. However, specific market-moving events are limited, with most news items providing updates on existing situations rather than introducing new risks."
     },
     "headlines": [
+      {
+        "id": 8416160,
+        "headline": "Big Tech's massive AI spending is putting one of its longtime strengths to the test",
+        "summary": "There's new risk emerging from Big Tech's massive artificial intelligence buildout.",
+        "url": "https://www.cnbc.com/2026/08/28/big-techs-ai-spending-is-putting-a-longtime-strengths-to-the-test.html",
+        "source": "CNBC",
+        "datetime": 1787932258
+      },
       {
         "id": 8415633,
         "headline": "Jim Cramer's top 10 things to watch in the stock market Friday",
@@ -5512,7 +5546,7 @@
         "summary": "Iran's disfigured supreme leader remains invisible six months into an existential war\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQW14UEoyWExDbUdTdVpKekV0R2F3VGJnZV9hTnpSTW1FeUNWQ1pxV0c4WmFzX0cxbWhyNFJmekItWkVHSmlHQ1ZBTFRvRFlYbVZMQVdiVUw2RlNlZTlXZVBUMXJydUp3RlM0RVBCR056c0IzYUZlQmM2dVV0bVdkMVdXejFkSjhKZ2FWbzZDNDRVSzg1cEhjU3dSUTgwNWdPUnkxelhmWkpLNkhLb2Fibkp0OUZUa25BNVJzRGQxREFnMWFrcmE5ZDIwSnRKR2c?oc=5",
         "source": "Reuters",
-        "datetime": 1787906931
+        "datetime": 1787893260
       },
       {
         "id": 8413825,
@@ -5761,14 +5795,6 @@
         "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOdzQ5cjA0LVhLZTN3aEpkcDBvMXNmV3BnTHVtMFBzZnFfN05PSXFjZFAyUTZ3OEtBTnVCRDhIQXkwbGMwUFZSSTBLek9IbmNqTG16bGdlVlVjOHZ1ZER2c3Z5aXJuaV95ZFFObV9XZlYwNHNqdXcxN2FzeVRkSDF1OURPRThrUHhjOThzTEFyY1NBSG10Zlh4VXRTQWhzMXg3TGJINkRyWGhHLTd1NHc?oc=5",
         "source": "Reuters",
         "datetime": 1787814865
-      },
-      {
-        "id": 8409489,
-        "headline": "Six months of war: How the Middle East conflict has shaped financial markets - Reuters",
-        "summary": "Six months of war: How the Middle East conflict has shaped financial markets\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQdzZPbXZOMTI2d1doSndZUnZ4VTVxV2hlUzFvRmJyUHpXRnlTNUV2bk13WS1rVTNnYmRLbzE4VkN0RlpiUG1MakRKUUpRNkNkYVg3d2s4aXhBaWpUb3ZYd0poN1BlRndYTVk5enNRckZmWS1lQklIRWtTMFBUdW5raDJUWTRzeUdCQTBCRDBpTkhVcDBnMlo4dTFPVXJqT3ExcTQ0aFUzV1pjak1YSzNYdkJDZ0h1UjhKRG91Qw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787810760
       }
     ]
   },
@@ -5843,6 +5869,7 @@
     8415316,
     8415317,
     8415633,
-    8415849
+    8415849,
+    8416160
   ]
 }
