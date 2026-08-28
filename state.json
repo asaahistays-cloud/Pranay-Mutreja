@@ -491,7 +491,7 @@
     "NATIONALUM.NS": {
       "status": "watching",
       "range_high": 393.6499938964844,
-      "range_low": 389.04998779296875,
+      "range_low": 388.04998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -961,7 +961,7 @@
     },
     "VEDL.NS": {
       "status": "watching",
-      "range_high": 287.95001220703125,
+      "range_high": 288.04998779296875,
       "range_low": 279.20001220703125,
       "direction": null,
       "entry_price": null,
@@ -1033,7 +1033,7 @@
     },
     "SAIL.NS": {
       "status": "watching",
-      "range_high": 197.33999633789062,
+      "range_high": 197.85000610351562,
       "range_low": 187.5399932861328,
       "direction": null,
       "entry_price": null,
@@ -4805,7 +4805,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T04:30:36.054454+00:00",
+    "date": "2026-08-28T04:45:27.040503+00:00",
     "assessment": {
       "key_events": [
         {
