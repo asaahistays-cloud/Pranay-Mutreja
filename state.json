@@ -5504,28 +5504,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T21:31:20.141842+00:00",
+    "date": "2026-08-28T21:45:34.324871+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
-          "why_it_matters": "This escalation of sanctions could further impact global economic stability and oil prices."
+          "why_it_matters": "This escalation in sanctions could further strain global economic relations and impact oil prices, potentially increasing market volatility."
         },
         {
           "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "Changes in oil prices can significantly affect inflation expectations and, by extension, influence monetary policy decisions."
+          "why_it_matters": "Changes in oil prices and potential deals regarding the Strait of Hormuz could significantly affect the global economy and market sentiment."
         },
         {
-          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
-          "why_it_matters": "This acquisition indicates a potential increase in institutional investment in crypto, which could boost market confidence and trading activity."
+          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
+          "why_it_matters": "The reopening of the Strait of Hormuz under certain conditions could ease tensions and affect oil prices, thereby influencing market dynamics."
         }
       ],
       "risk": {
         "crypto": "normal",
         "india": "normal",
-        "us": "normal"
+        "us": "elevated"
       },
-      "summary": "Today's news brings a mix of geopolitical tensions, economic updates, and corporate announcements, but none significantly alter the market risk landscape. The ongoing Iran conflict and related sanctions continue to influence oil prices and global economic stability. Overall, market risk remains relatively contained, with no major surprises or escalations."
+      "summary": "Today's news is marked by ongoing geopolitical tensions, particularly with the Iran war, and economic shifts, including changes in oil exports and potential sanctions. These factors could influence market volatility, especially in the US and potentially impacting global markets. However, direct implications for crypto and Indian equities are less clear."
     },
     "headlines": [
       {
@@ -5623,6 +5623,14 @@
         "url": "https://www.cnbc.com/2026/08/27/bitgo-to-acquire-nydigs-institutional-trading-business-as-crypto-trading-rebounds.html",
         "source": "CNBC",
         "datetime": 1787920043
+      },
+      {
+        "id": 8417203,
+        "headline": "Syrian president names former commander of Kurdish-led force as adviser - Reuters",
+        "summary": "Syrian president names former commander of Kurdish-led force as adviser\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQWmJlelo0bnZxZVp6UjJidmJUZG1zSkJ3cnNCQnFsRXN0VlhrbXRzRkN2RUVnNmRIazRkb0xZX0p4R0t2Y0o1eU9sZ210cDh5ZHpHeEVnN0o4Rmw2MVJDWTNvNWY4UjFMNndyUl9JeHRBVDZxX0JndUdBWTdiNmNfSGNhdXp6dUlmYVFtdWVxakxFMjU2U05ET01tV2VtTFJJdU1IdWRLUzViQnFnWEtld25LZG1HWlM3ck40?oc=5",
+        "source": "Reuters",
+        "datetime": 1787919028
       },
       {
         "id": 8415849,
@@ -5839,14 +5847,6 @@
         "url": "https://www.cnbc.com/2026/08/27/kansas-city-feds-schmid-says-inflation-stubborn-and-sticky-policy-rate-not-restrictive.html",
         "source": "CNBC",
         "datetime": 1787833230
-      },
-      {
-        "id": 8413199,
-        "headline": "ECB saw a further hike as likely at July meeting - Reuters",
-        "summary": "ECB saw a further hike as likely at July meeting\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQaDBJVVNFblBPSy11dmRWMWRibVZPOXZkNmY1bzZTUXI4S3hPQk50b05IbWR2VUd3RVJUNUsyRG4zNVUxWXhhUGFDSk1WN3B3QXp6YmRaeW0xUTYzMnlpZlA1TzRqc2ZYeHpHSDJ2dzZ2Y3FwS211V0JzczRSY0ZwR1h0aUZjZmNERXJoY3N1TGNiQ1R3dmZr?oc=5",
-        "source": "Reuters",
-        "datetime": 1787832854
       }
     ]
   },
@@ -5931,6 +5931,7 @@
     8416892,
     8416893,
     8416894,
-    8416996
+    8416996,
+    8417203
   ]
 }
