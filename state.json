@@ -601,7 +601,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "MARA": {
       "status": "watching",
@@ -613,7 +616,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": "short",
+      "gap_fired": false
     },
     "SNAP": {
       "status": "watching",
@@ -625,7 +631,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "RIOT": {
       "status": "watching",
@@ -637,7 +646,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": "short",
+      "gap_fired": false
     },
     "RIVN": {
       "status": "watching",
@@ -724,7 +736,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "CLF": {
       "status": "watching",
@@ -736,7 +751,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "MO": {
       "status": "watching",
@@ -791,7 +809,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": "short",
+      "gap_fired": false
     },
     "CCL": {
       "status": "watching",
@@ -818,7 +839,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "OXY": {
       "status": "watching",
@@ -845,7 +869,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "NCLH": {
       "status": "watching",
@@ -857,7 +884,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "KMI": {
       "status": "watching",
@@ -869,7 +899,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "PFE": {
       "status": "watching",
@@ -1110,7 +1143,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "VZ": {
       "status": "watching",
@@ -1122,7 +1158,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "PINS": {
       "status": "watching",
@@ -1248,7 +1287,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "KO": {
       "status": "watching",
@@ -1260,7 +1302,10 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": []
+      "trade_journal": [],
+      "gap_date": "2026-08-28",
+      "gap_direction": null,
+      "gap_fired": false
     },
     "ETERNAL.NS": {
       "status": "watching",
@@ -5178,20 +5223,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T13:30:33.650546+00:00",
+    "date": "2026-08-28T13:45:25.729982+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
-          "why_it_matters": "This event could lead to increased oil prices and have a ripple effect on the global economy, particularly in the US."
+          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says",
+          "why_it_matters": "This meeting could lead to significant decisions affecting global economic policies and sanctions on Iran, potentially impacting oil prices and trade."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "The shift in influence from OPEC+ to China could impact the global oil market and have implications for US and Indian economies."
+          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market due to the Iran war could lead to changes in oil pricing and global energy policies."
         },
         {
-          "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
-          "why_it_matters": "Positive earnings from major US companies like Nvidia and Salesforce could boost investor confidence and impact the US equities market."
+          "headline": "Japan to diversify crude supplies, back pipelines that bypass Hormuz",
+          "why_it_matters": "Japan's decision to diversify its crude supplies and support pipelines bypassing the Strait of Hormuz reflects the ongoing geopolitical tensions and their impact on global energy security and trade routes."
         }
       ],
       "risk": {
@@ -5199,9 +5244,17 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran war and its effects on global markets, with potential implications for oil prices and trade. The situation remains volatile, but no major market-moving events have occurred. Overall, the risk landscape remains relatively stable, with some potential for escalation in the Iran conflict."
+      "summary": "The ongoing Iran war and its economic implications continue to influence global markets, with potential impacts on oil prices and trade. However, today's news does not indicate any drastic changes in market conditions. The situation remains a concern but does not introduce new significant risks at this moment."
     },
     "headlines": [
+      {
+        "id": 8415633,
+        "headline": "Jim Cramer's top 10 things to watch in the stock market Friday",
+        "summary": "Marvell fell victim to high expectations, and Affirm delivers a strong quarter.",
+        "url": "https://www.cnbc.com/2026/08/28/jim-cramers-top-10-things-to-watch-in-the-stock-market-friday.html",
+        "source": "CNBC",
+        "datetime": 1787922440
+      },
       {
         "id": 8415417,
         "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
@@ -5281,14 +5334,6 @@
         "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNNW43Vk95endNOWY5dnh3SUs0amx5SDJXVEFuWTRoX0F0Vnl6azdkM3NYWmRMZXZPZ0pIRkpZTmZrcExyVG9GWVYyaHlXeFR6aVR1dS15RWcyNmxWZVNDNTBmRXRQSU9ESG1BcHE2YWU0d0M5MW1fcDgtUFFQYnZRTDYxMEp6S2l1c1ZaS3hodWRnSnlPR3hBLVFSLWlCUXR4SlFrb0Z6dnpCVFZneS1CZzVPR2JoRUJ5am0zdw?oc=5",
         "source": "Reuters",
         "datetime": 1787876940
-      },
-      {
-        "id": 8410133,
-        "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
-        "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
-        "source": "Reuters",
-        "datetime": 1787871690
       },
       {
         "id": 8412577,
@@ -5451,6 +5496,14 @@
         "datetime": 1787830494
       },
       {
+        "id": 8410133,
+        "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
+        "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
+        "source": "Reuters",
+        "datetime": 1787824620
+      },
+      {
         "id": 8414877,
         "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
         "summary": "Proposal aims to cut dependence on Chinese parts and close cost gap for local manufacturers",
@@ -5513,14 +5566,6 @@
         "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUEV1S2tFLUNEVG9hdmJ3dEF5YlBmWk8xT0wwWXN3MzZGOVYzX0xITXRLbGNuTUtscXl1Sy10NHlaelVXUHMzZVNYMm42TUVmNVN6UW1pLXV3MDF4YXpaLV82VE5QdXI3R19HemNya2U5LTg1RGFTZXdvdjZ6blJwUWllYVEyaE02cmoyVmdSU3o3SzNZ?oc=5",
         "source": "Reuters",
         "datetime": 1787807160
-      },
-      {
-        "id": 8410134,
-        "headline": "Bessent, Warsh diverge on who should set the price of money - Reuters",
-        "summary": "Bessent, Warsh diverge on who should set the price of money\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQaFNYemtDLVI0aVJranpORkVlX0ppenZITDhaMnRYU2xVV0VIajlPb1g0a1FXMXJENnByeEFYODExUUVZUWluUUZKU2FvRy1ZcFNTMm91azBEWmFvTU5fbUd4UnFjOTFPSC1GQjVVdG9NbnAySkstMkdtcXpZNWZXVThlX2FzQWN4ZmxZazZCNVd5NTF3MnkxNXlEV1hSWTQ2RkFn?oc=5",
-        "source": "Reuters",
-        "datetime": 1787806980
       }
     ]
   },
@@ -5593,6 +5638,7 @@
     8415108,
     8415417,
     8415316,
-    8415317
+    8415317,
+    8415633
   ]
 }
