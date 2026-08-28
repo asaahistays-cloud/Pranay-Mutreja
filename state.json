@@ -5504,20 +5504,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T22:00:40.028491+00:00",
+    "date": "2026-08-28T22:03:12.079109+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
-          "why_it_matters": "This escalation in sanctions could further strain global economic relations and impact oil prices, potentially increasing market volatility."
-        },
-        {
-          "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "Changes in oil prices and potential deals regarding the Strait of Hormuz could significantly affect the global economy and market sentiment."
+          "why_it_matters": "The expansion of sanctions may lead to further economic disruption and market volatility."
         },
         {
           "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
-          "why_it_matters": "The reopening of the Strait of Hormuz under certain conditions could ease tensions and affect oil prices, thereby influencing market dynamics."
+          "why_it_matters": "The reopening of the Strait of Hormuz could significantly impact global oil prices and market stability."
+        },
+        {
+          "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
+          "why_it_matters": "The potential deal and Fed policy clues may influence oil prices and have a ripple effect on the US stock market."
         }
       ],
       "risk": {
@@ -5525,7 +5525,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is marked by ongoing geopolitical tensions, particularly with the Iran war, and economic shifts, including changes in oil exports and potential sanctions. These factors could influence market volatility, especially in the US and potentially impacting global markets. However, direct implications for crypto and Indian equities are less clear."
+      "summary": "Today's news is dominated by the ongoing Iran conflict and its economic implications, with potential repercussions for global markets. The situation remains volatile, with the US imposing sanctions and Iran setting conditions for reopening the Strait of Hormuz. Overall, market risk is elevated due to geopolitical tensions and potential economic fallout."
     },
     "headlines": [
       {
@@ -5793,6 +5793,14 @@
         "datetime": 1787854194
       },
       {
+        "id": 8417304,
+        "headline": "Trump says Putin will not attack NATO territory, downplays Ratcliffe trip - Reuters",
+        "summary": "Trump says Putin will not attack NATO territory, downplays Ratcliffe trip\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxObk1VbmRKMmJJSmtVNm84ajk2QXBHc1ZSUGpia1ptRndKVTNsaHlOUHBLdTJsSmtYUC1URUdsSkxKMlJHaE9OZHJUWVpMX3JvWXJYaDNSZjdsZGQ0S3VQdXhZWlZ0WkxyOXByd2UzenJGakZsdEdlZWtkakRORmN3WkFDdTVWejlIT0xWVEwtMXpWeGVJVW9iX0ZHVGw1elZIQ29aVWJQaGpJWmhrVElZaWtibG4?oc=5",
+        "source": "Reuters",
+        "datetime": 1787852820
+      },
+      {
         "id": 8411737,
         "headline": "Jim Cramer says the 'worst is over' at Salesforce, sees another 20% upside from here",
         "summary": "Jim Cramer believes the comeback rally in Salesforce is far from over.",
@@ -5839,14 +5847,6 @@
         "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVkp0T1VGVEpXeG5sVDFpSjhkQlUxQlp5Nmk4aUE5dU9NcXFuTERSVVhlcHJFRGRzNFZFWmthamFIaHRsMzFidTJRU3p4WUJXM2pYYjlJaWhobURXd25CM0hNMV96NThFaU5zLUNfa1VRX1dmOWdCd24tekpNbms3QzVzX2RkaVUyRUc5SzhrY2h1X3kyXzdGdklRUTVTNldUb21CNks3ejhtOGFVcEtfODVCazhXS2Fhblo0d3laTQ?oc=5",
         "source": "Reuters",
         "datetime": 1787834961
-      },
-      {
-        "id": 8410452,
-        "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-        "summary": "The policymaker stopped just short of calling for an interest rate hike.",
-        "url": "https://www.cnbc.com/2026/08/27/kansas-city-feds-schmid-says-inflation-stubborn-and-sticky-policy-rate-not-restrictive.html",
-        "source": "CNBC",
-        "datetime": 1787833230
       }
     ]
   },
@@ -5932,6 +5932,7 @@
     8416893,
     8416894,
     8416996,
-    8417203
+    8417203,
+    8417304
   ]
 }
