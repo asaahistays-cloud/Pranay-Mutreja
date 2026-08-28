@@ -5178,20 +5178,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T11:15:25.007068+00:00",
+    "date": "2026-08-28T11:30:32.758823+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
-          "why_it_matters": "This escalation in economic warfare could lead to increased volatility in oil prices, potentially affecting inflation and interest rates, which in turn could influence equity markets."
+          "why_it_matters": "This escalation in economic warfare could lead to increased volatility in oil prices, potentially affecting inflation and economic growth."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "Shifts in oil market influence could lead to changes in global energy pricing and availability, affecting economies and potentially equity markets."
+          "why_it_matters": "Shifts in global oil market dynamics could impact energy stocks and broader market sentiment."
         },
         {
-          "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
-          "why_it_matters": "Positive earnings surprises from major tech companies like Nvidia and Salesforce can boost investor confidence in the US equity market, potentially countering bearish sentiments."
+          "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
+          "why_it_matters": "Comments from Fed officials can influence interest rate expectations and market outlook."
         }
       ],
       "risk": {
@@ -5199,9 +5199,17 @@
         "india": "normal",
         "us": "normal"
       },
-      "summary": "Today's news is dominated by ongoing tensions with Iran, which could impact global oil supplies and prices, but the direct market impact appears limited for now. The US-Iran conflict and related economic warfare continue, with potential implications for energy markets and, by extension, equities. However, specific market-moving news is scarce, suggesting a relatively stable day ahead."
+      "summary": "Tensions between the US and Iran continue to simmer, with potential implications for global oil markets and economic stability. However, the direct impact on the crypto, Indian equities, and US equities markets appears limited. Overall, market risk remains relatively contained, with no major surprises or developments that would significantly alter the current landscape."
     },
     "headlines": [
+      {
+        "id": 8415089,
+        "headline": "Imax says it's open to a sale. Why is no one buying?",
+        "summary": "Imax's stock and box office are breaking records, but studio conflicts and a soaring valuation complicate the list of who could bid for the company.",
+        "url": "https://www.cnbc.com/2026/08/28/imax-sale-potential-buyers.html",
+        "source": "CNBC",
+        "datetime": 1787914801
+      },
       {
         "id": 8415088,
         "headline": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
@@ -5513,14 +5521,6 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-26/tata-power-loses-490-million-arbitration-challenge-in-singapore",
         "source": "Bloomberg",
         "datetime": 1787800997
-      },
-      {
-        "id": 8404815,
-        "headline": "Gulf ship traffic via Strait of Hormuz hovers below 10-day average, data shows - Reuters",
-        "summary": "Gulf ship traffic via Strait of Hormuz hovers below 10-day average, data shows\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPbDdXWE5PNU9iQnBXdDRxWVh2U1lNOUtGY0NGMHlIemFBUmRycmdBZ2dac0s5Y090MzJHZlBtbHUwaGpaRDlGcDVEdjdyQlFyXzk1WGdDZC1NME93aE4yVngzSW5Hc2p3SjJPc3d4SnhHSWVKd213ZVNTTTBWTFljb3UtOGJ6cmRYQ2xxMHpHY2xZclNIcVZyVUVRZ2tzRVJuX0JCTEJ4aFJOSnJHVHFGbmFya1l1THVpbDJyekhRSVBoSFlo?oc=5",
-        "source": "Reuters",
-        "datetime": 1787800282
       }
     ]
   },
@@ -5586,6 +5586,7 @@
     8413825,
     8414140,
     8414877,
-    8415088
+    8415088,
+    8415089
   ]
 }
