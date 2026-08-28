@@ -5382,8 +5382,8 @@
         "entry_price": 15.890000343322754,
         "entry_qty": 1.0858701722860864,
         "stop_loss": 16.038374338831222,
-        "extreme_since_entry": 15.78499984741211,
-        "peak_profit_per_unit": 0.10500049591064453,
+        "extreme_since_entry": 15.760000228881836,
+        "peak_profit_per_unit": 0.13000011444091797,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5393,20 +5393,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T14:45:27.265350+00:00",
+    "date": "2026-08-28T15:00:40.787265+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says",
-          "why_it_matters": "This meeting could lead to significant decisions affecting global economic policies and sanctions on Iran, potentially impacting oil prices and trade."
+          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
+          "why_it_matters": "This development suggests continued tensions and potential further disruptions in oil supplies, which could impact US and global economies."
+        },
+        {
+          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say",
+          "why_it_matters": "The meeting could lead to policy decisions affecting the oil and gas industry, influencing US energy prices and potentially impacting the broader economy."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market due to the Iran war could lead to changes in oil pricing and global energy policies."
-        },
-        {
-          "headline": "Japan to diversify crude supplies, back pipelines that bypass Hormuz",
-          "why_it_matters": "Japan's decision to diversify its crude supplies and support pipelines bypassing the Strait of Hormuz reflects the ongoing geopolitical tensions and their impact on global energy security and trade routes."
+          "why_it_matters": "Shifts in global oil market dynamics could have long-term implications for energy prices and geopolitical alliances, affecting US and international markets."
         }
       ],
       "risk": {
@@ -5414,7 +5414,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "The ongoing Iran war and its economic implications continue to influence global markets, with potential impacts on oil prices and trade. However, today's news does not indicate any drastic changes in market conditions. The situation remains a concern but does not introduce new significant risks at this moment."
+      "summary": "Today's news is dominated by the ongoing Iran war and its effects on global markets, particularly oil prices and trade. The conflict's impact on financial markets continues to unfold, with potential implications for US and global economies. However, there are no immediate, market-moving events in crypto or Indian equities."
     },
     "headlines": [
       {
@@ -5432,6 +5432,14 @@
         "url": "https://www.cnbc.com/2026/08/27/bitgo-to-acquire-nydigs-institutional-trading-business-as-crypto-trading-rebounds.html",
         "source": "CNBC",
         "datetime": 1787920043
+      },
+      {
+        "id": 8415849,
+        "headline": "UN refugee agency scales back posts and budget for 2027, documents show - Reuters",
+        "summary": "UN refugee agency scales back posts and budget for 2027, documents show\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNcWtFc01lWWhZVGlqMFEwQ0JNb2QtRGJXN2VaQ3NtUHpQSW9LdG50dFcwTXEyT2dUMHM4bWpaWkFJd01ZQlAzZmt3cnR0YlZuNk1uOXhGUXhjSkFrWGU3ZmxWclVOYVhhSVFvdjR1Rjg5LXVxTU1maFFPei1ueTBDbmZQTlA2QWZwVmdsVXFvWmhDeHFFanZoVlY0VEtodTd5VzU4REVuWVV4b1hIR291bQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787918894
       },
       {
         "id": 8415089,
@@ -5471,7 +5479,7 @@
         "summary": "Iran's disfigured supreme leader remains invisible six months into an existential war\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQW14UEoyWExDbUdTdVpKekV0R2F3VGJnZV9hTnpSTW1FeUNWQ1pxV0c4WmFzX0cxbWhyNFJmekItWkVHSmlHQ1ZBTFRvRFlYbVZMQVdiVUw2RlNlZTlXZVBUMXJydUp3RlM0RVBCR056c0IzYUZlQmM2dVV0bVdkMVdXejFkSjhKZ2FWbzZDNDRVSzg1cEhjU3dSUTgwNWdPUnkxelhmWkpLNkhLb2Fibkp0OUZUa25BNVJzRGQxREFnMWFrcmE5ZDIwSnRKR2c?oc=5",
         "source": "Reuters",
-        "datetime": 1787893260
+        "datetime": 1787906931
       },
       {
         "id": 8413825,
@@ -5728,14 +5736,6 @@
         "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQdzZPbXZOMTI2d1doSndZUnZ4VTVxV2hlUzFvRmJyUHpXRnlTNUV2bk13WS1rVTNnYmRLbzE4VkN0RlpiUG1MakRKUUpRNkNkYVg3d2s4aXhBaWpUb3ZYd0poN1BlRndYTVk5enNRckZmWS1lQklIRWtTMFBUdW5raDJUWTRzeUdCQTBCRDBpTkhVcDBnMlo4dTFPVXJqT3ExcTQ0aFUzV1pjak1YSzNYdkJDZ0h1UjhKRG91Qw?oc=5",
         "source": "Reuters",
         "datetime": 1787810760
-      },
-      {
-        "id": 8413304,
-        "headline": "Japan to diversify crude supplies, back pipelines that bypass Hormuz - Reuters",
-        "summary": "Japan to diversify crude supplies, back pipelines that bypass Hormuz\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOQ3huYVRnT2ZwempZZV9JS3Vad2p6NW5lM3c4MnJDdllzM2JkdEdDcWVzZDFScGpUc1M4UmJnZnBIZGJIdnRHYWZRTERFU3pOYjRSRU1NaDdYUFVSTjJKYldxaFhiY3lZSjEwaFdxU3laN2lpSDRMQUVEdGh1cWV2aTVUN3dpWWk0Q3dIenZCVm9jNmdBUHliOVFndXVybzM3UUxzcExlQXhuZGtvWldyb3pLSzhzSzhBbjdQUWd2RFFHRUFQSXFsRQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787808913
       }
     ]
   },
@@ -5809,6 +5809,7 @@
     8415417,
     8415316,
     8415317,
-    8415633
+    8415633,
+    8415849
   ]
 }
