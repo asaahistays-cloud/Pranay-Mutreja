@@ -4702,9 +4702,9 @@
         "direction": "short",
         "entry_price": 80509.11,
         "entry_qty": 0.0020750082889170636,
-        "stop_loss": 80314.05500000001,
-        "extreme_since_entry": 80230.46,
-        "peak_profit_per_unit": 278.6499999999942,
+        "stop_loss": 80103.73300000001,
+        "extreme_since_entry": 79930.0,
+        "peak_profit_per_unit": 579.1100000000006,
         "take_profit_target": 77601.02,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4714,28 +4714,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T02:30:35.911344+00:00",
+    "date": "2026-08-28T02:45:24.760777+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Iran war has reached its endgame \u2014 a costly stalemate",
-          "why_it_matters": "The stalemate could lead to prolonged market volatility and impact oil prices, affecting various economies and markets."
-        },
-        {
-          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "The increase in oil prices due to the rejection of ceasefire terms may have a ripple effect on inflation and economic stability in the US and other countries."
+          "why_it_matters": "The stalemate could lead to prolonged economic uncertainty and impact oil prices, affecting markets."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market could lead to changes in global energy dynamics and impact the economies of various countries, including the US and India."
+          "why_it_matters": "Shifts in oil market influence could significantly impact global energy prices and economies."
+        },
+        {
+          "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
+          "why_it_matters": "Persistent inflation concerns could lead to changes in monetary policy, affecting market sentiment and interest rates."
         }
       ],
       "risk": {
-        "crypto": "elevated",
+        "crypto": "normal",
         "india": "elevated",
         "us": "elevated"
       },
-      "summary": "The ongoing Iran war and its economic implications continue to influence global markets, with potential impacts on oil prices and geopolitical stability. The US's stance on not talking with Iran and the rejection of a return to ceasefire deal terms may lead to increased tensions. Overall, market risk remains elevated due to these geopolitical uncertainties."
+      "summary": "The ongoing Iran war and its economic implications continue to influence global markets, with a focus on oil prices and geopolitical tensions. The conflict's impact on inflation and the Middle East situation remains a key concern. Overall, market risk is somewhat elevated due to these uncertainties."
     },
     "headlines": [
       {
@@ -4931,6 +4931,14 @@
         "datetime": 1787810760
       },
       {
+        "id": 8413304,
+        "headline": "Japan to diversify crude supplies, back pipelines that bypass Hormuz - Reuters",
+        "summary": "Japan to diversify crude supplies, back pipelines that bypass Hormuz\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOQ3huYVRnT2ZwempZZV9JS3Vad2p6NW5lM3c4MnJDdllzM2JkdEdDcWVzZDFScGpUc1M4UmJnZnBIZGJIdnRHYWZRTERFU3pOYjRSRU1NaDdYUFVSTjJKYldxaFhiY3lZSjEwaFdxU3laN2lpSDRMQUVEdGh1cWV2aTVUN3dpWWk0Q3dIenZCVm9jNmdBUHliOVFndXVybzM3UUxzcExlQXhuZGtvWldyb3pLSzhzSzhBbjdQUWd2RFFHRUFQSXFsRQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787808913
+      },
+      {
         "id": 8409702,
         "headline": "Pernod warns weak US, China will weigh in years to come - Reuters",
         "summary": "Pernod warns weak US, China will weigh in years to come\u00a0\u00a0Reuters",
@@ -5043,20 +5051,12 @@
         "datetime": 1787772435
       },
       {
-        "id": 8406761,
-        "headline": "Micron elevates two executives. Plus, what the Meta settlement means for its top line",
-        "summary": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
-        "url": "https://www.cnbc.com/2026/08/26/micron-elevates-two-executives-plus-what-the-meta-settlement-means-for-its-top-line.html",
-        "source": "CNBC",
-        "datetime": 1787769086
-      },
-      {
-        "id": 8406657,
-        "headline": "How Dolly Parton inspired women in leadership: 'We all owe Dolly a debt'",
-        "summary": "The legendary Dolly Parton inspired women to dream bigger and fight for what they deserve. Female business leaders and workers share what the icon meant to them.",
-        "url": "https://www.cnbc.com/2026/08/26/dolly-parton-women-leadership.html",
-        "source": "CNBC",
-        "datetime": 1787767465
+        "id": 8407286,
+        "headline": "Global equity index, bond yields edge up with focus on inflation and Middle East - Reuters",
+        "summary": "Global equity index, bond yields edge up with focus on inflation and Middle East\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE91T2JHeEdCeW1LQUVJbHFFd0lzWkxUXzZjUWZodDZET0tTdWZYbEtpWnpPNGRsNzRZSjF1dUs5ZWNDV0t0a3F6YlBCdWJWTlRKc2F6NVV3T3ltWWl6Um9tbFlvVWRIZDk1dHFpNU5aUFo0UGVibk10NFE5dw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787771150
       }
     ]
   },
@@ -5110,6 +5110,8 @@
     8413198,
     8413199,
     8413299,
-    8413303
+    8413303,
+    8413304,
+    8407286
   ]
 }
