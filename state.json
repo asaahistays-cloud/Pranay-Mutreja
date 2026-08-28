@@ -5558,7 +5558,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T23:33:19.751698+00:00",
+    "date": "2026-08-28T23:45:25.302403+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5582,6 +5582,14 @@
       "summary": "Today's news is dominated by the ongoing Iran conflict and its economic implications, with potential repercussions for global markets. The situation remains volatile, with the US imposing sanctions and Iran setting conditions for reopening the Strait of Hormuz. Overall, market risk is elevated due to geopolitical tensions and potential economic fallout."
     },
     "headlines": [
+      {
+        "id": 8413410,
+        "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal - Reuters",
+        "summary": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
+        "source": "Reuters",
+        "datetime": 1787948391
+      },
       {
         "id": 8416894,
         "headline": "Stock traders warm up to Warsh as volatility index touches year-to-date low",
@@ -5736,8 +5744,8 @@
       },
       {
         "id": 8413825,
-        "headline": "Iran urges countries not to implement new U.S. sanctions as mediators focus on reopening strait - Reuters",
-        "summary": "Iran urges countries not to implement new U.S. sanctions as mediators focus on reopening strait\u00a0\u00a0Reuters",
+        "headline": "Iran lashes out at US sanctions amid economic toll at home - Reuters",
+        "summary": "Iran lashes out at US sanctions amid economic toll at home\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
         "source": "Reuters",
         "datetime": 1787880840
@@ -5749,14 +5757,6 @@
         "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRktXN2YycnhZcGwzVkYxc0lVNzI0SU5ONUhEYzNEaUt6akFhdEJwS0ZKdWxQU2NWbThlUG1WZklhcDNaNGVGdUR6X3JwN1ZHcTQ4Wnp4M0dRRjFtTV9wN0c4aWl3QnVwQzlvcm5kVF9Nc1hRWW90eURDOTQ4UkFmVlZDZHBJRW81OHBnNkhTbVpRT2ZNOG1zMmpsaDRvU0lXWHk0TWFONjhXZ2hDWi1ud1VTVmRscWNBejgwNk53ZHNYZUxKVklzTlN3?oc=5",
         "source": "Reuters",
         "datetime": 1787879880
-      },
-      {
-        "id": 8413410,
-        "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal - Reuters",
-        "summary": "Oil slides on clues about Fed policy, rumors of Hormuz deal\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
-        "source": "Reuters",
-        "datetime": 1787879760
       },
       {
         "id": 8413618,
