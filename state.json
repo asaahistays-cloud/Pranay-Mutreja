@@ -4970,7 +4970,7 @@
         "exit": 351,
         "qty": 1421,
         "pnl_per_unit": 0.6000000000000227,
-        "pnl_total": 852.6000000000323,
+        "pnl_total": 629.36,
         "exit_reason": "manual_close",
         "closed_at": "2026-08-28T06:49:06.080040+00:00"
       },
@@ -5045,7 +5045,7 @@
         "exit": 74.9,
         "qty": 5,
         "pnl_per_unit": 0.09999999999999432,
-        "pnl_total": 0.4999999999999716,
+        "pnl_total": -46.82,
         "exit_reason": "manual_close",
         "closed_at": "2026-08-28T07:16:25.797831+00:00"
       },
@@ -5120,7 +5120,7 @@
         "exit": 351.15,
         "qty": 1427,
         "pnl_per_unit": -0.75,
-        "pnl_total": -1070.25,
+        "pnl_total": -1293.75,
         "exit_reason": "manual_close",
         "closed_at": "2026-08-28T07:47:08.371965+00:00"
       },
