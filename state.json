@@ -4,17 +4,14 @@
   "symbols": {
     "BTC-USD": {
       "status": "watching",
-      "range_high": 80898.99,
+      "range_high": 81479.5,
       "range_low": 77601.02,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_short_rejection",
-        "bar_time": 1787881500000
-      },
+      "last_alert": {},
       "trade_journal": [
         {
           "direction": "short",
@@ -4705,9 +4702,9 @@
         "direction": "short",
         "entry_price": 80509.11,
         "entry_qty": 0.0020750082889170636,
-        "stop_loss": 80780.26410714287,
-        "extreme_since_entry": 80449.24,
-        "peak_profit_per_unit": 59.86999999999534,
+        "stop_loss": 80314.05500000001,
+        "extreme_since_entry": 80230.46,
+        "peak_profit_per_unit": 278.6499999999942,
         "take_profit_target": 77601.02,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4717,28 +4714,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T02:15:28.759595+00:00",
+    "date": "2026-08-28T02:30:35.911344+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
-          "why_it_matters": "This development could significantly impact global oil prices and trade, affecting various markets."
+          "headline": "Iran war has reached its endgame \u2014 a costly stalemate",
+          "why_it_matters": "The stalemate could lead to prolonged market volatility and impact oil prices, affecting various economies and markets."
+        },
+        {
+          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
+          "why_it_matters": "The increase in oil prices due to the rejection of ceasefire terms may have a ripple effect on inflation and economic stability in the US and other countries."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "The shift in oil market influence from OPEC+ to China could lead to changes in global energy dynamics and prices."
-        },
-        {
-          "headline": "RBI ramps up rupee support as rise in forex reserves gives comfort",
-          "why_it_matters": "The RBI's actions to support the rupee could have implications for the Indian economy and markets, particularly in the context of the ongoing geopolitical tensions."
+          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market could lead to changes in global energy dynamics and impact the economies of various countries, including the US and India."
         }
       ],
       "risk": {
-        "crypto": "normal",
+        "crypto": "elevated",
         "india": "elevated",
         "us": "elevated"
       },
-      "summary": "The ongoing Iran war and its economic implications continue to influence global markets, with potential impacts on oil prices and trade. The US's stance on not talking with Iran and the conditions set for reopening the Strait of Hormuz are key factors to watch. Overall, market risk remains elevated due to geopolitical tensions and economic uncertainty."
+      "summary": "The ongoing Iran war and its economic implications continue to influence global markets, with potential impacts on oil prices and geopolitical stability. The US's stance on not talking with Iran and the rejection of a return to ceasefire deal terms may lead to increased tensions. Overall, market risk remains elevated due to these geopolitical uncertainties."
     },
     "headlines": [
       {
@@ -4966,6 +4963,14 @@
         "datetime": 1787801940
       },
       {
+        "id": 8413303,
+        "headline": "Nepal flash flood death toll rises to 157; Bihar, UP on high alert",
+        "summary": "Almost 300 foreign nationals from countries including India, Malaysia, the UK, the US, and Australia have been confirmed missing after the disaster",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-27/deadly-nepal-flood-kills-at-least-157-with-india-on-high-alert",
+        "source": "Bloomberg",
+        "datetime": 1787796756
+      },
+      {
         "id": 8413299,
         "headline": "RBI ramps up rupee support as rise in forex reserves gives comfort",
         "summary": "The extra money strengthens the RBI\u2019s hand just as pressure starts to mount again on Asia\u2019s worst-performing currency this quarter",
@@ -5052,14 +5057,6 @@
         "url": "https://www.cnbc.com/2026/08/26/dolly-parton-women-leadership.html",
         "source": "CNBC",
         "datetime": 1787767465
-      },
-      {
-        "id": 8406446,
-        "headline": "Nvidia, CrowdStike and Salesforce face big tests tonight. Here's what we need to see",
-        "summary": "The Investing Club holds its \"Morning Meeting\" every weekday at 10:20 a.m. ET.",
-        "url": "https://www.cnbc.com/2026/08/26/nvidia-crowdstike-and-salesforce-face-big-tests-tonight.html",
-        "source": "CNBC",
-        "datetime": 1787764055
       }
     ]
   },
@@ -5112,6 +5109,7 @@
     8412680,
     8413198,
     8413199,
-    8413299
+    8413299,
+    8413303
   ]
 }
