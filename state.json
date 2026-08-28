@@ -5,7 +5,7 @@
     "BTC-USD": {
       "status": "watching",
       "range_high": 81479.5,
-      "range_low": 77601.02,
+      "range_low": 76845.71,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -5351,8 +5351,8 @@
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
         "stop_loss": 19.141999816894533,
-        "extreme_since_entry": 18.979999542236328,
-        "peak_profit_per_unit": 0.5400009155273438,
+        "extreme_since_entry": 18.959999084472656,
+        "peak_profit_per_unit": 0.5600013732910156,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5478,20 +5478,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T17:00:39.324482+00:00",
+    "date": "2026-08-28T17:15:25.132121+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "This development suggests ongoing tensions and potential further disruptions to global oil supplies, which could impact markets."
+          "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
+          "why_it_matters": "This could impact oil prices and subsequently affect the US economy and stock market."
         },
         {
-          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
-          "why_it_matters": "This acquisition indicates growing interest and investment in the crypto space, potentially boosting market confidence."
+          "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms",
+          "why_it_matters": "The meeting's outcome could influence gas prices and have broader implications for the US economy and election."
         },
         {
-          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says",
-          "why_it_matters": "The meeting's focus on Iran sanctions and global economic growth could lead to significant policy announcements or shifts, affecting market sentiment."
+          "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
+          "why_it_matters": "This development could boost India's manufacturing sector and have a positive impact on the country's economy and stock market."
         }
       ],
       "risk": {
@@ -5499,9 +5499,17 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran conflict and its impact on global markets, with oil prices and shipping traffic through the Strait of Hormuz being closely watched. The acquisition of NYDIG's institutional trading business by BitGo is a notable development in the crypto space. Overall, market risk remains elevated due to geopolitical tensions."
+      "summary": "Today's news is dominated by the ongoing Iran war and its economic implications, which could impact oil prices and global trade. The Apple subscription price hike and Big Tech's AI spending are notable but less likely to move markets. Overall, market risk is relatively contained, with no major surprises or shocks."
     },
     "headlines": [
+      {
+        "id": 8416375,
+        "headline": "Apple hikes subscription prices for Apple TV and Apple One in the U.S.",
+        "summary": "Apple raised prices for Apple Music by $1 per month in July, citing licensing costs.",
+        "url": "https://www.cnbc.com/2026/08/28/apple-tv-one-price-hike-us.html",
+        "source": "CNBC",
+        "datetime": 1787936236
+      },
       {
         "id": 8416270,
         "headline": "52% of Gen Z investors have redirected investing money to sports bets",
@@ -5541,6 +5549,14 @@
         "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNcWtFc01lWWhZVGlqMFEwQ0JNb2QtRGJXN2VaQ3NtUHpQSW9LdG50dFcwTXEyT2dUMHM4bWpaWkFJd01ZQlAzZmt3cnR0YlZuNk1uOXhGUXhjSkFrWGU3ZmxWclVOYVhhSVFvdjR1Rjg5LXVxTU1maFFPei1ueTBDbmZQTlA2QWZwVmdsVXFvWmhDeHFFanZoVlY0VEtodTd5VzU4REVuWVV4b1hIR291bQ?oc=5",
         "source": "Reuters",
         "datetime": 1787918894
+      },
+      {
+        "id": 8416273,
+        "headline": "QatarEnergy cancels gas deliveries to Italy's Edison until early November - Reuters",
+        "summary": "QatarEnergy cancels gas deliveries to Italy's Edison until early November\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNSGdXSEJxeEtGbnA4SWdCRkkyMFM4VFhkS0hHT1F5cGw3TGg1LXZneGR4Z2JBRzNjdldsUlZNMlp5T1I4RDBRLWJoUlptMms4MXVzVmhLOXJndHI3U2E0OTcwTXprQmFRSkRYMzFxRzMzZExybFVWcTBlZGduN18zZmVJcWxnR3QzcU9iclR3b3g5OUdBZ0twWlJnUnZkbGVyN2hvNFVHRWZjYW9jMmtxbUtIVlotOC10UjVfWkln?oc=5",
+        "source": "Reuters",
+        "datetime": 1787915359
       },
       {
         "id": 8415089,
@@ -5600,8 +5616,8 @@
       },
       {
         "id": 8413410,
-        "headline": "Oil drifts lower as Hormuz flows balance slow progress in Iran diplomacy - Reuters",
-        "summary": "Oil drifts lower as Hormuz flows balance slow progress in Iran diplomacy\u00a0\u00a0Reuters",
+        "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal - Reuters",
+        "summary": "Oil slides on clues about Fed policy, rumors of Hormuz deal\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
         "source": "Reuters",
         "datetime": 1787879760
@@ -5805,22 +5821,6 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-27/india-plans-1-4-billion-in-aid-to-spur-battery-parts-output",
         "source": "Bloomberg",
         "datetime": 1787824605
-      },
-      {
-        "id": 8410782,
-        "headline": "Canada excludes US seafood from retaliatory tariffs - Reuters",
-        "summary": "Canada excludes US seafood from retaliatory tariffs\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQX0p0OFRPcVc3Q084cGZoNWw1ZHJ6NGRZb0JWMFdzUW9VU09rQnM2LTRKbVQtV1hPVDJ6V2s1em9YaElyNjJkellVQm9EUV9CanVIR0Y1SWRDLVBCaVByZVVTcXNGcUw4NmpIOEh2aC1zWkpyTG00MlhYYmNQNlBTYnFULUlWVDEzdEprUEtJVG1lQkloanc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787819077
-      },
-      {
-        "id": 8412055,
-        "headline": "Russia expels Romanian diplomat - Reuters",
-        "summary": "Russia expels Romanian diplomat\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE81c1plRE1hVUoxOU81VmFvanVyT3lJaElDZGJtY1Bzbk0yb0VOU3dwSjlYTkk5WFZFR2VtRUI0c0xoNG45MzktSEpFOFg5TDU2WFRWdkNBMjBZMmZEZDllTkNCclN1WUJld214VjhTNTRDRUM5bndfNVFmdUhUUQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787818057
       }
     ]
   },
@@ -5897,6 +5897,8 @@
     8415633,
     8415849,
     8416160,
-    8416270
+    8416270,
+    8416375,
+    8416273
   ]
 }
