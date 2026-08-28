@@ -834,3 +834,31 @@ No setups fired today.
 
 ---
 
+## 2026-08-29 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-08-28)
+- Suggested: 7 trade(s) | Resolved: 5 | Still playing out: 2
+- If you'd taken all 5 resolved trades: 2 right, 3 wrong (40% correct)
+- Net loss (INR): -5,465
+  [-] VEDL.NS breakout_long (long): -3,470
+  [+] PFC.NS breakdown_short (short): +629.4
+  [+] NHPC.NS manual (short): -46.82
+  [-] PFC.NS breakdown_short (short): -1,284
+  [-] PFC.NS manual (short): -1,294
+- 2 trade(s) still open, not yet counted above: NMDC.NS (breakout_long), NHPC.NS (breakdown_short)
+
+**CRYPTO -- SIGNAL QUALITY** (2026-08-28)
+- Suggested: 1 trade(s) | Resolved: 1 | Still playing out: 0
+- If you'd taken all 1 resolved trades: 1 right, 0 wrong (100% correct)
+- Net profit (USD): +1.227
+  [+] BTC-USD range_short_rejection (short): +1.227
+
+**US -- SIGNAL QUALITY** (2026-08-28)
+- Suggested: 2 trade(s) | Resolved: 1 | Still playing out: 1
+- If you'd taken all 1 resolved trades: 1 right, 0 wrong (100% correct)
+- Net profit (USD): +0.05189
+  [+] INTC gap_and_go_short (short): +0.05189
+- 1 trade(s) still open, not yet counted above: RIOT (gap_and_go_short)
+
+---
+

@@ -5351,8 +5351,8 @@
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
         "stop_loss": 19.078999710083007,
-        "extreme_since_entry": 18.889999389648438,
-        "peak_profit_per_unit": 0.6300010681152344,
+        "extreme_since_entry": 18.8799991607666,
+        "peak_profit_per_unit": 0.6400012969970703,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5478,7 +5478,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T18:15:27.096702+00:00",
+    "date": "2026-08-28T18:30:36.397248+00:00",
     "assessment": {
       "key_events": [
         {
