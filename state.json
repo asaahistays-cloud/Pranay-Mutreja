@@ -1176,7 +1176,7 @@
     "NHPC.NS": {
       "status": "watching",
       "range_high": 76.55000305175781,
-      "range_low": 75.55000305175781,
+      "range_low": 75.5,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -4805,20 +4805,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T04:45:27.040503+00:00",
+    "date": "2026-08-28T05:00:41.726283+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil on track for weekly loss even as Iran tensions simmer",
-          "why_it_matters": "This indicates that despite geopolitical tensions, oil markets are not reacting with significant price increases, which could influence inflation expectations and monetary policy decisions."
+          "why_it_matters": "The ongoing Iran tensions and their impact on oil prices could affect inflation and economic growth, influencing US equity markets."
         },
         {
-          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says",
-          "why_it_matters": "The meeting's focus on Iran sanctions and global economic imbalances could lead to announcements or agreements that impact trade and financial markets."
+          "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
+          "why_it_matters": "Positive earnings reports from major US tech companies can boost investor confidence and support US equity markets."
         },
         {
-          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "This reaction in oil prices suggests that any movement towards or away from a resolution in the US-Iran conflict could have immediate effects on energy markets and potentially broader economic indicators."
+          "headline": "Trump says the U.S. is not talking with Iran as economic war in focus",
+          "why_it_matters": "The lack of diplomatic progress between the US and Iran increases the risk of further conflict, potentially destabilizing global markets and affecting oil prices."
         }
       ],
       "risk": {
@@ -4826,7 +4826,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Tensions between the US and Iran continue to simmer, with potential implications for global oil markets and economic stability, but no significant new developments have occurred to drastically alter market risk. The ongoing conflict and related sanctions could impact oil prices and, by extension, influence various markets. Overall, the situation remains volatile but without a clear escalation in the last 24 hours."
+      "summary": "Tensions with Iran continue to influence oil prices and global markets, while earnings reports from major US companies like Nvidia and Salesforce are providing optimism about the US economy. The ongoing conflict and potential for further escalation pose a risk to market stability. Overall, the situation remains volatile but without significant new developments today."
     },
     "headlines": [
       {
@@ -5078,6 +5078,14 @@
         "datetime": 1787806860
       },
       {
+        "id": 8413823,
+        "headline": "Nvidia in talks to buy AI startup Hugging Face, reports say",
+        "summary": "Nvidia is reportedly close to acquiring AI startup Hugging Face for approximately $13 billion, enhancing its AI portfolio.",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-27/nvidia-discussed-buying-ai-startup-hugging-face-insider-says",
+        "source": "Bloomberg",
+        "datetime": 1787805531
+      },
+      {
         "id": 8413719,
         "headline": "Iran, Oman agree to share Strait of Hormuz revenue",
         "summary": "\u201cAgreements have been reached regarding each country\u2019s share of the strait\u2019s waters and Iran and Oman\u2019s revenue share,\u201d IRGC spokesman said",
@@ -5140,14 +5148,6 @@
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS3BzVVdsbG9iUHJoaGxwVFYzR256VFBDQnlQRlh1YVZfVnZmUE1jeXQzRXFHRDhuSnpyanlNZ1NHR0RHUy1TSm8teHRiVHJ1cTZSMDRJaW1MMFJXQ2ZpTmZrN081Y3V4OUM0Qk9lRXJMY2ZONzVZN0J4eWtZT1d4TTR1Uzg1bjR5NU9TRGFQdmpZb2RPQUpYbWI4NzdyVVhsczZkOWVjTzV1ZTRKbHV3RDMwcUJ5U2xTT1M2VFhrMlVpQQ?oc=5",
         "source": "Reuters",
         "datetime": 1787793600
-      },
-      {
-        "id": 8408336,
-        "headline": "Qatar steps in to mediate as Trump says US not talking to Iran - Reuters",
-        "summary": "Qatar steps in to mediate as Trump says US not talking to Iran\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNdWtVN3R2dUFBREVJWjhxV1pXUEs4WUx1Ry1ReVRLQzZhS0ZBaEl1NlZ3T2cxcTdEU1Q1RnZqTC1aNWlUVjRpc3VpdTRtaTdub2RiQW5BamhkMGM2VUZjWlV4YnpkM0Q1ZS1YcVBwR2cxNlVXWjlCcUhHRDQ3VWtMWEt3Q0N5U2hQTlJETmRSeXFWUWltWktCYVNKLVo1enNRTGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787786100
       }
     ]
   },
@@ -5208,6 +5208,7 @@
     8413613,
     8413618,
     8413719,
-    8404815
+    8404815,
+    8413823
   ]
 }
