@@ -4696,28 +4696,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T01:45:24.112022+00:00",
+    "date": "2026-08-28T02:00:42.656733+00:00",
     "assessment": {
       "key_events": [
         {
+          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
+          "why_it_matters": "This development could significantly impact global oil prices and, by extension, affect US and Indian equities."
+        },
+        {
           "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
-          "why_it_matters": "This development could lead to further increases in oil prices, impacting inflation and potentially influencing US monetary policy."
+          "why_it_matters": "The increase in oil prices due to the rejection of ceasefire terms could lead to inflation concerns and impact stock markets."
         },
         {
           "headline": "OPEC+ loses oil market sway in Iran war as China gains influence",
-          "why_it_matters": "Shifts in global oil market dynamics could have significant implications for energy prices and the broader economy."
-        },
-        {
-          "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-          "why_it_matters": "The Fed's stance on inflation and interest rates could impact US equity markets and the overall economic outlook."
+          "why_it_matters": "The shift in influence from OPEC+ to China in the oil market could lead to changes in global energy dynamics and impact markets accordingly."
         }
       ],
       "risk": {
-        "crypto": "normal",
-        "india": "normal",
+        "crypto": "elevated",
+        "india": "elevated",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran conflict and its potential economic implications, with oil prices rising after Trump rejects a return to ceasefire deal terms. The conflict's impact on global markets, particularly oil and US equities, is a key area of concern. Overall, market risk is somewhat elevated due to geopolitical tensions."
+      "summary": "Today's news is dominated by the ongoing Iran conflict and its implications on global markets, particularly oil prices, with potential impacts on US and Indian equities. The situation in the Strait of Hormuz and Trump's stance on Iran are key factors to watch. Crypto markets may see volatility due to broader market sentiment."
     },
     "headlines": [
       {
@@ -4937,6 +4937,14 @@
         "datetime": 1787801940
       },
       {
+        "id": 8413198,
+        "headline": "Options turnover on NSE plunges to lowest this year",
+        "summary": "India's largest stock exchange sees a significant drop in options turnover, reflecting stricter trading rules and market adjustments.",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-26/options-turnover-sinks-at-india-s-top-exchange-preparing-for-ipo",
+        "source": "Bloomberg",
+        "datetime": 1787795014
+      },
+      {
         "id": 8409596,
         "headline": "Six consequences after six months of war in Iran - Reuters",
         "summary": "Six consequences after six months of war in Iran\u00a0\u00a0Reuters",
@@ -5031,14 +5039,6 @@
         "url": "https://www.cnbc.com/2026/08/26/why-we-need-human-reserved-jobs-bill-gates-ai-memo.html",
         "source": "CNBC",
         "datetime": 1787762648
-      },
-      {
-        "id": 8406659,
-        "headline": "European shares muted as investors assess Iran-Oman talks, U.S. inflation - Reuters",
-        "summary": "European shares muted as investors assess Iran-Oman talks, U.S. inflation\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNV1pZeWdGeTdjVWRoOE0zZi1zQzhRVTdhU3g3U3VPV2J4dHVRQWtiRF9CUHlWVGllbFpPYnIyUmc5TDZPVlJrX0lrNDZCME5rcWZEYmN2a1JFY1diVE5oeDk1WEFDNmhIeDZfUmdFMFBBVUh6M1ZibFFvdkNzSDRVc1NEcFdZZmVhRDVjTGtxQWZwd2JDd3hzS1lHalBGUmMwRkZDUTRidDZIQ3lM?oc=5",
-        "source": "Reuters",
-        "datetime": 1787762506
       }
     ]
   },
@@ -5088,6 +5088,7 @@
     8412577,
     8412477,
     8412681,
-    8412680
+    8412680,
+    8413198
   ]
 }
