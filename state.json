@@ -5350,9 +5350,9 @@
         "direction": "short",
         "entry_price": 19.520000457763672,
         "entry_qty": 0.8130245522375409,
-        "stop_loss": 19.078999710083007,
-        "extreme_since_entry": 18.8799991607666,
-        "peak_profit_per_unit": 0.6400012969970703,
+        "stop_loss": 18.947937931333268,
+        "extreme_since_entry": 18.760000228881836,
+        "peak_profit_per_unit": 0.7600002288818359,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5478,7 +5478,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T18:30:36.397248+00:00",
+    "date": "2026-08-28T18:45:28.936324+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5679,14 +5679,6 @@
         "datetime": 1787860544
       },
       {
-        "id": 8408335,
-        "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms - Reuters",
-        "summary": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS3BzVVdsbG9iUHJoaGxwVFYzR256VFBDQnlQRlh1YVZfVnZmUE1jeXQzRXFHRDhuSnpyanlNZ1NHR0RHUy1TSm8teHRiVHJ1cTZSMDRJaW1MMFJXQ2ZpTmZrN081Y3V4OUM0Qk9lRXJMY2ZONzVZN0J4eWtZT1d4TTR1Uzg1bjR5NU9TRGFQdmpZb2RPQUpYbWI4NzdyVVhsczZkOWVjTzV1ZTRKbHV3RDMwcUJ5U2xTT1M2VFhrMlVpQQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787859865
-      },
-      {
         "id": 8411849,
         "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say - Reuters",
         "summary": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say\u00a0\u00a0Reuters",
@@ -5821,6 +5813,14 @@
         "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPanlhWGJGcHdKencyMnlRUHBUejVOZlByMTJjWm8wSVVOdWRZV3FBQUlFNFI1WXVqTUdQaEtFeEJkeHl4aTEwaXJmd0MwTFY4VmJOMS02cWJ6ZGZzVEczaGFNelFqdmJoeFNhMGlzNzVzQ3hQOVFtejNvRXZqcVBQek5zY2l2VERfVlk4aHd3WXQ4YTc0MVhIdXF6ZHA4bFVBRlNNWXlKS0ZnbU1JdFo3MWFzMDg?oc=5",
         "source": "Reuters",
         "datetime": 1787824620
+      },
+      {
+        "id": 8414877,
+        "headline": "Centre plans \u20b913,000-crore incentive scheme for battery cell components",
+        "summary": "Proposal aims to cut dependence on Chinese parts and close cost gap for local manufacturers",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-27/india-plans-1-4-billion-in-aid-to-spur-battery-parts-output",
+        "source": "Bloomberg",
+        "datetime": 1787824605
       }
     ]
   },
