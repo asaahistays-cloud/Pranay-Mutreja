@@ -1128,13 +1128,13 @@
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
       "consecutive_losses": 0,
-      "last_alert": {},
-      "trade_journal": [],
-      "pending": {
+      "last_alert": {
         "type": "breakdown_short",
         "level": 0.15069,
-        "expires": 1787961600000
+        "bar_time": 1787954400000
       },
+      "trade_journal": [],
+      "pending": null,
       "consecutive_wins": 1
     },
     "DKNG": {
@@ -5500,11 +5500,44 @@
         "range_high": 92.9000015258789,
         "range_low": 89.18000030517578
       }
+    },
+    {
+      "symbol": "FET-USD",
+      "type": "breakdown_short",
+      "direction": "short",
+      "entry": 0.15044,
+      "stop": 0.1513557142857143,
+      "target": null,
+      "qty": 1092.043681747256,
+      "fired_at": "2026-08-28T22:30:34.816970+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 1,
+        "total": 3,
+        "confidence": 0.4
+      },
+      "fired_hour_utc": 22,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 0.15044,
+        "entry_qty": 1092.043681747256,
+        "stop_loss": 0.1513557142857143,
+        "extreme_since_entry": 0.15044,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
     }
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T22:18:16.281413+00:00",
+    "date": "2026-08-28T22:30:32.214891+00:00",
     "assessment": {
       "key_events": [
         {
