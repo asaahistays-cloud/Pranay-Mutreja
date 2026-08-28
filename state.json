@@ -5526,8 +5526,8 @@
         "entry_price": 0.15044,
         "entry_qty": 1092.043681747256,
         "stop_loss": 0.1513557142857143,
-        "extreme_since_entry": 0.15044,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 0.15001,
+        "peak_profit_per_unit": 0.00042999999999998595,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5537,7 +5537,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T22:30:32.214891+00:00",
+    "date": "2026-08-28T22:33:21.572658+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5743,7 +5743,7 @@
         "summary": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNNW43Vk95endNOWY5dnh3SUs0amx5SDJXVEFuWTRoX0F0Vnl6azdkM3NYWmRMZXZPZ0pIRkpZTmZrcExyVG9GWVYyaHlXeFR6aVR1dS15RWcyNmxWZVNDNTBmRXRQSU9ESG1BcHE2YWU0d0M5MW1fcDgtUFFQYnZRTDYxMEp6S2l1c1ZaS3hodWRnSnlPR3hBLVFSLWlCUXR4SlFrb0Z6dnpCVFZneS1CZzVPR2JoRUJ5am0zdw?oc=5",
         "source": "Reuters",
-        "datetime": 1787877463
+        "datetime": 1787876940
       },
       {
         "id": 8412577,
