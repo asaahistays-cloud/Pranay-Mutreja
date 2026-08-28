@@ -1127,11 +1127,11 @@
       "extreme_since_entry": null,
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
-      "consecutive_losses": 0,
+      "consecutive_losses": 1,
       "last_alert": {},
       "trade_journal": [],
       "pending": null,
-      "consecutive_wins": 1
+      "consecutive_wins": 0
     },
     "DKNG": {
       "status": "watching",
@@ -5506,8 +5506,17 @@
       "target": null,
       "qty": 1092.043681747256,
       "fired_at": "2026-08-28T22:30:34.816970+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 0.15044,
+        "exit": 0.15053,
+        "qty": 1092.043681747256,
+        "pnl_per_unit": -9.000000000000674e-05,
+        "pnl_total": -0.09828393135726039,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T23:15:26.828099+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -5518,22 +5527,38 @@
       "fired_hour_utc": 22,
       "fired_weekday_utc": 4,
       "shadow": {
-        "direction": "short",
-        "entry_price": 0.15044,
-        "entry_qty": 1092.043681747256,
-        "stop_loss": 0.150076,
-        "extreme_since_entry": 0.14992,
-        "peak_profit_per_unit": 0.0005199999999999927,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
+        "consecutive_losses": 1,
         "consecutive_wins": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 0.15044,
+            "exit": 0.15053,
+            "qty": 1092.043681747256,
+            "pnl_per_unit": -9.000000000000674e-05,
+            "pnl_total": -0.09828393135726039,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T23:15:26.828099+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 0.15295,
+        "range_low": 0.14992
       }
     }
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T23:03:11.505938+00:00",
+    "date": "2026-08-28T23:15:26.367155+00:00",
     "assessment": {
       "key_events": [
         {
