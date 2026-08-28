@@ -428,19 +428,16 @@
     },
     "IOC.NS": {
       "status": "watching",
-      "range_high": 139.0,
-      "range_low": 137.32000732421875,
+      "range_high": 137.6199951171875,
+      "range_low": 136.27999877929688,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 139.0,
-        "bar_time": 1787715900000
-      },
-      "trade_journal": []
+      "consecutive_losses": 1,
+      "last_alert": {},
+      "trade_journal": [],
+      "consecutive_wins": 0
     },
     "PFC.NS": {
       "status": "watching",
@@ -483,8 +480,8 @@
     },
     "PAYTM.NS": {
       "status": "watching",
-      "range_high": 1732.0,
-      "range_low": 1708.5,
+      "range_high": 1700.199951171875,
+      "range_low": 1679.0,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -495,19 +492,16 @@
     },
     "NATIONALUM.NS": {
       "status": "watching",
-      "range_high": 397.79998779296875,
-      "range_low": 393.6000061035156,
+      "range_high": 393.6499938964844,
+      "range_low": 388.04998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakout_long",
-        "level": 397.79998779296875,
-        "bar_time": 1787716800000
-      },
-      "trade_journal": []
+      "consecutive_losses": 1,
+      "last_alert": {},
+      "trade_journal": [],
+      "consecutive_wins": 0
     },
     "CANBK.NS": {
       "status": "watching",
@@ -577,16 +571,15 @@
     },
     "RECLTD.NS": {
       "status": "watching",
-      "range_high": 324.5,
-      "range_low": 317.79998779296875,
+      "range_high": 322.70001220703125,
+      "range_low": 319.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "consecutive_wins": 1
+      "trade_journal": []
     },
     "COALINDIA.NS": {
       "status": "watching",
@@ -927,20 +920,15 @@
     },
     "HINDCOPPER.NS": {
       "status": "watching",
-      "range_high": 562.5999755859375,
-      "range_low": 536.6500244140625,
+      "range_high": 542.0,
+      "range_low": 530.2999877929688,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "breakdown_short",
-        "level": 536.6500244140625,
-        "bar_time": 1787821200000
-      },
-      "trade_journal": [],
-      "consecutive_wins": 1
+      "last_alert": {},
+      "trade_journal": []
     },
     "INDIANB.NS": {
       "status": "watching",
@@ -956,8 +944,8 @@
     },
     "UNIONBANK.NS": {
       "status": "watching",
-      "range_high": 192.25999450683594,
-      "range_low": 186.0500030517578,
+      "range_high": 186.3000030517578,
+      "range_low": 184.2899932861328,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -980,8 +968,8 @@
     },
     "VEDL.NS": {
       "status": "watching",
-      "range_high": 283.5,
-      "range_low": 273.3999938964844,
+      "range_high": 287.95001220703125,
+      "range_low": 279.20001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -992,16 +980,15 @@
     },
     "TATAPOWER.NS": {
       "status": "watching",
-      "range_high": 365.5,
-      "range_low": 348.20001220703125,
+      "range_high": 352.5,
+      "range_low": 349.25,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 2,
+      "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "consecutive_wins": 0
+      "trade_journal": []
     },
     "SUZLON.NS": {
       "status": "watching",
@@ -1053,8 +1040,8 @@
     },
     "SAIL.NS": {
       "status": "watching",
-      "range_high": 196.5,
-      "range_low": 186.60000610351562,
+      "range_high": 197.33999633789062,
+      "range_low": 187.5399932861328,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1195,8 +1182,8 @@
     },
     "NHPC.NS": {
       "status": "watching",
-      "range_high": 76.37000274658203,
-      "range_low": 75.3499984741211,
+      "range_high": 76.55000305175781,
+      "range_low": 75.55000305175781,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1207,29 +1194,27 @@
     },
     "NMDC.NS": {
       "status": "watching",
-      "range_high": 89.0,
-      "range_low": 86.0999984741211,
+      "range_high": 87.52999877929688,
+      "range_low": 85.72000122070312,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "consecutive_wins": 2
+      "trade_journal": []
     },
     "POWERGRID.NS": {
       "status": "watching",
-      "range_high": 267.3999938964844,
-      "range_low": 262.29998779296875,
+      "range_high": 267.29998779296875,
+      "range_low": 263.8500061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "consecutive_wins": 1
+      "trade_journal": []
     },
     "SIRI": {
       "status": "watching",
@@ -1269,24 +1254,60 @@
       "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": []
+    },
+    "ETERNAL.NS": {
+      "status": "watching",
+      "range_high": 330.8999938964844,
+      "range_low": 324.3999938964844,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "HUDCO.NS": {
+      "status": "watching",
+      "range_high": 185.5800018310547,
+      "range_low": 181.60000610351562,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
+    },
+    "JPPOWER.NS": {
+      "status": "watching",
+      "range_high": 16.979999542236328,
+      "range_low": 16.809999465942383,
+      "direction": null,
+      "entry_price": null,
+      "stop_loss": null,
+      "extreme_since_entry": null,
+      "consecutive_losses": 0,
+      "last_alert": {},
+      "trade_journal": []
     }
   },
   "active_india_symbols": [
-    "TATAPOWER.NS",
-    "HINDCOPPER.NS",
-    "BHEL.NS",
-    "PFC.NS",
-    "IRCON.NS",
-    "NTPC.NS",
-    "IDFCFIRSTB.NS",
     "SAIL.NS",
-    "BEL.NS",
-    "NHPC.NS",
+    "VEDL.NS",
+    "ETERNAL.NS",
     "NMDC.NS",
-    "RECLTD.NS",
+    "NATIONALUM.NS",
     "POWERGRID.NS",
-    "JSWENERGY.NS",
-    "GAIL.NS"
+    "RECLTD.NS",
+    "HINDCOPPER.NS",
+    "IOC.NS",
+    "HUDCO.NS",
+    "PAYTM.NS",
+    "JPPOWER.NS",
+    "UNIONBANK.NS",
+    "NHPC.NS",
+    "TATAPOWER.NS"
   ],
   "active_us_symbols": [
     "SNAP",
@@ -2666,18 +2687,44 @@
       "target": null,
       "qty": 10286.59390778444,
       "fired_at": "2026-08-26T04:00:46.299714+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 140.64999389648438,
-        "entry_qty": 10286.59390778444,
-        "stop_loss": 140.03802817208427,
-        "extreme_since_entry": 140.67999267578125,
-        "peak_profit_per_unit": 0.029998779296875,
+        "entry": 140.64999389648438,
+        "exit": 136.64999389648438,
+        "qty": 10286.59390778444,
+        "pnl_per_unit": -4.0,
+        "pnl_total": -41146.37563113776,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T04:15:39.403893+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 140.64999389648438,
+            "exit": 136.64999389648438,
+            "qty": 10286.59390778444,
+            "pnl_per_unit": -4.0,
+            "pnl_total": -41146.37563113776,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T04:15:39.403893+00:00"
+          }
+        ],
+        "consecutive_wins": 0,
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 137.6199951171875,
+        "range_low": 136.27999877929688
       }
     },
     {
@@ -2911,18 +2958,44 @@
       "target": null,
       "qty": 2502.2465576192017,
       "fired_at": "2026-08-26T04:15:28.696519+00:00",
-      "resolved": false,
-      "outcome": null,
-      "shadow": {
+      "resolved": true,
+      "outcome": {
         "direction": "long",
-        "entry_price": 398.29998779296875,
-        "entry_qty": 2502.2465576192017,
-        "stop_loss": 394.303579057966,
-        "extreme_since_entry": 398.29998779296875,
+        "entry": 398.29998779296875,
+        "exit": 392.95001220703125,
+        "qty": 2502.2465576192017,
+        "pnl_per_unit": -5.3499755859375,
+        "pnl_total": -13386.95799325888,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T04:15:39.151229+00:00"
+      },
+      "shadow": {
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
-        "trade_journal": []
+        "consecutive_losses": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 398.29998779296875,
+            "exit": 392.95001220703125,
+            "qty": 2502.2465576192017,
+            "pnl_per_unit": -5.3499755859375,
+            "pnl_total": -13386.95799325888,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T04:15:39.151229+00:00"
+          }
+        ],
+        "consecutive_wins": 0,
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 393.6499938964844,
+        "range_low": 388.04998779296875
       }
     },
     {
@@ -4637,8 +4710,8 @@
         "entry_price": 535.4000244140625,
         "entry_qty": 0.10966035317771808,
         "stop_loss": 540.7857448032925,
-        "extreme_since_entry": 533.5499877929688,
-        "peak_profit_per_unit": 1.85003662109375,
+        "extreme_since_entry": 530.2999877929688,
+        "peak_profit_per_unit": 5.10003662109375,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4703,8 +4776,8 @@
         "entry_price": 80509.11,
         "entry_qty": 0.0020750082889170636,
         "stop_loss": 80005.271,
-        "extreme_since_entry": 79789.34,
-        "peak_profit_per_unit": 719.7700000000041,
+        "extreme_since_entry": 79784.56,
+        "peak_profit_per_unit": 724.5500000000029,
         "take_profit_target": 77601.02,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4714,20 +4787,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T03:45:26.511761+00:00",
+    "date": "2026-08-28T04:15:30.567395+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "Oil on track for weekly loss even as Iran tensions simmer",
-          "why_it_matters": "The ongoing Iran tensions could lead to oil price volatility, affecting global markets and economies."
+          "why_it_matters": "This indicates that despite geopolitical tensions, oil markets are not reacting with significant price increases, which could influence inflation expectations and monetary policy decisions."
         },
         {
-          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
-          "why_it_matters": "The reopening of the Strait of Hormuz could ease oil supply concerns and impact global oil prices."
+          "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says",
+          "why_it_matters": "The meeting's focus on Iran sanctions and global economic imbalances could lead to announcements or agreements that impact trade and financial markets."
         },
         {
-          "headline": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
-          "why_it_matters": "The Fed's comments on inflation and policy rates could influence US monetary policy and impact the US equity market."
+          "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms",
+          "why_it_matters": "This reaction in oil prices suggests that any movement towards or away from a resolution in the US-Iran conflict could have immediate effects on energy markets and potentially broader economic indicators."
         }
       ],
       "risk": {
@@ -4735,7 +4808,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by ongoing tensions between the US and Iran, which could impact oil prices and global markets. The situation remains volatile, but there are no major new developments that significantly alter the risk landscape. Overall, the markets are watching the situation closely, but no drastic changes are expected."
+      "summary": "Tensions between the US and Iran continue to simmer, with potential implications for global oil markets and economic stability, but no significant new developments have occurred to drastically alter market risk. The ongoing conflict and related sanctions could impact oil prices and, by extension, influence various markets. Overall, the situation remains volatile but without a clear escalation in the last 24 hours."
     },
     "headlines": [
       {
@@ -4745,6 +4818,14 @@
         "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
         "source": "Reuters",
         "datetime": 1787879760
+      },
+      {
+        "id": 8413618,
+        "headline": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says - Reuters",
+        "summary": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNNW43Vk95endNOWY5dnh3SUs0amx5SDJXVEFuWTRoX0F0Vnl6azdkM3NYWmRMZXZPZ0pIRkpZTmZrcExyVG9GWVYyaHlXeFR6aVR1dS15RWcyNmxWZVNDNTBmRXRQSU9ESG1BcHE2YWU0d0M5MW1fcDgtUFFQYnZRTDYxMEp6S2l1c1ZaS3hodWRnSnlPR3hBLVFSLWlCUXR4SlFrb0Z6dnpCVFZneS1CZzVPR2JoRUJ5am0zdw?oc=5",
+        "source": "Reuters",
+        "datetime": 1787876940
       },
       {
         "id": 8410133,
@@ -4979,6 +5060,14 @@
         "datetime": 1787806860
       },
       {
+        "id": 8413719,
+        "headline": "Iran, Oman agree to share Strait of Hormuz revenue",
+        "summary": "\u201cAgreements have been reached regarding each country\u2019s share of the strait\u2019s waters and Iran and Oman\u2019s revenue share,\u201d IRGC spokesman said",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-26/iran-oman-agree-to-share-strait-of-hormuz-revenue-irgc-says",
+        "source": "Bloomberg",
+        "datetime": 1787803110
+      },
+      {
         "id": 8409061,
         "headline": "Shipping traffic through Strait of Hormuz rises slightly, data shows - Reuters",
         "summary": "Shipping traffic through Strait of Hormuz rises slightly, data shows\u00a0\u00a0Reuters",
@@ -4993,6 +5082,14 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-26/tata-power-loses-490-million-arbitration-challenge-in-singapore",
         "source": "Bloomberg",
         "datetime": 1787800997
+      },
+      {
+        "id": 8404815,
+        "headline": "Gulf ship traffic via Strait of Hormuz hovers below 10-day average, data shows - Reuters",
+        "summary": "Gulf ship traffic via Strait of Hormuz hovers below 10-day average, data shows\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPbDdXWE5PNU9iQnBXdDRxWVh2U1lNOUtGY0NGMHlIemFBUmRycmdBZ2dac0s5Y090MzJHZlBtbHUwaGpaRDlGcDVEdjdyQlFyXzk1WGdDZC1NME93aE4yVngzSW5Hc2p3SjJPc3d4SnhHSWVKd213ZVNTTTBWTFljb3UtOGJ6cmRYQ2xxMHpHY2xZclNIcVZyVUVRZ2tzRVJuX0JCTEJ4aFJOSnJHVHFGbmFya1l1THVpbDJyekhRSVBoSFlo?oc=5",
+        "source": "Reuters",
+        "datetime": 1787800282
       },
       {
         "id": 8413303,
@@ -5033,30 +5130,6 @@
         "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNdWtVN3R2dUFBREVJWjhxV1pXUEs4WUx1Ry1ReVRLQzZhS0ZBaEl1NlZ3T2cxcTdEU1Q1RnZqTC1aNWlUVjRpc3VpdTRtaTdub2RiQW5BamhkMGM2VUZjWlV4YnpkM0Q1ZS1YcVBwR2cxNlVXWjlCcUhHRDQ3VWtMWEt3Q0N5U2hQTlJETmRSeXFWUWltWktCYVNKLVo1enNRTGc?oc=5",
         "source": "Reuters",
         "datetime": 1787786100
-      },
-      {
-        "id": 8403455,
-        "headline": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source - Reuters",
-        "summary": "Iran and Oman still working on Strait of Hormuz accord, says senior Iranian source\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSlNYeEdXSk9RSTdWVnZwNWVQQzdPMDRqZmpxbW5rYlN6emhXUDZWbHhPTjRaUU1LejhXZnpPNUg4dlMxbER4WE9vQnhDN2ZLUHFzUHN5czhKc245Ny1xMFR5Q0U5VzQtYWVXNnlBaTJDYU5RcklwVmlEZWxGd0ljSlFPcjAwTkRWMVNnRFUtNFljYmhaZEc2QjJjZEZDZDhPdW9WNUVwUmZMQU5DbzAxQkNudw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787780192
-      },
-      {
-        "id": 8407070,
-        "headline": "Okta pops 15% after topping estimates as AI threat spikes demand for identity security",
-        "summary": "New products accounted for 30% of total bookings and Okta said it closed dozens of AI deals during the period",
-        "url": "https://www.cnbc.com/2026/08/26/okta-okta-earnings-q2-2027.html",
-        "source": "CNBC",
-        "datetime": 1787775205
-      },
-      {
-        "id": 8402527,
-        "headline": "U.S. Secret Service aware of Iranian video threat against Barron Trump - Reuters",
-        "summary": "U.S. Secret Service aware of Iranian video threat against Barron Trump\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdkJKLVFhNWZCTm9nbWRDa0FEZklXZzJIa1pDQmF6aFFndlBpVHRMWnBsS2kzaGhjWXd2ZFBfN1A2czRPY2xmZ0lzVm12OHU2dXBWa3lvclpHZENUMFlEN1JMUW9kM3VMbmtnNTRNUmlzY1daSVJ0MjUzV2x2d2ZENS1VdklOZWtON3NRN2ZaRHdmeFR1Q2tDTWJVblFHNEE1YlBHZ3NaRkdPSkRIWWcwT0Rnd094UmNHTWZUVnQyZ1RFZw?oc=5",
-        "source": "Reuters",
-        "datetime": 1787773734
       }
     ]
   },
@@ -5114,6 +5187,9 @@
     8413304,
     8407286,
     8413410,
-    8413613
+    8413613,
+    8413618,
+    8413719,
+    8404815
   ]
 }
