@@ -571,7 +571,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_long_rejection",
+        "bar_time": 1787895000000
+      },
       "trade_journal": []
     },
     "COALINDIA.NS": {
@@ -989,7 +992,7 @@
     },
     "SUZLON.NS": {
       "status": "watching",
-      "range_high": 46.959999084472656,
+      "range_high": 46.9900016784668,
       "range_low": 46.40999984741211,
       "direction": null,
       "entry_price": null,
@@ -1037,7 +1040,7 @@
     },
     "SAIL.NS": {
       "status": "watching",
-      "range_high": 197.85000610351562,
+      "range_high": 198.3000030517578,
       "range_low": 187.5399932861328,
       "direction": null,
       "entry_price": null,
@@ -1202,7 +1205,11 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "breakout_long",
+        "level": 87.52999877929688,
+        "bar_time": 1787895000000
+      },
       "trade_journal": []
     },
     "POWERGRID.NS": {
@@ -4834,8 +4841,41 @@
         "direction": "long",
         "entry_price": 288.20001220703125,
         "entry_qty": 1734.906241575105,
-        "stop_loss": 285.86963653564453,
-        "extreme_since_entry": 288.20001220703125,
+        "stop_loss": 288.86499938964846,
+        "extreme_since_entry": 289.1499938964844,
+        "peak_profit_per_unit": 0.949981689453125,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "NMDC.NS",
+      "type": "breakout_long",
+      "direction": "long",
+      "entry": 87.55000305175781,
+      "stop": 86.34214646475655,
+      "target": null,
+      "qty": 4139.564294146442,
+      "fired_at": "2026-08-28T05:45:26.476566+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 3,
+        "total": 11,
+        "confidence": 0.3077
+      },
+      "fired_hour_utc": 5,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 87.55000305175781,
+        "entry_qty": 4139.564294146442,
+        "stop_loss": 86.34214646475655,
+        "extreme_since_entry": 87.55000305175781,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
@@ -4846,7 +4886,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T05:30:34.843917+00:00",
+    "date": "2026-08-28T05:45:24.185782+00:00",
     "assessment": {
       "key_events": [
         {
