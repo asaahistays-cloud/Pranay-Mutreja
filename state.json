@@ -5504,7 +5504,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T20:30:34.614244+00:00",
+    "date": "2026-08-28T20:37:25.503526+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5609,14 +5609,6 @@
         "datetime": 1787932258
       },
       {
-        "id": 8413825,
-        "headline": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait - Reuters",
-        "summary": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787930955
-      },
-      {
         "id": 8415633,
         "headline": "Jim Cramer's top 10 things to watch in the stock market Friday",
         "summary": "Marvell fell victim to high expectations, and Affirm delivers a strong quarter.",
@@ -5679,6 +5671,14 @@
         "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQW14UEoyWExDbUdTdVpKekV0R2F3VGJnZV9hTnpSTW1FeUNWQ1pxV0c4WmFzX0cxbWhyNFJmekItWkVHSmlHQ1ZBTFRvRFlYbVZMQVdiVUw2RlNlZTlXZVBUMXJydUp3RlM0RVBCR056c0IzYUZlQmM2dVV0bVdkMVdXejFkSjhKZ2FWbzZDNDRVSzg1cEhjU3dSUTgwNWdPUnkxelhmWkpLNkhLb2Fibkp0OUZUa25BNVJzRGQxREFnMWFrcmE5ZDIwSnRKR2c?oc=5",
         "source": "Reuters",
         "datetime": 1787893260
+      },
+      {
+        "id": 8413825,
+        "headline": "Iran urges countries not to implement new U.S. sanctions as mediators focus on reopening strait - Reuters",
+        "summary": "Iran urges countries not to implement new U.S. sanctions as mediators focus on reopening strait\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787880840
       },
       {
         "id": 8415109,
