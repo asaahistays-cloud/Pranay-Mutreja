@@ -497,7 +497,10 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {},
+      "last_alert": {
+        "type": "range_short_rejection",
+        "bar_time": 1787895900000
+      },
       "trade_journal": []
     },
     "CANBK.NS": {
@@ -571,10 +574,7 @@
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787895000000
-      },
+      "last_alert": {},
       "trade_journal": []
     },
     "COALINDIA.NS": {
@@ -970,13 +970,14 @@
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 0,
+      "consecutive_losses": 1,
       "last_alert": {
         "type": "breakout_long",
         "level": 288.04998779296875,
         "bar_time": 1787894100000
       },
-      "trade_journal": []
+      "trade_journal": [],
+      "consecutive_wins": 0
     },
     "TATAPOWER.NS": {
       "status": "watching",
@@ -1183,7 +1184,7 @@
     "NHPC.NS": {
       "status": "watching",
       "range_high": 76.55000305175781,
-      "range_low": 75.41000366210938,
+      "range_low": 75.20999908447266,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -1206,9 +1207,8 @@
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {
-        "type": "breakout_long",
-        "level": 87.52999877929688,
-        "bar_time": 1787895000000
+        "type": "range_short_rejection",
+        "bar_time": 1787895900000
       },
       "trade_journal": []
     },
@@ -4826,8 +4826,17 @@
       "target": null,
       "qty": 1734.906241575105,
       "fired_at": "2026-08-28T05:30:37.464402+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "long",
+        "entry": 288.20001220703125,
+        "exit": 286.20001220703125,
+        "qty": 1734.906241575105,
+        "pnl_per_unit": -2.0,
+        "pnl_total": -3469.81248315021,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T06:00:47.360570+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -4838,16 +4847,32 @@
       "fired_hour_utc": 5,
       "fired_weekday_utc": 4,
       "shadow": {
-        "direction": "long",
-        "entry_price": 288.20001220703125,
-        "entry_qty": 1734.906241575105,
-        "stop_loss": 288.86499938964846,
-        "extreme_since_entry": 289.1499938964844,
-        "peak_profit_per_unit": 0.949981689453125,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
+        "consecutive_losses": 1,
         "consecutive_wins": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 288.20001220703125,
+            "exit": 286.20001220703125,
+            "qty": 1734.906241575105,
+            "pnl_per_unit": -2.0,
+            "pnl_total": -3469.81248315021,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T06:00:47.360570+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 289.5,
+        "range_low": 280.8500061035156
       }
     },
     {
@@ -4875,8 +4900,8 @@
         "entry_price": 87.55000305175781,
         "entry_qty": 4139.564294146442,
         "stop_loss": 86.34214646475655,
-        "extreme_since_entry": 87.55000305175781,
-        "peak_profit_per_unit": 0,
+        "extreme_since_entry": 87.56999969482422,
+        "peak_profit_per_unit": 0.01999664306640625,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -4886,7 +4911,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T05:45:24.185782+00:00",
+    "date": "2026-08-28T06:00:44.555440+00:00",
     "assessment": {
       "key_events": [
         {
