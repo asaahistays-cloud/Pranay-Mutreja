@@ -619,7 +619,7 @@
       "trade_journal": [],
       "gap_date": "2026-08-28",
       "gap_direction": "short",
-      "gap_fired": false
+      "gap_fired": true
     },
     "SNAP": {
       "status": "watching",
@@ -649,7 +649,7 @@
       "trade_journal": [],
       "gap_date": "2026-08-28",
       "gap_direction": "short",
-      "gap_fired": false
+      "gap_fired": true
     },
     "RIVN": {
       "status": "watching",
@@ -664,7 +664,7 @@
       "trade_journal": [],
       "gap_date": "2026-08-28",
       "gap_direction": "short",
-      "gap_fired": false
+      "gap_fired": true
     },
     "UBER": {
       "status": "watching",
@@ -5264,11 +5264,110 @@
         "trade_journal": [],
         "exit_alert_sent": true
       }
+    },
+    {
+      "symbol": "MARA",
+      "type": "gap_and_go_short",
+      "direction": "short",
+      "entry": 10.954999923706055,
+      "stop": 11.689675331115723,
+      "target": null,
+      "qty": 1.3611453301884955,
+      "fired_at": "2026-08-28T14:15:28.768849+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": false,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 1,
+        "total": 4,
+        "confidence": 0.3333
+      },
+      "fired_hour_utc": 14,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 10.954999923706055,
+        "entry_qty": 1.3611453301884955,
+        "stop_loss": 11.689675331115723,
+        "extreme_since_entry": 10.954999923706055,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "RIOT",
+      "type": "gap_and_go_short",
+      "direction": "short",
+      "entry": 19.520000457763672,
+      "stop": 20.749975613185338,
+      "target": null,
+      "qty": 0.8130245522375409,
+      "fired_at": "2026-08-28T14:15:28.768936+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 1,
+        "total": 4,
+        "confidence": 0.3333
+      },
+      "fired_hour_utc": 14,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 19.520000457763672,
+        "entry_qty": 0.8130245522375409,
+        "stop_loss": 20.749975613185338,
+        "extreme_since_entry": 19.520000457763672,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "RIVN",
+      "type": "gap_and_go_short",
+      "direction": "short",
+      "entry": 15.890000343322754,
+      "stop": 16.81092074939183,
+      "target": null,
+      "qty": 1.0858701722860864,
+      "fired_at": "2026-08-28T14:15:28.768955+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": false,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 1,
+        "total": 4,
+        "confidence": 0.3333
+      },
+      "fired_hour_utc": 14,
+      "fired_weekday_utc": 4,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 15.890000343322754,
+        "entry_qty": 1.0858701722860864,
+        "stop_loss": 16.81092074939183,
+        "extreme_since_entry": 15.890000343322754,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
     }
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T14:00:46.410193+00:00",
+    "date": "2026-08-28T14:15:25.501271+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5350,8 +5449,8 @@
       },
       {
         "id": 8413825,
-        "headline": "Iran war mediators focus on reopening Strait of Hormuz - Reuters",
-        "summary": "Iran war mediators focus on reopening Strait of Hormuz\u00a0\u00a0Reuters",
+        "headline": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait - Reuters",
+        "summary": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
         "source": "Reuters",
         "datetime": 1787880840
@@ -5366,8 +5465,8 @@
       },
       {
         "id": 8413410,
-        "headline": "Oil holds steady, on track for weekly fall on US-Iran talks stalemate - Reuters",
-        "summary": "Oil holds steady, on track for weekly fall on US-Iran talks stalemate\u00a0\u00a0Reuters",
+        "headline": "Oil drifts lower as Hormuz flows balance slow progress in Iran diplomacy - Reuters",
+        "summary": "Oil drifts lower as Hormuz flows balance slow progress in Iran diplomacy\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
         "source": "Reuters",
         "datetime": 1787879760
@@ -5378,7 +5477,7 @@
         "summary": "US-hosted G20 finance meeting to target growth, imbalances, Iran sanctions, Treasury official says\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNNW43Vk95endNOWY5dnh3SUs0amx5SDJXVEFuWTRoX0F0Vnl6azdkM3NYWmRMZXZPZ0pIRkpZTmZrcExyVG9GWVYyaHlXeFR6aVR1dS15RWcyNmxWZVNDNTBmRXRQSU9ESG1BcHE2YWU0d0M5MW1fcDgtUFFQYnZRTDYxMEp6S2l1c1ZaS3hodWRnSnlPR3hBLVFSLWlCUXR4SlFrb0Z6dnpCVFZneS1CZzVPR2JoRUJ5am0zdw?oc=5",
         "source": "Reuters",
-        "datetime": 1787876940
+        "datetime": 1787877463
       },
       {
         "id": 8412577,
