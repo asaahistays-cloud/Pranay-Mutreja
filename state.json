@@ -614,12 +614,13 @@
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 0,
+      "consecutive_losses": 1,
       "last_alert": {},
       "trade_journal": [],
       "gap_date": "2026-08-28",
       "gap_direction": "short",
-      "gap_fired": true
+      "gap_fired": true,
+      "consecutive_wins": 0
     },
     "SNAP": {
       "status": "watching",
@@ -5274,8 +5275,17 @@
       "target": null,
       "qty": 1.3611453301884955,
       "fired_at": "2026-08-28T14:15:28.768849+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 10.954999923706055,
+        "exit": 11.21500015258789,
+        "qty": 1.3611453301884955,
+        "pnl_per_unit": -0.26000022888183594,
+        "pnl_total": -0.35389809739045097,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-28T14:45:28.119911+00:00"
+      },
       "surfaced": false,
       "taken": false,
       "confidence_at_fire": {
@@ -5286,16 +5296,32 @@
       "fired_hour_utc": 14,
       "fired_weekday_utc": 4,
       "shadow": {
-        "direction": "short",
-        "entry_price": 10.954999923706055,
-        "entry_qty": 1.3611453301884955,
-        "stop_loss": 11.191303389413017,
-        "extreme_since_entry": 10.954999923706055,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
         "peak_profit_per_unit": 0,
         "take_profit_target": null,
-        "consecutive_losses": 0,
+        "consecutive_losses": 1,
         "consecutive_wins": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 10.954999923706055,
+            "exit": 11.21500015258789,
+            "qty": 1.3611453301884955,
+            "pnl_per_unit": -0.26000022888183594,
+            "pnl_total": -0.35389809739045097,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-28T14:45:28.119911+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 12.140000343322754,
+        "range_low": 10.9350004196167
       }
     },
     {
@@ -5356,8 +5382,8 @@
         "entry_price": 15.890000343322754,
         "entry_qty": 1.0858701722860864,
         "stop_loss": 16.038374338831222,
-        "extreme_since_entry": 15.819999694824219,
-        "peak_profit_per_unit": 0.07000064849853516,
+        "extreme_since_entry": 15.78499984741211,
+        "peak_profit_per_unit": 0.10500049591064453,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5367,7 +5393,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T14:30:34.710259+00:00",
+    "date": "2026-08-28T14:45:27.265350+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5512,6 +5538,14 @@
         "datetime": 1787860544
       },
       {
+        "id": 8408335,
+        "headline": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms - Reuters",
+        "summary": "Oil settles up 2% after Trump rejects return to Iran ceasefire deal terms\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS3BzVVdsbG9iUHJoaGxwVFYzR256VFBDQnlQRlh1YVZfVnZmUE1jeXQzRXFHRDhuSnpyanlNZ1NHR0RHUy1TSm8teHRiVHJ1cTZSMDRJaW1MMFJXQ2ZpTmZrN081Y3V4OUM0Qk9lRXJMY2ZONzVZN0J4eWtZT1d4TTR1Uzg1bjR5NU9TRGFQdmpZb2RPQUpYbWI4NzdyVVhsczZkOWVjTzV1ZTRKbHV3RDMwcUJ5U2xTT1M2VFhrMlVpQQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1787859865
+      },
+      {
         "id": 8411849,
         "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say - Reuters",
         "summary": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say\u00a0\u00a0Reuters",
@@ -5640,6 +5674,14 @@
         "datetime": 1787830494
       },
       {
+        "id": 8409061,
+        "headline": "Shipping traffic through Strait of Hormuz rises slightly, data shows - Reuters",
+        "summary": "Shipping traffic through Strait of Hormuz rises slightly, data shows\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbC0zcXlqQ0pPcmt1dVA0OGJwY3NmTTdYaGVLY3RrX2JnVHdxSDVFVjNxRTQwTXM1OGlNTEFtZE52M2VMQzRhOUFfMUxEVFB6bW5OQkc3bzF4bzhibEt0WUdyNERfYUVBTERCX0Q4bVFKX0NPMWN1NkJhZGdqZVVSeWt5MTVSNHNCXzJ5cC1lWm1kQlNuRHZYT3pIdVo2WUxoblVKTE9QN2NSdFZUQkhSM2FCVWpEUmV4VGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787826245
+      },
+      {
         "id": 8410133,
         "headline": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate - Reuters",
         "summary": "After six months, the Iran war has reached its endgame \u2014 a costly stalemate\u00a0\u00a0Reuters",
@@ -5694,22 +5736,6 @@
         "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOQ3huYVRnT2ZwempZZV9JS3Vad2p6NW5lM3c4MnJDdllzM2JkdEdDcWVzZDFScGpUc1M4UmJnZnBIZGJIdnRHYWZRTERFU3pOYjRSRU1NaDdYUFVSTjJKYldxaFhiY3lZSjEwaFdxU3laN2lpSDRMQUVEdGh1cWV2aTVUN3dpWWk0Q3dIenZCVm9jNmdBUHliOVFndXVybzM3UUxzcExlQXhuZGtvWldyb3pLSzhzSzhBbjdQUWd2RFFHRUFQSXFsRQ?oc=5",
         "source": "Reuters",
         "datetime": 1787808913
-      },
-      {
-        "id": 8409702,
-        "headline": "Pernod warns weak US, China will weigh in years to come - Reuters",
-        "summary": "Pernod warns weak US, China will weigh in years to come\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQZ25ZQWhhZ0E1SWliYi1GZ3RSQTNwUFZtZkN2Qmw4R2RBUXVfSGhhZ09Oc0ZXMWk0enNhYmxkR0F6WWJYU0NkVDFDUHZmb2NpbkFIZzhhM1dWMkEwRGtmT3UwTG9vVXpaY0d1Vkc0Q1I4VXMzckEtSlIzbVEwbTNWVDlZamRlWUVYdWdCcFVFakxKbEJYbU85c2FNRm9CWG1hcjhmdXpWb0VqOVRFMmNmbnVDSE5vY2xINWhLVWNoTE91bnBDTHJZVnpTQUU?oc=5",
-        "source": "Reuters",
-        "datetime": 1787808900
-      },
-      {
-        "id": 8409596,
-        "headline": "Six consequences after six months of war in Iran - Reuters",
-        "summary": "Six consequences after six months of war in Iran\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUEV1S2tFLUNEVG9hdmJ3dEF5YlBmWk8xT0wwWXN3MzZGOVYzX0xITXRLbGNuTUtscXl1Sy10NHlaelVXUHMzZVNYMm42TUVmNVN6UW1pLXV3MDF4YXpaLV82VE5QdXI3R19HemNya2U5LTg1RGFTZXdvdjZ6blJwUWllYVEyaE02cmoyVmdSU3o3SzNZ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787807160
       }
     ]
   },
