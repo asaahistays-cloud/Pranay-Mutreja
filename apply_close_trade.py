@@ -65,13 +65,26 @@ def main():
     qty = shadow.get("entry_qty")
 
     pnl_per_unit = (exit_price - entry_price) if direction == "long" else (entry_price - exit_price)
+    pnl_gross = pnl_per_unit * qty if qty else None
     outcome = {
         "direction": direction, "entry": entry_price, "exit": exit_price,
         "qty": qty, "pnl_per_unit": pnl_per_unit,
-        "pnl_total": pnl_per_unit * qty if qty else None,
+        "pnl_total": pnl_gross,
         "exit_reason": "manual_close",
         "closed_at": datetime.now(timezone.utc).isoformat(),
     }
+
+    # India intraday equity charges (brokerage/STT/exchange/stamp
+    # duty/GST) are large enough relative to this bot's typical position
+    # sizes to flip a real gross gain into a real net loss -- confirmed
+    # directly tonight (a trade the gross math showed +0.50 was actually
+    # -46.82 real). Auto-apply the verified real formula for .NS symbols
+    # so this doesn't need a manual correction every single close.
+    if symbol.endswith(".NS") and qty:
+        charges = monitor.estimate_india_intraday_charges(direction, entry_price, exit_price, qty)
+        outcome["pnl_total_gross"] = pnl_gross
+        outcome["estimated_charges"] = charges
+        outcome["pnl_total"] = round(pnl_gross - charges, 2)
 
     entry["resolved"] = True
     entry["outcome"] = outcome

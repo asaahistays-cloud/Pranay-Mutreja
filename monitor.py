@@ -873,6 +873,32 @@ def compute_bucket_confidence(setup_log, market, setup_type, direction):
     return {"wins": wins, "total": total, "confidence": round(confidence, 4)}
 
 
+def estimate_india_intraday_charges(direction, entry, exit_price, qty):
+    """Real NSE intraday equity charges (brokerage + STT + exchange
+    transaction charge + stamp duty + SEBI fee + GST) -- reverse-engineered
+    from a real trade confirmation and verified to match every line item
+    exactly: PFC.NS short, entry 351.60, exit 351.00, qty 1421 -> brokerage
+    40.00, SEBI fee 1.00, exchange txn 29.65, stamp duty 14.96, STT 124.91,
+    GST 12.72, total 223.24 (all six matched to the rupee).
+
+    On a small intraday move these charges can be the difference between
+    a real profit and a real loss (confirmed directly: a trade the bot's
+    gross math showed as +0.50 was actually a real -46.82 loss once
+    charges applied) -- India-specific; crypto/US don't have this problem
+    at anywhere near this magnitude on this bot's position sizes."""
+    buy_turnover = (exit_price if direction == "short" else entry) * qty
+    sell_turnover = (entry if direction == "short" else exit_price) * qty
+    total_turnover = buy_turnover + sell_turnover
+
+    brokerage = 40.0  # Rs 20 flat per executed order x 2 legs
+    sebi_fee = total_turnover * 0.0000010  # Rs 10 per crore
+    exchange_txn = total_turnover * 0.0000297  # NSE intraday equity rate
+    stamp_duty = buy_turnover * 0.00003  # 0.003%, buy side only
+    stt = sell_turnover * 0.00025  # 0.025%, sell side only
+    gst = 0.18 * (brokerage + sebi_fee + exchange_txn)
+    return round(brokerage + sebi_fee + exchange_txn + stamp_duty + stt + gst, 2)
+
+
 def log_trade(sym_state, direction, entry, exit_price, pnl_per_unit, exit_reason):
     qty = sym_state.get("entry_qty")
     sym_state.setdefault("trade_journal", []).append({
