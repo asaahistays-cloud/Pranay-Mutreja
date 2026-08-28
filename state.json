@@ -441,7 +441,7 @@
     "PFC.NS": {
       "status": "watching",
       "range_high": 355.8500061035156,
-      "range_low": 353.25,
+      "range_low": 352.95001220703125,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -503,7 +503,7 @@
     "CANBK.NS": {
       "status": "watching",
       "range_high": 128.9600067138672,
-      "range_low": 127.4000015258789,
+      "range_low": 127.29000091552734,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -565,7 +565,7 @@
     "RECLTD.NS": {
       "status": "watching",
       "range_high": 322.8999938964844,
-      "range_low": 319.25,
+      "range_low": 319.04998779296875,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -985,7 +985,7 @@
     },
     "SUZLON.NS": {
       "status": "watching",
-      "range_high": 46.869998931884766,
+      "range_high": 46.959999084472656,
       "range_low": 46.40999984741211,
       "direction": null,
       "entry_price": null,
@@ -1200,7 +1200,7 @@
     "POWERGRID.NS": {
       "status": "watching",
       "range_high": 267.29998779296875,
-      "range_low": 264.8999938964844,
+      "range_low": 263.8500061035156,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -4805,7 +4805,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-28T04:20:26.017156+00:00",
+    "date": "2026-08-28T04:30:36.054454+00:00",
     "assessment": {
       "key_events": [
         {
