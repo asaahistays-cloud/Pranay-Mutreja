@@ -1081,11 +1081,10 @@
       "extreme_since_entry": null,
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
-      "consecutive_losses": 2,
+      "consecutive_losses": 3,
       "last_alert": {
-        "type": "breakdown_short",
-        "level": 0.14852,
-        "bar_time": 1787975100000
+        "type": "range_long_rejection",
+        "bar_time": 1787978700000
       },
       "trade_journal": [],
       "pending": null,
@@ -5571,8 +5570,17 @@
       "target": null,
       "qty": 720.5352547606834,
       "fired_at": "2026-08-29T04:20:28.483389+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "short",
+        "entry": 0.14763,
+        "exit": 0.14889,
+        "qty": 720.5352547606834,
+        "pnl_per_unit": -0.0012599999999999834,
+        "pnl_total": -0.9078744209984491,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-29T05:03:32.353686+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -5583,13 +5591,62 @@
       "fired_hour_utc": 4,
       "fired_weekday_utc": 5,
       "shadow": {
-        "direction": "short",
-        "entry_price": 0.14763,
-        "entry_qty": 720.5352547606834,
-        "stop_loss": 0.14857321428571427,
-        "extreme_since_entry": 0.14755,
-        "peak_profit_per_unit": 8.00000000000245e-05,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
+        "consecutive_losses": 1,
+        "consecutive_wins": 0,
+        "trade_journal": [
+          {
+            "direction": "short",
+            "entry": 0.14763,
+            "exit": 0.14889,
+            "qty": 720.5352547606834,
+            "pnl_per_unit": -0.0012599999999999834,
+            "pnl_total": -0.9078744209984491,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-29T05:03:32.353686+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 0.15009,
+        "range_low": 0.14755
+      }
+    },
+    {
+      "symbol": "FET-USD",
+      "type": "range_long_rejection",
+      "direction": "long",
+      "entry": 0.14889,
+      "stop": 0.1477552857142857,
+      "target": 0.17072,
+      "qty": 881.2791136849988,
+      "fired_at": "2026-08-29T05:03:34.409508+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "confidence_at_fire": {
+        "wins": 0,
+        "total": 5,
+        "confidence": 0.1429
+      },
+      "fired_hour_utc": 5,
+      "fired_weekday_utc": 5,
+      "shadow": {
+        "direction": "long",
+        "entry_price": 0.14889,
+        "entry_qty": 881.2791136849988,
+        "stop_loss": 0.1477552857142857,
+        "extreme_since_entry": 0.14889,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": 0.17072,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
         "trade_journal": []
@@ -5598,20 +5655,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T05:00:43.479549+00:00",
+    "date": "2026-08-29T05:03:24.881310+00:00",
     "assessment": {
       "key_events": [
         {
           "headline": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
-          "why_it_matters": "This escalation in economic warfare could lead to increased volatility in oil prices, affecting US equities."
+          "why_it_matters": "This event could lead to increased volatility in oil prices, potentially affecting US equities."
         },
         {
           "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "The potential for a deal in the Strait of Hormuz and clues about Fed policy could influence US equity market sentiment."
+          "why_it_matters": "The combination of Fed policy clues and rumors of a Hormuz deal could influence US equity markets through its impact on oil prices and broader economic expectations."
         },
         {
           "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
-          "why_it_matters": "This acquisition indicates a rebound in crypto trading, which could positively impact the crypto market."
+          "why_it_matters": "This acquisition indicates a potential rebound in crypto trading activity, which could positively impact the crypto market."
         }
       ],
       "risk": {
@@ -5619,7 +5676,7 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran-US conflict, which could impact global markets, particularly oil and transport fuel prices. The situation in the Strait of Hormuz and Iran's economy under intensified sanctions are key areas of concern. However, the direct impact on the watched markets appears limited for now."
+      "summary": "Today's news is dominated by the ongoing conflict between the US and Iran, with sanctions and economic warfare potentially impacting global markets. The situation in the Strait of Hormuz and its effects on oil exports and prices are particularly noteworthy. Despite this, the direct impact on the watched markets appears limited for now."
     },
     "headlines": [
       {
@@ -5799,6 +5856,14 @@
         "datetime": 1787893260
       },
       {
+        "id": 8418807,
+        "headline": "Closing auction scrutiny deepens as wild Sensex swing worries traders",
+        "summary": "A sudden 3% plunge in the BSE Sensex during a closing auction raises concerns over liquidity and potential market manipulation.",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-27/india-s-sensex-hit-by-flash-crash-during-unpopular-closing-auction",
+        "source": "Bloomberg",
+        "datetime": 1787892506
+      },
+      {
         "id": 8415109,
         "headline": "US military uses laser to down three Mexican cartel drones near border - Reuters",
         "summary": "US military uses laser to down three Mexican cartel drones near border\u00a0\u00a0Reuters",
@@ -5933,14 +5998,6 @@
         "url": "https://www.cnbc.com/2026/08/27/family-offices-making-bullish-bet-on-stocks-according-to-cnbc-tracker.html",
         "source": "CNBC",
         "datetime": 1787838029
-      },
-      {
-        "id": 8410669,
-        "headline": "This is \u2018one of the worst\u2019 credit card habits, experts say\u201441% of cardholders do it",
-        "summary": "Missing a credit card payment can damage your credit for years, while paying only the minimum can leave you in debt for decades.",
-        "url": "https://www.cnbc.com/2026/08/27/this-is-one-of-the-worst-credit-card-habits-41percent-of-cardholders-do-it.html",
-        "source": "CNBC",
-        "datetime": 1787835602
       }
     ]
   },
@@ -6029,6 +6086,7 @@
     8417203,
     8417304,
     8417906,
-    8418307
+    8418307,
+    8418807
   ]
 }
