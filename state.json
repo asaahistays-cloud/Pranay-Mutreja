@@ -5677,28 +5677,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T06:45:27.830496+00:00",
+    "date": "2026-08-29T06:48:35.509563+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
-          "why_it_matters": "The expansion of sanctions to Egyptian bank branches indicates a widening of the conflict's economic impact, potentially disrupting global financial flows and increasing market volatility."
+          "headline": "War weighs on Iran's economy as US intensifies sanctions",
+          "why_it_matters": "The escalation of sanctions against Iran could lead to further instability in global oil markets and potentially affect economies with significant trade ties to the region, including India and the US."
         },
         {
           "headline": "Iran's navy says it has 'full control' over Strait of Hormuz",
-          "why_it_matters": "Control of the Strait of Hormuz is crucial for global oil supplies, and any disruption or blockade could significantly impact oil prices and contribute to market instability."
+          "why_it_matters": "Control over this critical waterway could significantly impact oil prices and global trade, posing risks to the US and Indian economies."
         },
         {
-          "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "The combination of potential Fed policy changes and rumors of a deal regarding the Strait of Hormuz could lead to significant movements in oil prices and, by extension, affect the broader market and risk levels."
+          "headline": "Raghuram Rajan urges Fed to raise rates, says rupee is not in panic zone",
+          "why_it_matters": "The former RBI governor's comments on the need for rate hikes by the Fed and his assessment of the rupee's stability could influence monetary policy decisions and impact the Indian equity market."
         }
       ],
       "risk": {
-        "crypto": "elevated",
-        "india": "normal",
+        "crypto": "normal",
+        "india": "elevated",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing conflict between the US and Iran, with escalating sanctions and military actions affecting global markets. The situation in the Strait of Hormuz and its impact on oil exports and prices is a key concern. Overall, the geopolitical tensions and potential for further escalation contribute to elevated risk levels in the US and crypto markets, while the Indian market is less directly affected."
+      "summary": "Today's news is dominated by the ongoing conflict between the US and Iran, with escalating sanctions and tensions potentially impacting global markets. The situation in the Strait of Hormuz and its effects on oil exports and prices are particularly noteworthy. Meanwhile, economic and corporate news, including earnings and investments, continues to unfold with less immediate market-moving potential."
     },
     "headlines": [
       {
@@ -5870,6 +5870,22 @@
         "datetime": 1787913150
       },
       {
+        "id": 8419115,
+        "headline": "Amazon agrees deals to buy power from four Swedish wind farms",
+        "summary": "Amazon secures long-term power agreements for 200 megawatts from four Swedish wind farms to support its expanding data center operations.",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-28/amazon-strikes-four-wind-power-supply-deals-in-sweden",
+        "source": "Bloomberg",
+        "datetime": 1787899104
+      },
+      {
+        "id": 8419116,
+        "headline": "Raghuram Rajan urges Fed to raise rates, says rupee is not in panic zone",
+        "summary": "Raghuram Rajan says the Fed should raise rates to contain inflation, while noting strong US investment, fiscal deficit and consumer spending are supporting growth.",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-28/ex-rbi-chief-rajan-says-fed-should-raise-rates-to-curb-inflation",
+        "source": "Bloomberg",
+        "datetime": 1787898776
+      },
+      {
         "id": 8419114,
         "headline": "Nepal flash floods: Reconstruction costs could run into billions, says finance minister",
         "summary": "Nepal expects flash flood losses to reach billions of dollars as it seeks international funding to rebuild bridges, roads and settlements devastated by floods.",
@@ -6004,22 +6020,6 @@
         "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQUTVfLVZrNnM2eTJJcmZaVjN5Ym83a094ZUYxR3RqenVKVUxyWGpIaldFZTJpZUVaRFJ4TkpJUkctd0VIc1Nzb05qamt6cnZVU3lqSkw3NUdUYmE3WXpXNTUyTjNnLUFUZERfYXp6SjMzV2hrOV9nN1FDWTI4QUxSWGpIMnhwUURoeWRoOUNsYVRMOGx3d1BwdFF1LVNYejhVSjJpT201YWxKTWNBeEdJNm5nZjEyNE1zMWg4TTN4QXNORzN1akNuVEgyWQ?oc=5",
         "source": "Reuters",
         "datetime": 1787854560
-      },
-      {
-        "id": 8411736,
-        "headline": "What Warsh will say and how the market will react, according to prediction markets",
-        "summary": "Kalshi sees a low chance that Federal Reserve Chairman Kevin Warsh will mention \"bond market\" or \"rate cut\" at the annual Jackson Hole Symposium.",
-        "url": "https://www.cnbc.com/2026/08/27/what-warsh-will-say-and-how-the-market-will-react-according-to-prediction-markets.html",
-        "source": "CNBC",
-        "datetime": 1787854497
-      },
-      {
-        "id": 8411630,
-        "headline": "Donald Trump Jr. told Republican state attorneys not to fight prediction markets, NY Times reports",
-        "summary": "The president's son, who is an advisor to two prediction market platforms, told Republican attorneys general to back off on the industry, the Times reported.",
-        "url": "https://www.cnbc.com/2026/08/27/trump-jr-told-gop-state-attorneys-general-dont-fight-prediction-markets-nyt-reports.html",
-        "source": "CNBC",
-        "datetime": 1787854194
       }
     ]
   },
@@ -6113,6 +6113,8 @@
     8418910,
     8418911,
     8419014,
-    8419114
+    8419114,
+    8419115,
+    8419116
   ]
 }
