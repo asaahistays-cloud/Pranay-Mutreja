@@ -37,6 +37,13 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import broker_alpaca
+import broker_bybit
+
+# Crypto's real long+short paper trading needed a real margin/futures
+# account (Alpaca's crypto is cash/spot only, can't short at all -- see
+# broker_alpaca.py's module docstring) -- Bybit for crypto, Alpaca for
+# US. India and commodities have no broker at all (alert-only, always).
+BROKERS = {"crypto": broker_bybit, "us": broker_alpaca}
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -1536,34 +1543,39 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
 
 
 def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
-    """For a setup_log entry that was auto-executed on Alpaca (see the
-    broker_order block in main()'s fire loop): resolves it against
-    Alpaca's REAL fill data the instant either the stop or take-profit
-    order fills (ground truth, not the bot's own bar-close simulation
+    """For a setup_log entry that was auto-executed on a real broker
+    (see the broker_order block in main()'s fire loop -- Bybit for
+    crypto, Alpaca for US, see BROKERS): resolves it against the
+    broker's REAL fill data the instant either the stop or take-profit
+    fills (ground truth, not the bot's own bar-close simulation
     check_open() runs for every other entry), and mirrors the shadow's
     own trailing-stop math -- check_open() already ran on `shadow` this
     same scan and may have moved shadow['stop_loss'] -- onto the real
-    resting stop order.
+    resting stop.
 
-    Polls broker_stop_order_id/broker_take_profit_order_id directly
-    rather than re-fetching the parent order's nested legs -- works
-    uniformly whether those ids are real bracket/OTO legs or crypto's
-    standalone stop order (see place_bracket_order()'s docstring for
-    why crypto can't use legs at all).
+    Polls broker_stop_order_id/broker_take_profit_order_id directly --
+    for Alpaca these are real leg order ids; for Bybit, stop_order_id
+    is really just the symbol (Bybit's stop-loss is a position
+    attribute, not a separate order -- see broker_bybit.py's module
+    docstring). Both brokers' order_fill_status() accept whichever
+    shape they returned from place_bracket_order(), so this code
+    doesn't need to know which broker it's talking to.
 
-    No-ops entirely if broker_alpaca is disabled, this entry was never
-    broker-executed, or it's already resolved."""
-    if log_entry.get("resolved") or not log_entry.get("broker_order_id") or not broker_alpaca.enabled():
+    No-ops entirely if the market has no broker wired, that broker is
+    disabled, this entry was never broker-executed, or it's already
+    resolved."""
+    broker = BROKERS.get(market)
+    if log_entry.get("resolved") or not log_entry.get("broker_order_id") or not broker or not broker.enabled():
         return
 
-    # Bracket/OTO legs can briefly lag the parent order transitioning
-    # out of 'accepted' right after submission -- backfill if neither
-    # id showed up in place_bracket_order()'s own response yet. No-ops
-    # harmlessly for crypto's standalone-stop path once its (single)
-    # stop id was already captured at creation time.
-    if not log_entry.get("broker_stop_order_id") and not log_entry.get("broker_take_profit_order_id"):
-        parent = broker_alpaca.get_order(log_entry["broker_order_id"])
-        stop_id, tp_id = broker_alpaca.extract_leg_ids(parent)
+    # Alpaca's bracket/OTO legs can briefly lag the parent order
+    # transitioning out of 'accepted' right after submission --
+    # backfill if neither id showed up in place_bracket_order()'s own
+    # response yet. Bybit always returns its (single) identifier
+    # synchronously at creation, so this never triggers for it.
+    if market == "us" and not log_entry.get("broker_stop_order_id") and not log_entry.get("broker_take_profit_order_id"):
+        parent = broker.get_order(log_entry["broker_order_id"])
+        stop_id, tp_id = broker.extract_leg_ids(parent)
         if stop_id:
             log_entry["broker_stop_order_id"] = stop_id
         if tp_id:
@@ -1572,7 +1584,7 @@ def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
     outcome = None
     for order_id, kind in ((log_entry.get("broker_take_profit_order_id"), "target"),
                             (log_entry.get("broker_stop_order_id"), "stop")):
-        fill_price = broker_alpaca.order_fill_status(order_id)
+        fill_price = broker.order_fill_status(order_id)
         if fill_price is not None:
             outcome = (kind, fill_price)
             break
@@ -1595,8 +1607,9 @@ def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
             sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
             sym_state["consecutive_wins"] = 0
         total_txt = f", {pnl * qty:,.4g} total" if qty else ""
+        broker_name = "Bybit" if market == "crypto" else "Alpaca"
         send_telegram(
-            f"{symbol} PAPER TRADE CLOSED (Alpaca) -- {'WIN' if pnl >= 0 else 'LOSS'}\n\n"
+            f"{symbol} PAPER TRADE CLOSED ({broker_name}) -- {'WIN' if pnl >= 0 else 'LOSS'}\n\n"
             f"{direction} {entry_price:,.4g} -> {fill_price:,.4g} ({kind} fill)\n"
             f"P&L: {pnl:,.4g}/unit{total_txt}",
             symbol=symbol, price=fill_price,
@@ -1606,12 +1619,13 @@ def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
     new_stop = shadow.get("stop_loss")
     if (new_stop and log_entry.get("broker_stop_order_id")
             and new_stop != log_entry.get("_last_pushed_stop")):
-        result = broker_alpaca.replace_stop_price(log_entry["broker_stop_order_id"], new_stop, market=market)
+        result = broker.replace_stop_price(log_entry["broker_stop_order_id"], new_stop)
         if result is not None:
             log_entry["_last_pushed_stop"] = new_stop
-            # Alpaca's PATCH replace is cancel+replace under the hood --
-            # returns a NEW order id, not an in-place mutation. Must
-            # track it or the next replace call 404s against a dead id.
+            # Both brokers' replace call can hand back a fresh
+            # identifier (Alpaca's PATCH is cancel+replace under the
+            # hood -- new order id; Bybit just echoes the same symbol
+            # back) -- track whatever comes back either way.
             new_id = result.get("id")
             if new_id:
                 log_entry["broker_stop_order_id"] = new_id
@@ -1790,21 +1804,24 @@ def main():
         # Confirmed directly: an earlier version of this guard required
         # a real target, which meant broker execution silently never
         # fired for any of the 3 setups actually surfaced in real
-        # testing -- only the alert went out, no automation. broker_
-        # alpaca.enabled() is False (pure no-op) until the user adds
-        # ALPACA_API_KEY/ALPACA_SECRET_KEY as GitHub secrets -- until
-        # then this whole block never fires and nothing about existing
-        # alert-only behavior changes.
+        # testing -- only the alert went out, no automation. BROKERS
+        # only has entries for crypto (Bybit) and us (Alpaca) -- india/
+        # commodity look up to None and stay alert-only always. Each
+        # broker's enabled() is False (pure no-op) until its own API
+        # key secrets are set -- until then this whole block never
+        # fires and nothing about existing alert-only behavior changes.
         broker_order = None
-        if surfaced and market in ("crypto", "us") and broker_alpaca.enabled():
-            broker_order = broker_alpaca.place_bracket_order(
+        broker_mod = BROKERS.get(market)
+        if surfaced and broker_mod and broker_mod.enabled():
+            broker_order = broker_mod.place_bracket_order(
                 symbol, market, alert["direction"], alert["entry"], alert["stop"], alert["target"], alert["qty"],
             )
 
         if surfaced:
             text = alert["text"]
             if broker_order is not None:
-                text += "\n\n[Auto-executed: real Alpaca paper bracket order placed]"
+                broker_name = "Bybit" if market == "crypto" else "Alpaca"
+                text += f"\n\n[Auto-executed: real {broker_name} paper order placed]"
             fired_setups.append(text)
         fired_at_dt = datetime.now(timezone.utc)
         setup_log.append({

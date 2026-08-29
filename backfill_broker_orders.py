@@ -14,7 +14,6 @@ first place). Not part of the regular scan; run manually
 (workflow_dispatch mode=backfill_broker) only when needed."""
 import sys
 
-import broker_alpaca
 import monitor
 
 
@@ -27,8 +26,8 @@ def market_of(symbol):
 
 
 def main():
-    if not broker_alpaca.enabled():
-        print("ALPACA keys not set, nothing to backfill.")
+    if not any(b.enabled() for b in monitor.BROKERS.values()):
+        print("No broker keys set, nothing to backfill.")
         return 0
 
     state = monitor.load_state()
@@ -38,9 +37,10 @@ def main():
         if entry.get("resolved") or not entry.get("surfaced") or entry.get("broker_order_id"):
             continue
         market = market_of(entry["symbol"])
-        if market not in ("crypto", "us"):
+        broker = monitor.BROKERS.get(market)
+        if not broker or not broker.enabled():
             continue
-        order = broker_alpaca.place_bracket_order(
+        order = broker.place_bracket_order(
             entry["symbol"], market, entry["direction"], entry["entry"],
             entry["stop"], entry.get("target"), entry["qty"],
         )

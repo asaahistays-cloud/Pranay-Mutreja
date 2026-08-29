@@ -176,9 +176,11 @@ jobs:
         env:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
+          BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
         run: python3 backfill_broker_orders.py
         # Manual-only, one-off remediation (see backfill_broker_orders.py)
-        # -- places real Alpaca orders for setups that already fired and
+        # -- places real broker orders for setups that already fired and
         # surfaced before the target=None auto-execution bug was fixed.
         # Not part of regular operation; never scheduled.
 
@@ -187,13 +189,16 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          # Paper-trading auto-execution (crypto + US only, see
-          # broker_alpaca.py) -- both must be set for it to do anything;
-          # broker_alpaca.enabled() is a clean no-op otherwise, so this
-          # step behaves exactly as before until the user adds these two
-          # repo secrets themselves.
+          # Paper-trading auto-execution -- Bybit for crypto (real
+          # long+short futures, Alpaca's crypto is cash/spot-only, see
+          # broker_alpaca.py), Alpaca for US stocks. Each pair is a
+          # clean no-op via that broker's own enabled() check until its
+          # two secrets are set, so this step behaves exactly as before
+          # until the user adds them.
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
+          BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
         run: python3 monitor.py
 
       - name: Commit updated state
