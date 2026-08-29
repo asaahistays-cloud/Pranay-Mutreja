@@ -28,7 +28,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "monitor / india / us / report / ideas / eia (for manual testing; news briefing always runs)"
+        description: "monitor / india / us / report / ideas / eia / backfill_broker (for manual testing; news briefing always runs)"
         required: false
         default: "monitor"
 
@@ -170,8 +170,20 @@ jobs:
             echo "Skipping (now=$now UTC, not in window and mode != report)"
           fi
 
+      - name: Backfill broker orders
+        if: github.event.inputs.mode == 'backfill_broker'
+        continue-on-error: true
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python3 backfill_broker_orders.py
+        # Manual-only, one-off remediation (see backfill_broker_orders.py)
+        # -- places real Alpaca orders for setups that already fired and
+        # surfaced before the target=None auto-execution bug was fixed.
+        # Not part of regular operation; never scheduled.
+
       - name: Run monitor (full scan)
-        if: github.event.inputs.mode != 'report'
+        if: github.event.inputs.mode != 'report' && github.event.inputs.mode != 'backfill_broker'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
