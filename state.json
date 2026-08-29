@@ -5978,6 +5978,39 @@
         "consecutive_wins": 0,
         "trade_journal": []
       }
+    },
+    {
+      "symbol": "ETH-USD",
+      "type": "manual",
+      "direction": "short",
+      "entry": 2437.2,
+      "stop": 2443,
+      "target": null,
+      "qty": 0.12,
+      "fired_at": "2026-08-29T10:25:44.008294+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": true,
+      "confidence_at_fire": {
+        "wins": 0,
+        "total": 0,
+        "confidence": 0.5
+      },
+      "fired_hour_utc": 10,
+      "fired_weekday_utc": 5,
+      "shadow": {
+        "direction": "short",
+        "entry_price": 2437.2,
+        "entry_qty": 0.12,
+        "stop_loss": 2443,
+        "extreme_since_entry": 2437.2,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
     }
   ],
   "capital_inr_futures": 500000,
