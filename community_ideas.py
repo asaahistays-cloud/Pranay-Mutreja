@@ -7,18 +7,29 @@ shell (verified by pulling real post text directly out of a raw
 fetch). robots.txt disallows the generic /ideas/ hub but NOT the
 per-symbol /symbols/{SYMBOL}/ideas/ path used here.
 
-Explicitly does NOT blindly follow community setups -- the whole point
-is the opposite: an LLM reads each new idea and judges whether it's a
-genuine, coherent trade setup worth your attention (clear direction,
+Explicitly does NOT blindly follow community setups -- an LLM reads
+every new idea and judges whether it's a genuine, coherent, ACTIONABLE
+trade setup (clear direction, a concrete entry condition already met,
 real technical reasoning) versus generic content (motivational posts,
-vague commentary, no actual setup). Only ideas the LLM judges as
-genuine get surfaced, clearly labeled as a community idea, not the
-bot's own signal -- this never fires an alert, changes sizing, or
-touches any trading decision, same rule as everything else non-price-
-based in this bot. No historical archive of community ideas exists to
+vague commentary, no actual setup, or a setup conditional on something
+that hasn't happened yet). The bar is deliberately strict -- most ideas
+are expected to fail it.
+
+Explicit design choice (direct feedback after an earlier version just
+relayed the raw community post as its own message type): a genuine
+match is NOT forwarded as a "here's an idea, you decide" post. Instead
+it flows through the bot's own real alert pipeline -- fetches the
+symbol's actual current price/ATR, computes a real entry/stop/qty the
+same way check_watching_crypto()'s breakout logic does, sends the
+EXACT same alert format as any other fired setup, and logs it into
+setup_log with type="community_idea" so it's tracked, shadowed, and
+contributes to confidence scoring identically to every other setup
+type. The only difference from a normal alert is one attribution line
+at the end. No historical archive of community ideas exists to
 backtest a rule against (same reason Fear & Greed and world news stay
-informational), so surfacing worthwhile ideas for you to evaluate is
-the ceiling here, not autonomous decision-making.
+informational-only), so this is real-time judgment applied through the
+bot's existing, already-validated sizing/risk machinery -- not a new,
+unvalidated decision mechanism of its own.
 
 Dedup by idea URL (each TradingView idea has a unique permalink), same
 seen-tracking pattern as news_briefing.py's seen_ids."""
@@ -145,16 +156,104 @@ def parse_llm_json(raw):
             return None
 
 
-def format_telegram(symbol, market, idea, direction, reasoning):
-    return (
-        f"COMMUNITY IDEA -- {symbol} ({market})\n\n"
-        f"{idea['title']}\n"
-        f"Direction (community): {direction}\n"
-        f"Why it looked coherent: {reasoning}\n\n"
-        f"{idea['url']}\n\n"
-        f"(Not the bot's own signal -- a real community post an LLM judged coherent. "
-        f"Your call entirely; doesn't fire an alert or affect sizing.)"
+def bot_agrees_with_direction(symbol, market, direction):
+    """Explicit second gate, requested directly: "only the ones the bot
+    finds predictable too" -- an LLM judging a post's writeup as
+    coherent isn't the same as the bot's own numbers actually agreeing.
+    This is a lightweight sanity check, NOT a validated per-market
+    strategy like check_watching_crypto()/india()/us() -- those each
+    needed real backtesting before shipping; this is intentionally just
+    "does current momentum and trend strength at least not contradict
+    the suggested direction", reusing the exact rsi()/adx() functions
+    already in this bot. Returns (agrees, rsi_value, adx_value)."""
+    try:
+        bars = monitor.fetch_klines(symbol, market, limit=60)
+    except Exception:
+        return False, None, None
+    if len(bars) < 30:
+        return False, None, None
+    closed_bars = bars[:-1]
+    if monitor.is_stale(closed_bars[-1]):
+        return False, None, None
+    r = monitor.rsi(closed_bars)
+    a = monitor.adx(closed_bars)
+    if a is None or a < 20:  # too choppy/directionless to trust either way
+        return False, r, a
+    if direction == "long" and r > 55:
+        return True, r, a
+    if direction == "short" and r < 45:
+        return True, r, a
+    return False, r, a
+
+
+def surface_community_setup(symbol, market, direction, state):
+    """Fires a REAL alert through the bot's own pipeline -- explicit
+    design choice after direct feedback: not a separate "here's an
+    idea" message, the exact same format/mechanics as any other fired
+    setup (real entry/stop/qty via the same position_size()/
+    committed_capital() logic every other setup uses, logged into
+    setup_log so it's tracked and shadowed identically), just with one
+    attribution line. Returns True if it actually fired."""
+    try:
+        bars = monitor.fetch_klines(symbol, market, limit=60)
+    except Exception as e:
+        print(f"{symbol}: fetch failed for community setup ({e})")
+        return False
+    if len(bars) < 15:
+        return False
+    closed_bars = bars[:-1]
+    last_closed = closed_bars[-1]
+    if monitor.is_stale(last_closed):
+        return False
+
+    n = monitor.atr(closed_bars)
+    close = last_closed["close"]
+    stop = (last_closed["low"] - 0.5 * n) if direction == "long" else (last_closed["high"] + 0.5 * n)
+
+    symbols_state = state.setdefault("symbols", {})
+    sym_state = symbols_state.setdefault(symbol, monitor.default_symbol_state(closed_bars))
+    losses = sym_state.get("consecutive_losses", 0)
+    wins = sym_state.get("consecutive_wins", 0)
+    leverage = monitor.LEVERAGE_BY_MARKET.get(market, 1)
+
+    base_capital = state.get("capital_inr" if market == "india" else "capital_usd", 100)
+    setup_log = state.setdefault("setup_log", [])
+    pool_markets = ("india",) if market == "india" else ("crypto", "us")
+    capital = max(base_capital - monitor.committed_capital(setup_log, pool_markets), 0)
+    if capital <= 0:
+        return False
+
+    qty = monitor.position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+    if qty <= 0:
+        return False
+
+    currency = "Rs" if market == "india" else "$"
+    action = "BUY" if direction == "long" else "SELL"
+    text = monitor.build_alert_text(
+        f"{symbol} {action} (community idea, confirmed)\n\n"
+        f"{action}\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+        f"Take profit: Keep trailing (no fixed target)\n"
+        f"{monitor.expected_profit_line(close, stop, qty, currency=currency)}\n\n"
+        f"Setup taken by analysing a trade suggested on TradingView social debate.",
+        symbol=symbol, price=close,
     )
+    monitor.send_telegram(text)
+
+    fired_at_dt = datetime.now(timezone.utc)
+    setup_log.append({
+        "symbol": symbol, "type": "community_idea", "direction": direction,
+        "entry": close, "stop": stop, "target": None, "qty": qty,
+        "fired_at": fired_at_dt.isoformat(),
+        "resolved": False, "outcome": None, "surfaced": True, "taken": False,
+        "confidence_at_fire": monitor.compute_bucket_confidence(setup_log, market, "community_idea", direction),
+        "fired_hour_utc": fired_at_dt.hour, "fired_weekday_utc": fired_at_dt.weekday(),
+        "shadow": {
+            "direction": direction, "entry_price": close, "entry_qty": qty, "stop_loss": stop,
+            "extreme_since_entry": close, "peak_profit_per_unit": 0, "take_profit_target": None,
+            "consecutive_losses": 0, "consecutive_wins": 0, "trade_journal": [],
+        },
+    })
+    return True
 
 
 def main():
@@ -166,7 +265,6 @@ def main():
     watchlist += [(s, "india") for s in state.get("active_india_symbols", [])]
     watchlist += [(s, "us") for s in state.get("active_us_symbols", [])]
 
-    surfaced_today = state.get("community_ideas_surfaced") or []
     sent_count = 0
     checked_count = 0
 
@@ -198,19 +296,19 @@ def main():
             idx = match.get("index")
             if idx is None or idx >= len(new_ideas):
                 continue
-            idea = new_ideas[idx]
-            text = format_telegram(symbol, market, idea, match.get("direction", "unknown"), match.get("reasoning", ""))
-            monitor.send_telegram(text)
-            surfaced_today.append({
-                "symbol": symbol, "market": market, "title": idea["title"],
-                "url": idea["url"], "direction": match.get("direction"),
-                "reasoning": match.get("reasoning"),
-                "date": datetime.now(timezone.utc).isoformat(),
-            })
-            sent_count += 1
+            direction = match.get("direction")
+            if direction not in ("long", "short"):
+                continue
+
+            agrees, r, a = bot_agrees_with_direction(symbol, market, direction)
+            if not agrees:
+                print(f"{symbol}: LLM approved a {direction} idea but bot's own read disagrees (rsi={r}, adx={a}) -- not surfacing.")
+                continue
+
+            if surface_community_setup(symbol, market, direction, state):
+                sent_count += 1
 
     state["community_ideas_seen"] = new_seen[-2000:]
-    state["community_ideas_surfaced"] = surfaced_today[-50:]
     monitor.save_state(state)
     print(f"Checked {checked_count} symbols, surfaced {sent_count} genuine community idea(s).")
     return 0
