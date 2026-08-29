@@ -1,5 +1,4 @@
 {
-  "capital_usd": 100000,
   "capital_inr": 500000,
   "symbols": {
     "BTC-USD": {
@@ -7370,5 +7369,7 @@
     "https://www.tradingview.com/chart/VEDL/LtqQpQHz-VEDL-Dividend-Giant-Ready-to-Break-Out/",
     "https://www.tradingview.com/chart/IOC/j7eib6Rp-Ioc-in-a-clear-uptrend/",
     "https://www.tradingview.com/chart/RIVN/wFugqDTF-08-06-2026-Buy-RIVN/"
-  ]
+  ],
+  "capital_usd_crypto": 10000,
+  "capital_usd_us": 100000
 }

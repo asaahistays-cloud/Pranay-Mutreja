@@ -571,9 +571,9 @@ def day_vwap(closed_bars, last_closed):
 
 def committed_capital(setup_log, pool_markets):
     """Sum of entry*qty across currently open (taken, unresolved)
-    positions sharing this capital pool -- crypto and US draw from the
-    same capital_usd pot (see main()'s capital assignment below), India
-    has its own separate capital_inr pot. Without this, every new
+    positions sharing this capital pool -- crypto, US, and India each
+    draw from their own separate pot (see main()'s capital assignment
+    below). Without this, every new
     suggestion was sized off the FULL pot regardless of what's already
     committed to other open positions -- as if 100% of capital were
     always free, when in reality taking one trade should leave less
@@ -1535,7 +1535,7 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
-def sync_broker_entry(symbol, log_entry, shadow, sym_state):
+def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
     """For a setup_log entry that was auto-executed on Alpaca (see the
     broker_order block in main()'s fire loop): resolves it against
     Alpaca's REAL fill data the instant either the stop or take-profit
@@ -1606,7 +1606,7 @@ def sync_broker_entry(symbol, log_entry, shadow, sym_state):
     new_stop = shadow.get("stop_loss")
     if (new_stop and log_entry.get("broker_stop_order_id")
             and new_stop != log_entry.get("_last_pushed_stop")):
-        result = broker_alpaca.replace_stop_price(log_entry["broker_stop_order_id"], new_stop)
+        result = broker_alpaca.replace_stop_price(log_entry["broker_stop_order_id"], new_stop, market=market)
         if result is not None:
             log_entry["_last_pushed_stop"] = new_stop
             # Alpaca's PATCH replace is cancel+replace under the hood --
@@ -1627,7 +1627,18 @@ def main():
     # simulation.
     state = load_state()
     symbols_state = state.setdefault("symbols", {})
-    capital_usd = state.get("capital_usd", 100)
+    # crypto and US are separate pools now, not one shared capital_usd
+    # pot -- crypto capital is real cash backing 10x leverage (matches
+    # LEVERAGE_BY_MARKET and how these strategies were originally
+    # validated), US is unleveraged cash. Confirmed directly against
+    # the real Alpaca account: sizing crypto off the full $100k pot at
+    # 10x produced order notionals the real spot/cash paper account
+    # couldn't actually hold (insufficient balance, and Alpaca's own
+    # $200k-per-order cap) -- $10k crypto capital keeps intended
+    # notional (10x = $100k) within what the account can realistically
+    # support.
+    capital_usd_crypto = state.get("capital_usd_crypto", 100)
+    capital_usd_us = state.get("capital_usd_us", 100)
     capital_inr = state.get("capital_inr", 100)
     capital_commodity = state.get("capital_usd_commodity", 100)
     # eia_check.py (run as its own step, same pattern as news_briefing.py)
@@ -1672,8 +1683,10 @@ def main():
             capital, pool_markets = capital_inr, ("india",)
         elif market == "commodity":
             capital, pool_markets = capital_commodity, ("commodity",)
+        elif market == "crypto":
+            capital, pool_markets = capital_usd_crypto, ("crypto",)
         else:
-            capital, pool_markets = capital_usd, ("crypto", "us")
+            capital, pool_markets = capital_usd_us, ("us",)
         capital = max(capital - committed_capital(setup_log, pool_markets), 0)
 
         # Shadow-track every setup this symbol has ever fired, whether or
@@ -1719,7 +1732,7 @@ def main():
             # stop-trailing enforcement for those live here instead,
             # against Alpaca's actual fill data. No-ops for every entry
             # that was never broker-executed.
-            sync_broker_entry(symbol, log_entry, shadow, sym_state)
+            sync_broker_entry(symbol, market, log_entry, shadow, sym_state)
 
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise)
         if alert:

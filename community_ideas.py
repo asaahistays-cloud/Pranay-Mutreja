@@ -227,8 +227,10 @@ def surface_community_setup(symbol, market, direction, state):
         base_capital, pool_markets = state.get("capital_inr", 100), ("india",)
     elif market == "commodity":
         base_capital, pool_markets = state.get("capital_usd_commodity", 100), ("commodity",)
+    elif market == "crypto":
+        base_capital, pool_markets = state.get("capital_usd_crypto", 100), ("crypto",)
     else:
-        base_capital, pool_markets = state.get("capital_usd", 100), ("crypto", "us")
+        base_capital, pool_markets = state.get("capital_usd_us", 100), ("us",)
     setup_log = state.setdefault("setup_log", [])
     capital = max(base_capital - monitor.committed_capital(setup_log, pool_markets), 0)
     if capital <= 0:

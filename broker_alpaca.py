@@ -24,6 +24,11 @@ import urllib.request
 ALPACA_BASE_URL = "https://paper-api.alpaca.markets"  # PAPER ONLY -- do not change.
 API_KEY_ENV = "ALPACA_API_KEY"
 SECRET_KEY_ENV = "ALPACA_SECRET_KEY"
+# Crypto's standalone protective order must be stop_limit (plain "stop"
+# is rejected outright, see place_bracket_order()) -- this is how far
+# past the stop trigger the limit is allowed to fill, so a fast drop
+# doesn't leave the order resting unfilled past its trigger price.
+STOP_LIMIT_SLIPPAGE_PCT = 0.005
 
 
 def enabled():
@@ -130,6 +135,16 @@ def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
         return {"id": result["id"], "stop_order_id": stop_id, "take_profit_order_id": tp_id}
 
     if market == "crypto":
+        if direction == "short":
+            # Alpaca's crypto account is cash/spot only -- no margin, no
+            # shorting. Confirmed directly: a short attempt 403'd with
+            # "insufficient balance for ETH ... available: 0" (it was
+            # trying to sell coin it doesn't hold). Fail closed here
+            # rather than let every crypto short setup hit that error
+            # every single scan -- alert-only is the correct behavior
+            # for these, not a bug to route around.
+            print(f"{symbol}: crypto shorts aren't supported on Alpaca's cash account, alert-only")
+            return None
         entry_body = {
             "symbol": alpaca_symbol, "qty": str(order_qty), "side": side,
             "type": "market", "time_in_force": "gtc",
@@ -138,10 +153,19 @@ def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
         if entry_order is None:
             print(f"{symbol}: Alpaca crypto entry order failed, falling back to alert-only for this setup")
             return None
-        exit_side = "sell" if direction == "long" else "buy"
+        # Crypto rejects plain type="stop" outright (confirmed directly:
+        # 422 "invalid order type for crypto order") -- only stop_limit
+        # is supported. limit_price sits a small buffer past stop_price
+        # (in the direction that still lets it fill) so a fast-moving
+        # market doesn't leave the order resting unfilled past its
+        # trigger -- crypto shorts are excluded above, so this is
+        # always a "sell to close a long" stop.
+        stop_price_f = float(f"{stop:.6g}")
+        limit_price_f = stop_price_f * (1 - STOP_LIMIT_SLIPPAGE_PCT)
         stop_body = {
-            "symbol": alpaca_symbol, "qty": str(order_qty), "side": exit_side,
-            "type": "stop", "stop_price": f"{stop:.6g}", "time_in_force": "gtc",
+            "symbol": alpaca_symbol, "qty": str(order_qty), "side": "sell",
+            "type": "stop_limit", "stop_price": f"{stop_price_f:.6g}",
+            "limit_price": f"{limit_price_f:.6g}", "time_in_force": "gtc",
         }
         stop_order = _request("POST", "/v2/orders", stop_body)
         if stop_order is None:
@@ -164,14 +188,25 @@ def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
     return {"id": result["id"], "stop_order_id": stop_id, "take_profit_order_id": None}
 
 
-def replace_stop_price(stop_order_id, new_stop_price):
-    """Moves a resting stop-loss leg to a new (tighter) price -- how the
+def replace_stop_price(stop_order_id, new_stop_price, market=None):
+    """Moves a resting stop order to a new (tighter) price -- how the
     bot's existing trailing-stop logic (check_open()'s candidate_stop
     math, unchanged) gets enforced on the real paper account instead of
-    just being texted to the user."""
+    just being texted to the user.
+
+    market="crypto" also updates limit_price alongside stop_price --
+    crypto's standalone protective order is stop_limit (see
+    place_bracket_order()), and a PATCH that only moves stop_price
+    while leaving a now-stale limit_price behind could leave the order
+    unable to fill past its new trigger. Every other order shape here
+    (bracket/OTO legs on crypto or equities) is a plain stop, where
+    limit_price isn't a valid field at all."""
     if not enabled() or not stop_order_id:
         return None
-    return _request("PATCH", f"/v2/orders/{stop_order_id}", {"stop_price": f"{new_stop_price:.6g}"})
+    body = {"stop_price": f"{new_stop_price:.6g}"}
+    if market == "crypto":
+        body["limit_price"] = f"{new_stop_price * (1 - STOP_LIMIT_SLIPPAGE_PCT):.6g}"
+    return _request("PATCH", f"/v2/orders/{stop_order_id}", body)
 
 
 def get_order(order_id):
