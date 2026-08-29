@@ -48,8 +48,8 @@ def main():
             print(f"{entry['symbol']}: backfill order failed, leaving as alert-only")
             continue
         entry["broker_order_id"] = order["id"]
-        entry["broker_stop_order_id"] = None
-        entry["broker_take_profit_order_id"] = None
+        entry["broker_stop_order_id"] = order["stop_order_id"]
+        entry["broker_take_profit_order_id"] = order["take_profit_order_id"]
         entry["taken"] = True
         placed += 1
         print(f"{entry['symbol']} {entry['type']} {entry['direction']}: placed order {order['id']}")

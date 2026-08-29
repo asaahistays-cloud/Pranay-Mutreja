@@ -80,23 +80,30 @@ def _qty_for_order(qty, market):
 
 def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
     """Places a real (paper) market-entry order protected by a resting
-    stop-loss, sized at qty. Returns the parsed Alpaca order dict (with
-    nested legs, each carrying its own 'id') on success, or None if
-    disabled/failed -- callers must treat None as "not automated this
-    time, alert-only," never as a reason to abort the scan.
+    stop-loss, sized at qty. Returns {"id": entry_order_id,
+    "stop_order_id": ... or None, "take_profit_order_id": ... or None}
+    on success, or None if disabled/failed -- callers must treat None
+    as "not automated this time, alert-only," never as a reason to
+    abort the scan.
 
     target is None for most of this bot's setups (Triple MA, Triple
     Threat, DMI+DPO -- deliberately "trail your stop, no fixed target,"
     see check_open()'s docstring) -- confirmed directly: gating this on
     target is not None meant broker execution silently never fired for
     any of the 3 setups actually surfaced during real testing, only for
-    the older range-rejection setups that do carry a real target. So:
-    order_class="oto" (stop_loss leg only) when target is None -- the
-    position then lives purely on the trailing stop that
-    sync_broker_entry() keeps replacing via check_open()'s existing
-    trailing math, exactly matching how these setups already behave in
-    the alert-only/manual flow. order_class="bracket" (both legs) only
-    when a real target exists.
+    the older range-rejection setups that do carry a real target.
+
+    order_class="bracket" (both legs) when a real target exists -- this
+    works for both crypto and equities. When target is None, equities
+    use order_class="oto" (stop leg only). Crypto CANNOT use oto/oco at
+    all -- confirmed directly against the real API: 422 "crypto orders
+    not allowed for advanced order_class: oto". So for crypto with no
+    target, this places two independent top-level orders instead: a
+    plain market entry, then a separate standalone stop order. There's
+    no parent/leg relationship between them, but replace_stop_price()
+    and order_fill_status() both operate on a plain order id either
+    way, so the rest of the pipeline (trailing-stop enforcement,
+    fill-based resolution) doesn't need to know which shape it got.
     """
     if not enabled() or not tradable_on_alpaca(market):
         return None
@@ -106,23 +113,55 @@ def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
         return None
 
     side = "buy" if direction == "long" else "sell"
+    alpaca_symbol = to_alpaca_symbol(symbol, market)
+
+    if target is not None:
+        body = {
+            "symbol": alpaca_symbol, "qty": str(order_qty), "side": side,
+            "type": "market", "time_in_force": "gtc", "order_class": "bracket",
+            "take_profit": {"limit_price": f"{target:.6g}"},
+            "stop_loss": {"stop_price": f"{stop:.6g}"},
+        }
+        result = _request("POST", "/v2/orders", body)
+        if result is None:
+            print(f"{symbol}: Alpaca bracket order failed, falling back to alert-only for this setup")
+            return None
+        stop_id, tp_id = extract_leg_ids(result)
+        return {"id": result["id"], "stop_order_id": stop_id, "take_profit_order_id": tp_id}
+
+    if market == "crypto":
+        entry_body = {
+            "symbol": alpaca_symbol, "qty": str(order_qty), "side": side,
+            "type": "market", "time_in_force": "gtc",
+        }
+        entry_order = _request("POST", "/v2/orders", entry_body)
+        if entry_order is None:
+            print(f"{symbol}: Alpaca crypto entry order failed, falling back to alert-only for this setup")
+            return None
+        exit_side = "sell" if direction == "long" else "buy"
+        stop_body = {
+            "symbol": alpaca_symbol, "qty": str(order_qty), "side": exit_side,
+            "type": "stop", "stop_price": f"{stop:.6g}", "time_in_force": "gtc",
+        }
+        stop_order = _request("POST", "/v2/orders", stop_body)
+        if stop_order is None:
+            print(f"{symbol}: entry placed (order {entry_order['id']}) but the protective "
+                  f"stop order FAILED -- position is real but unprotected, check Alpaca manually.")
+            return {"id": entry_order["id"], "stop_order_id": None, "take_profit_order_id": None}
+        return {"id": entry_order["id"], "stop_order_id": stop_order["id"], "take_profit_order_id": None}
+
+    # US equities, no target: OTO (stop leg only) is supported.
     body = {
-        "symbol": to_alpaca_symbol(symbol, market),
-        "qty": str(order_qty),
-        "side": side,
-        "type": "market",
-        "time_in_force": "gtc",
+        "symbol": alpaca_symbol, "qty": str(order_qty), "side": side,
+        "type": "market", "time_in_force": "gtc", "order_class": "oto",
         "stop_loss": {"stop_price": f"{stop:.6g}"},
     }
-    if target is not None:
-        body["order_class"] = "bracket"
-        body["take_profit"] = {"limit_price": f"{target:.6g}"}
-    else:
-        body["order_class"] = "oto"
     result = _request("POST", "/v2/orders", body)
     if result is None:
         print(f"{symbol}: Alpaca order failed, falling back to alert-only for this setup")
-    return result
+        return None
+    stop_id, _ = extract_leg_ids(result)
+    return {"id": result["id"], "stop_order_id": stop_id, "take_profit_order_id": None}
 
 
 def replace_stop_price(stop_order_id, new_stop_price):
@@ -161,17 +200,17 @@ def extract_leg_ids(order):
     return stop_id, tp_id
 
 
-def leg_fill_outcome(order):
-    """Given a re-fetched parent bracket order, returns ('stop'|'target',
-    filled_avg_price) if either leg has filled, else None. Used as the
-    ground-truth resolution source for an automated position -- real
-    exchange fill data, not the bot's own 15m-bar close simulation."""
-    if not order:
-        return None
-    for leg in order.get("legs") or []:
-        if leg.get("status") == "filled" and leg.get("filled_avg_price"):
-            kind = "stop" if leg.get("stop_price") else "target"
-            return kind, float(leg["filled_avg_price"])
+def order_fill_status(order_id):
+    """Polls one specific order id directly for its own fill status --
+    works identically whether that id is a real bracket/OTO leg or one
+    of crypto's standalone stop orders (see place_bracket_order()),
+    since both are just plain orders from the API's point of view.
+    Returns the real filled_avg_price if filled, else None. Ground
+    truth for resolving an automated position -- real exchange fill
+    data, not the bot's own 15m-bar close simulation."""
+    order = get_order(order_id)
+    if order and order.get("status") == "filled" and order.get("filled_avg_price"):
+        return float(order["filled_avg_price"])
     return None
 
 

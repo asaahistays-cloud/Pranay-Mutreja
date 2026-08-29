@@ -1538,29 +1538,45 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
 def sync_broker_entry(symbol, log_entry, shadow, sym_state):
     """For a setup_log entry that was auto-executed on Alpaca (see the
     broker_order block in main()'s fire loop): resolves it against
-    Alpaca's REAL fill data the instant either bracket leg fills (ground
-    truth, not the bot's own bar-close simulation check_open() runs for
-    every other entry), and mirrors the shadow's own trailing-stop math
-    -- check_open() already ran on `shadow` this same scan and may have
-    moved shadow['stop_loss'] -- onto the real resting stop-loss leg.
+    Alpaca's REAL fill data the instant either the stop or take-profit
+    order fills (ground truth, not the bot's own bar-close simulation
+    check_open() runs for every other entry), and mirrors the shadow's
+    own trailing-stop math -- check_open() already ran on `shadow` this
+    same scan and may have moved shadow['stop_loss'] -- onto the real
+    resting stop order.
+
+    Polls broker_stop_order_id/broker_take_profit_order_id directly
+    rather than re-fetching the parent order's nested legs -- works
+    uniformly whether those ids are real bracket/OTO legs or crypto's
+    standalone stop order (see place_bracket_order()'s docstring for
+    why crypto can't use legs at all).
 
     No-ops entirely if broker_alpaca is disabled, this entry was never
     broker-executed, or it's already resolved."""
     if log_entry.get("resolved") or not log_entry.get("broker_order_id") or not broker_alpaca.enabled():
         return
 
-    order = broker_alpaca.get_order(log_entry["broker_order_id"])
-    if order is None:
-        return  # Transient API failure -- try again next scan.
-
-    if not log_entry.get("broker_stop_order_id"):
-        stop_id, tp_id = broker_alpaca.extract_leg_ids(order)
+    # Bracket/OTO legs can briefly lag the parent order transitioning
+    # out of 'accepted' right after submission -- backfill if neither
+    # id showed up in place_bracket_order()'s own response yet. No-ops
+    # harmlessly for crypto's standalone-stop path once its (single)
+    # stop id was already captured at creation time.
+    if not log_entry.get("broker_stop_order_id") and not log_entry.get("broker_take_profit_order_id"):
+        parent = broker_alpaca.get_order(log_entry["broker_order_id"])
+        stop_id, tp_id = broker_alpaca.extract_leg_ids(parent)
         if stop_id:
             log_entry["broker_stop_order_id"] = stop_id
         if tp_id:
             log_entry["broker_take_profit_order_id"] = tp_id
 
-    outcome = broker_alpaca.leg_fill_outcome(order)
+    outcome = None
+    for order_id, kind in ((log_entry.get("broker_take_profit_order_id"), "target"),
+                            (log_entry.get("broker_stop_order_id"), "stop")):
+        fill_price = broker_alpaca.order_fill_status(order_id)
+        if fill_price is not None:
+            outcome = (kind, fill_price)
+            break
+
     if outcome:
         kind, fill_price = outcome
         direction, entry_price, qty = log_entry["direction"], log_entry["entry"], log_entry["qty"]
@@ -1785,8 +1801,8 @@ def main():
             "resolved": False, "outcome": None, "surfaced": surfaced,
             "taken": broker_order is not None,
             "broker_order_id": broker_order["id"] if broker_order else None,
-            "broker_stop_order_id": None,
-            "broker_take_profit_order_id": None,
+            "broker_stop_order_id": broker_order["stop_order_id"] if broker_order else None,
+            "broker_take_profit_order_id": broker_order["take_profit_order_id"] if broker_order else None,
             # Self-learning groundwork -- see compute_bucket_confidence()'s
             # docstring. Purely observational: not read anywhere that
             # affects which setups fire, surface, or how they're sized.
