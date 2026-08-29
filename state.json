@@ -5558,7 +5558,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T00:33:09.869587+00:00",
+    "date": "2026-08-29T00:45:26.059552+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5871,14 +5871,6 @@
         "datetime": 1787843838
       },
       {
-        "id": 8411850,
-        "headline": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation - Reuters",
-        "summary": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZi1lT1VCQkw2VXZWdVpNN2QtRzh3RllkOG9zcC1qUWpzRW1lenhSbm5fVU5nQVFVNFRyZ1VnYkstZTNhYUVlNDVWVFpzMnVlZUN1MFdPOTc4UWpjVXRkakg0dHlMelZYWGpJaDF3dE11SU50OVBqc2pPVER2THMwRkQxeDBhZHRnNjFmWHY1V0JRcnhDcjZYSDg0NFZvQjJVR3d2U1Y0NEYzRnR4dlZjSGNjTTduNkRueXhhWDNrenhDbHM?oc=5",
-        "source": "Reuters",
-        "datetime": 1787839818
-      },
-      {
         "id": 8410670,
         "headline": "Family offices are making a bullish bet on the stock market, according to CNBC Family Office Portfolio Tracker",
         "summary": "The data includes the portfolios of hundreds of family offices, representing a total of $1.4 trillion in assets.",
@@ -5893,6 +5885,14 @@
         "url": "https://www.cnbc.com/2026/08/27/this-is-one-of-the-worst-credit-card-habits-41percent-of-cardholders-do-it.html",
         "source": "CNBC",
         "datetime": 1787835602
+      },
+      {
+        "id": 8411850,
+        "headline": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation - Reuters",
+        "summary": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZi1lT1VCQkw2VXZWdVpNN2QtRzh3RllkOG9zcC1qUWpzRW1lenhSbm5fVU5nQVFVNFRyZ1VnYkstZTNhYUVlNDVWVFpzMnVlZUN1MFdPOTc4UWpjVXRkakg0dHlMelZYWGpJaDF3dE11SU50OVBqc2pPVER2THMwRkQxeDBhZHRnNjFmWHY1V0JRcnhDcjZYSDg0NFZvQjJVR3d2U1Y0NEYzRnR4dlZjSGNjTTduNkRueXhhWDNrenhDbHM?oc=5",
+        "source": "Reuters",
+        "datetime": 1787835540
       },
       {
         "id": 8412056,
