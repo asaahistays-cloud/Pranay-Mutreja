@@ -1073,7 +1073,7 @@
     "FET-USD": {
       "status": "watching",
       "range_high": 0.17072,
-      "range_low": 0.14852,
+      "range_low": 0.14755,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -1082,10 +1082,7 @@
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
       "consecutive_losses": 3,
-      "last_alert": {
-        "type": "range_long_rejection",
-        "bar_time": 1787978700000
-      },
+      "last_alert": {},
       "trade_journal": [],
       "pending": null,
       "consecutive_wins": 0
@@ -5643,9 +5640,9 @@
         "direction": "long",
         "entry_price": 0.14889,
         "entry_qty": 881.2791136849988,
-        "stop_loss": 0.14806035714285715,
-        "extreme_since_entry": 0.14908,
-        "peak_profit_per_unit": 0.00018999999999999573,
+        "stop_loss": 0.149464,
+        "extreme_since_entry": 0.14971,
+        "peak_profit_per_unit": 0.0008200000000000152,
         "take_profit_target": 0.17072,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -5655,7 +5652,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T05:15:29.191067+00:00",
+    "date": "2026-08-29T05:18:20.460969+00:00",
     "assessment": {
       "key_events": [
         {
