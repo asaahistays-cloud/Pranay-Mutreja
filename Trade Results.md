@@ -898,3 +898,39 @@ No setups fired today.
 
 ---
 
+## 2026-08-30 00:03 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-08-29)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-08-29)
+- Suggested: 21 trade(s) | Resolved: 21 | Still playing out: 0
+- If you'd taken all 21 resolved trades: 11 right, 10 wrong (52% correct)
+- Net profit (USD): +4,088
+  [-] FET-USD breakdown_short (short): -0.09828
+  [-] FET-USD range_long_rejection (long): -0.7414
+  [-] FET-USD breakdown_short (short): -0.9079
+  [+] FET-USD range_long_rejection (long): +0.3084
+  [-] NEAR-USD breakdown_short (short): -1.34
+  [-] ETH-USD triple_ma_short (short): -1.231
+  [+] XRP-USD triple_ma_long (long): +0.7025
+  [-] BTC-USD dmi_dpo_short (short): -1.594
+  [+] ETH-USD manual (short): +0.1404
+  [+] BTC-USD triple_ma_long (long): +0.05204
+  [+] NEAR-USD dmi_dpo_short (short): +0.1641
+  [-] NEAR-USD dmi_dpo_short (short): -0.6441
+  [+] NEAR-USD manual (short): +1.176
+  [-] SOL-USD triple_ma_short (short): -0.3007
+  [-] ETH-USD triple_ma_short (short): -1,434
+  [+] AVAX-USD triple_ma_long (long): +1,068
+  [+] NEAR-USD triple_ma_long (long): +2,613
+  [+] SOL-USD triple_ma_long (long): +1,738
+  [+] FET-USD triple_ma_long (long): +149.8
+  [+] ETH-USD triple_ma_long (long): +4.904
+  [-] BTC-USD dmi_dpo_short (short): -48.07
+
+**US -- SIGNAL QUALITY** (2026-08-29)
+No setups fired today.
+
+---
+
