@@ -28,7 +28,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "monitor / india / us / report (for manual testing; news briefing always runs)"
+        description: "monitor / india / us / report / ideas (for manual testing; news briefing always runs)"
         required: false
         default: "monitor"
 
@@ -118,6 +118,26 @@ jobs:
         # last check (tracked by Finnhub's own id) -- most 15-min
         # windows won't have new world-news items, so this rate-limits
         # itself without an arbitrary schedule.
+
+      - name: Community trade ideas
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          h=$((10#$(date -u +%H))); m=$((10#$(date -u +%M)))
+          # Every 4 hours (00/04/08/12/16/20 UTC), unlike the news
+          # briefing above -- this checks TradingView's public Ideas
+          # pages for ~37 watchlist symbols per run, which is unofficial
+          # scraping (no published API/rate limits), so a conservative
+          # few-times-a-day cadence is the respectful choice rather than
+          # hitting it every 15 min like the news briefing's single
+          # Finnhub call.
+          if [ "${{ github.event.inputs.mode }}" = "ideas" ] || { [ $((h % 4)) -eq 0 ] && [ "$m" -lt 15 ]; }; then
+            python3 community_ideas.py
+          else
+            echo "Skipping (now=${h}:${m} UTC, not in a 4-hourly window and mode != ideas)"
+          fi
 
       - name: Trade performance report
         continue-on-error: true
