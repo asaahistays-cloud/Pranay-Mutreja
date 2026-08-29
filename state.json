@@ -1081,11 +1081,11 @@
       "extreme_since_entry": null,
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
-      "consecutive_losses": 3,
+      "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": [],
       "pending": null,
-      "consecutive_wins": 0
+      "consecutive_wins": 1
     },
     "DKNG": {
       "status": "watching",
@@ -5625,8 +5625,17 @@
       "target": 0.17072,
       "qty": 881.2791136849988,
       "fired_at": "2026-08-29T05:03:34.409508+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "long",
+        "entry": 0.14889,
+        "exit": 0.14924,
+        "qty": 881.2791136849988,
+        "pnl_per_unit": 0.00035000000000001696,
+        "pnl_total": 0.30844768978976456,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-08-29T05:45:33.834396+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "confidence_at_fire": {
@@ -5637,43 +5646,59 @@
       "fired_hour_utc": 5,
       "fired_weekday_utc": 5,
       "shadow": {
-        "direction": "long",
-        "entry_price": 0.14889,
-        "entry_qty": 881.2791136849988,
-        "stop_loss": 0.149464,
-        "extreme_since_entry": 0.14971,
-        "peak_profit_per_unit": 0.0008200000000000152,
-        "take_profit_target": 0.17072,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
         "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
+        "consecutive_wins": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 0.14889,
+            "exit": 0.14924,
+            "qty": 881.2791136849988,
+            "pnl_per_unit": 0.00035000000000001696,
+            "pnl_total": 0.30844768978976456,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-08-29T05:45:33.834396+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 0.15009,
+        "range_low": 0.14755
       }
     }
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T05:33:19.319864+00:00",
+    "date": "2026-08-29T05:45:24.352507+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
-          "why_it_matters": "This event could lead to increased volatility in oil prices, potentially affecting US equities."
+          "headline": "War weighs on Iran's economy as US intensifies sanctions",
+          "why_it_matters": "The intensification of sanctions could lead to further instability in the region and impact global oil prices, potentially affecting equities and crypto markets."
+        },
+        {
+          "headline": "Iran's navy says it has 'full control' over Strait of Hormuz",
+          "why_it_matters": "Control over this critical waterway could significantly affect global oil supply and prices, leading to market volatility."
         },
         {
           "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "The combination of Fed policy clues and rumors of a Hormuz deal could influence US equity markets through its impact on oil prices and broader economic expectations."
-        },
-        {
-          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
-          "why_it_matters": "This acquisition indicates a potential rebound in crypto trading activity, which could positively impact the crypto market."
+          "why_it_matters": "Any resolution or change in the status of the Strait of Hormuz, combined with Fed policy clues, could directly influence oil prices and have a ripple effect on the US and Indian equities markets."
         }
       ],
       "risk": {
-        "crypto": "normal",
-        "india": "normal",
+        "crypto": "elevated",
+        "india": "elevated",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing conflict between the US and Iran, with sanctions and economic warfare potentially impacting global markets. The situation in the Strait of Hormuz and its effects on oil exports and prices are particularly noteworthy. Despite this, the direct impact on the watched markets appears limited for now."
+      "summary": "Today's news is dominated by the ongoing conflict between the US and Iran, with escalating sanctions and their economic impact. This situation could lead to increased volatility in various markets, including oil and potentially affecting US and Indian equities. Crypto markets may see some movement due to overall market sentiment and potential safe-haven buying."
     },
     "headlines": [
       {
@@ -5683,14 +5708,6 @@
         "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQQmtVbEg3UlB1QzhqQTZJLTRJY1ZfZWJTZjVrVjVPWDFDT3dGd0RxTEQ3M19hVEFHcldMaEpxcncwNGxlQ1ZDMzA3T09ScHFKdjFEYVQ4Yi1BdFNHdmNuVlpmN3MtWUVOSlVVTEZoRjlxRDZQQ3VpejdGRGg4bEh1NzRyMjJuYU15c2t1V0V3ckJxeDBLdUs4WFNkeEhnSWl3dW9keE5YMA?oc=5",
         "source": "Reuters",
         "datetime": 1787969040
-      },
-      {
-        "id": 8413825,
-        "headline": "Iran lashes out at US sanctions amid economic toll at home - Reuters",
-        "summary": "Iran lashes out at US sanctions amid economic toll at home\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787952765
       },
       {
         "id": 8417906,
@@ -5845,6 +5862,22 @@
         "datetime": 1787913150
       },
       {
+        "id": 8418910,
+        "headline": "4,000% options surge in 15 minutes shows wild side of new CAS system",
+        "summary": "During the first monthly expiry at BSE, a \u20b964,000-put option tied to a bank index was trading at just \u20b91.70 at the start of the auction. Within minutes, it shot up to \u20b968.55, before crashing back to z",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-28/4-000-options-surge-in-15-minutes-shows-wild-india-auction",
+        "source": "Bloomberg",
+        "datetime": 1787894793
+      },
+      {
+        "id": 8418911,
+        "headline": "Noel Tata, Shapoorji discuss share swap for Tata Sons stake sale",
+        "summary": "Representatives of Noel Tata are exploring a deal where SP Group could receive shares in Tata Power Co. in exchange for part or all of its 18.4% stake in Tata Sons Pvt",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-28/noel-tata-shapoorji-discuss-share-swap-for-tata-sons-stake-sale",
+        "source": "Bloomberg",
+        "datetime": 1787894333
+      },
+      {
         "id": 8415107,
         "headline": "Iran's disfigured supreme leader remains invisible six months into an existential war - Reuters",
         "summary": "Iran's disfigured supreme leader remains invisible six months into an existential war\u00a0\u00a0Reuters",
@@ -5859,6 +5892,14 @@
         "url": "https://www.bloomberg.com/news/articles/2026-08-27/india-s-sensex-hit-by-flash-crash-during-unpopular-closing-auction",
         "source": "Bloomberg",
         "datetime": 1787892506
+      },
+      {
+        "id": 8413825,
+        "headline": "Iran lashes out at US sanctions amid economic toll at home - Reuters",
+        "summary": "Iran lashes out at US sanctions amid economic toll at home\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787880840
       },
       {
         "id": 8415109,
@@ -5979,22 +6020,6 @@
         "url": "https://www.cnbc.com/2026/08/27/jim-cramer-says-the-worst-is-over-at-salesforce-sees-another-20percent-upside-from-here.html",
         "source": "CNBC",
         "datetime": 1787849940
-      },
-      {
-        "id": 8411099,
-        "headline": "We went 3 for 3 \u2014 what we learned from wins at Nvidia, Salesforce, and CrowdStrike",
-        "summary": "The Investing Club holds its \"Morning Meeting\" every weekday at 10:20 a.m. ET.",
-        "url": "https://www.cnbc.com/2026/08/27/we-went-3-for-3-what-we-learned-from-wins-at-nvidia-salesforce-and-crowdstrike.html",
-        "source": "CNBC",
-        "datetime": 1787843838
-      },
-      {
-        "id": 8410670,
-        "headline": "Family offices are making a bullish bet on the stock market, according to CNBC Family Office Portfolio Tracker",
-        "summary": "The data includes the portfolios of hundreds of family offices, representing a total of $1.4 trillion in assets.",
-        "url": "https://www.cnbc.com/2026/08/27/family-offices-making-bullish-bet-on-stocks-according-to-cnbc-tracker.html",
-        "source": "CNBC",
-        "datetime": 1787838029
       }
     ]
   },
@@ -6084,6 +6109,8 @@
     8417304,
     8417906,
     8418307,
-    8418807
+    8418807,
+    8418910,
+    8418911
   ]
 }
