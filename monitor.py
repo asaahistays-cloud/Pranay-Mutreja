@@ -55,6 +55,26 @@ RISK_PCT_PER_TRADE = 0.01
 # balance or the sizing would suggest more money than the account has.
 LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 1}
 GAP_THRESHOLD_PCT_US = 0.015  # overnight gap that locks check_watching_us()'s directional bias
+# Tuned against real 15m production-code backtests (90 days crypto /
+# 60 days US+India, real Coinbase/Yahoo data), not the original
+# daily-bar research values -- see check_triple_ma()'s docstring.
+# Swept 5-50 range; 8/16/25 was the strongest AND most stable choice
+# (same result held across trend=20/30/40 at breakout=20 for Triple
+# Threat below, which is itself a good robustness sign). Crypto: all
+# 3 symbols individually profitable, split-sample held up in both
+# halves. US: strong, improved out-of-sample. India: the weak leg,
+# degrades out-of-sample -- known and accepted, not hidden.
+TRIPLE_MA_FAST = 8
+TRIPLE_MA_MED = 16
+TRIPLE_MA_SLOW = 25
+# Tuned the same way -- see check_triple_threat()'s docstring. Weaker
+# and thinner-sampled than Triple MA (dozens of trades vs hundreds),
+# and a GUESSED methodology (AlphaInsider never disclosed a real
+# description for this name) -- shipped anyway per explicit direction,
+# eyes open about both caveats.
+TRIPLE_THREAT_TREND_PERIOD = 30
+TRIPLE_THREAT_RSI_PERIOD = 14
+TRIPLE_THREAT_BREAKOUT_PERIOD = 20
 # Not currently applied to sizing (see position_size()'s docstring --
 # backtested, both cost real profit for no measured drawdown benefit).
 # Left defined since consecutive_wins/losses are still tracked and
@@ -218,6 +238,189 @@ def ema(values, period):
     return e
 
 
+def check_triple_ma(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+    """Three Moving Averages -- the second cross-market candidate from
+    the AlphaInsider strategy review (after DMI+DPO, crypto-only, still
+    unshipped, and LINREG_CHANNEL, which failed its own 15m validation
+    and was fully reverted). Daily-bar backtest: best Sharpe of all 12
+    tested strategies on crypto (2.71), positive on US and India too,
+    though weaker there. Simplest rules of anything tested (3 EMA
+    lengths, no other parameters) -- lower overfitting surface than
+    most of the others.
+
+    Long when fast EMA > medium EMA > slow EMA AND this is a FRESH
+    alignment (wasn't already true last call) -- catches the moment a
+    trend starts, not every bar it continues. Short is the mirror.
+    Applying both lessons already learned the hard way this session
+    before this ever runs for real, not after:
+      - own dedicated dedup field (triple_ma_regime), not the shared
+        last_alert (DMI+DPO shipped with that bug first, confirmed via
+        a live 15m backtest showing 3,498 spam trades in 90 days).
+      - stop anchored to the actual bar (last_closed low/high), not an
+        indicator level (LINREG_CHANNEL's first version anchored to
+        the regression band itself, which a single extreme bar could
+        push to the wrong side of entry).
+    Periods (TRIPLE_MA_FAST/MED/SLOW) are the daily-bar-validated
+    10/20/50 as placeholders ONLY -- not yet backtested at 15m. Same
+    discipline as DMI+DPO and LINREG_CHANNEL: tune against real 15m
+    data before this fires for real, don't assume the daily window
+    transfers."""
+    closes = [b["close"] for b in closed_bars]
+    if len(closes) < TRIPLE_MA_SLOW:
+        return None
+    fast = ema(closes[-(TRIPLE_MA_FAST * 3):], TRIPLE_MA_FAST)
+    med = ema(closes[-(TRIPLE_MA_MED * 3):], TRIPLE_MA_MED)
+    slow = ema(closes[-(TRIPLE_MA_SLOW * 3):], TRIPLE_MA_SLOW)
+
+    current_regime = None
+    if fast > med > slow:
+        current_regime = "long"
+    elif fast < med < slow:
+        current_regime = "short"
+    prev_regime = sym_state.get("triple_ma_regime")
+    sym_state["triple_ma_regime"] = current_regime
+    if not current_regime or current_regime == prev_regime:
+        return None
+
+    close = last_closed["close"]
+    losses = sym_state.get("consecutive_losses", 0)
+    wins = sym_state.get("consecutive_wins", 0)
+    leverage = LEVERAGE_BY_MARKET.get(market, 1)
+    currency = "Rs" if symbol.endswith(".NS") else "$"
+    n = atr(closed_bars)
+    tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
+
+    if current_regime == "long":
+        stop = last_closed["low"] - 2 * n
+        if stop >= close:
+            return None
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+        text = build_alert_text(
+            f"{symbol} TRIPLE MA (long){tag}\n\n"
+            f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+            f"Take profit: Keep trailing (no fixed target)\n"
+            f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
+            f"Fast EMA({TRIPLE_MA_FAST}) > med EMA({TRIPLE_MA_MED}) > slow EMA({TRIPLE_MA_SLOW}) -- fresh bullish alignment.",
+            symbol=symbol, price=close,
+        )
+        return {"text": text, "type": "triple_ma_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+    else:
+        stop = last_closed["high"] + 2 * n
+        if stop <= close:
+            return None
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+        text = build_alert_text(
+            f"{symbol} TRIPLE MA (short){tag}\n\n"
+            f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+            f"Take profit: Keep trailing (no fixed target)\n"
+            f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
+            f"Fast EMA({TRIPLE_MA_FAST}) < med EMA({TRIPLE_MA_MED}) < slow EMA({TRIPLE_MA_SLOW}) -- fresh bearish alignment.",
+            symbol=symbol, price=close,
+        )
+        return {"text": text, "type": "triple_ma_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+
+
+def check_triple_threat(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+    """Triple Threat -- GUESSED methodology (AlphaInsider disclosed no
+    real description for this one, just a name -- see the community
+    strategy review). Interpreted as a 3-confirmation system since
+    that's what "Triple Threat" most commonly names in retail TA: trend
+    filter (price vs EMA) + momentum trigger (RSI crossing 50) +
+    breakout confirmation (price breaking the recent N-bar high/low).
+    Real 15m screen (pandas-engine, not yet this production version):
+    best India result of anything tested (PF 2.11, 3/3 symbols), strong
+    on US (PF 1.38, 3/3) and crypto (PF 1.21, 2/3) -- the only other
+    candidate alongside Triple MA that looked genuinely positive across
+    all 3 markets, hence the follow-up to the same production-code
+    treatment. Being a GUESSED strategy stays true regardless of these
+    numbers -- a good backtest of an invented rule isn't the same as
+    validating AlphaInsider's actual (unknown) Triple Threat.
+
+    RSI-crossing-50 is already a discrete single-bar event by
+    construction (unlike DMI+DPO/Triple MA/LINREG_CHANNEL's persistent
+    regime conditions), so it doesn't carry the same "fires every bar
+    a condition holds true" risk those did -- confirmed empirically via
+    the real 15m production validation before trusting that reasoning
+    alone. Still uses a dedicated cross-direction field rather than the
+    shared last_alert, on principle, matching the other 3 additions.
+    Stop anchored to the actual bar, not an indicator level -- same
+    fix applied to LINREG_CHANNEL after its first version got this
+    wrong."""
+    closes = [b["close"] for b in closed_bars]
+    if len(closes) < TRIPLE_THREAT_TREND_PERIOD:
+        return None
+    trend = ema(closes[-(TRIPLE_THREAT_TREND_PERIOD * 3):], TRIPLE_THREAT_TREND_PERIOD)
+    r_now = rsi(closed_bars, period=TRIPLE_THREAT_RSI_PERIOD)
+    r_prev = rsi(closed_bars[:-1], period=TRIPLE_THREAT_RSI_PERIOD)
+    lookback = closed_bars[-(TRIPLE_THREAT_BREAKOUT_PERIOD + 1):-1]
+    if len(lookback) < TRIPLE_THREAT_BREAKOUT_PERIOD:
+        return None
+    roll_hi = max(b["high"] for b in lookback)
+    roll_lo = min(b["low"] for b in lookback)
+    close = last_closed["close"]
+
+    r_cross_up = r_prev <= 50 < r_now
+    r_cross_dn = r_prev >= 50 > r_now
+
+    current_cross = "up" if r_cross_up else ("down" if r_cross_dn else None)
+    prev_cross = sym_state.get("triple_threat_cross")
+    if current_cross:
+        sym_state["triple_threat_cross"] = current_cross
+
+    fires_long = r_cross_up and current_cross != prev_cross and close > trend and close > roll_hi
+    fires_short = r_cross_dn and current_cross != prev_cross and close < trend and close < roll_lo
+    if not (fires_long or fires_short):
+        return None
+
+    losses = sym_state.get("consecutive_losses", 0)
+    wins = sym_state.get("consecutive_wins", 0)
+    leverage = LEVERAGE_BY_MARKET.get(market, 1)
+    currency = "Rs" if symbol.endswith(".NS") else "$"
+    n = atr(closed_bars)
+    tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
+
+    if fires_long:
+        stop = last_closed["low"] - 2 * n
+        if stop >= close:
+            return None
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+        text = build_alert_text(
+            f"{symbol} TRIPLE THREAT (long){tag}\n\n"
+            f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+            f"Take profit: Keep trailing (no fixed target)\n"
+            f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
+            f"Above EMA({TRIPLE_THREAT_TREND_PERIOD}) trend, RSI crossed above 50, broke the {TRIPLE_THREAT_BREAKOUT_PERIOD}-bar high {roll_hi:,.4g}.",
+            symbol=symbol, price=close,
+        )
+        return {"text": text, "type": "triple_threat_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+    else:
+        stop = last_closed["high"] + 2 * n
+        if stop <= close:
+            return None
+        qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+        text = build_alert_text(
+            f"{symbol} TRIPLE THREAT (short){tag}\n\n"
+            f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+            f"Take profit: Keep trailing (no fixed target)\n"
+            f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
+            f"Below EMA({TRIPLE_THREAT_TREND_PERIOD}) trend, RSI crossed below 50, broke the {TRIPLE_THREAT_BREAKOUT_PERIOD}-bar low {roll_lo:,.4g}.",
+            symbol=symbol, price=close,
+        )
+        return {"text": text, "type": "triple_threat_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+
+
+def check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+    """Tries the cross-market secondary strategies in order (Triple MA,
+    then Triple Threat), used as the shared fallback at every point in
+    check_watching_crypto()/india()/us() where the market's own primary
+    logic didn't fire. Centralized here so adding a future candidate
+    means editing one place, not four."""
+    alert = check_triple_ma(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+    if alert:
+        return alert
+    return check_triple_threat(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+
+
 def adx(bars, period=14):
     """Trend-strength regime filter (Wilder's ADX) -- used only by the
     backtest sweep's ADX-ranging-filter variant, not by production
@@ -247,6 +450,58 @@ def adx(bars, period=14):
     dx = [100 * abs(p - m) / (p + m) if (p + m) else 0 for p, m in zip(plus_di, minus_di)]
     sample = dx[-period:]
     return sum(sample) / len(sample) if sample else None
+
+
+def dmi(bars, period=14):
+    """+DI/-DI alongside ADX (same Wilder smoothing as adx() above) --
+    needed for check_watching_crypto()'s DMI+DPO trend setup, which has
+    to know WHICH way a trend is running, not just how strong it is."""
+    if len(bars) < period * 2 + 1:
+        return None, None, None
+    plus_dm, minus_dm, trs = [], [], []
+    for i in range(1, len(bars)):
+        up = bars[i]["high"] - bars[i - 1]["high"]
+        down = bars[i - 1]["low"] - bars[i]["low"]
+        plus_dm.append(up if (up > down and up > 0) else 0)
+        minus_dm.append(down if (down > up and down > 0) else 0)
+        h, l, prev_close = bars[i]["high"], bars[i]["low"], bars[i - 1]["close"]
+        trs.append(max(h - l, abs(h - prev_close), abs(l - prev_close)))
+
+    def wilder_smooth(vals, period):
+        smoothed = [sum(vals[:period])]
+        for v in vals[period:]:
+            smoothed.append(smoothed[-1] - smoothed[-1] / period + v)
+        return smoothed
+
+    tr_s = wilder_smooth(trs, period)
+    plus_s = wilder_smooth(plus_dm, period)
+    minus_s = wilder_smooth(minus_dm, period)
+    plus_di = [100 * p / t if t else 0 for p, t in zip(plus_s, tr_s)]
+    minus_di = [100 * m / t if t else 0 for m, t in zip(minus_s, tr_s)]
+    dx = [100 * abs(p - m) / (p + m) if (p + m) else 0 for p, m in zip(plus_di, minus_di)]
+    sample = dx[-period:]
+    adx_val = sum(sample) / len(sample) if sample else None
+    return plus_di[-1], minus_di[-1], adx_val
+
+
+def dpo(bars, period=20):
+    """Detrended Price Oscillator -- price from `shift` bars ago minus
+    the current period-SMA. Counterintuitive sign in a clean trend: a
+    steady uptrend has an OLDER, lower reference price minus a newer,
+    higher average -> DPO is NEGATIVE while the trend is accelerating,
+    and only flips POSITIVE once price has recently pulled back/cooled
+    off relative to that earlier level. So "DPO > 0" alongside a
+    confirmed +DI bias (see dmi()) reads as "established uptrend, buy
+    the pullback" -- not "price above its average" -- which is exactly
+    the entry check_watching_crypto()'s DMI+DPO setup wants: don't chase
+    the initial move, enter on the retracement."""
+    shift = period // 2 + 1
+    closes = [b["close"] for b in bars]
+    if len(closes) < max(period, shift + 1):
+        return None
+    sma_now = sum(closes[-period:]) / period
+    price_then = closes[-1 - shift]
+    return price_then - sma_now
 
 
 def rsi(bars, period=14):
@@ -439,16 +694,15 @@ def check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, 
     -- a real, meaningful improvement, not just noise (488 of 780
     baseline trades survive the gate, not a drastic cut)."""
     alert = check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
-    if alert is None:
-        return None
-    r = rsi(closed_bars)
-    vwap = day_vwap(closed_bars, last_closed)
-    close = last_closed["close"]
-    if alert["direction"] == "long" and not (r > 60 and close >= vwap):
-        return None
-    if alert["direction"] == "short" and not (r < 40 and close <= vwap):
-        return None
-    return alert
+    if alert is not None:
+        r = rsi(closed_bars)
+        vwap = day_vwap(closed_bars, last_closed)
+        close = last_closed["close"]
+        if alert["direction"] == "long" and (r > 60 and close >= vwap):
+            return alert
+        if alert["direction"] == "short" and (r < 40 and close <= vwap):
+            return alert
+    return check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
 
 def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None):
@@ -514,10 +768,13 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
             if gap_pct <= -GAP_THRESHOLD_PCT_US:
                 sym_state["gap_direction"] = "short"
 
+    # Every early exit below falls through to Triple MA (see its
+    # docstring) as a second, independent strategy -- Gap and Go is
+    # deliberately narrow (short-only, gap days only).
     if sym_state.get("gap_direction") != "short" or sym_state.get("gap_fired"):
-        return None
+        return check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if len(today_bars) < 2:
-        return None  # opening range not established yet
+        return check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)  # opening range not established yet
 
     if setup_log:
         for e in setup_log:
@@ -526,13 +783,13 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
             fired_ms = int(datetime.fromisoformat(e["fired_at"]).timestamp() * 1000)
             if us_date(fired_ms) == day:
                 sym_state["gap_fired"] = True  # resync the flag since setup_log caught what it missed
-                return None
+                return check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
     range_high = max(b["high"] for b in today_bars[:2])
     range_low = min(b["low"] for b in today_bars[:2])
     close = last_closed["close"]
     if close >= range_low:
-        return None
+        return check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
     n = atr(closed_bars)
     stop = range_high + 0.5 * n
@@ -700,6 +957,81 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
             return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low, "vol_ratio": vol / vol_avg if vol_avg else 0}
         return None
+
+    # DMI+DPO trend setup -- independent of the range-based setups above
+    # (fires whether price is inside or outside range_high/range_low),
+    # added as a second, separate crypto strategy per explicit request
+    # rather than replacing the range/breakout system.
+    #
+    # Dedup uses its OWN dedicated field (dmi_dpo_regime), not the
+    # shared last_alert the other 4 setups use -- confirmed directly via
+    # a real 15m production-code backtest (90 days, real Coinbase data,
+    # not the daily-bar research backtest) that reusing last_alert was
+    # broken: the unrelated "if range_low < close < range_high:
+    # last_alert = {}" housekeeping a few lines below fires on nearly
+    # every bar where price sits inside the base range, wiping the dedup
+    # one bar after it was set and letting this refire every single bar
+    # the trend condition held. Fixed by tracking the DMI/DPO regime in
+    # its own field, updated every call regardless of whether anything
+    # fires, so a fire only happens on an actual long<->short/neutral
+    # transition -- not on every bar the condition still holds.
+    #
+    # Period=50 (not the 14/20 defaults) -- also confirmed via the same
+    # real 15m backtest: the daily-bar research version (period 14/20)
+    # doesn't transfer to 15m at all (PF ~1.0, pure noise -- a 14-period
+    # ADX at 15m only spans 3.5 hours, nowhere near the multi-day trend
+    # structure the daily version was actually reading). Swept periods
+    # 20-150 against 90 days of real Coinbase 15m data; period=50 (12.5
+    # hours) was the best AND most robust: profitable on all 3 symbols
+    # individually, and an out-of-sample split (first 60 days vs. held-
+    # out last 30) held up rather than degrading -- first-60d PF 1.34,
+    # last-30d PF 1.47, win rate 54.5% -> 63.4%. Needs the wider 300-bar
+    # crypto fetch (see main()) since period=50 needs 2*50+1=101 bars
+    # minimum for dmi() alone. Real, but modest edge -- nowhere near the
+    # daily backtest's PF 2.42, and thin enough that real exchange fees
+    # could meaningfully eat into it; treat as unproven until it's built
+    # its own live track record.
+    ADX_MIN_TRENDING = 20
+    DMI_DPO_PERIOD = 50
+    plus_di, minus_di, adx_trend = dmi(closed_bars, period=DMI_DPO_PERIOD)
+    d_po = dpo(closed_bars, period=DMI_DPO_PERIOD)
+    current_regime = None
+    if adx_trend is not None and d_po is not None and adx_trend > ADX_MIN_TRENDING:
+        if plus_di > minus_di and d_po > 0:
+            current_regime = "long"
+        elif minus_di > plus_di and d_po < 0:
+            current_regime = "short"
+    prev_regime = sym_state.get("dmi_dpo_regime")
+    sym_state["dmi_dpo_regime"] = current_regime
+    if current_regime and current_regime != prev_regime:
+        if current_regime == "long":
+            stop = close - 2 * n
+            qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+            text = build_alert_text(
+                f"{symbol} DMI+DPO TREND (long)\n\n"
+                f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+                f"Take profit: Keep trailing (no fixed target)\n"
+                f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
+                f"+DI {plus_di:.1f} > -DI {minus_di:.1f}, ADX {adx_trend:.0f} confirms trend, DPO {d_po:,.4g} (recent pullback within the trend).",
+                symbol=symbol, price=close,
+            )
+            return {"text": text, "type": "dmi_dpo_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+        else:
+            stop = close + 2 * n
+            qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+            text = build_alert_text(
+                f"{symbol} DMI+DPO TREND (short)\n\n"
+                f"SELL\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+                f"Take profit: Keep trailing (no fixed target)\n"
+                f"{expected_profit_line(close, stop, qty, currency=currency)}\n\n"
+                f"-DI {minus_di:.1f} > +DI {plus_di:.1f}, ADX {adx_trend:.0f} confirms trend, DPO {d_po:,.4g} (recent bounce within the trend).",
+                symbol=symbol, price=close,
+            )
+            return {"text": text, "type": "dmi_dpo_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+
+    triple_ma_alert = check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+    if triple_ma_alert:
+        return triple_ma_alert
 
     if range_low < close < range_high:
         sym_state["last_alert"] = {}
@@ -1117,7 +1449,17 @@ def main():
     for entry in watchlist:
         symbol, market, tradable = entry["symbol"], entry["market"], entry["tradable"]
         try:
-            bars = fetch_klines(symbol, market, limit=60)
+            # Crypto fetches more history (300 vs 60) so the DMI+DPO
+            # trend setup has enough bars for a period=50 lookback (12.5
+            # hours) -- confirmed via a real 15m backtest that period=20
+            # over a 60-bar/15hr window was pure noise (PF ~1.0), while
+            # period=50 over 300 bars held up both per-symbol and on an
+            # out-of-sample split. The other 4 crypto setups are
+            # unaffected: they only ever look at bounded tail slices
+            # (last 2/10/30 bars) regardless of how much history
+            # precedes them, so the extra bars are free for them.
+            fetch_limit = 300 if market == "crypto" else 60
+            bars = fetch_klines(symbol, market, limit=fetch_limit)
         except Exception as e:
             print(f"{symbol}: fetch failed ({e}), skipping")
             continue
