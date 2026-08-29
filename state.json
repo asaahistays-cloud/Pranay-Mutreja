@@ -5677,28 +5677,28 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T06:18:27.768663+00:00",
+    "date": "2026-08-29T06:30:36.998771+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "War weighs on Iran's economy as US intensifies sanctions",
-          "why_it_matters": "The intensification of sanctions could lead to further instability in the region and impact global oil prices, potentially affecting equities and crypto markets."
+          "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
+          "why_it_matters": "The expansion of sanctions to Egyptian bank branches indicates a widening of the conflict's economic impact, potentially disrupting global financial flows and increasing market volatility."
         },
         {
           "headline": "Iran's navy says it has 'full control' over Strait of Hormuz",
-          "why_it_matters": "Control over this critical waterway could significantly affect global oil supply and prices, leading to market volatility."
+          "why_it_matters": "Control of the Strait of Hormuz is crucial for global oil supplies, and any disruption or blockade could significantly impact oil prices and contribute to market instability."
         },
         {
           "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "Any resolution or change in the status of the Strait of Hormuz, combined with Fed policy clues, could directly influence oil prices and have a ripple effect on the US and Indian equities markets."
+          "why_it_matters": "The combination of potential Fed policy changes and rumors of a deal regarding the Strait of Hormuz could lead to significant movements in oil prices and, by extension, affect the broader market and risk levels."
         }
       ],
       "risk": {
         "crypto": "elevated",
-        "india": "elevated",
+        "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing conflict between the US and Iran, with escalating sanctions and their economic impact. This situation could lead to increased volatility in various markets, including oil and potentially affecting US and Indian equities. Crypto markets may see some movement due to overall market sentiment and potential safe-haven buying."
+      "summary": "Today's news is dominated by the ongoing conflict between the US and Iran, with escalating sanctions and military actions affecting global markets. The situation in the Strait of Hormuz and its impact on oil exports and prices is a key concern. Overall, the geopolitical tensions and potential for further escalation contribute to elevated risk levels in the US and crypto markets, while the Indian market is less directly affected."
     },
     "headlines": [
       {
@@ -5748,6 +5748,14 @@
         "url": "https://www.cnbc.com/2026/08/28/what-we-learned-from-warshs-jackson-hole-speech-and-ge-vernovas-cfo-to-retire.html",
         "source": "CNBC",
         "datetime": 1787940185
+      },
+      {
+        "id": 8419014,
+        "headline": "Israel kills Hamas operative in rare West Bank air strike, military says - Reuters",
+        "summary": "Israel kills Hamas operative in rare West Bank air strike, military says\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQZlZhNVQwZ2dBSUdMTmN3b2ZuR1VlSlBOanV6NTVkNTBsdHdfZk1OYW95SVFnU0dIdDNlS0NGSkxwOWFCd05JQ28za2N3azJRM2p0UXlISHl3aERWa3VubVRlVGdSdjF3UFFyUlc3VW5yVmI5b3ItU3ZsY1l6TFYtVWxJUG50X2RiNHZ3bGNPMnVRemphRGd2dlJtYUEycGQwUFdxaWdZd056a2d4QldPVEZULVFFUGJQLW05bVFwSWlMLWF0YzVZWmRn?oc=5",
+        "source": "Reuters",
+        "datetime": 1787940164
       },
       {
         "id": 8416377,
@@ -5860,6 +5868,14 @@
         "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNNEl5QXd2UEpMZlNEOGszSng5WEotaDlSVG1qMXIxXzFNdDZiMFMxTnUxM0tIX2hYeXVkWVhYUUJMZF9PY3lSNXFVOC03TnF6dmstYzFVdFlwdWZZdVFqQ0tqS2VtSm5UU2p5bnhtQ2xPdnFhcWVmbTFpLU0zR0g5c0l4LTVMWHZFaXI2ME85a255SjdQMjRXSzloU2w1UFd5YWFPam5OOVRFanNqSEhvWVQ0cmFlUDFhWFE?oc=5",
         "source": "Reuters",
         "datetime": 1787913150
+      },
+      {
+        "id": 8419114,
+        "headline": "Nepal flash floods: Reconstruction costs could run into billions, says finance minister",
+        "summary": "Nepal expects flash flood losses to reach billions of dollars as it seeks international funding to rebuild bridges, roads and settlements devastated by floods.",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-28/nepal-will-need-billions-in-funding-to-rebuild-flood-hit-economy",
+        "source": "Bloomberg",
+        "datetime": 1787898089
       },
       {
         "id": 8418910,
@@ -6004,22 +6020,6 @@
         "url": "https://www.cnbc.com/2026/08/27/trump-jr-told-gop-state-attorneys-general-dont-fight-prediction-markets-nyt-reports.html",
         "source": "CNBC",
         "datetime": 1787854194
-      },
-      {
-        "id": 8417304,
-        "headline": "Trump says Putin will not attack NATO territory, downplays Ratcliffe trip - Reuters",
-        "summary": "Trump says Putin will not attack NATO territory, downplays Ratcliffe trip\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxObk1VbmRKMmJJSmtVNm84ajk2QXBHc1ZSUGpia1ptRndKVTNsaHlOUHBLdTJsSmtYUC1URUdsSkxKMlJHaE9OZHJUWVpMX3JvWXJYaDNSZjdsZGQ0S3VQdXhZWlZ0WkxyOXByd2UzenJGakZsdEdlZWtkakRORmN3WkFDdTVWejlIT0xWVEwtMXpWeGVJVW9iX0ZHVGw1elZIQ29aVWJQaGpJWmhrVElZaWtibG4?oc=5",
-        "source": "Reuters",
-        "datetime": 1787852820
-      },
-      {
-        "id": 8411737,
-        "headline": "Jim Cramer says the 'worst is over' at Salesforce, sees another 20% upside from here",
-        "summary": "Jim Cramer believes the comeback rally in Salesforce is far from over.",
-        "url": "https://www.cnbc.com/2026/08/27/jim-cramer-says-the-worst-is-over-at-salesforce-sees-another-20percent-upside-from-here.html",
-        "source": "CNBC",
-        "datetime": 1787849940
       }
     ]
   },
@@ -6111,6 +6111,8 @@
     8418307,
     8418807,
     8418910,
-    8418911
+    8418911,
+    8419014,
+    8419114
   ]
 }
