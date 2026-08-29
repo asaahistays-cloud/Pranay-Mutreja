@@ -174,7 +174,7 @@
     "NEAR-USD": {
       "status": "watching",
       "range_high": 1.9976,
-      "range_low": 1.7987,
+      "range_low": 1.789,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
@@ -5677,7 +5677,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T06:48:35.509563+00:00",
+    "date": "2026-08-29T07:03:24.896223+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5958,6 +5958,14 @@
         "datetime": 1787876940
       },
       {
+        "id": 8408336,
+        "headline": "Qatar steps in to mediate as Trump says US not talking to Iran - Reuters",
+        "summary": "Qatar steps in to mediate as Trump says US not talking to Iran\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNdWtVN3R2dUFBREVJWjhxV1pXUEs4WUx1Ry1ReVRLQzZhS0ZBaEl1NlZ3T2cxcTdEU1Q1RnZqTC1aNWlUVjRpc3VpdTRtaTdub2RiQW5BamhkMGM2VUZjWlV4YnpkM0Q1ZS1YcVBwR2cxNlVXWjlCcUhHRDQ3VWtMWEt3Q0N5U2hQTlJETmRSeXFWUWltWktCYVNKLVo1enNRTGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787875728
+      },
+      {
         "id": 8412577,
         "headline": "Jim Cramer says Nvidia and Salesforce earnings upended two bear narratives",
         "summary": "CNBC\u2019s Jim Cramer said strong earnings from Nvidia and Salesforce shattered two major bear cases that had weighed on the tech stocks.",
@@ -6012,14 +6020,6 @@
         "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOU3V4QnUxMjhRcWJmZGRDdmJSWWZuWjdnMkQ0bEZxX05lME5tNEx0dHpTUGt1UHZDbmd3WXJMS0hjWDlxRlhYblh2VUNLLXIxSkZIclZxTmd4M2VpdUdRU2NGSTgxd3VqSzZ2S2dlSUEwdnZ2aVhEWGdxQmhwOWZIYWNTMVV3bk5pS3FqMXJZYU9GbDlPRWJKR0d3YkR1QU5rUi1tR3M0Q3UzTzVsQmsyXw?oc=5",
         "source": "Reuters",
         "datetime": 1787854663
-      },
-      {
-        "id": 8411849,
-        "headline": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say - Reuters",
-        "summary": "Trump to meet refiners, fuel retailers as Iran war boosts gas prices ahead of midterms, sources say\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQUTVfLVZrNnM2eTJJcmZaVjN5Ym83a094ZUYxR3RqenVKVUxyWGpIaldFZTJpZUVaRFJ4TkpJUkctd0VIc1Nzb05qamt6cnZVU3lqSkw3NUdUYmE3WXpXNTUyTjNnLUFUZERfYXp6SjMzV2hrOV9nN1FDWTI4QUxSWGpIMnhwUURoeWRoOUNsYVRMOGx3d1BwdFF1LVNYejhVSjJpT201YWxKTWNBeEdJNm5nZjEyNE1zMWg4TTN4QXNORzN1akNuVEgyWQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787854560
       }
     ]
   },
