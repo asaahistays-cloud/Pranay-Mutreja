@@ -5568,20 +5568,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T03:03:14.674928+00:00",
+    "date": "2026-08-29T03:15:24.545039+00:00",
     "assessment": {
       "key_events": [
         {
-          "headline": "Iran's navy says it has 'full control' over Strait of Hormuz",
-          "why_it_matters": "This statement could lead to increased tensions and potentially disrupt global oil supplies, affecting markets."
+          "headline": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare",
+          "why_it_matters": "This escalation in economic warfare could lead to increased volatility in oil prices, affecting US equities."
         },
         {
-          "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
-          "why_it_matters": "Escalating sanctions and conflict could lead to broader economic implications, including impacts on oil prices and global trade."
+          "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal",
+          "why_it_matters": "The potential for a deal in the Strait of Hormuz and clues about Fed policy could influence US equity market sentiment."
         },
         {
           "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
-          "why_it_matters": "This acquisition indicates a potential increase in institutional investment in crypto, which could positively impact the cryptocurrency market."
+          "why_it_matters": "This acquisition indicates a rebound in crypto trading, which could positively impact the crypto market."
         }
       ],
       "risk": {
@@ -5589,9 +5589,17 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Tensions between the US and Iran continue to escalate, potentially impacting global markets, while news in the tech sector, such as Apple's price hikes and AI spending, may influence US equities. The situation in the Strait of Hormuz and Iran's response to US sanctions are key to watch. Overall, market risk is relatively contained but worth monitoring due to geopolitical tensions."
+      "summary": "Today's news is dominated by the ongoing Iran-US conflict, which could impact global markets, particularly oil and transport fuel prices. The situation in the Strait of Hormuz and Iran's economy under intensified sanctions are key areas of concern. However, the direct impact on the watched markets appears limited for now."
     },
     "headlines": [
+      {
+        "id": 8418307,
+        "headline": "War weighs on Iran's economy as US intensifies sanctions - Reuters",
+        "summary": "War weighs on Iran's economy as US intensifies sanctions\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQQmtVbEg3UlB1QzhqQTZJLTRJY1ZfZWJTZjVrVjVPWDFDT3dGd0RxTEQ3M19hVEFHcldMaEpxcncwNGxlQ1ZDMzA3T09ScHFKdjFEYVQ4Yi1BdFNHdmNuVlpmN3MtWUVOSlVVTEZoRjlxRDZQQ3VpejdGRGg4bEh1NzRyMjJuYU15c2t1V0V3ckJxeDBLdUs4WFNkeEhnSWl3dW9keE5YMA?oc=5",
+        "source": "Reuters",
+        "datetime": 1787969040
+      },
       {
         "id": 8413825,
         "headline": "Iran lashes out at US sanctions amid economic toll at home - Reuters",
@@ -5903,14 +5911,6 @@
         "url": "https://www.cnbc.com/2026/08/27/this-is-one-of-the-worst-credit-card-habits-41percent-of-cardholders-do-it.html",
         "source": "CNBC",
         "datetime": 1787835602
-      },
-      {
-        "id": 8411850,
-        "headline": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation - Reuters",
-        "summary": "Visa, Mastercard launch international card payments in Syria after US lifts terrorism designation\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZi1lT1VCQkw2VXZWdVpNN2QtRzh3RllkOG9zcC1qUWpzRW1lenhSbm5fVU5nQVFVNFRyZ1VnYkstZTNhYUVlNDVWVFpzMnVlZUN1MFdPOTc4UWpjVXRkakg0dHlMelZYWGpJaDF3dE11SU50OVBqc2pPVER2THMwRkQxeDBhZHRnNjFmWHY1V0JRcnhDcjZYSDg0NFZvQjJVR3d2U1Y0NEYzRnR4dlZjSGNjTTduNkRueXhhWDNrenhDbHM?oc=5",
-        "source": "Reuters",
-        "datetime": 1787835540
       }
     ]
   },
@@ -5998,6 +5998,7 @@
     8416996,
     8417203,
     8417304,
-    8417906
+    8417906,
+    8418307
   ]
 }
