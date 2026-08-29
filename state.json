@@ -593,34 +593,27 @@
     },
     "HOOD": {
       "status": "watching",
-      "range_high": 110.5,
-      "range_low": 107.5999984741211,
+      "range_high": 105.22000122070312,
+      "range_low": 104.1500015258789,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "MARA": {
       "status": "watching",
-      "range_high": 12.055000305175781,
-      "range_low": 11.270000457763672,
+      "range_high": 10.739999771118164,
+      "range_low": 10.600099563598633,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
-      "consecutive_losses": 1,
+      "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": "short",
-      "gap_fired": true,
-      "consecutive_wins": 0
+      "trade_journal": []
     },
     "SNAP": {
       "status": "watching",
@@ -639,35 +632,27 @@
     },
     "RIOT": {
       "status": "watching",
-      "range_high": 21.0049991607666,
-      "range_low": 19.780000686645508,
+      "range_high": 19.024999618530273,
+      "range_low": 18.78499984741211,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": "short",
-      "gap_fired": true,
-      "consecutive_wins": 1
+      "trade_journal": []
     },
     "RIVN": {
       "status": "watching",
-      "range_high": 16.889999389648438,
-      "range_low": 16.030000686645508,
+      "range_high": 16.1200008392334,
+      "range_low": 15.765000343322754,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": "short",
-      "gap_fired": true,
-      "consecutive_wins": 1
+      "trade_journal": []
     },
     "UBER": {
       "status": "watching",
@@ -686,63 +671,51 @@
     },
     "NKE": {
       "status": "watching",
-      "range_high": 39.125,
-      "range_low": 38.33000183105469,
+      "range_high": 39.7599983215332,
+      "range_low": 39.26499938964844,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "NEM": {
       "status": "watching",
-      "range_high": 133.6999969482422,
-      "range_low": 132.47000122070312,
+      "range_high": 128.3800048828125,
+      "range_low": 127.23999786376953,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "LYFT": {
       "status": "watching",
-      "range_high": 17.739999771118164,
-      "range_low": 17.329999923706055,
+      "range_high": 17.875,
+      "range_low": 17.674999237060547,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "AAL": {
       "status": "watching",
-      "range_high": 13.829999923706055,
-      "range_low": 13.680000305175781,
+      "range_high": 13.800000190734863,
+      "range_low": 13.609999656677246,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "CLF": {
       "status": "watching",
@@ -820,33 +793,27 @@
     },
     "CCL": {
       "status": "watching",
-      "range_high": 25.479999542236328,
-      "range_low": 24.905000686645508,
+      "range_high": 24.94499969482422,
+      "range_low": 24.75,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "GOLD": {
       "status": "watching",
-      "range_high": 46.36000061035156,
-      "range_low": 45.90999984741211,
+      "range_high": 45.689998626708984,
+      "range_low": 45.2599983215332,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "OXY": {
       "status": "watching",
@@ -880,18 +847,15 @@
     },
     "NCLH": {
       "status": "watching",
-      "range_high": 16.760000228881836,
-      "range_low": 16.600000381469727,
+      "range_high": 16.81999969482422,
+      "range_low": 16.649999618530273,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "KMI": {
       "status": "watching",
@@ -910,18 +874,15 @@
     },
     "PFE": {
       "status": "watching",
-      "range_high": 28.579999923706055,
-      "range_low": 28.329999923706055,
+      "range_high": 27.959999084472656,
+      "range_low": 27.81999969482422,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-26",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "DAL": {
       "status": "watching",
@@ -1135,18 +1096,15 @@
     },
     "DKNG": {
       "status": "watching",
-      "range_high": 24.415000915527344,
-      "range_low": 24.170000076293945,
+      "range_high": 25.815000534057617,
+      "range_low": 25.18000030517578,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-28",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "VZ": {
       "status": "watching",
@@ -1210,18 +1168,15 @@
     },
     "NIO": {
       "status": "watching",
-      "range_high": 4.405600070953369,
-      "range_low": 4.369999885559082,
+      "range_high": 4.369999885559082,
+      "range_low": 4.309999942779541,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "NHPC.NS": {
       "status": "watching",
@@ -1264,18 +1219,15 @@
     },
     "SIRI": {
       "status": "watching",
-      "range_high": 28.7450008392334,
-      "range_low": 28.545000076293945,
+      "range_high": 28.639999389648438,
+      "range_low": 28.415000915527344,
       "direction": null,
       "entry_price": null,
       "stop_loss": null,
       "extreme_since_entry": null,
       "consecutive_losses": 0,
       "last_alert": {},
-      "trade_journal": [],
-      "gap_date": "2026-08-27",
-      "gap_direction": null,
-      "gap_fired": false
+      "trade_journal": []
     },
     "F": {
       "status": "watching",
@@ -1407,21 +1359,21 @@
     "CANBK.NS"
   ],
   "active_us_symbols": [
-    "PYPL",
-    "MARA",
-    "RIOT",
+    "DKNG",
     "RIVN",
-    "INTC",
-    "SNAP",
-    "T",
+    "NIO",
+    "RIOT",
     "NKE",
+    "AAL",
+    "NCLH",
+    "MARA",
     "LYFT",
-    "UBER",
-    "HOOD",
-    "PINS",
+    "NEM",
     "CCL",
-    "VZ",
-    "WFC"
+    "GOLD",
+    "HOOD",
+    "PFE",
+    "SIRI"
   ],
   "setup_log": [
     {
@@ -5591,7 +5543,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T02:03:25.527836+00:00",
+    "date": "2026-08-29T02:05:20.707084+00:00",
     "assessment": {
       "key_events": [
         {
