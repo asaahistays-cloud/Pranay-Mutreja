@@ -1753,15 +1753,21 @@ def main():
         # setups that actually get surfaced (best-of-N filtering above
         # already decides what's worth acting on; a non-surfaced setup
         # shouldn't get real capital either). alert["target"] is None
-        # for the commodity seasonal setup (trailing-only, no fixed
-        # exit) -- that's not on crypto/us anyway, but a bracket order
-        # requires a real take_profit price either way, so it's guarded
-        # here too. broker_alpaca.enabled() is False (pure no-op) until
-        # the user adds ALPACA_API_KEY/ALPACA_SECRET_KEY as GitHub
-        # secrets -- until then this whole block never fires and nothing
-        # about existing alert-only behavior changes.
+        # for most of this bot's setups (Triple MA, Triple Threat,
+        # DMI+DPO -- deliberately trailing-stop-only, see check_open()'s
+        # docstring) -- place_bracket_order() itself branches on this
+        # (order_class="oto", stop leg only, vs "bracket" with both
+        # legs), so target being None must NOT gate execution here.
+        # Confirmed directly: an earlier version of this guard required
+        # a real target, which meant broker execution silently never
+        # fired for any of the 3 setups actually surfaced in real
+        # testing -- only the alert went out, no automation. broker_
+        # alpaca.enabled() is False (pure no-op) until the user adds
+        # ALPACA_API_KEY/ALPACA_SECRET_KEY as GitHub secrets -- until
+        # then this whole block never fires and nothing about existing
+        # alert-only behavior changes.
         broker_order = None
-        if surfaced and market in ("crypto", "us") and alert["target"] is not None and broker_alpaca.enabled():
+        if surfaced and market in ("crypto", "us") and broker_alpaca.enabled():
             broker_order = broker_alpaca.place_bracket_order(
                 symbol, market, alert["direction"], alert["entry"], alert["stop"], alert["target"], alert["qty"],
             )

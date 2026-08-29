@@ -79,11 +79,24 @@ def _qty_for_order(qty, market):
 
 
 def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
-    """Places a real (paper) market-entry bracket order: entry + OCO
-    stop_loss/take_profit legs, sized at qty. Returns the parsed Alpaca
-    order dict (with nested legs, each carrying its own 'id') on success,
-    or None if disabled/failed -- callers must treat None as "not
-    automated this time, alert-only," never as a reason to abort the scan.
+    """Places a real (paper) market-entry order protected by a resting
+    stop-loss, sized at qty. Returns the parsed Alpaca order dict (with
+    nested legs, each carrying its own 'id') on success, or None if
+    disabled/failed -- callers must treat None as "not automated this
+    time, alert-only," never as a reason to abort the scan.
+
+    target is None for most of this bot's setups (Triple MA, Triple
+    Threat, DMI+DPO -- deliberately "trail your stop, no fixed target,"
+    see check_open()'s docstring) -- confirmed directly: gating this on
+    target is not None meant broker execution silently never fired for
+    any of the 3 setups actually surfaced during real testing, only for
+    the older range-rejection setups that do carry a real target. So:
+    order_class="oto" (stop_loss leg only) when target is None -- the
+    position then lives purely on the trailing stop that
+    sync_broker_entry() keeps replacing via check_open()'s existing
+    trailing math, exactly matching how these setups already behave in
+    the alert-only/manual flow. order_class="bracket" (both legs) only
+    when a real target exists.
     """
     if not enabled() or not tradable_on_alpaca(market):
         return None
@@ -99,13 +112,16 @@ def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
         "side": side,
         "type": "market",
         "time_in_force": "gtc",
-        "order_class": "bracket",
-        "take_profit": {"limit_price": f"{target:.6g}"},
         "stop_loss": {"stop_price": f"{stop:.6g}"},
     }
+    if target is not None:
+        body["order_class"] = "bracket"
+        body["take_profit"] = {"limit_price": f"{target:.6g}"}
+    else:
+        body["order_class"] = "oto"
     result = _request("POST", "/v2/orders", body)
     if result is None:
-        print(f"{symbol}: Alpaca bracket order failed, falling back to alert-only for this setup")
+        print(f"{symbol}: Alpaca order failed, falling back to alert-only for this setup")
     return result
 
 
