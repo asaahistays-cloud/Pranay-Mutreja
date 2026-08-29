@@ -1073,7 +1073,7 @@
     "FET-USD": {
       "status": "watching",
       "range_high": 0.17072,
-      "range_low": 0.14755,
+      "range_low": 0.1475,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -5677,7 +5677,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T06:30:36.998771+00:00",
+    "date": "2026-08-29T06:33:22.903157+00:00",
     "assessment": {
       "key_events": [
         {
