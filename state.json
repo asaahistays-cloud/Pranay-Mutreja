@@ -1080,7 +1080,7 @@
     "FET-USD": {
       "status": "watching",
       "range_high": 0.17072,
-      "range_low": 0.14943,
+      "range_low": 0.14888,
       "direction": null,
       "entry_price": null,
       "entry_qty": null,
@@ -5568,7 +5568,7 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T02:33:06.187005+00:00",
+    "date": "2026-08-29T02:45:25.443618+00:00",
     "assessment": {
       "key_events": [
         {
@@ -5593,20 +5593,20 @@
     },
     "headlines": [
       {
+        "id": 8413825,
+        "headline": "Iran lashes out at US sanctions amid economic toll at home - Reuters",
+        "summary": "Iran lashes out at US sanctions amid economic toll at home\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
+        "source": "Reuters",
+        "datetime": 1787952765
+      },
+      {
         "id": 8417906,
         "headline": "Iran's navy says it has 'full control' over Strait of Hormuz - Reuters",
         "summary": "Iran's navy says it has 'full control' over Strait of Hormuz\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxObEVEVmRsZGlZT1pndE1fWjltanZVY1oxRXdCVU1TSXFWOUotb2RnamNaTVFacFVtb0xKWEotQ2xHUl9XUXQ3UlV2OUdtWWVNb25BakpUd0RYd0RyaDdxWHR5MUJXSXVfdm9WSnNqM1lNbHk1aUN2Qmp0MGxxSGZETzYxTlVBdzViQVd1d1pfVWN6eUpTVTRMa05SNzEzYjZHWlpSeWt0Z2dmR2xW?oc=5",
         "source": "Reuters",
         "datetime": 1787949901
-      },
-      {
-        "id": 8413410,
-        "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal - Reuters",
-        "summary": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
-        "source": "Reuters",
-        "datetime": 1787948391
       },
       {
         "id": 8416894,
@@ -5761,20 +5761,20 @@
         "datetime": 1787893260
       },
       {
-        "id": 8413825,
-        "headline": "Iran lashes out at US sanctions amid economic toll at home - Reuters",
-        "summary": "Iran lashes out at US sanctions amid economic toll at home\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
-        "source": "Reuters",
-        "datetime": 1787880840
-      },
-      {
         "id": 8415109,
         "headline": "US military uses laser to down three Mexican cartel drones near border - Reuters",
         "summary": "US military uses laser to down three Mexican cartel drones near border\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRktXN2YycnhZcGwzVkYxc0lVNzI0SU5ONUhEYzNEaUt6akFhdEJwS0ZKdWxQU2NWbThlUG1WZklhcDNaNGVGdUR6X3JwN1ZHcTQ4Wnp4M0dRRjFtTV9wN0c4aWl3QnVwQzlvcm5kVF9Nc1hRWW90eURDOTQ4UkFmVlZDZHBJRW81OHBnNkhTbVpRT2ZNOG1zMmpsaDRvU0lXWHk0TWFONjhXZ2hDWi1ud1VTVmRscWNBejgwNk53ZHNYZUxKVklzTlN3?oc=5",
         "source": "Reuters",
         "datetime": 1787879880
+      },
+      {
+        "id": 8413410,
+        "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal - Reuters",
+        "summary": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMDRjQUkzbzJPY3ZkSGVLX1NmU05FVWxRUXZod3V6MkU5TTUxTjl0cm5yMzB2R0UyMy1mUUZsZVZ5TkVGMkdXNWR1X0FqUk5OaFRsZjg4NVhreGM5bUFHQ1BiT1E0SFB1ZzJKNlVLdGFRZ2ZEd1BEV0s5ZFBEOVdtWHMtZzh3b0lBaHhHSkdSYTZWNWUzSjhNX1RLcEg0My1x?oc=5",
+        "source": "Reuters",
+        "datetime": 1787879760
       },
       {
         "id": 8413618,
