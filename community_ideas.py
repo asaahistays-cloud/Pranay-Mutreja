@@ -48,15 +48,22 @@ WORKER_URL = "https://multi-market-monitor-taken.asaahistays.workers.dev"
 US_EXCHANGES = ["NASDAQ", "NYSE", "AMEX"]
 
 
+COMMODITY_TV_SYMBOLS = {"GC=F": "COMEX-GC1!", "NG=F": "NYMEX-NG1!"}  # confirmed live directly
+
+
 def tv_symbol_path(symbol, market):
     """Maps this bot's own symbol format to TradingView's URL scheme.
     Crypto (BTC-USD) -> BTCUSD. India (RECLTD.NS) -> NSE-RECLTD. US
     (AAPL) -> try NASDAQ/NYSE/AMEX in turn since the bot doesn't track
-    which exchange each symbol trades on."""
+    which exchange each symbol trades on. Commodity futures use their
+    continuous-contract symbol (GC1!/NG1!), not the Yahoo GC=F/NG=F
+    format the rest of the bot uses internally."""
     if market == "crypto":
         return [symbol.replace("-", "")]
     if market == "india":
         return [f"NSE-{symbol[:-3]}"]
+    if market == "commodity":
+        return [COMMODITY_TV_SYMBOLS[symbol]] if symbol in COMMODITY_TV_SYMBOLS else []
     return [f"{ex}-{symbol}" for ex in US_EXCHANGES]
 
 
@@ -216,9 +223,13 @@ def surface_community_setup(symbol, market, direction, state):
     wins = sym_state.get("consecutive_wins", 0)
     leverage = monitor.LEVERAGE_BY_MARKET.get(market, 1)
 
-    base_capital = state.get("capital_inr" if market == "india" else "capital_usd", 100)
+    if market == "india":
+        base_capital, pool_markets = state.get("capital_inr", 100), ("india",)
+    elif market == "commodity":
+        base_capital, pool_markets = state.get("capital_usd_commodity", 100), ("commodity",)
+    else:
+        base_capital, pool_markets = state.get("capital_usd", 100), ("crypto", "us")
     setup_log = state.setdefault("setup_log", [])
-    pool_markets = ("india",) if market == "india" else ("crypto", "us")
     capital = max(base_capital - monitor.committed_capital(setup_log, pool_markets), 0)
     if capital <= 0:
         return False
@@ -262,6 +273,7 @@ def main():
     new_seen = list(seen_urls)
 
     watchlist = [(s["symbol"], "crypto") for s in monitor.CRYPTO_WATCHLIST]
+    watchlist += [(s["symbol"], "commodity") for s in monitor.COMMODITY_WATCHLIST]
     watchlist += [(s, "india") for s in state.get("active_india_symbols", [])]
     watchlist += [(s, "us") for s in state.get("active_us_symbols", [])]
 

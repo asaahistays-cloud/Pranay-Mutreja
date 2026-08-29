@@ -28,7 +28,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "monitor / india / us / report / ideas (for manual testing; news briefing always runs)"
+        description: "monitor / india / us / report / ideas / eia (for manual testing; news briefing always runs)"
         required: false
         default: "monitor"
 
@@ -132,6 +132,27 @@ jobs:
         # judgment AND the bot's own RSI/ADX technical-agreement check
         # (see bot_agrees_with_direction() in community_ideas.py), so
         # this stays as quiet as any other real setup, not spammy.
+
+      - name: EIA natural gas storage check
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          h=$((10#$(date -u +%H))); m=$((10#$(date -u +%M))); now=$((h*60+m)); wd=$(date -u +%u)
+          # EIA's weekly natural gas storage report releases 10:30am ET
+          # (EDT, summer) = 14:30 UTC, Thursdays only -- nudge +1h around
+          # US DST transitions same as the US opening-range scan above.
+          # Wide-ish window (14:30-15:15) since the free bulk download
+          # this reads from can lag the official release by a few
+          # minutes. NG=F's seasonal setup (see check_watching_commodity()
+          # in monitor.py) requires this to have run recently or it
+          # refuses to fire at all -- fails closed, not open.
+          if [ "${{ github.event.inputs.mode }}" = "eia" ] || { [ "$wd" -eq 4 ] && [ "$now" -ge $((14*60+30)) ] && [ "$now" -lt $((15*60+15)) ]; }; then
+            python3 eia_check.py
+          else
+            echo "Skipping (now=$now UTC, weekday=$wd, not Thursday's release window and mode != eia)"
+          fi
 
       - name: Trade performance report
         continue-on-error: true

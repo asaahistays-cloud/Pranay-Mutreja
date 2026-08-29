@@ -53,7 +53,20 @@ RISK_PCT_PER_TRADE = 0.01
 # ever hands out capital_inr (Rs 10,00,000) total, so even with leverage
 # available, a suggested position's notional must never exceed that
 # balance or the sizing would suggest more money than the account has.
-LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 1}
+LEVERAGE_BY_MARKET = {"crypto": 10, "us": 1, "india": 1, "commodity": 1}
+# From the real out-of-sample-validated seasonality backtest (2011-2026
+# daily GC=F/NG=F, strong/weak months derived from the first half of
+# years, tested clean on the held-out second half): gold held up
+# (+47.5% compounded, 58.7% win rate), natural gas held up strongly
+# (+128.7% compounded, 60.9% win rate). Stop distances below are 2x
+# each symbol's real historical monthly return std dev (GC=F 4.77%,
+# NG=F 14.81%) -- a monthly-hold position needs a stop calibrated to
+# monthly moves, not 15m noise, so this is NOT the usual atr(closed_bars)
+# on 15m bars every other setup in this file uses.
+SEASONAL_STRONG_MONTHS = {"GC=F": {1, 2, 8}, "NG=F": {4, 6, 11}}
+SEASONAL_WEAK_MONTHS = {"GC=F": {5, 9, 11}, "NG=F": {2, 7, 12}}
+SEASONAL_STOP_PCT = {"GC=F": 0.095, "NG=F": 0.296}
+EIA_STALE_DAYS = 10  # report updates weekly; if eia_check.py hasn't run in this long, treat its data as missing
 GAP_THRESHOLD_PCT_US = 0.015  # overnight gap that locks check_watching_us()'s directional bias
 # Tuned against real 15m production-code backtests (90 days crypto /
 # 60 days US+India, real Coinbase/Yahoo data), not the original
@@ -113,10 +126,16 @@ PROFIT_LOCK_FRACTION = 0.7  # once engaged, guarantee at least this fraction of 
 CRYPTO_WATCHLIST = [{"symbol": s, "market": "crypto", "tradable": True} for s in [
     "BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "AVAX-USD", "NEAR-USD", "FET-USD",
 ]]
+# Gold and natural gas only -- the two commodities where a real
+# strategy (seasonality) actually validated out-of-sample. Silver and
+# crude oil were tested the same way and failed (see the AlphaInsider/
+# commodity strategy review) -- deliberately not included here rather
+# than added speculatively.
+COMMODITY_WATCHLIST = [{"symbol": s, "market": "commodity", "tradable": True} for s in ["GC=F", "NG=F"]]
 
 
 def build_watchlist(state):
-    watchlist = list(CRYPTO_WATCHLIST)
+    watchlist = list(CRYPTO_WATCHLIST) + list(COMMODITY_WATCHLIST)
     for symbol in state.get("active_us_symbols", []):
         watchlist.append({"symbol": symbol, "market": "us", "tradable": True})
     for symbol in state.get("active_india_symbols", []):
@@ -650,7 +669,7 @@ def rearm_to_watching(sym_state, closed_bars=None):
 
 # ---------------------------------------------------------------- logic ----
 
-def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None):
+def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None, eia_surprise=None):
     """Dispatches to the market-specific entry logic -- each market got
     its own backtested filter set (crypto: retest/2-bar/ADX; India:
     RSI momentum + VWAP alignment; US: Gap and Go, short-only) since a
@@ -661,6 +680,9 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     genuinely needed its own from-scratch strategy, not a shared one).
     setup_log is optional and only used by check_watching_us() (see its
     docstring) -- crypto/India ignore it, unchanged from before.
+    eia_surprise is optional and only used by check_watching_commodity()
+    for NG=F's news-confirmation gate -- fetched by a separate script
+    (eia_check.py) before the scan, same pattern as news_briefing.py.
     capital already has committed_capital() subtracted by the caller
     (main()) -- if that leaves nothing free, skip outright rather than
     let position_size() size a qty=0 alert (no minimum-qty guard exists
@@ -674,6 +696,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         return check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if market == "us":
         return check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log)
+    if market == "commodity":
+        return check_watching_commodity(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, eia_surprise)
     return check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
 
@@ -1042,6 +1066,85 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
     if recent_low < range_low:
         sym_state["range_low"] = recent_low
     return None
+
+
+def check_watching_commodity(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, eia_surprise=None):
+    """Gold and natural gas only (see COMMODITY_WATCHLIST) -- a
+    monthly-hold SEASONALITY setup, not a 15m technical condition like
+    every other setup in this file. From the full commodity strategy
+    review: generic trend-following (Triple MA/Threat) failed on all 4
+    commodities tested; a real, out-of-sample-validated edge only
+    showed up for calendar-month seasonality on gold and natural gas
+    specifically (silver and crude oil seasonality did NOT hold up and
+    are deliberately excluded). Real 2011-2026 daily backtest, strong/
+    weak months derived from the first half of years, tested clean on
+    the held-out second half:
+      - GC=F: +47.5% compounded, 58.7% win rate (14 years, split 2019)
+      - NG=F: +128.7% compounded, 60.9% win rate, alone -- BUT requiring
+        EIA storage-surprise confirmation (see eia_check.py) narrowed
+        it to 13 of 46 trades at a much higher 76.9% win rate. That's
+        the validated recipe for NG=F specifically -- not seasonality
+        alone -- so the EIA gate below is REQUIRED (fails closed if the
+        data's missing/stale), not an optional bonus filter.
+    A COT-positioning filter was also tested and made gold WORSE and
+    was a wash for natural gas -- deliberately not included here.
+
+    Only fires once per calendar month (own dedicated dedup field,
+    stored as a "YYYY-MM" string -- a tuple would silently break after
+    round-tripping through state.json's JSON, which turns tuples into
+    lists that no longer equality-match on the next scan). Stop is 2x
+    the symbol's real historical MONTHLY return std dev (GC=F 4.77%,
+    NG=F 14.81%), not the usual atr(closed_bars) on 15m bars every
+    other setup uses -- a month-long hold needs a stop sized to monthly
+    moves, not 15-minute noise."""
+    now = datetime.fromtimestamp(last_closed["close_time"] / 1000, tz=timezone.utc)
+    period = f"{now.year}-{now.month:02d}"
+    if sym_state.get("seasonal_fired_period") == period:
+        return None
+
+    strong = SEASONAL_STRONG_MONTHS.get(symbol, set())
+    weak = SEASONAL_WEAK_MONTHS.get(symbol, set())
+    direction = "long" if now.month in strong else ("short" if now.month in weak else None)
+    if direction is None:
+        return None
+
+    news_note = ""
+    if symbol == "NG=F":
+        if not eia_surprise or eia_surprise.get("surprise_bcf") is None:
+            return None  # required confirmation missing -- fails closed, not open
+        fetched_at = eia_surprise.get("fetched_at")
+        if not fetched_at or (now - datetime.fromisoformat(fetched_at)).days > EIA_STALE_DAYS:
+            return None  # eia_check.py hasn't run recently -- treat stale data as missing, not trustworthy
+        surprise = eia_surprise["surprise_bcf"]
+        if direction == "long" and surprise >= 0:
+            return None  # need a bigger draw / smaller build than seasonal norm
+        if direction == "short" and surprise <= 0:
+            return None  # need a bigger build / smaller draw than seasonal norm
+        news_note = f" EIA storage {surprise:+.0f} Bcf vs. seasonal norm confirms."
+
+    close = last_closed["close"]
+    stop_pct = SEASONAL_STOP_PCT.get(symbol, 0.10)
+    stop = close * (1 - stop_pct) if direction == "long" else close * (1 + stop_pct)
+    losses = sym_state.get("consecutive_losses", 0)
+    wins = sym_state.get("consecutive_wins", 0)
+    leverage = LEVERAGE_BY_MARKET.get(market, 1)
+    qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+    if qty <= 0:
+        return None
+    tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
+
+    sym_state["seasonal_fired_period"] = period
+    action = "BUY" if direction == "long" else "SELL"
+    text = build_alert_text(
+        f"{symbol} SEASONAL ({direction}){tag}\n\n"
+        f"{action}\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+        f"Take profit: Keep trailing (no fixed target -- roughly a 1-month hold)\n"
+        f"{expected_profit_line(close, stop, qty, currency='$')}\n\n"
+        f"Month {now.month} is a historically {'strong' if direction=='long' else 'weak'} month for {symbol} "
+        f"(validated out-of-sample on 14 years of real data).{news_note}",
+        symbol=symbol, price=close,
+    )
+    return {"text": text, "type": f"seasonal_{direction}", "direction": direction, "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
 
 
 def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
@@ -1442,6 +1545,12 @@ def main():
     symbols_state = state.setdefault("symbols", {})
     capital_usd = state.get("capital_usd", 100)
     capital_inr = state.get("capital_inr", 100)
+    capital_commodity = state.get("capital_usd_commodity", 100)
+    # eia_check.py (run as its own step, same pattern as news_briefing.py)
+    # fetches this before the scan and saves it into state.json --
+    # required for NG=F's seasonal setup to fire at all, see
+    # check_watching_commodity()'s docstring.
+    eia_surprise = state.get("eia_ng_surprise")
     watchlist = build_watchlist(state)
 
     setup_log = state.setdefault("setup_log", [])
@@ -1475,8 +1584,12 @@ def main():
         if symbol not in symbols_state:
             symbols_state[symbol] = default_symbol_state(closed_bars)
         sym_state = symbols_state[symbol]
-        capital = capital_inr if market == "india" else capital_usd
-        pool_markets = ("india",) if market == "india" else ("crypto", "us")
+        if market == "india":
+            capital, pool_markets = capital_inr, ("india",)
+        elif market == "commodity":
+            capital, pool_markets = capital_commodity, ("commodity",)
+        else:
+            capital, pool_markets = capital_usd, ("crypto", "us")
         capital = max(capital - committed_capital(setup_log, pool_markets), 0)
 
         # Shadow-track every setup this symbol has ever fired, whether or
@@ -1515,7 +1628,7 @@ def main():
                     sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
                     sym_state["consecutive_wins"] = 0
 
-        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log)
+        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise)
         if alert:
             fired_this_scan.append((market, symbol, alert))
 
