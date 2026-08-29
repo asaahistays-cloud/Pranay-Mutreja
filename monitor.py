@@ -36,6 +36,8 @@ import urllib.error
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
+import broker_alpaca
+
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
@@ -1533,6 +1535,72 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
+def sync_broker_entry(symbol, log_entry, shadow, sym_state):
+    """For a setup_log entry that was auto-executed on Alpaca (see the
+    broker_order block in main()'s fire loop): resolves it against
+    Alpaca's REAL fill data the instant either bracket leg fills (ground
+    truth, not the bot's own bar-close simulation check_open() runs for
+    every other entry), and mirrors the shadow's own trailing-stop math
+    -- check_open() already ran on `shadow` this same scan and may have
+    moved shadow['stop_loss'] -- onto the real resting stop-loss leg.
+
+    No-ops entirely if broker_alpaca is disabled, this entry was never
+    broker-executed, or it's already resolved."""
+    if log_entry.get("resolved") or not log_entry.get("broker_order_id") or not broker_alpaca.enabled():
+        return
+
+    order = broker_alpaca.get_order(log_entry["broker_order_id"])
+    if order is None:
+        return  # Transient API failure -- try again next scan.
+
+    if not log_entry.get("broker_stop_order_id"):
+        stop_id, tp_id = broker_alpaca.extract_leg_ids(order)
+        if stop_id:
+            log_entry["broker_stop_order_id"] = stop_id
+        if tp_id:
+            log_entry["broker_take_profit_order_id"] = tp_id
+
+    outcome = broker_alpaca.leg_fill_outcome(order)
+    if outcome:
+        kind, fill_price = outcome
+        direction, entry_price, qty = log_entry["direction"], log_entry["entry"], log_entry["qty"]
+        pnl = (fill_price - entry_price) if direction == "long" else (entry_price - fill_price)
+        log_entry["resolved"] = True
+        log_entry["outcome"] = {
+            "direction": direction, "entry": entry_price, "exit": fill_price, "qty": qty,
+            "pnl_per_unit": pnl, "pnl_total": pnl * qty if qty else None,
+            "exit_reason": f"broker_{kind}_fill",
+            "closed_at": datetime.now(timezone.utc).isoformat(),
+        }
+        if pnl >= 0:
+            sym_state["consecutive_losses"] = 0
+            sym_state["consecutive_wins"] = sym_state.get("consecutive_wins", 0) + 1
+        else:
+            sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
+            sym_state["consecutive_wins"] = 0
+        total_txt = f", {pnl * qty:,.4g} total" if qty else ""
+        send_telegram(
+            f"{symbol} PAPER TRADE CLOSED (Alpaca) -- {'WIN' if pnl >= 0 else 'LOSS'}\n\n"
+            f"{direction} {entry_price:,.4g} -> {fill_price:,.4g} ({kind} fill)\n"
+            f"P&L: {pnl:,.4g}/unit{total_txt}",
+            symbol=symbol, price=fill_price,
+        )
+        return
+
+    new_stop = shadow.get("stop_loss")
+    if (new_stop and log_entry.get("broker_stop_order_id")
+            and new_stop != log_entry.get("_last_pushed_stop")):
+        result = broker_alpaca.replace_stop_price(log_entry["broker_stop_order_id"], new_stop)
+        if result is not None:
+            log_entry["_last_pushed_stop"] = new_stop
+            # Alpaca's PATCH replace is cancel+replace under the hood --
+            # returns a NEW order id, not an in-place mutation. Must
+            # track it or the next replace call 404s against a dead id.
+            new_id = result.get("id")
+            if new_id:
+                log_entry["broker_stop_order_id"] = new_id
+
+
 def main():
     # No more "open"/"fill"/"skip"/"close" Telegram tracking, and no more
     # fast 5-min "open positions only" cadence -- the user places real
@@ -1628,6 +1696,15 @@ def main():
                     sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
                     sym_state["consecutive_wins"] = 0
 
+            # Broker-tracked entries (see broker_order in the fire loop
+            # below) never resolve via the shadow block above -- notify=
+            # True there means check_open() only ever alerts, never
+            # calls log_trade() (see its docstring). Real resolution and
+            # stop-trailing enforcement for those live here instead,
+            # against Alpaca's actual fill data. No-ops for every entry
+            # that was never broker-executed.
+            sync_broker_entry(symbol, log_entry, shadow, sym_state)
+
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise)
         if alert:
             fired_this_scan.append((market, symbol, alert))
@@ -1671,14 +1748,39 @@ def main():
     fired_setups = []
     for market, symbol, alert in fired_this_scan:
         surfaced = (symbol, alert["type"], alert["entry"]) in surfaced_keys
+
+        # Real (paper) auto-execution -- crypto + US only, and only for
+        # setups that actually get surfaced (best-of-N filtering above
+        # already decides what's worth acting on; a non-surfaced setup
+        # shouldn't get real capital either). alert["target"] is None
+        # for the commodity seasonal setup (trailing-only, no fixed
+        # exit) -- that's not on crypto/us anyway, but a bracket order
+        # requires a real take_profit price either way, so it's guarded
+        # here too. broker_alpaca.enabled() is False (pure no-op) until
+        # the user adds ALPACA_API_KEY/ALPACA_SECRET_KEY as GitHub
+        # secrets -- until then this whole block never fires and nothing
+        # about existing alert-only behavior changes.
+        broker_order = None
+        if surfaced and market in ("crypto", "us") and alert["target"] is not None and broker_alpaca.enabled():
+            broker_order = broker_alpaca.place_bracket_order(
+                symbol, market, alert["direction"], alert["entry"], alert["stop"], alert["target"], alert["qty"],
+            )
+
         if surfaced:
-            fired_setups.append(alert["text"])
+            text = alert["text"]
+            if broker_order is not None:
+                text += "\n\n[Auto-executed: real Alpaca paper bracket order placed]"
+            fired_setups.append(text)
         fired_at_dt = datetime.now(timezone.utc)
         setup_log.append({
             "symbol": symbol, "type": alert["type"], "direction": alert["direction"],
             "entry": alert["entry"], "stop": alert["stop"], "target": alert["target"],
             "qty": alert["qty"], "fired_at": fired_at_dt.isoformat(),
-            "resolved": False, "outcome": None, "surfaced": surfaced, "taken": False,
+            "resolved": False, "outcome": None, "surfaced": surfaced,
+            "taken": broker_order is not None,
+            "broker_order_id": broker_order["id"] if broker_order else None,
+            "broker_stop_order_id": None,
+            "broker_take_profit_order_id": None,
             # Self-learning groundwork -- see compute_bucket_confidence()'s
             # docstring. Purely observational: not read anywhere that
             # affects which setups fire, surface, or how they're sized.

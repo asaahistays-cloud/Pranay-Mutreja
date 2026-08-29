@@ -175,6 +175,13 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # Paper-trading auto-execution (crypto + US only, see
+          # broker_alpaca.py) -- both must be set for it to do anything;
+          # broker_alpaca.enabled() is a clean no-op otherwise, so this
+          # step behaves exactly as before until the user adds these two
+          # repo secrets themselves.
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
         run: python3 monitor.py
 
       - name: Commit updated state
