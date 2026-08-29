@@ -90,20 +90,33 @@ def build_eval_prompt(symbol, ideas):
     for i, idea in enumerate(ideas):
         blocks.append(f"[{i}] Title: {idea['title']}\nBody: {idea['body']}")
     joined = "\n\n".join(blocks)
-    return f"""You are evaluating community-submitted trade ideas for {symbol} from TradingView. \
-Some are genuine trade setups with real technical reasoning (a clear direction, specific levels, \
-market structure/indicator-based reasoning). Others are generic content: motivational posts, vague \
-commentary, educational lessons not tied to a live setup, or pure hype with no actual reasoning. \
-Only genuine setups are worth surfacing.
+    return f"""You are a strict filter deciding which community-submitted trade ideas for {symbol} \
+(from TradingView) are worth interrupting a real trader with a Telegram alert. The bar is HIGH -- \
+this is not "does this have some technical reasoning", it's "would a disciplined trader actually take \
+this specific trade right now". Expect MOST ideas to fail this bar; that is normal and correct, not a \
+sign you're being too harsh.
+
+REJECT if any of these apply:
+- No clear, specific entry trigger or level (a "long-term view", a general trend opinion, or "watching \
+this level" without a concrete plan does not count)
+- Vague or generic reasoning that could apply to almost any chart (e.g. "strong momentum", "looks bullish")
+- Educational/lesson content, motivational posts, or market commentary not tied to a live, actionable setup
+- The setup depends on something that hasn't happened yet ("if it breaks X then Y") rather than a \
+condition that's already true right now
+- You are not genuinely confident a disciplined trader would act on this today
+
+ONLY ACCEPT if the idea has a specific, current, actionable trade plan: a clear direction, a concrete \
+entry condition that's already met (not conditional on a future break), and real technical reasoning \
+tied to the actual current price structure (specific levels, confirmed pattern, or indicator state).
 
 Ideas:
 {joined}
 
 Respond with ONLY valid JSON, no other text, in this exact shape:
-{{"genuine_setups": [{{"index": 0, "direction": "long|short|neutral", "reasoning": "one sentence on why this looks like a real, coherent setup"}}]}}
+{{"genuine_setups": [{{"index": 0, "direction": "long|short", "reasoning": "one sentence on the specific, current, actionable entry condition"}}]}}
 
-Only include ideas that are genuinely coherent trade setups with real reasoning behind them. If none \
-of the ideas qualify, return an empty genuine_setups list -- do not force a match where there isn't one."""
+Default to an empty genuine_setups list. Only include an idea if you would genuinely stake your own \
+judgment on it being a real, doable trade right now -- not merely plausible-sounding."""
 
 
 def call_llm(prompt):
