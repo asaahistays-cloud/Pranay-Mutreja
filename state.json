@@ -1,5 +1,5 @@
 {
-  "capital_usd": 100,
+  "capital_usd": 100000,
   "capital_inr": 500000,
   "symbols": {
     "BTC-USD": {
