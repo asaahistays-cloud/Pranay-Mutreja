@@ -5558,20 +5558,20 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-08-29T00:48:17.892958+00:00",
+    "date": "2026-08-29T01:00:39.358119+00:00",
     "assessment": {
       "key_events": [
         {
+          "headline": "Iran's navy says it has 'full control' over Strait of Hormuz",
+          "why_it_matters": "This statement could lead to increased tensions and potentially disrupt global oil supplies, affecting markets."
+        },
+        {
           "headline": "US hits Egyptian bank branches with Iran sanctions as war marks six months",
-          "why_it_matters": "The expansion of sanctions may lead to further economic disruption and market volatility."
+          "why_it_matters": "Escalating sanctions and conflict could lead to broader economic implications, including impacts on oil prices and global trade."
         },
         {
-          "headline": "Iran sets conditions for reopening Strait of Hormuz, top security official Rezaei says",
-          "why_it_matters": "The reopening of the Strait of Hormuz could significantly impact global oil prices and market stability."
-        },
-        {
-          "headline": "Oil slides on clues about Fed policy, rumors of Hormuz deal",
-          "why_it_matters": "The potential deal and Fed policy clues may influence oil prices and have a ripple effect on the US stock market."
+          "headline": "BitGo to acquire NYDIG\u2019s institutional trading business as crypto trading rebounds",
+          "why_it_matters": "This acquisition indicates a potential increase in institutional investment in crypto, which could positively impact the cryptocurrency market."
         }
       ],
       "risk": {
@@ -5579,9 +5579,17 @@
         "india": "normal",
         "us": "elevated"
       },
-      "summary": "Today's news is dominated by the ongoing Iran conflict and its economic implications, with potential repercussions for global markets. The situation remains volatile, with the US imposing sanctions and Iran setting conditions for reopening the Strait of Hormuz. Overall, market risk is elevated due to geopolitical tensions and potential economic fallout."
+      "summary": "Tensions between the US and Iran continue to escalate, potentially impacting global markets, while news in the tech sector, such as Apple's price hikes and AI spending, may influence US equities. The situation in the Strait of Hormuz and Iran's response to US sanctions are key to watch. Overall, market risk is relatively contained but worth monitoring due to geopolitical tensions."
     },
     "headlines": [
+      {
+        "id": 8417906,
+        "headline": "Iran's navy says it has 'full control' over Strait of Hormuz - Reuters",
+        "summary": "Iran's navy says it has 'full control' over Strait of Hormuz\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxObEVEVmRsZGlZT1pndE1fWjltanZVY1oxRXdCVU1TSXFWOUotb2RnamNaTVFacFVtb0xKWEotQ2xHUl9XUXQ3UlV2OUdtWWVNb25BakpUd0RYd0RyaDdxWHR5MUJXSXVfdm9WSnNqM1lNbHk1aUN2Qmp0MGxxSGZETzYxTlVBdzViQVd1d1pfVWN6eUpTVTRMa05SNzEzYjZHWlpSeWt0Z2dmR2xW?oc=5",
+        "source": "Reuters",
+        "datetime": 1787949901
+      },
       {
         "id": 8413410,
         "headline": "Oil settles lower on clues about Fed policy, rumors of Hormuz deal - Reuters",
@@ -5893,14 +5901,6 @@
         "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZi1lT1VCQkw2VXZWdVpNN2QtRzh3RllkOG9zcC1qUWpzRW1lenhSbm5fVU5nQVFVNFRyZ1VnYkstZTNhYUVlNDVWVFpzMnVlZUN1MFdPOTc4UWpjVXRkakg0dHlMelZYWGpJaDF3dE11SU50OVBqc2pPVER2THMwRkQxeDBhZHRnNjFmWHY1V0JRcnhDcjZYSDg0NFZvQjJVR3d2U1Y0NEYzRnR4dlZjSGNjTTduNkRueXhhWDNrenhDbHM?oc=5",
         "source": "Reuters",
         "datetime": 1787835540
-      },
-      {
-        "id": 8412056,
-        "headline": "Bosnian Serb general Ratko Mladic, convicted of genocide, has died, Serbian TV reports - Reuters",
-        "summary": "Bosnian Serb general Ratko Mladic, convicted of genocide, has died, Serbian TV reports\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVkp0T1VGVEpXeG5sVDFpSjhkQlUxQlp5Nmk4aUE5dU9NcXFuTERSVVhlcHJFRGRzNFZFWmthamFIaHRsMzFidTJRU3p4WUJXM2pYYjlJaWhobURXd25CM0hNMV96NThFaU5zLUNfa1VRX1dmOWdCd24tekpNbms3QzVzX2RkaVUyRUc5SzhrY2h1X3kyXzdGdklRUTVTNldUb21CNks3ejhtOGFVcEtfODVCazhXS2Fhblo0d3laTQ?oc=5",
-        "source": "Reuters",
-        "datetime": 1787834961
       }
     ]
   },
@@ -5987,6 +5987,7 @@
     8416894,
     8416996,
     8417203,
-    8417304
+    8417304,
+    8417906
   ]
 }
