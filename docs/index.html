@@ -773,8 +773,18 @@ async function fetchGithubHealthCached() {
     try { localStorage.setItem("githubHealthCache", JSON.stringify(fresh)); } catch (e) { /* ignore */ }
     return fresh;
   } catch (e) {
-    // Fetch failed (e.g. rate limited) -- prefer stale cache over nothing.
-    if (cached) return { lastCommitDate: cached.lastCommitDate, lastRun: cached.lastRun };
+    // Fetch failed (e.g. rate limited) -- prefer a somewhat-stale cache
+    // over nothing, but only up to a bound. Without this bound, a fetch
+    // that stays broken for hours (confirmed directly: happened for 10+
+    // hours straight, likely sustained rate-limiting on a shared IP)
+    // kept silently replaying the SAME ancient cached "last scan" time
+    // forever, showing a real false alarm ("No recent scans, last scan
+    // 10h 38m ago") while the bot was actually running fine the whole
+    // time -- worse than just admitting the check itself is broken.
+    const STALE_CACHE_BOUND_MS = 90 * 60 * 1000;
+    if (cached && (Date.now() - cached.cachedAt) < STALE_CACHE_BOUND_MS) {
+      return { lastCommitDate: cached.lastCommitDate, lastRun: cached.lastRun };
+    }
     return { lastCommitDate: null, lastRun: null };
   }
 }
