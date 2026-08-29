@@ -37,13 +37,22 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import broker_alpaca
-import broker_bybit
+import broker_bybit  # noqa: F401 -- kept for when crypto auto-execution resumes (see below), not wired in right now.
 
-# Crypto's real long+short paper trading needed a real margin/futures
-# account (Alpaca's crypto is cash/spot only, can't short at all -- see
-# broker_alpaca.py's module docstring) -- Bybit for crypto, Alpaca for
-# US. India and commodities have no broker at all (alert-only, always).
-BROKERS = {"crypto": broker_bybit, "us": broker_alpaca}
+# Crypto auto-execution is PAUSED, not removed -- broker_bybit.py works
+# (real long+short futures, matches how these strategies were
+# validated), but Bybit's CloudFront setup rejects requests from
+# GitHub Actions' US-based runner IPs outright (confirmed directly:
+# 403 "The Amazon CloudFront distribution is configured to block
+# access from your country"). That's a structural conflict, not a bug
+# to fix here: every offshore derivatives exchange checked (Bybit,
+# Deribit) blocks US-origin traffic for their own regulatory reasons,
+# and GitHub Actions always runs from the US -- resuming this needs
+# either a static-IP relay in front of Bybit's calls, or a different
+# platform that doesn't block US IPs. US stocks are unaffected --
+# Alpaca has none of these restrictions. India and commodities have no
+# broker at all (alert-only, always, by design).
+BROKERS = {"us": broker_alpaca}
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
