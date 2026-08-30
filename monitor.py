@@ -38,7 +38,7 @@ from zoneinfo import ZoneInfo
 
 import broker_alpaca
 import broker_bybit  # noqa: F401 -- kept for when crypto auto-execution resumes (see below), not wired in right now.
-import broker_dhan
+import broker_dhan  # noqa: F401 -- kept for when India auto-execution resumes (see below), not wired in right now.
 
 # Crypto auto-execution is PAUSED, not removed -- broker_bybit.py works
 # (real long+short futures, matches how these strategies were
@@ -53,13 +53,22 @@ import broker_dhan
 # platform that doesn't block US IPs. US stocks are unaffected --
 # Alpaca has none of these restrictions.
 #
-# India: Dhan's SANDBOX (mock orders, not real exchange routing) --
-# confirmed directly that this is exempt from the SEBI static-IP
-# mandate that blocks real Indian broker order-placement APIs from
-# GitHub Actions' rotating IPs (see broker_dhan.py's module
-# docstring). Commodities have no broker at all (alert-only, always,
-# by design -- GC=F/NG=F futures aren't offered by any of these).
-BROKERS = {"us": broker_alpaca, "india": broker_dhan}
+# India auto-execution is PAUSED too -- Dhan's SANDBOX is exempt from
+# the SEBI static-IP mandate that blocks real Indian broker APIs (see
+# broker_dhan.py's module docstring), but confirmed directly that its
+# sandbox sits behind an AWS load balancer (Server: awselb/2.0) that
+# 403s every request -- GET and POST identically -- from GitHub
+# Actions' shared, heavily-reused Azure IPs, almost certainly an
+# AWS-managed IP-reputation WAF rule flagging automation-infrastructure
+# traffic. A third, structurally different way to hit the same wall as
+# crypto: GitHub Actions' cloud IPs read as suspicious to security
+# infrastructure regardless of the underlying reason (geo-block,
+# regulatory mandate, or reputation list). Resuming either needs a
+# static IP that isn't recognizable as shared cloud/automation
+# infrastructure. Commodities have no broker at all (alert-only,
+# always, by design -- GC=F/NG=F futures aren't offered by any of
+# these).
+BROKERS = {"us": broker_alpaca}
 BROKER_NAMES = {"us": "Alpaca", "india": "Dhan", "crypto": "Bybit"}  # crypto paused, name kept for when it resumes
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
@@ -165,11 +174,11 @@ def build_watchlist(state):
     for symbol in state.get("active_us_symbols", []):
         watchlist.append({"symbol": symbol, "market": "us", "tradable": True})
     for symbol in state.get("active_india_symbols", []):
-        # True now that Dhan sandbox auto-execution exists (was False
-        # when the only option was "not paper-tradable on TradingView,
-        # use your own broker" -- that alert-text caveat no longer
-        # applies).
-        watchlist.append({"symbol": symbol, "market": "india", "tradable": True})
+        # Back to False -- Dhan sandbox auto-execution exists in code
+        # but is paused (BROKERS above, blocked by an AWS WAF rule),
+        # so "not paper-tradable, use your own broker" is accurate
+        # again for now.
+        watchlist.append({"symbol": symbol, "market": "india", "tradable": False})
     return watchlist
 
 
