@@ -988,3 +988,57 @@ No setups fired today.
 
 ---
 
+## 2026-08-31 00:03 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-08-30)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-08-30)
+- Suggested: 43 trade(s) | Resolved: 38 | Still playing out: 5
+- If you'd taken all 38 resolved trades: 16 right, 22 wrong (42% correct)
+- Net loss (USD): -573.5
+  [+] FET-USD triple_ma_long (long): +8.986
+  [+] AVAX-USD triple_ma_long (long): +2.236
+  [-] FET-USD triple_ma_long (long): -40.92
+  [+] SOL-USD triple_ma_long (long): +52.81
+  [-] AVAX-USD triple_ma_long (long): -76.14
+  [-] FET-USD triple_ma_long (long): -50.58
+  [-] XRP-USD triple_ma_long (long): -125.4
+  [+] FET-USD triple_ma_short (short): +26.85
+  [-] AVAX-USD triple_threat_short (short): -100.3
+  [-] AVAX-USD triple_ma_short (short): -112.2
+  [-] XRP-USD triple_ma_short (short): -38.83
+  [-] SOL-USD triple_ma_long (long): -36.84
+  [-] BTC-USD triple_ma_short (short): -9.411
+  [+] NEAR-USD triple_ma_long (long): +41.19
+  [+] FET-USD triple_ma_long (long): +32.63
+  [-] BTC-USD triple_ma_long (long): -69.34
+  [-] SOL-USD triple_ma_short (short): -19.59
+  [-] BTC-USD triple_ma_short (short): -48.83
+  [+] BTC-USD triple_ma_long (long): +35.88
+  [+] XRP-USD triple_ma_long (long): +46.88
+  [+] AVAX-USD triple_ma_long (long): +17.83
+  [-] XRP-USD triple_threat_long (long): -51.44
+  [-] ETH-USD triple_ma_long (long): -1.316
+  [-] SOL-USD triple_ma_short (short): -1.235
+  [-] ETH-USD triple_ma_long (long): -37.3
+  [+] XRP-USD triple_ma_short (short): +26.64
+  [+] BTC-USD triple_ma_short (short): +22.99
+  [-] ETH-USD triple_ma_short (short): -211.5
+  [+] ETH-USD triple_ma_long (long): +11.47
+  [-] BTC-USD triple_ma_short (short): -251.8
+  [+] BTC-USD triple_ma_long (long): +224
+  [+] BTC-USD triple_ma_long (long): +224
+  [-] SOL-USD triple_ma_long (long): -22.94
+  [-] NEAR-USD triple_ma_long (long): -29.3
+  [-] XRP-USD triple_ma_long (long): -6.459
+  [+] NEAR-USD triple_ma_short (short): +16.69
+  [+] NEAR-USD triple_ma_short (short): +4.174
+  [-] NEAR-USD triple_ma_long (long): -27.02
+- 5 trade(s) still open, not yet counted above: FET-USD (dmi_dpo_long), FET-USD (dmi_dpo_long), FET-USD (dmi_dpo_long), FET-USD (triple_ma_long), FET-USD (dmi_dpo_long)
+
+**US -- SIGNAL QUALITY** (2026-08-30)
+No setups fired today.
+
+---
+
