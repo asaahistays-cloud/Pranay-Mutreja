@@ -74,6 +74,7 @@ def _request(method, path, body=None):
             return json.loads(raw) if raw else {}
     except urllib.error.HTTPError as e:
         print(f"Dhan {method} {path} failed: {e.code} {e.read()}")
+        print(f"Dhan response headers: {dict(e.headers)}")
         return None
     except Exception as e:
         print(f"Dhan {method} {path} failed: {e}")

@@ -15,6 +15,11 @@ def main():
         print("DHAN keys not set.")
         return 1
 
+    print("--- read-only GET check first (narrows down whether it's a blanket origin block) ---")
+    orders_list = broker_dhan._request("GET", "/v2/orders")
+    print("GET /v2/orders result:", orders_list)
+    print("--- now the real POST order placement ---")
+
     result = broker_dhan.place_bracket_order(
         "RELIANCE.NS", "india", "long", entry=None, stop=1200, target=None, qty=1,
     )
