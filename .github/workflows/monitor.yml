@@ -28,7 +28,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "monitor / india / us / report / ideas / eia / backfill_broker / test_bybit (for manual testing; news briefing always runs)"
+        description: "monitor / india / us / report / ideas / eia / backfill_broker / test_bybit / test_dhan (for manual testing; news briefing always runs)"
         required: false
         default: "monitor"
 
@@ -184,6 +184,18 @@ jobs:
         # live testnet API, not just mocked unit tests. Delete this
         # step and test_bybit_order.py once confirmed working.
 
+      - name: Test Dhan order
+        if: github.event.inputs.mode == 'test_dhan'
+        continue-on-error: true
+        env:
+          DHAN_CLIENT_ID: ${{ secrets.DHAN_CLIENT_ID }}
+          DHAN_ACCESS_TOKEN: ${{ secrets.DHAN_ACCESS_TOKEN }}
+        run: python3 test_dhan_order.py
+        # One-off manual verification (see test_dhan_order.py) that the
+        # Dhan integration actually works end to end against the live
+        # sandbox API. Delete this step and test_dhan_order.py once
+        # confirmed working.
+
       - name: Backfill broker orders
         if: github.event.inputs.mode == 'backfill_broker'
         continue-on-error: true
@@ -201,7 +213,7 @@ jobs:
         # Not part of regular operation; never scheduled.
 
       - name: Run monitor (full scan)
-        if: github.event.inputs.mode != 'report' && github.event.inputs.mode != 'backfill_broker' && github.event.inputs.mode != 'test_bybit'
+        if: github.event.inputs.mode != 'report' && github.event.inputs.mode != 'backfill_broker' && github.event.inputs.mode != 'test_bybit' && github.event.inputs.mode != 'test_dhan'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
