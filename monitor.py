@@ -38,6 +38,7 @@ from zoneinfo import ZoneInfo
 
 import broker_alpaca
 import broker_bybit  # noqa: F401 -- kept for when crypto auto-execution resumes (see below), not wired in right now.
+import broker_dhan
 
 # Crypto auto-execution is PAUSED, not removed -- broker_bybit.py works
 # (real long+short futures, matches how these strategies were
@@ -50,9 +51,16 @@ import broker_bybit  # noqa: F401 -- kept for when crypto auto-execution resumes
 # and GitHub Actions always runs from the US -- resuming this needs
 # either a static-IP relay in front of Bybit's calls, or a different
 # platform that doesn't block US IPs. US stocks are unaffected --
-# Alpaca has none of these restrictions. India and commodities have no
-# broker at all (alert-only, always, by design).
-BROKERS = {"us": broker_alpaca}
+# Alpaca has none of these restrictions.
+#
+# India: Dhan's SANDBOX (mock orders, not real exchange routing) --
+# confirmed directly that this is exempt from the SEBI static-IP
+# mandate that blocks real Indian broker order-placement APIs from
+# GitHub Actions' rotating IPs (see broker_dhan.py's module
+# docstring). Commodities have no broker at all (alert-only, always,
+# by design -- GC=F/NG=F futures aren't offered by any of these).
+BROKERS = {"us": broker_alpaca, "india": broker_dhan}
+BROKER_NAMES = {"us": "Alpaca", "india": "Dhan", "crypto": "Bybit"}  # crypto paused, name kept for when it resumes
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -157,7 +165,11 @@ def build_watchlist(state):
     for symbol in state.get("active_us_symbols", []):
         watchlist.append({"symbol": symbol, "market": "us", "tradable": True})
     for symbol in state.get("active_india_symbols", []):
-        watchlist.append({"symbol": symbol, "market": "india", "tradable": False})
+        # True now that Dhan sandbox auto-execution exists (was False
+        # when the only option was "not paper-tradable on TradingView,
+        # use your own broker" -- that alert-text caveat no longer
+        # applies).
+        watchlist.append({"symbol": symbol, "market": "india", "tradable": True})
     return watchlist
 
 
@@ -1616,7 +1628,7 @@ def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
             sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
             sym_state["consecutive_wins"] = 0
         total_txt = f", {pnl * qty:,.4g} total" if qty else ""
-        broker_name = "Bybit" if market == "crypto" else "Alpaca"
+        broker_name = BROKER_NAMES.get(market, market)
         send_telegram(
             f"{symbol} PAPER TRADE CLOSED ({broker_name}) -- {'WIN' if pnl >= 0 else 'LOSS'}\n\n"
             f"{direction} {entry_price:,.4g} -> {fill_price:,.4g} ({kind} fill)\n"
@@ -1829,7 +1841,7 @@ def main():
         if surfaced:
             text = alert["text"]
             if broker_order is not None:
-                broker_name = "Bybit" if market == "crypto" else "Alpaca"
+                broker_name = BROKER_NAMES.get(market, market)
                 text += f"\n\n[Auto-executed: real {broker_name} paper order placed]"
             fired_setups.append(text)
         fired_at_dt = datetime.now(timezone.utc)

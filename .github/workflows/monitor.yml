@@ -176,6 +176,8 @@ jobs:
         env:
           BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
           BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
+          DHAN_CLIENT_ID: ${{ secrets.DHAN_CLIENT_ID }}
+          DHAN_ACCESS_TOKEN: ${{ secrets.DHAN_ACCESS_TOKEN }}
         run: python3 test_bybit_order.py
         # One-off manual verification (see test_bybit_order.py) that
         # the Bybit integration actually works end to end against the
@@ -190,6 +192,8 @@ jobs:
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
           BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
           BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
+          DHAN_CLIENT_ID: ${{ secrets.DHAN_CLIENT_ID }}
+          DHAN_ACCESS_TOKEN: ${{ secrets.DHAN_ACCESS_TOKEN }}
         run: python3 backfill_broker_orders.py
         # Manual-only, one-off remediation (see backfill_broker_orders.py)
         # -- places real broker orders for setups that already fired and
@@ -201,16 +205,19 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          # Paper-trading auto-execution -- Bybit for crypto (real
-          # long+short futures, Alpaca's crypto is cash/spot-only, see
-          # broker_alpaca.py), Alpaca for US stocks. Each pair is a
-          # clean no-op via that broker's own enabled() check until its
-          # two secrets are set, so this step behaves exactly as before
-          # until the user adds them.
+          # Paper-trading auto-execution -- Alpaca for US stocks, Dhan
+          # sandbox for India (see broker_dhan.py). Bybit/crypto is
+          # currently paused (see BROKERS in monitor.py), keys still
+          # passed through so resuming it later is a one-line change.
+          # Each pair is a clean no-op via that broker's own enabled()
+          # check until its two secrets are set, so this step behaves
+          # exactly as before until the user adds them.
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
           BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
           BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
+          DHAN_CLIENT_ID: ${{ secrets.DHAN_CLIENT_ID }}
+          DHAN_ACCESS_TOKEN: ${{ secrets.DHAN_ACCESS_TOKEN }}
         run: python3 monitor.py
 
       - name: Commit updated state
