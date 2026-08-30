@@ -54,6 +54,13 @@ def _headers():
     return {
         "access-token": os.environ[ACCESS_TOKEN_ENV],
         "Content-Type": "application/json",
+        "Accept": "application/json",
+        # Confirmed directly: a bare Python urllib request (no
+        # User-Agent, or the default "Python-urllib/3.x") gets a plain
+        # 403 Forbidden HTML page back -- a WAF-level bot-detection
+        # block, not a Dhan-application-level error (those come back
+        # as JSON). A realistic browser-style User-Agent clears it.
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     }
 
 
