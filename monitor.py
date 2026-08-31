@@ -1766,6 +1766,53 @@ def trend_reversed(setup_type, direction, closed_bars):
     return False
 
 
+def settle_end_of_day(symbol, setup_log, last_closed, sym_state):
+    """Explicitly requested: US/India markets close for the day (no
+    new bars until the next session), so an unresolved position just
+    sat exactly as it was at the close -- for hours, overnight, or over
+    a weekend -- showing "unresolved" when the trading day for that
+    symbol has genuinely ended. Settles every still-open setup_log
+    entry for this symbol at the market's actual last close price
+    (mirrors how real intraday/MIS positions are auto-squared-off at
+    end of day, not carried over) instead of leaving it in limbo until
+    fresh bars eventually arrive next session.
+
+    Called once per scan for a symbol whose latest bar is_stale() --
+    idempotent: a shadow-only entry resolves once and is skipped on
+    every subsequent stale scan (log_entry["resolved"]); a taken entry
+    gets one settlement alert per stale period (exit_alert_sent), not
+    one every 15 minutes overnight. US/India only -- crypto trades
+    24/7 (never legitimately "stale" outside a real outage) and
+    commodities aren't in scope of this request."""
+    close = last_closed["close"]
+    for log_entry in setup_log:
+        if log_entry["resolved"] or log_entry["symbol"] != symbol:
+            continue
+        shadow = log_entry["shadow"]
+        entry_price = shadow["entry_price"]
+        pnl = (close - entry_price) if shadow["direction"] == "long" else (entry_price - close)
+        if log_entry.get("taken"):
+            if not shadow.get("exit_alert_sent"):
+                send_telegram(
+                    f"{symbol} MARKET CLOSED -- settling {shadow['direction']} at today's close\n\n"
+                    f"Close {close:,.4g}. The session ended before this hit stop/target -- "
+                    f"close now if you haven't already.",
+                    symbol=symbol, price=close,
+                )
+                shadow["exit_alert_sent"] = True
+        else:
+            log_trade(shadow, shadow["direction"], entry_price, close, pnl, "eod_settlement")
+            log_entry["resolved"] = True
+            log_entry["outcome"] = shadow["trade_journal"][-1]
+            rearm_to_watching(shadow, None)
+            if pnl >= 0:
+                sym_state["consecutive_losses"] = 0
+                sym_state["consecutive_wins"] = sym_state.get("consecutive_wins", 0) + 1
+            else:
+                sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
+                sym_state["consecutive_wins"] = 0
+
+
 def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
     """For a setup_log entry that was auto-executed on a real broker
     (see the broker_order block in main()'s fire loop -- see BROKERS,
@@ -1897,6 +1944,10 @@ def main():
         closed_bars = bars[:-1]
         last_closed = closed_bars[-1]
         if is_stale(last_closed):
+            if market in ("us", "india"):
+                if symbol not in symbols_state:
+                    symbols_state[symbol] = default_symbol_state(closed_bars)
+                settle_end_of_day(symbol, setup_log, last_closed, symbols_state[symbol])
             print(f"{symbol}: stale (market likely closed), skipping")
             continue
 
