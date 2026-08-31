@@ -62,6 +62,77 @@ def market_of(symbol):
     return "us"
 
 
+def explain_trigger(setup_type, trigger_context):
+    """Self-learning groundwork, step 2: turn a logged trigger_context
+    (see monitor.py's check_*() functions -- each attaches the specific
+    indicator values behind its own fire) into one plain-language line
+    of "why this fired". Purely a formatter over already-logged numbers,
+    same spirit as monitor.py's build_alert_text() at entry time, just
+    reconstructed after the fact for the report instead of live. Entries
+    fired before trigger_context started being logged have none -- say
+    so rather than guessing."""
+    if not trigger_context:
+        return "no trigger detail logged (fired before trigger_context tracking started)"
+    tc = trigger_context
+    parts = []
+
+    if setup_type in ("triple_ma_long", "triple_ma_short"):
+        p = tc.get("periods", {})
+        parts.append(f"EMA({p.get('fast')}/{p.get('med')}/{p.get('slow')}) = {tc.get('fast_ema'):,.4g}/{tc.get('med_ema'):,.4g}/{tc.get('slow_ema'):,.4g}, freshly aligned")
+    elif setup_type in ("triple_threat_long", "triple_threat_short"):
+        parts.append(f"RSI {tc.get('rsi_prev'):.0f}->{tc.get('rsi_now'):.0f} crossed 50, broke {tc.get('breakout_level'):,.4g}, trend EMA {tc.get('trend_ema'):,.4g}")
+    elif setup_type == "gap_and_go_short":
+        gap = tc.get("gap_pct")
+        parts.append(f"gapped {gap:+.2f}% overnight, broke opening-range low {tc.get('opening_range_low'):,.4g}, vol {tc.get('volume'):,.0f} vs avg {tc.get('avg_volume'):,.0f}" if gap is not None else "gap setup (gap_pct not logged)")
+    elif setup_type in ("breakout_long", "breakdown_short"):
+        level_key = "range_high" if setup_type == "breakout_long" else "range_low"
+        level = tc.get(level_key)
+        conf = f", {tc['confirmation']}" if tc.get("confirmation") else ""
+        trend = tc.get("trend_ema")
+        parts.append(f"broke {level_key.replace('_', ' ')} {level:,.4g} on vol {tc.get('volume'):,.0f} vs avg {tc.get('avg_volume'):,.0f}, trend EMA {trend:,.4g}{conf}" if trend else f"broke {level_key.replace('_', ' ')} {level:,.4g} on vol {tc.get('volume'):,.0f} vs avg {tc.get('avg_volume'):,.0f}{conf}")
+    elif setup_type in ("range_long_rejection", "range_short_rejection"):
+        wick_key = "wick_low" if setup_type == "range_long_rejection" else "wick_high"
+        near = "low" if setup_type == "range_long_rejection" else "high"
+        adx = tc.get("adx")
+        adx_part = f", ADX {adx} confirmed ranging" if adx is not None else ""
+        parts.append(f"wicked to {tc.get(wick_key):,.4g} near range {near} [{tc.get('range_low'):,.4g}, {tc.get('range_high'):,.4g}], closed back inside{adx_part}")
+    elif setup_type in ("dmi_dpo_long", "dmi_dpo_short"):
+        parts.append(f"+DI {tc.get('plus_di')} vs -DI {tc.get('minus_di')}, ADX {tc.get('adx')}, DPO {tc.get('dpo'):,.4g} (period {tc.get('period')})")
+    elif setup_type.startswith("seasonal_"):
+        eia = tc.get("eia_surprise_bcf")
+        parts.append(f"month {tc.get('month')} seasonal edge" + (f", EIA surprise {eia:+.0f} Bcf confirmed" if eia is not None else ""))
+    else:
+        parts.append(", ".join(f"{k}={v}" for k, v in tc.items() if k not in ("rsi", "vwap", "gate")))
+
+    if tc.get("gate"):
+        parts.append(f"India gate: RSI {tc.get('rsi')} / VWAP {tc.get('vwap'):,.4g} ({tc['gate']})")
+
+    return "; ".join(parts)
+
+
+def explain_outcome(exit_reason, pnl_per_unit):
+    """The other half of "why" -- not the entry condition but how the
+    trade actually resolved. stop_hit splits into two very different
+    stories depending on pnl sign (see the bot-selflearning-checkin
+    scheduled task, which established this same split at the bucket
+    level): trail-locked win means price moved favorably first and the
+    trailing stop rode it into profit (the entry had real follow-
+    through); real stop-loss means it went against the entry with no
+    favorable move first (no edge at that moment). Reused here per-trade
+    instead of aggregated per-bucket."""
+    if exit_reason == "stop_hit":
+        if pnl_per_unit > 0:
+            return "trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)"
+        return "real stop-loss -- no favorable move before the stop hit (no edge at entry)"
+    if exit_reason == "take_profit":
+        return "hit fixed target -- clean win"
+    if exit_reason in ("manual_close", "manual_exit"):
+        return f"manual close ({'win' if pnl_per_unit > 0 else 'loss'})"
+    if exit_reason and exit_reason.startswith("broker_"):
+        return f"{exit_reason.replace('_', ' ')} ({'win' if pnl_per_unit > 0 else 'loss'})"
+    return exit_reason or "unknown exit"
+
+
 def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY", day_ist=None, market=None):
     """If you'd taken every trade the bot fired today, taken or not --
     what's the real win/loss count and net P&L? Only setups fired
@@ -126,6 +197,71 @@ def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY
     return "\n".join(lines)
 
 
+WHY_REPORT_FILE = os.path.join(os.path.dirname(__file__), "Trade Why Report.md")
+
+
+def build_why_report(state, label, day_ist, market=None):
+    """Self-learning groundwork, step 2 (see explain_trigger()/
+    explain_outcome() above): for every setup that fired on this IST
+    calendar day, why did it fire, and why did it win or lose? Separate
+    report from build_daily_report()'s "would I be up or down" number --
+    this one is file-only (see append_why_report_to_file()), never sent
+    to Telegram, since it's meant to be read/reviewed at leisure, not
+    pushed as an alert.
+
+    Deliberately NOT filtered to surfaced==True the way
+    build_daily_report() is -- build_daily_report() answers "what did
+    the user actually see suggested", but this report is about the
+    bot's underlying signal logic itself, so every setup that fired
+    (surfaced or shadow-only) is in scope."""
+    log = [e for e in state.get("setup_log", []) if to_ist_date(e["fired_at"]) == day_ist]
+    if market:
+        log = [e for e in log if market_of(e["symbol"]) == market]
+
+    if not log:
+        return f"**{label}** ({day_ist})\nNo setups fired."
+
+    resolved = [e for e in log if e["resolved"]]
+    pending = [e for e in log if not e["resolved"]]
+    lines = [f"**{label}** ({day_ist})",
+              f"- Fired: {len(log)} | Resolved: {len(resolved)} | Still open: {len(pending)}"]
+
+    for e in resolved:
+        mark = "WIN" if e["outcome"]["pnl_per_unit"] > 0 else "LOSS"
+        pnl_suffix = f" ({e['outcome']['pnl_total']:+,.4g})" if e["outcome"].get("pnl_total") is not None else ""
+        lines.append(f"\n[{mark}] {e['symbol']} {e['type']} ({e['direction']}){pnl_suffix}")
+        lines.append(f"  Triggered: {explain_trigger(e['type'], e.get('trigger_context'))}")
+        lines.append(f"  Outcome:   {explain_outcome(e['outcome']['exit_reason'], e['outcome']['pnl_per_unit'])}")
+
+    if pending:
+        lines.append("\nStill open (too soon to say why it worked or not):")
+        for e in pending:
+            lines.append(f"  {e['symbol']} {e['type']} ({e['direction']}) -- triggered: {explain_trigger(e['type'], e.get('trigger_context'))}")
+
+    return "\n".join(lines)
+
+
+def append_why_report_to_file(report_text):
+    ist_now = datetime.now(timezone.utc) + IST_OFFSET
+    header = f"## {ist_now.strftime('%Y-%m-%d %H:%M')} IST\n\n"
+    entry = header + report_text + "\n\n---\n\n"
+
+    if not os.path.exists(WHY_REPORT_FILE):
+        with open(WHY_REPORT_FILE, "w") as f:
+            f.write(
+                "# Trade Why Report\n\n"
+                "Per-setup breakdown of why each fired setup fired (trigger_context: the "
+                "specific indicator values behind that entry) and why it won or lost "
+                "(outcome: trail-locked win vs real stop-loss vs clean target/manual exit). "
+                "File-only, never sent to Telegram -- appended nightly at 12:00 AM IST "
+                "alongside Trade Results.md. Entries fired before trigger_context tracking "
+                "started show no trigger detail.\n\n---\n\n"
+            )
+
+    with open(WHY_REPORT_FILE, "a") as f:
+        f.write(entry)
+
+
 def append_to_file(report_text):
     ist_now = datetime.now(timezone.utc) + IST_OFFSET
     header = f"## {ist_now.strftime('%Y-%m-%d %H:%M')} IST\n\n"
@@ -175,6 +311,17 @@ def main():
     report_text = "\n\n".join(sections)
     append_to_file(report_text)
     monitor.send_telegram("TRADE PERFORMANCE REPORT\n\n" + report_text)
+
+    # File-only companion report (see build_why_report()'s docstring) --
+    # never sent to Telegram, deliberately.
+    why_sections = [
+        build_why_report(state, "INDIA -- WHY", day_ist, market="india"),
+        build_why_report(state, "CRYPTO -- WHY", day_ist, market="crypto"),
+        build_why_report(state, "US -- WHY", day_ist, market="us"),
+    ]
+    if futures_today:
+        why_sections.append(build_why_report(state, "INDIA FUTURES (MANUAL) -- WHY", day_ist, market="india_futures"))
+    append_why_report_to_file("\n\n".join(why_sections))
 
 
 if __name__ == "__main__":
