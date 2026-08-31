@@ -239,7 +239,12 @@ jobs:
         run: |
           git config user.name "multi-market-monitor-bot"
           git config user.email "actions@github.com"
-          git add state.json "Trade Results.md" 2>/dev/null || true
+          # -A (not plain add) so that BOT_MISTAKES.md's deletion (see
+          # write_bot_mistakes_file() in report.py -- removed once the
+          # underlying bug is fixed and no mistakes remain) actually
+          # gets staged and committed, not just removed from disk on
+          # this ephemeral runner.
+          git add -A -- state.json "Trade Results.md" "Trade Why Report.md" BOT_MISTAKES.md 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Update state / trade results [skip ci]"
             # With multiple cron triggers firing every ~5 min, overlapping

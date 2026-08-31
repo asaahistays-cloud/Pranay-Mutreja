@@ -283,6 +283,75 @@ def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY
 
 
 WHY_REPORT_FILE = os.path.join(os.path.dirname(__file__), "Trade Why Report.md")
+BOT_MISTAKES_FILE = os.path.join(os.path.dirname(__file__), "BOT_MISTAKES.md")
+
+
+def find_bot_mistakes(state):
+    """Self-learning groundwork, step 4 (the closing-the-loop step): scan
+    every resolved loss in the ENTIRE setup_log -- not just today -- for
+    diagnose_loss() category == "bot_mistake". Unlike market_opposite
+    (the setup fired correctly, the market just went the other way) or
+    stop_overshoot (a real but structural bar-close-vs-tick-data
+    limitation), bot_mistake means the logged trigger_context itself
+    contradicts the condition the setup claims to have fired on -- an
+    unambiguous logic bug, by construction (see check_trigger_
+    consistency()'s docstring for why this should essentially never
+    legitimately happen).
+
+    The intent: whenever this list is non-empty, that specific bug gets
+    investigated and fixed immediately (the exact setup_type + logged
+    trigger_context pinpoints which check_*() function and which
+    condition is wrong) -- not queued, not batched, not left for a
+    future "someday" cleanup. market_opposite/stop_overshoot losses are
+    NOT touched by this process; changing entry/exit logic to reduce
+    those needs the same walk-forward backtest discipline every other
+    live change in this bot has required (the confidence-gating
+    backtest is the standing example of why: a plausible-sounding
+    filter that measurably hurt performance once actually tested)."""
+    mistakes = []
+    for e in state.get("setup_log", []):
+        if not e.get("resolved") or not e.get("outcome"):
+            continue
+        pnl = e["outcome"]["pnl_per_unit"]
+        if pnl > 0:
+            continue
+        d = diagnose_loss(e["type"], e.get("entry"), e.get("stop"), pnl, e["outcome"]["exit_reason"], e.get("trigger_context"))
+        if d["category"] == "bot_mistake":
+            mistakes.append({
+                "symbol": e["symbol"], "type": e["type"], "direction": e["direction"],
+                "fired_at": e["fired_at"], "detail": d["detail"], "trigger_context": e.get("trigger_context"),
+            })
+    return mistakes
+
+
+def write_bot_mistakes_file(mistakes):
+    """Overwritten each run (not appended) -- this file's whole purpose
+    is "is there something to fix right now", so it should only ever
+    reflect the CURRENT state of the log, not accumulate stale entries
+    a past run already got fixed. Kept as its own small file (rather
+    than folded into Trade Why Report.md's daily wall of text) so it's
+    impossible to miss: empty/absent means clean, present with content
+    means stop and look."""
+    if not mistakes:
+        if os.path.exists(BOT_MISTAKES_FILE):
+            os.remove(BOT_MISTAKES_FILE)
+        return
+    lines = [
+        "# Bot Mistakes Detected",
+        "",
+        f"{len(mistakes)} logic inconsistency/inconsistencies found -- the logged trigger_context "
+        "contradicts the condition the setup claims to have fired on. This is a real bug, not "
+        "normal strategy variance. Investigate and fix immediately; see check_trigger_consistency() "
+        "in report.py for the exact check that flagged each one.",
+        "",
+    ]
+    for m in mistakes:
+        lines.append(f"## {m['symbol']} {m['type']} ({m['direction']}) -- fired {m['fired_at']}")
+        lines.append(f"- {m['detail']}")
+        lines.append(f"- trigger_context: {m['trigger_context']}")
+        lines.append("")
+    with open(BOT_MISTAKES_FILE, "w") as f:
+        f.write("\n".join(lines))
 
 
 def build_why_report(state, label, day_ist, market=None):
@@ -412,6 +481,17 @@ def main():
     if futures_today:
         why_sections.append(build_why_report(state, "INDIA FUTURES (MANUAL) -- WHY", day_ist, market="india_futures"))
     append_why_report_to_file("\n\n".join(why_sections))
+
+    # Self-learning groundwork, step 4 -- see find_bot_mistakes()'s
+    # docstring. Checked against the WHOLE log every run (not just
+    # today) so a bug never goes unnoticed just because the run that
+    # would have caught it got skipped. Loud stdout print too, not just
+    # the file -- surfaces in the GitHub Actions run log immediately,
+    # before anyone has to think to go open BOT_MISTAKES.md.
+    mistakes = find_bot_mistakes(state)
+    write_bot_mistakes_file(mistakes)
+    if mistakes:
+        print(f"!!! {len(mistakes)} BOT MISTAKE(S) DETECTED -- see BOT_MISTAKES.md -- fix immediately, this is a real logic bug !!!")
 
 
 if __name__ == "__main__":
