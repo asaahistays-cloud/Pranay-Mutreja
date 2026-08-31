@@ -1,6 +1,7 @@
 """Real (testnet) order execution via Bybit -- crypto only, both long
-and short. Built because Alpaca's crypto account is cash/spot only (no
-shorting at all, see broker_alpaca.py's module docstring) -- Bybit's
+and short. Built because a real US equities broker previously used for
+crypto too (since removed -- see BROKERS in monitor.py) had a
+cash/spot-only crypto account with no shorting at all -- Bybit's
 USDT-perpetual futures support real long/short positions with real
 leverage, matching how these strategies were actually validated
 (LEVERAGE_BY_MARKET["crypto"] = 10).
@@ -9,15 +10,15 @@ HARD INVARIANT: BYBIT_BASE_URL is the testnet endpoint, always. Never
 point this at api.bybit.com (live trading) -- there is no live-trading
 path anywhere in this bot, on purpose.
 
-Structurally different from Alpaca's leg-order model: Bybit attaches
-stopLoss/takeProfit directly on the order/position itself (no separate
-child order with its own id), and modifying the stop is a position-
-level call (POST /v5/position/trading-stop, keyed by symbol) rather
-than a PATCH on an order id. So the "stop_order_id" this module hands
-back to monitor.py is really just the Bybit-formatted symbol string --
-an identifier, not a real order id -- kept under the same field name
-as broker_alpaca.py's real leg id so sync_broker_entry() can treat both
-brokers uniformly without knowing which one it's talking to.
+Bybit attaches stopLoss/takeProfit directly on the order/position
+itself (no separate child order with its own id), and modifying the
+stop is a position-level call (POST /v5/position/trading-stop, keyed
+by symbol) rather than a PATCH on an order id. So the
+"stop_order_id" this module hands back to monitor.py is really just
+the Bybit-formatted symbol string -- an identifier, not a real order
+id -- kept under the same field name broker_dhan.py uses for its real
+order id, so sync_broker_entry() can treat every broker uniformly
+without knowing which one it's talking to.
 
 Resolution works differently too: instead of polling a specific
 order's fill status, order_fill_status() here checks whether the
@@ -148,8 +149,8 @@ def set_leverage(symbol, leverage):
 def place_bracket_order(symbol, market, direction, entry, stop, target, qty):
     """Places a real (testnet) market-entry Bybit position with
     stopLoss/takeProfit attached directly on the order -- both long and
-    short work identically here, unlike Alpaca's crypto cash account.
-    Returns {"id": order_id, "stop_order_id": bybit_symbol,
+    short work identically here, since this is a real margin/futures
+    account. Returns {"id": order_id, "stop_order_id": bybit_symbol,
     "take_profit_order_id": None} on success (stop_order_id is really
     the symbol, used by replace_stop_price()/order_fill_status() to
     address the position -- see module docstring), or None if
@@ -193,8 +194,9 @@ def replace_stop_price(identifier, new_stop_price):
         "stopLoss": f"{new_stop_price:.6g}", "positionIdx": 0,
     }
     result = _request("POST", "/v5/position/trading-stop", body)
-    # No real "new id" to track (unlike Alpaca's cancel+replace) --
-    # same identifier (symbol) stays valid for every future call.
+    # No real "new id" to track here (this is an in-place modification,
+    # not cancel+replace) -- same identifier (symbol) stays valid for
+    # every future call.
     return {"id": identifier} if result is not None else None
 
 
@@ -202,8 +204,9 @@ def order_fill_status(identifier):
     """identifier is the Bybit symbol. Checks whether the POSITION has
     closed (size back to 0) rather than polling a specific order --
     Bybit's attached TP/SL doesn't expose a reliably pollable child
-    order id the way Alpaca's legs do. Returns the real average exit
-    price from closed-pnl history if closed, else None."""
+    order id the way a real leg-order-based broker would. Returns the
+    real average exit price from closed-pnl history if closed, else
+    None."""
     if not enabled() or not identifier:
         return None
     position = _request("GET", "/v5/position/list", {"category": CATEGORY, "symbol": identifier})

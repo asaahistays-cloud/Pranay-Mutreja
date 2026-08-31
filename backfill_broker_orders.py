@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""One-off remediation: places real Alpaca paper orders for setup_log
+"""One-off remediation: places real broker paper orders for setup_log
 entries that already fired and surfaced (a real alert went out) but
-never got broker-executed, because of the target=None bug fixed in
-broker_alpaca.place_bracket_order() (see its docstring/the commit that
-fixed it) -- entries created before that fix silently skipped
-automation entirely.
+never got broker-executed -- e.g. a broker was briefly disabled/paused
+when the setup fired, or an earlier bug (see git history) silently
+skipped automation for entries that should have gotten it.
 
-Only touches entries that are: unresolved, surfaced, crypto/US, and
-missing a broker_order_id already -- never re-executes something that
-already went through, and never touches india/commodity (not on
-Alpaca) or non-surfaced setups (never earned real capital in the
-first place). Not part of the regular scan; run manually
-(workflow_dispatch mode=backfill_broker) only when needed."""
+Only touches entries that are: unresolved, surfaced, in a market that
+currently has an enabled broker wired in monitor.BROKERS, and missing
+a broker_order_id already -- never re-executes something that already
+went through, and never touches a market with no broker (currently
+all of them -- see BROKERS in monitor.py) or non-surfaced setups
+(never earned real capital in the first place). Not part of the
+regular scan; run manually (workflow_dispatch mode=backfill_broker)
+only when needed."""
 import sys
 
 import monitor

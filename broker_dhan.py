@@ -205,9 +205,8 @@ def replace_stop_price(order_id, new_stop_price):
         "triggerPrice": f"{price_f:.6g}", "price": f"{price_f:.6g}",
     }
     result = _request("PUT", f"/v2/orders/{order_id}", body)
-    # Modification is in-place (same order id), unlike Alpaca's
-    # cancel+replace -- but callers (sync_broker_entry) expect an
-    # "id" key back either way.
+    # Modification is in-place (same order id back) -- callers
+    # (sync_broker_entry) expect an "id" key regardless.
     return {"id": order_id} if result is not None else None
 
 

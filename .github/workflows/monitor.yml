@@ -200,8 +200,6 @@ jobs:
         if: github.event.inputs.mode == 'backfill_broker'
         continue-on-error: true
         env:
-          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
           BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
           BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
           DHAN_CLIENT_ID: ${{ secrets.DHAN_CLIENT_ID }}
@@ -217,15 +215,13 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          # Paper-trading auto-execution -- Alpaca for US stocks, Dhan
-          # sandbox for India (see broker_dhan.py). Bybit/crypto is
-          # currently paused (see BROKERS in monitor.py), keys still
-          # passed through so resuming it later is a one-line change.
-          # Each pair is a clean no-op via that broker's own enabled()
-          # check until its two secrets are set, so this step behaves
-          # exactly as before until the user adds them.
-          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          # Paper-trading auto-execution -- currently off entirely (see
+          # BROKERS in monitor.py: US/Alpaca removed outright per
+          # explicit request, crypto/Bybit and india/Dhan paused on
+          # real platform-side blockers). Keys still passed through so
+          # resuming crypto/india later is a one-line change. Each
+          # pair is a clean no-op via that broker's own enabled() check
+          # until its two secrets are set.
           BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
           BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
           DHAN_CLIENT_ID: ${{ secrets.DHAN_CLIENT_ID }}

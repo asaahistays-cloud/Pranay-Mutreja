@@ -36,10 +36,15 @@ import urllib.error
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
-import broker_alpaca
 import broker_bybit  # noqa: F401 -- kept for when crypto auto-execution resumes (see below), not wired in right now.
 import broker_dhan  # noqa: F401 -- kept for when India auto-execution resumes (see below), not wired in right now.
 
+# Real broker auto-execution is off entirely right now. US (Alpaca) was
+# removed outright, not paused -- explicitly requested: shadow-tracking
+# (setup_log below) already tells the user exactly what a fired setup
+# would have done, so a real paper account duplicating that same
+# outcome added no real information, just infrastructure to maintain.
+#
 # Crypto auto-execution is PAUSED, not removed -- broker_bybit.py works
 # (real long+short futures, matches how these strategies were
 # validated), but Bybit's CloudFront setup rejects requests from
@@ -50,8 +55,7 @@ import broker_dhan  # noqa: F401 -- kept for when India auto-execution resumes (
 # Deribit) blocks US-origin traffic for their own regulatory reasons,
 # and GitHub Actions always runs from the US -- resuming this needs
 # either a static-IP relay in front of Bybit's calls, or a different
-# platform that doesn't block US IPs. US stocks are unaffected --
-# Alpaca has none of these restrictions.
+# platform that doesn't block US IPs.
 #
 # India auto-execution is PAUSED too -- Dhan's SANDBOX is exempt from
 # the SEBI static-IP mandate that blocks real Indian broker APIs (see
@@ -68,8 +72,8 @@ import broker_dhan  # noqa: F401 -- kept for when India auto-execution resumes (
 # infrastructure. Commodities have no broker at all (alert-only,
 # always, by design -- GC=F/NG=F futures aren't offered by any of
 # these).
-BROKERS = {"us": broker_alpaca}
-BROKER_NAMES = {"us": "Alpaca", "india": "Dhan", "crypto": "Bybit"}  # crypto paused, name kept for when it resumes
+BROKERS = {}
+BROKER_NAMES = {"india": "Dhan", "crypto": "Bybit"}  # both paused, names kept for when they resume
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -1640,22 +1644,22 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
 
 def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
     """For a setup_log entry that was auto-executed on a real broker
-    (see the broker_order block in main()'s fire loop -- Bybit for
-    crypto, Alpaca for US, see BROKERS): resolves it against the
-    broker's REAL fill data the instant either the stop or take-profit
-    fills (ground truth, not the bot's own bar-close simulation
-    check_open() runs for every other entry), and mirrors the shadow's
-    own trailing-stop math -- check_open() already ran on `shadow` this
-    same scan and may have moved shadow['stop_loss'] -- onto the real
-    resting stop.
+    (see the broker_order block in main()'s fire loop -- see BROKERS,
+    currently empty, both crypto/Bybit and india/Dhan paused):
+    resolves it against the broker's REAL fill data the instant either
+    the stop or take-profit fills (ground truth, not the bot's own
+    bar-close simulation check_open() runs for every other entry), and
+    mirrors the shadow's own trailing-stop math -- check_open() already
+    ran on `shadow` this same scan and may have moved
+    shadow['stop_loss'] -- onto the real resting stop.
 
     Polls broker_stop_order_id/broker_take_profit_order_id directly --
-    for Alpaca these are real leg order ids; for Bybit, stop_order_id
-    is really just the symbol (Bybit's stop-loss is a position
-    attribute, not a separate order -- see broker_bybit.py's module
-    docstring). Both brokers' order_fill_status() accept whichever
-    shape they returned from place_bracket_order(), so this code
-    doesn't need to know which broker it's talking to.
+    for Dhan these are real order ids; for Bybit, stop_order_id is
+    really just the symbol (Bybit's stop-loss is a position attribute,
+    not a separate order -- see broker_bybit.py's module docstring).
+    Each broker's order_fill_status() accepts whichever shape it
+    returned from place_bracket_order(), so this code doesn't need to
+    know which broker it's talking to.
 
     No-ops entirely if the market has no broker wired, that broker is
     disabled, this entry was never broker-executed, or it's already
@@ -1663,19 +1667,6 @@ def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
     broker = BROKERS.get(market)
     if log_entry.get("resolved") or not log_entry.get("broker_order_id") or not broker or not broker.enabled():
         return
-
-    # Alpaca's bracket/OTO legs can briefly lag the parent order
-    # transitioning out of 'accepted' right after submission --
-    # backfill if neither id showed up in place_bracket_order()'s own
-    # response yet. Bybit always returns its (single) identifier
-    # synchronously at creation, so this never triggers for it.
-    if market == "us" and not log_entry.get("broker_stop_order_id") and not log_entry.get("broker_take_profit_order_id"):
-        parent = broker.get_order(log_entry["broker_order_id"])
-        stop_id, tp_id = broker.extract_leg_ids(parent)
-        if stop_id:
-            log_entry["broker_stop_order_id"] = stop_id
-        if tp_id:
-            log_entry["broker_take_profit_order_id"] = tp_id
 
     outcome = None
     for order_id, kind in ((log_entry.get("broker_take_profit_order_id"), "target"),
@@ -1718,10 +1709,9 @@ def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
         result = broker.replace_stop_price(log_entry["broker_stop_order_id"], new_stop)
         if result is not None:
             log_entry["_last_pushed_stop"] = new_stop
-            # Both brokers' replace call can hand back a fresh
-            # identifier (Alpaca's PATCH is cancel+replace under the
-            # hood -- new order id; Bybit just echoes the same symbol
-            # back) -- track whatever comes back either way.
+            # Dhan's PUT modifies in place (same order id back); Bybit
+            # just echoes the same symbol -- track whatever comes back
+            # either way, in case that ever changes.
             new_id = result.get("id")
             if new_id:
                 log_entry["broker_stop_order_id"] = new_id
@@ -1740,13 +1730,13 @@ def main():
     # crypto and US are separate pools now, not one shared capital_usd
     # pot -- crypto capital is real cash backing 10x leverage (matches
     # LEVERAGE_BY_MARKET and how these strategies were originally
-    # validated), US is unleveraged cash. Confirmed directly against
-    # the real Alpaca account: sizing crypto off the full $100k pot at
-    # 10x produced order notionals the real spot/cash paper account
-    # couldn't actually hold (insufficient balance, and Alpaca's own
-    # $200k-per-order cap) -- $10k crypto capital keeps intended
-    # notional (10x = $100k) within what the account can realistically
-    # support.
+    # validated), US is unleveraged cash. Confirmed directly against a
+    # real paper broker account (since removed, see BROKERS above):
+    # sizing crypto off the full $100k pot at 10x produced order
+    # notionals a real spot/cash account couldn't actually hold
+    # (insufficient balance, and a real per-order notional cap) --
+    # $10k crypto capital keeps intended notional (10x = $100k) within
+    # what a real account can realistically support.
     capital_usd_crypto = state.get("capital_usd_crypto", 100)
     capital_usd_us = state.get("capital_usd_us", 100)
     capital_inr = state.get("capital_inr", 100)
@@ -1840,8 +1830,8 @@ def main():
             # True there means check_open() only ever alerts, never
             # calls log_trade() (see its docstring). Real resolution and
             # stop-trailing enforcement for those live here instead,
-            # against Alpaca's actual fill data. No-ops for every entry
-            # that was never broker-executed.
+            # against the real broker's actual fill data. No-ops for
+            # every entry that was never broker-executed.
             sync_broker_entry(symbol, market, log_entry, shadow, sym_state)
 
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise)
@@ -1900,12 +1890,12 @@ def main():
         # Confirmed directly: an earlier version of this guard required
         # a real target, which meant broker execution silently never
         # fired for any of the 3 setups actually surfaced in real
-        # testing -- only the alert went out, no automation. BROKERS
-        # only has entries for crypto (Bybit) and us (Alpaca) -- india/
-        # commodity look up to None and stay alert-only always. Each
-        # broker's enabled() is False (pure no-op) until its own API
-        # key secrets are set -- until then this whole block never
-        # fires and nothing about existing alert-only behavior changes.
+        # testing -- only the alert went out, no automation. BROKERS is
+        # currently empty (US auto-execution removed outright, crypto/
+        # india paused -- see BROKERS' definition above) -- every
+        # market looks up to None and stays alert-only. Each broker's
+        # enabled() is False (pure no-op) until its own API key secrets
+        # are set, same fail-open behavior either way.
         broker_order = None
         broker_mod = BROKERS.get(market)
         if surfaced and broker_mod and broker_mod.enabled():
