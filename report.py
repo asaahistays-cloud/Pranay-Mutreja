@@ -133,6 +133,91 @@ def explain_outcome(exit_reason, pnl_per_unit):
     return exit_reason or "unknown exit"
 
 
+def check_trigger_consistency(setup_type, trigger_context):
+    """Self-learning groundwork, step 3, part 1: re-derive each setup
+    type's own firing condition from its logged trigger_context and
+    check it actually held. monitor.py's check_*() functions already
+    gate on these exact conditions before ever constructing the alert
+    (see e.g. check_triple_ma()'s `if fast > med > slow`), so this
+    should essentially never fire in practice -- if it ever does, that
+    is a real, high-confidence bug signal (the bot logged a setup type
+    whose own defining condition the logged numbers contradict), not
+    a guess about market behavior. Returns None when nothing's wrong
+    (the overwhelmingly common case) or a string describing exactly
+    what's inconsistent.
+
+    trigger_context values are rounded (see monitor.py's trigger_context
+    construction, e.g. round(fast_ema, 6)) so a razor-thin equality
+    case could theoretically read as a false positive after rounding --
+    accepted as a rare, low-cost risk given how many decimal places
+    survive."""
+    if not trigger_context:
+        return None
+    tc = trigger_context
+
+    if setup_type == "triple_ma_long":
+        f, m, s = tc.get("fast_ema"), tc.get("med_ema"), tc.get("slow_ema")
+        if None not in (f, m, s) and not (f > m > s):
+            return f"fired as triple_ma_long but logged EMAs ({f}/{m}/{s}) aren't fast>med>slow"
+    elif setup_type == "triple_ma_short":
+        f, m, s = tc.get("fast_ema"), tc.get("med_ema"), tc.get("slow_ema")
+        if None not in (f, m, s) and not (f < m < s):
+            return f"fired as triple_ma_short but logged EMAs ({f}/{m}/{s}) aren't fast<med<slow"
+    elif setup_type == "dmi_dpo_long":
+        p, mn = tc.get("plus_di"), tc.get("minus_di")
+        if p is not None and mn is not None and not (p > mn):
+            return f"fired as dmi_dpo_long but logged +DI {p} isn't > -DI {mn}"
+    elif setup_type == "dmi_dpo_short":
+        p, mn = tc.get("plus_di"), tc.get("minus_di")
+        if p is not None and mn is not None and not (mn > p):
+            return f"fired as dmi_dpo_short but logged -DI {mn} isn't > +DI {p}"
+    elif setup_type in ("range_long_rejection", "range_short_rejection"):
+        adx = tc.get("adx")
+        if adx is not None and adx > 25:
+            return f"range rejection fired with ADX {adx} > 25 -- should be gated to a ranging regime only"
+
+    return None
+
+
+def diagnose_loss(setup_type, entry, stop, pnl_per_unit, exit_reason, trigger_context, overshoot_multiple=1.5):
+    """Self-learning groundwork, step 3, part 2: for a losing trade, was
+    this a genuine bot-side issue or did the market simply move opposite
+    to a validly-fired setup? Two independent, mechanically-grounded
+    checks (not a guess at market sentiment, which the logged data can't
+    support):
+      1. Internal consistency (check_trigger_consistency() above) -- did
+         the setup actually meet its own firing condition? If not, real
+         bug, high confidence.
+      2. Stop overshoot -- for a stop_hit exit, does the realized loss
+         exceed the intended risk (entry-to-stop distance) by more than
+         overshoot_multiple? check_open() resolves against bar closes,
+         not tick-by-tick, so a fast/gappy move can blow through the
+         stop level before the bot's next check -- a real market-
+         violence event, but also a known limitation of bar-close
+         simulation rather than the entry call itself being wrong.
+    Anything that clears both checks defaults to "market_opposite": the
+    setup fired exactly as designed and simply predicted the wrong
+    direction this time -- normal strategy variance, not a mistake."""
+    consistency_issue = check_trigger_consistency(setup_type, trigger_context)
+    if consistency_issue:
+        return {"category": "bot_mistake", "detail": f"logic inconsistency -- {consistency_issue}"}
+
+    if exit_reason == "stop_hit" and entry is not None and stop is not None:
+        intended_risk = abs(entry - stop)
+        actual_loss = abs(pnl_per_unit)
+        if intended_risk > 0 and actual_loss > intended_risk * overshoot_multiple:
+            ratio = actual_loss / intended_risk
+            return {
+                "category": "stop_overshoot",
+                "detail": f"intended risk {intended_risk:,.4g}/unit, actual loss {actual_loss:,.4g}/unit ({ratio:.1f}x) -- price moved past the stop faster than the bot's bar-close check could exit; a violent move against the position, amplified by simulation lag rather than a bad entry call",
+            }
+
+    return {
+        "category": "market_opposite",
+        "detail": "no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)",
+    }
+
+
 def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY", day_ist=None, market=None):
     """If you'd taken every trade the bot fired today, taken or not --
     what's the real win/loss count and net P&L? Only setups fired
@@ -227,11 +312,16 @@ def build_why_report(state, label, day_ist, market=None):
               f"- Fired: {len(log)} | Resolved: {len(resolved)} | Still open: {len(pending)}"]
 
     for e in resolved:
-        mark = "WIN" if e["outcome"]["pnl_per_unit"] > 0 else "LOSS"
+        pnl = e["outcome"]["pnl_per_unit"]
+        mark = "WIN" if pnl > 0 else "LOSS"
         pnl_suffix = f" ({e['outcome']['pnl_total']:+,.4g})" if e["outcome"].get("pnl_total") is not None else ""
         lines.append(f"\n[{mark}] {e['symbol']} {e['type']} ({e['direction']}){pnl_suffix}")
         lines.append(f"  Triggered: {explain_trigger(e['type'], e.get('trigger_context'))}")
-        lines.append(f"  Outcome:   {explain_outcome(e['outcome']['exit_reason'], e['outcome']['pnl_per_unit'])}")
+        lines.append(f"  Outcome:   {explain_outcome(e['outcome']['exit_reason'], pnl)}")
+        if pnl <= 0:
+            diagnosis = diagnose_loss(e["type"], e.get("entry"), e.get("stop"), pnl, e["outcome"]["exit_reason"], e.get("trigger_context"))
+            label_map = {"bot_mistake": "BOT MISTAKE", "stop_overshoot": "STOP OVERSHOOT", "market_opposite": "market read wrong"}
+            lines.append(f"  Diagnosis: [{label_map[diagnosis['category']]}] {diagnosis['detail']}")
 
     if pending:
         lines.append("\nStill open (too soon to say why it worked or not):")
