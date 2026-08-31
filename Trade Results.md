@@ -1132,3 +1132,94 @@ No setups fired today.
 
 ---
 
+## 2026-09-01 00:03 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-08-31)
+- Suggested: 28 trade(s) | Resolved: 19 | Still playing out: 9
+- If you'd taken all 19 resolved trades: 10 right, 9 wrong (53% correct)
+- Net loss (INR): -1.237e+04
+  [+] NATIONALUM.NS breakdown_short (short): +1,821
+  [-] NATIONALUM.NS triple_ma_short (short): -3,494
+  [+] HUDCO.NS community_idea (short): +1,004
+  [+] VEDL.NS triple_ma_short (short): +1,173
+  [+] VEDL.NS triple_ma_short (short): +1,863
+  [+] VEDL.NS triple_ma_short (short): +1,685
+  [+] VEDL.NS triple_ma_short (short): +1,503
+  [+] IOC.NS breakdown_short (short): +481.7
+  [-] JSWENERGY.NS breakdown_short (short): -2,755
+  [-] RPOWER.NS breakdown_short (short): -2,956
+  [-] IOC.NS breakdown_short (short): -2,005
+  [-] ETERNAL.NS triple_ma_long (long): -3,098
+  [+] PAYTM.NS breakout_long (long): +1,020
+  [+] ETERNAL.NS triple_ma_short (short): +6,803
+  [-] PAYTM.NS triple_ma_long (long): -2,714
+  [-] IOC.NS breakdown_short (short): -2,752
+  [+] RVNL.NS breakdown_short (short): +972.5
+  [-] JPPOWER.NS triple_ma_long (long): -2,276
+  [-] JPPOWER.NS triple_ma_long (long): -8,652
+- 9 trade(s) still open, not yet counted above: BEL.NS (triple_ma_long), INDIANB.NS (triple_ma_short), GMRAIRPORT.NS (breakdown_short), PNB.NS (triple_ma_long), ETERNAL.NS (breakdown_short), NATIONALUM.NS (breakdown_short), HUDCO.NS (breakout_long), JPPOWER.NS (triple_ma_short), HUDCO.NS (breakdown_short)
+
+**CRYPTO -- SIGNAL QUALITY** (2026-08-31)
+- Suggested: 43 trade(s) | Resolved: 38 | Still playing out: 5
+- If you'd taken all 38 resolved trades: 15 right, 23 wrong (39% correct)
+- Net loss (USD): -853.1
+  [-] SOL-USD triple_ma_long (long): -64.69
+  [-] FET-USD dmi_dpo_long (long): -75.42
+  [-] FET-USD dmi_dpo_long (long): -79.3
+  [+] SOL-USD triple_ma_short (short): +44.69
+  [+] AVAX-USD triple_ma_short (short): +71.09
+  [+] BTC-USD triple_ma_short (short): +170.6
+  [+] XRP-USD triple_ma_short (short): +125.3
+  [-] NEAR-USD triple_ma_short (short): -114.2
+  [+] ETH-USD triple_ma_short (short): +22.63
+  [+] ETH-USD triple_ma_short (short): +34.87
+  [-] NEAR-USD triple_ma_long (long): -34.83
+  [+] NEAR-USD triple_ma_short (short): +75.65
+  [-] FET-USD dmi_dpo_long (long): -117.5
+  [-] FET-USD dmi_dpo_long (long): -107.1
+  [-] FET-USD dmi_dpo_short (short): -149.5
+  [+] SOL-USD dmi_dpo_short (short): +64.62
+  [-] SOL-USD dmi_dpo_short (short): -117.8
+  [+] SOL-USD triple_threat_long (long): +25.7
+  [-] SOL-USD dmi_dpo_short (short): -56.22
+  [-] ETH-USD dmi_dpo_short (short): -62.79
+  [-] AVAX-USD dmi_dpo_short (short): -36.65
+  [-] FET-USD triple_ma_long (long): -118.9
+  [+] BTC-USD triple_ma_long (long): +61.34
+  [+] ETH-USD triple_ma_long (long): +58.36
+  [+] XRP-USD triple_ma_long (long): +30.3
+  [+] NEAR-USD triple_ma_long (long): +89.93
+  [-] XRP-USD dmi_dpo_short (short): +0
+  [-] FET-USD triple_ma_short (short): -36.77
+  [-] AVAX-USD triple_ma_short (short): -59.39
+  [-] BTC-USD triple_ma_short (short): -108.2
+  [-] XRP-USD triple_ma_short (short): -115.3
+  [-] SOL-USD triple_ma_short (short): -82.61
+  [-] NEAR-USD triple_ma_short (short): -83.91
+  [+] ETH-USD triple_ma_long (long): +5.081
+  [-] NEAR-USD triple_threat_long (long): -51.4
+  [+] BTC-USD triple_ma_long (long): +38.42
+  [-] SOL-USD triple_ma_long (long): -37.56
+  [-] SOL-USD triple_ma_short (short): -61.67
+- 5 trade(s) still open, not yet counted above: FET-USD (triple_ma_long), SOL-USD (triple_ma_long), AVAX-USD (triple_ma_long), FET-USD (triple_threat_short), SOL-USD (triple_ma_long)
+
+**US -- SIGNAL QUALITY** (2026-08-31)
+- Suggested: 15 trade(s) | Resolved: 12 | Still playing out: 3
+- If you'd taken all 12 resolved trades: 7 right, 5 wrong (58% correct)
+- Net profit (USD): +317.8
+  [-] GC=F seasonal_long (long): -0.02543
+  [+] DKNG triple_ma_long (long): +358.1
+  [+] LYFT triple_threat_short (short): +452.2
+  [-] OXY community_idea (long): -111
+  [+] PINS triple_ma_short (short): +17.43
+  [-] OXY triple_ma_long (long): -227.2
+  [+] PINS triple_ma_short (short): +22.36
+  [+] PINS triple_ma_short (short): +77.06
+  [-] OXY triple_ma_long (long): -214.9
+  [-] DKNG triple_ma_short (short): -78.67
+  [+] PINS gap_and_go_short (short): +7.743
+  [+] DKNG gap_and_go_short (short): +14.7
+- 3 trade(s) still open, not yet counted above: RIOT (triple_ma_short), NIO (triple_ma_long), SIRI (triple_ma_short)
+
+---
+
