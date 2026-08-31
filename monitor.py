@@ -1789,8 +1789,20 @@ def settle_end_of_day(symbol, setup_log, last_closed, sym_state):
         if log_entry["resolved"] or log_entry["symbol"] != symbol:
             continue
         shadow = log_entry["shadow"]
-        entry_price = shadow["entry_price"]
-        pnl = (close - entry_price) if shadow["direction"] == "long" else (entry_price - close)
+        entry_price = shadow.get("entry_price")
+        direction = shadow.get("direction")
+        if entry_price is None or direction is None:
+            # A shadow already rearm_to_watching()'d (direction/
+            # entry_price reset to None) but whose outer log_entry
+            # was never marked resolved -- a real, separate data
+            # inconsistency from some earlier resolution path, not
+            # something to settle again. Close it out here rather
+            # than crash or leave it stuck "unresolved" forever
+            # (exactly the symptom this function exists to fix).
+            log_entry["resolved"] = True
+            log_entry["outcome"] = {"exit_reason": "stale_shadow_state", "pnl_per_unit": None, "pnl_total": None}
+            continue
+        pnl = (close - entry_price) if direction == "long" else (entry_price - close)
         if log_entry.get("taken"):
             if not shadow.get("exit_alert_sent"):
                 send_telegram(
@@ -1985,6 +1997,18 @@ def main():
             # underlying signal had already flipped was giving back
             # far more than necessary, sometimes turning a real winner
             # into a loser. See trend_reversed()'s docstring.
+            #
+            # Guard against a shadow already rearm_to_watching()'d
+            # (direction/entry_price reset to None) whose outer
+            # log_entry was never marked resolved -- a real, separate
+            # data inconsistency from some earlier resolution path
+            # (confirmed directly: 8 old India/US entries had this).
+            # Close it out here rather than crash or leave it stuck.
+            if shadow.get("direction") is None or shadow.get("entry_price") is None:
+                log_entry["resolved"] = True
+                log_entry["outcome"] = {"exit_reason": "stale_shadow_state", "pnl_per_unit": None, "pnl_total": None}
+                continue
+
             if trend_reversed(log_entry["type"], shadow["direction"], closed_bars):
                 close = last_closed["close"]
                 entry_price = shadow["entry_price"]
