@@ -19060,9 +19060,9 @@
       "resolved": false,
       "outcome": null,
       "surfaced": true,
-      "taken": true,
-      "broker_order_id": "9387c795-9230-443e-9974-2b12a23975bc",
-      "broker_stop_order_id": "38bee540-cf1f-41a4-a37b-d05003bcf6a5",
+      "taken": false,
+      "broker_order_id": null,
+      "broker_stop_order_id": null,
       "broker_take_profit_order_id": null,
       "confidence_at_fire": {
         "wins": 0,
