@@ -538,7 +538,13 @@ function computeMarketStats(state, market) {
 
   const cutoff = SIGNAL_QUALITY_CUTOFF[market];
   const signalLog = cutoff ? log.filter(e => e.fired_at >= cutoff) : log;
-  const resolvedAll = signalLog.filter(e => e.resolved && e.outcome);
+  // exit_reason "stale_shadow_state" is administrative cleanup (a
+  // shadow already reset by an earlier resolution path whose outer
+  // entry never got marked resolved -- see monitor.py's
+  // settle_end_of_day()/trend_reversed()), not a real trade outcome --
+  // pnl_per_unit/pnl_total are null, not zero. Counting it as a
+  // resolved trade would quietly deflate win rate with a fake loss.
+  const resolvedAll = signalLog.filter(e => e.resolved && e.outcome && e.outcome.exit_reason !== "stale_shadow_state");
 
   return {
     total: signalLog.length,
@@ -584,7 +590,7 @@ function renderTrend(state) {
     const d = new Date(Date.now() + IST_OFFSET_MS - i * 86400000);
     days.push(d.toISOString().slice(0, 10));
   }
-  const log = (state.setup_log || []).filter(e => e.resolved && e.outcome && e.surfaced !== false);
+  const log = (state.setup_log || []).filter(e => e.resolved && e.outcome && e.surfaced !== false && e.outcome.exit_reason !== "stale_shadow_state");
   const byDay = {};
   days.forEach(d => byDay[d] = { wins: 0, total: 0 });
   log.forEach(e => {
@@ -701,7 +707,9 @@ function renderRecentSetups(state) {
     const market = marketOf(e.symbol);
     const cur = currencyFor(e.symbol);
     let outcomeCell = `<span style="color:var(--text-faint)">pending</span>`;
-    if (e.resolved && e.outcome) {
+    if (e.resolved && e.outcome && e.outcome.exit_reason === "stale_shadow_state") {
+      outcomeCell = `<span style="color:var(--text-faint)">n/a (cleanup)</span>`;
+    } else if (e.resolved && e.outcome) {
       const pnl = e.outcome.pnl_total;
       outcomeCell = pnl >= 0
         ? `<span class="pnl-pos">+${cur}${fmtNum(pnl)}</span>`
