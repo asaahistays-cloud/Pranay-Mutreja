@@ -361,7 +361,11 @@ def check_triple_ma(symbol, tradable, sym_state, closed_bars, last_closed, capit
             f"Fast EMA({TRIPLE_MA_FAST}) > med EMA({TRIPLE_MA_MED}) > slow EMA({TRIPLE_MA_SLOW}) -- fresh bullish alignment.",
             symbol=symbol, price=close,
         )
-        return {"text": text, "type": "triple_ma_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+        trigger_context = {
+            "fast_ema": round(fast, 6), "med_ema": round(med, 6), "slow_ema": round(slow, 6),
+            "periods": {"fast": TRIPLE_MA_FAST, "med": TRIPLE_MA_MED, "slow": TRIPLE_MA_SLOW},
+        }
+        return {"text": text, "type": "triple_ma_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0, "trigger_context": trigger_context}
     else:
         stop = last_closed["high"] + 2 * n
         if stop <= close:
@@ -375,7 +379,11 @@ def check_triple_ma(symbol, tradable, sym_state, closed_bars, last_closed, capit
             f"Fast EMA({TRIPLE_MA_FAST}) < med EMA({TRIPLE_MA_MED}) < slow EMA({TRIPLE_MA_SLOW}) -- fresh bearish alignment.",
             symbol=symbol, price=close,
         )
-        return {"text": text, "type": "triple_ma_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+        trigger_context = {
+            "fast_ema": round(fast, 6), "med_ema": round(med, 6), "slow_ema": round(slow, 6),
+            "periods": {"fast": TRIPLE_MA_FAST, "med": TRIPLE_MA_MED, "slow": TRIPLE_MA_SLOW},
+        }
+        return {"text": text, "type": "triple_ma_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0, "trigger_context": trigger_context}
 
 
 def check_triple_threat(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
@@ -450,7 +458,12 @@ def check_triple_threat(symbol, tradable, sym_state, closed_bars, last_closed, c
             f"Above EMA({TRIPLE_THREAT_TREND_PERIOD}) trend, RSI crossed above 50, broke the {TRIPLE_THREAT_BREAKOUT_PERIOD}-bar high {roll_hi:,.4g}.",
             symbol=symbol, price=close,
         )
-        return {"text": text, "type": "triple_threat_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+        trigger_context = {
+            "trend_ema": round(trend, 6), "rsi_prev": round(r_prev, 2), "rsi_now": round(r_now, 2),
+            "breakout_level": roll_hi,
+            "periods": {"trend": TRIPLE_THREAT_TREND_PERIOD, "rsi": TRIPLE_THREAT_RSI_PERIOD, "breakout": TRIPLE_THREAT_BREAKOUT_PERIOD},
+        }
+        return {"text": text, "type": "triple_threat_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0, "trigger_context": trigger_context}
     else:
         stop = last_closed["high"] + 2 * n
         if stop <= close:
@@ -464,7 +477,12 @@ def check_triple_threat(symbol, tradable, sym_state, closed_bars, last_closed, c
             f"Below EMA({TRIPLE_THREAT_TREND_PERIOD}) trend, RSI crossed below 50, broke the {TRIPLE_THREAT_BREAKOUT_PERIOD}-bar low {roll_lo:,.4g}.",
             symbol=symbol, price=close,
         )
-        return {"text": text, "type": "triple_threat_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+        trigger_context = {
+            "trend_ema": round(trend, 6), "rsi_prev": round(r_prev, 2), "rsi_now": round(r_now, 2),
+            "breakout_level": roll_lo,
+            "periods": {"trend": TRIPLE_THREAT_TREND_PERIOD, "rsi": TRIPLE_THREAT_RSI_PERIOD, "breakout": TRIPLE_THREAT_BREAKOUT_PERIOD},
+        }
+        return {"text": text, "type": "triple_threat_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0, "trigger_context": trigger_context}
 
 
 def check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
@@ -762,8 +780,10 @@ def check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, 
         vwap = day_vwap(closed_bars, last_closed)
         close = last_closed["close"]
         if alert["direction"] == "long" and (r > 60 and close >= vwap):
+            alert["trigger_context"] = {**alert.get("trigger_context", {}), "rsi": round(r, 2), "vwap": round(vwap, 4), "gate": "rsi>60 and close>=vwap"}
             return alert
         if alert["direction"] == "short" and (r < 40 and close <= vwap):
+            alert["trigger_context"] = {**alert.get("trigger_context", {}), "rsi": round(r, 2), "vwap": round(vwap, 4), "gate": "rsi<40 and close<=vwap"}
             return alert
     return check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
@@ -824,10 +844,12 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
         sym_state["gap_date"] = day_str
         sym_state["gap_direction"] = None
         sym_state["gap_fired"] = False
+        sym_state["gap_pct"] = None
         if prior_bars and today_bars:
             prior_close = prior_bars[-1]["close"]
             today_open = today_bars[0]["open"]
             gap_pct = (today_open - prior_close) / prior_close if prior_close else 0
+            sym_state["gap_pct"] = gap_pct
             if gap_pct <= -GAP_THRESHOLD_PCT_US:
                 sym_state["gap_direction"] = "short"
 
@@ -871,7 +893,13 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
         symbol=symbol, price=close,
     )
     sym_state["gap_fired"] = True
-    return {"text": text, "type": "gap_and_go_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+    gap_pct = sym_state.get("gap_pct")
+    trigger_context = {
+        "gap_pct": round(gap_pct * 100, 3) if gap_pct is not None else None,
+        "opening_range_high": range_high, "opening_range_low": range_low,
+        "volume": vol, "avg_volume": vol_avg,
+    }
+    return {"text": text, "type": "gap_and_go_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
 
 
 def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
@@ -936,7 +964,11 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
-        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+        trigger_context = {
+            "range_high": range_high, "volume": vol, "avg_volume": vol_avg,
+            "trend_ema": round(trend_ema, 6) if trend_ema else None, "confirmation": "2-bar + retest",
+        }
+        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
 
     if close < range_low and vol > vol_avg:
         if trend_ema and close > trend_ema:
@@ -965,7 +997,11 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
-        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+        trigger_context = {
+            "range_low": range_low, "volume": vol, "avg_volume": vol_avg,
+            "trend_ema": round(trend_ema, 6) if trend_ema else None, "confirmation": "2-bar + retest",
+        }
+        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
     bullish_rejection = close > (last_closed["low"] + last_closed["high"]) / 2
@@ -991,7 +1027,11 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high, "vol_ratio": vol / vol_avg if vol_avg else 0}
+            trigger_context = {
+                "range_low": range_low, "range_high": range_high, "wick_low": last_closed["low"],
+                "adx": round(adx_val, 1) if adx_val is not None else None,
+            }
+            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
         return None
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
@@ -1018,7 +1058,11 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low, "vol_ratio": vol / vol_avg if vol_avg else 0}
+            trigger_context = {
+                "range_low": range_low, "range_high": range_high, "wick_high": last_closed["high"],
+                "adx": round(adx_val, 1) if adx_val is not None else None,
+            }
+            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
         return None
 
     # DMI+DPO trend setup -- independent of the range-based setups above
@@ -1078,7 +1122,11 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
                 f"+DI {plus_di:.1f} > -DI {minus_di:.1f}, ADX {adx_trend:.0f} confirms trend, DPO {d_po:,.4g} (recent pullback within the trend).",
                 symbol=symbol, price=close,
             )
-            return {"text": text, "type": "dmi_dpo_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+            trigger_context = {
+                "plus_di": round(plus_di, 2), "minus_di": round(minus_di, 2),
+                "adx": round(adx_trend, 2), "dpo": round(d_po, 6), "period": DMI_DPO_PERIOD,
+            }
+            return {"text": text, "type": "dmi_dpo_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
         else:
             stop = close + 2 * n
             qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
@@ -1090,7 +1138,11 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
                 f"-DI {minus_di:.1f} > +DI {plus_di:.1f}, ADX {adx_trend:.0f} confirms trend, DPO {d_po:,.4g} (recent bounce within the trend).",
                 symbol=symbol, price=close,
             )
-            return {"text": text, "type": "dmi_dpo_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+            trigger_context = {
+                "plus_di": round(plus_di, 2), "minus_di": round(minus_di, 2),
+                "adx": round(adx_trend, 2), "dpo": round(d_po, 6), "period": DMI_DPO_PERIOD,
+            }
+            return {"text": text, "type": "dmi_dpo_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
 
     triple_ma_alert = check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if triple_ma_alert:
@@ -1183,7 +1235,11 @@ def check_watching_commodity(symbol, tradable, sym_state, closed_bars, last_clos
         f"(validated out-of-sample on 14 years of real data).{news_note}",
         symbol=symbol, price=close,
     )
-    return {"text": text, "type": f"seasonal_{direction}", "direction": direction, "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0}
+    trigger_context = {
+        "month": now.month,
+        "eia_surprise_bcf": eia_surprise.get("surprise_bcf") if symbol == "NG=F" and eia_surprise else None,
+    }
+    return {"text": text, "type": f"seasonal_{direction}", "direction": direction, "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0, "trigger_context": trigger_context}
 
 
 def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
@@ -1226,7 +1282,11 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakout_long", "level": range_high, "bar_time": bar_time}
-        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+        trigger_context = {
+            "range_high": range_high, "volume": vol, "avg_volume": vol_avg,
+            "trend_ema": round(trend_ema, 6) if trend_ema else None,
+        }
+        return {"text": text, "type": "breakout_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
 
     if close < range_low and vol > vol_avg:
         if trend_ema and close > trend_ema:
@@ -1244,7 +1304,11 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
             symbol=symbol, price=close,
         )
         sym_state["last_alert"] = {"type": "breakdown_short", "level": range_low, "bar_time": bar_time}
-        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0}
+        trigger_context = {
+            "range_low": range_low, "volume": vol, "avg_volume": vol_avg,
+            "trend_ema": round(trend_ema, 6) if trend_ema else None,
+        }
+        return {"text": text, "type": "breakdown_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
 
     near_low = last_closed["low"] <= range_low * (1 + REJECTION_BUFFER_PCT)
     bullish_rejection = close > (last_closed["low"] + last_closed["high"]) / 2
@@ -1268,7 +1332,8 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_long_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high, "vol_ratio": vol / vol_avg if vol_avg else 0}
+            trigger_context = {"range_low": range_low, "range_high": range_high, "wick_low": last_closed["low"]}
+            return {"text": text, "type": "range_long_rejection", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": range_high, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
         return None
 
     near_high = last_closed["high"] >= range_high * (1 - REJECTION_BUFFER_PCT)
@@ -1288,7 +1353,8 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
                 symbol=symbol, price=close,
             )
             sym_state["last_alert"] = {"type": "range_short_rejection", "bar_time": bar_time}
-            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low, "vol_ratio": vol / vol_avg if vol_avg else 0}
+            trigger_context = {"range_low": range_low, "range_high": range_high, "wick_high": last_closed["high"]}
+            return {"text": text, "type": "range_short_rejection", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": range_low, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
         return None
 
     if range_low < close < range_high:
@@ -1875,6 +1941,17 @@ def main():
             "confidence_at_fire": compute_bucket_confidence(setup_log, market, alert["type"], alert["direction"]),
             "fired_hour_utc": fired_at_dt.hour,
             "fired_weekday_utc": fired_at_dt.weekday(),
+            # Self-learning groundwork, step 2: the specific indicator
+            # values that caused THIS fire (see each check_*() function's
+            # own trigger_context construction, right where it already
+            # computes them for the alert text) -- so a later review of
+            # why a setup won or lost can look at the actual conditions
+            # at entry, not just infer from the exit mechanics. Purely
+            # observational like confidence_at_fire above; alert.get()
+            # since setup types not yet updated to attach one (manual/
+            # community_idea entries, which have no algorithmic trigger)
+            # simply log None.
+            "trigger_context": alert.get("trigger_context"),
             "shadow": {
                 "direction": alert["direction"], "entry_price": alert["entry"],
                 "entry_qty": alert["qty"], "stop_loss": alert["stop"],
