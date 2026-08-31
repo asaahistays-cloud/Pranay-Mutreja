@@ -1710,6 +1710,62 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
+def trend_reversed(setup_type, direction, closed_bars):
+    """Explicitly requested: check_open()'s trailing stop only reacts
+    to PRICE -- if a trend-following position's own underlying signal
+    has already flipped against it, the bot still just waits for price
+    to eventually wander down to the trailing stop, giving back far
+    more than necessary and sometimes turning a real winner into a
+    loser. This recomputes each strategy's own directional bias FRESH
+    from the current bars (not a possibly-stale sym_state field) and
+    flags a reversal the moment the strategy itself would no longer
+    call this a "long" (or "short") regime -- including fading to
+    neutral, not just a hard flip to the opposite side, since a
+    strategy's own conviction evaporating is itself grounds to exit.
+
+    Only defined for the 3 regime/trend-following setup types that
+    have a natural, freshly-recomputable directional bias (Triple MA,
+    Triple Threat, DMI+DPO) -- range-rejection/breakout setups already
+    have a hard target or are handled entirely by check_open()'s
+    trailing logic, no equivalent "the entry condition itself
+    un-happened" concept to check. Applies identically across all 3
+    markets -- these strategies run the same way in each."""
+    closes = [b["close"] for b in closed_bars]
+
+    if setup_type in ("triple_ma_long", "triple_ma_short"):
+        if len(closes) < TRIPLE_MA_SLOW:
+            return False
+        fast = ema(closes[-(TRIPLE_MA_FAST * 3):], TRIPLE_MA_FAST)
+        med = ema(closes[-(TRIPLE_MA_MED * 3):], TRIPLE_MA_MED)
+        slow = ema(closes[-(TRIPLE_MA_SLOW * 3):], TRIPLE_MA_SLOW)
+        current_regime = "long" if fast > med > slow else ("short" if fast < med < slow else None)
+        return current_regime != direction
+
+    if setup_type in ("dmi_dpo_long", "dmi_dpo_short"):
+        # Same regime definition as check_watching_crypto()'s DMI+DPO
+        # block -- ADX_MIN_TRENDING/DMI_DPO_PERIOD kept in sync with
+        # that function by hand (both small, stable constants).
+        adx_min_trending, dmi_dpo_period = 20, 50
+        plus_di, minus_di, adx_trend = dmi(closed_bars, period=dmi_dpo_period)
+        d_po = dpo(closed_bars, period=dmi_dpo_period)
+        current_regime = None
+        if adx_trend is not None and d_po is not None and adx_trend > adx_min_trending:
+            if plus_di > minus_di and d_po > 0:
+                current_regime = "long"
+            elif minus_di > plus_di and d_po < 0:
+                current_regime = "short"
+        return current_regime != direction
+
+    if setup_type in ("triple_threat_long", "triple_threat_short"):
+        if len(closes) < TRIPLE_THREAT_TREND_PERIOD:
+            return False
+        trend = ema(closes[-(TRIPLE_THREAT_TREND_PERIOD * 3):], TRIPLE_THREAT_TREND_PERIOD)
+        close = closed_bars[-1]["close"]
+        return close < trend if direction == "long" else close > trend
+
+    return False
+
+
 def sync_broker_entry(symbol, market, log_entry, shadow, sym_state):
     """For a setup_log entry that was auto-executed on a real broker
     (see the broker_order block in main()'s fire loop -- see BROKERS,
@@ -1871,6 +1927,39 @@ def main():
             if log_entry["resolved"] or log_entry["symbol"] != symbol:
                 continue
             shadow = log_entry["shadow"]
+
+            # Proactive trend-reversal exit -- checked BEFORE
+            # check_open()'s trailing-stop wait, explicitly requested:
+            # waiting for price to reach the trailing stop after the
+            # underlying signal had already flipped was giving back
+            # far more than necessary, sometimes turning a real winner
+            # into a loser. See trend_reversed()'s docstring.
+            if trend_reversed(log_entry["type"], shadow["direction"], closed_bars):
+                close = last_closed["close"]
+                entry_price = shadow["entry_price"]
+                pnl = (close - entry_price) if shadow["direction"] == "long" else (entry_price - close)
+                if log_entry.get("taken"):
+                    if not shadow.get("exit_alert_sent"):
+                        send_telegram(
+                            f"{symbol} TREND REVERSED -- {shadow['direction']}\n\n"
+                            f"Close {close:,.4g}. The strategy that fired this trade no longer "
+                            f"sees this trend -- close now if you haven't already.",
+                            symbol=symbol, price=close,
+                        )
+                        shadow["exit_alert_sent"] = True
+                else:
+                    log_trade(shadow, shadow["direction"], entry_price, close, pnl, "trend_reversed")
+                    log_entry["resolved"] = True
+                    log_entry["outcome"] = shadow["trade_journal"][-1]
+                    rearm_to_watching(shadow, closed_bars)
+                    if pnl >= 0:
+                        sym_state["consecutive_losses"] = 0
+                        sym_state["consecutive_wins"] = sym_state.get("consecutive_wins", 0) + 1
+                    else:
+                        sym_state["consecutive_losses"] = sym_state.get("consecutive_losses", 0) + 1
+                        sym_state["consecutive_wins"] = 0
+                continue
+
             before = len(shadow["trade_journal"])
             check_open(symbol, tradable, shadow, closed_bars, last_closed, notify=log_entry.get("taken", False))
             if len(shadow["trade_journal"]) > before:
