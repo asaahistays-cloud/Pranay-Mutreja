@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 """World finance news briefing -- fetches real headlines (Finnhub
-general news, confirmed live/working) and has an LLM read and assess
-them for risk relevant to crypto/India/US markets.
+general news + Economic Times' India markets RSS feed, both confirmed
+live/working) and has an LLM read and assess them for risk relevant to
+crypto/India/US markets.
+
+Finnhub's "general" category is US/global-macro skewed -- confirmed
+directly: a real live pull returned 40 headlines (Middle East/oil/US
+mortgage rates), zero India-specific stories, so "india: elevated" was
+being inferred entirely from global spillover, never from actual NSE/
+India news. Economic Times' markets RSS (no API key needed, unlike
+Finnhub) fixes that -- confirmed live and current (same-day pubDates,
+real NIFTY/bond-yield/Indian-company headlines).
 
 Explicitly NOT wired into any trading decision -- no gating, no sizing
 change, nothing here touches check_watching()/position_size(). This is
@@ -19,15 +28,21 @@ call and Telegram: fetches fresh headlines every time (free, no cost
 either way) and always updates state.json so the dashboard's list is
 never stale, but only calls the LLM and sends a Telegram message when
 at least one headline is genuinely new since the last check (tracked
-by Finnhub's own numeric id, not text -- immune to formatting
-differences). Most 15-min windows won't have new world-news items, so
-this naturally rate-limits itself without an arbitrary schedule."""
+by id, not text -- immune to formatting differences; Finnhub's own
+numeric id for its items, a stable hash of the article link for ET's
+RSS items since RSS has no numeric id). Most 15-min windows won't have
+new world-news items, so this naturally rate-limits itself without an
+arbitrary schedule."""
+import hashlib
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 
 import monitor
 
@@ -53,11 +68,43 @@ def fetch_world_news(limit=40):
     } for i in items[:limit]]
 
 
+def fetch_india_news(limit=25):
+    """Economic Times' markets RSS -- no API key needed. Item ids are a
+    stable hash of the article link (RSS has no numeric id like
+    Finnhub's), so the same article always dedups to the same id across
+    runs even if the title text gets re-cased/re-punctuated upstream."""
+    url = "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms"
+    req = urllib.request.Request(url, headers={"User-Agent": "btc-monitor-bot"})
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        root = ET.fromstring(resp.read())
+    items = []
+    for item in root.findall(".//item"):
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
+        if not title or not link:
+            continue
+        desc = re.sub(r"<[^>]+>", "", item.findtext("description") or "").strip()
+        pubdate_raw = item.findtext("pubDate")
+        try:
+            dt = int(parsedate_to_datetime(pubdate_raw).timestamp()) if pubdate_raw else 0
+        except (TypeError, ValueError):
+            dt = 0
+        items.append({
+            "id": "et_" + hashlib.md5(link.encode()).hexdigest()[:12],
+            "headline": title, "summary": desc[:200], "url": link,
+            "source": "Economic Times", "datetime": dt,
+        })
+    items.sort(key=lambda x: x["datetime"], reverse=True)
+    return items[:limit]
+
+
 def build_prompt(headlines):
     lines = "\n".join(f"- {h['headline']}" for h in headlines)
     return f"""You are a market risk analyst. Below are today's real finance/world news headlines. \
 Assess them for risk relevant to three specific markets this trading bot watches: \
-crypto (BTC/ETH/SOL/XRP/AVAX/NEAR/FET), Indian equities (NSE), and US equities.
+crypto (BTC/ETH/SOL/XRP/AVAX/NEAR/FET), Indian equities including NIFTY/BankNifty/Sensex index \
+futures (NSE cash and derivatives move on the same macro/news drivers -- RBI policy, budget, FII \
+flows, global cues -- so read these as one market, not two), and US equities.
 
 Headlines:
 {lines}
@@ -114,6 +161,17 @@ def main():
         return 1
 
     headlines = fetch_world_news()
+    # ET's RSS is a second, independent source -- a failure here (feed
+    # down, schema change, network blip) must not take down the whole
+    # script the same way a Finnhub non-zero exit once took down 3 real
+    # monitor scans (see below). Falls back to Finnhub-only for this
+    # cycle rather than failing closed.
+    try:
+        india_headlines = fetch_india_news()
+    except Exception as e:
+        print(f"India news fetch failed ({e}), continuing with Finnhub only.")
+        india_headlines = []
+    headlines = sorted(headlines + india_headlines, key=lambda h: h.get("datetime", 0), reverse=True)
     if not headlines:
         # Not a real failure -- an empty/transient response from Finnhub
         # this cycle is expected sometimes and nothing is actually wrong.
