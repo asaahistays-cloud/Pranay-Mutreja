@@ -1478,6 +1478,10 @@ def compute_bucket_confidence(setup_log, market, setup_type, direction):
         if e.get("resolved") and e.get("outcome") is not None
         and e.get("type") == setup_type and e.get("direction") == direction
         and market_of(e["symbol"]) == market
+        # "stale_shadow_state" entries are administrative cleanup for
+        # broken shadow dicts, not real trade outcomes -- they carry
+        # pnl_per_unit=None, which crashes the `> 0` comparison below.
+        and e["outcome"].get("exit_reason") != "stale_shadow_state"
     ]
     total = len(matches)
     wins = sum(1 for e in matches if e["outcome"]["pnl_per_unit"] > 0)

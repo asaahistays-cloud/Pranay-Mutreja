@@ -245,6 +245,12 @@ def build_daily_report(state, log_key="setup_log", label="TODAY'S SIGNAL QUALITY
         if launched_at:
             log = [e for e in log if e["fired_at"] >= launched_at]
 
+    # "stale_shadow_state" entries are administrative cleanup for broken
+    # shadow dicts, not real trade outcomes -- pnl_per_unit=None crashes
+    # every `> 0` comparison below, so they're excluded the same way the
+    # dashboard and find_bot_mistakes() already exclude them.
+    log = [e for e in log if not (e["resolved"] and e.get("outcome", {}).get("exit_reason") == "stale_shadow_state")]
+
     if not log:
         return f"**{label}** ({day_ist})\nNo setups fired today."
 
@@ -378,6 +384,11 @@ def build_why_report(state, label, day_ist, market=None):
     log = [e for e in state.get("setup_log", []) if to_ist_date(e["fired_at"]) == day_ist]
     if market:
         log = [e for e in log if market_of(e["symbol"]) == market]
+    # "stale_shadow_state" entries are administrative cleanup, not a real
+    # fired-and-resolved setup -- pnl_per_unit=None crashes the WIN/LOSS
+    # comparison below, so exclude them the same way build_daily_report()
+    # and find_bot_mistakes() do.
+    log = [e for e in log if not (e["resolved"] and e.get("outcome", {}).get("exit_reason") == "stale_shadow_state")]
 
     if not log:
         return f"**{label}** ({day_ist})\nNo setups fired."
