@@ -233,8 +233,14 @@ def main():
     # same failure-isolation reasoning as India news above, and each
     # symbol fetched independently so one bad page doesn't cost the
     # other two.
+    # Same for the 5 crypto symbols check_oi_divergence_long() actually
+    # trades (see monitor.OI_DIVERGENCE_LONG_SYMBOLS) -- not all 7 crypto
+    # symbols, scoped to match the strategy. TradingView's ideas URL for
+    # crypto wants the bare Binance ticker (AVAXUSDT), not an exchange-
+    # prefixed one -- confirmed via a real redirect (BINANCE-AVAXUSDT ->
+    # /symbols/AVAXUSDT/ideas/).
     idea_headlines = []
-    for tv_symbol in ("NSE-NIFTY", "NSE-BANKNIFTY", "BSE-SENSEX"):
+    for tv_symbol in ("NSE-NIFTY", "NSE-BANKNIFTY", "BSE-SENSEX", "AVAXUSDT", "FETUSDT", "NEARUSDT", "SOLUSDT", "XRPUSDT"):
         try:
             idea_headlines += fetch_tradingview_ideas(tv_symbol)
         except Exception as e:
