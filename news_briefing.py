@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """World finance news briefing -- fetches real headlines (Finnhub
-general news + Economic Times' India markets RSS feed, both confirmed
+general news, Economic Times' India markets RSS feed, and TradingView
+community trading ideas for NIFTY/BankNifty/Sensex, all confirmed
 live/working) and has an LLM read and assess them for risk relevant to
-crypto/India/US markets.
+crypto/India/US/commodity markets.
 
 Finnhub's "general" category is US/global-macro skewed -- confirmed
 directly: a real live pull returned 40 headlines (Middle East/oil/US
@@ -11,6 +12,17 @@ being inferred entirely from global spillover, never from actual NSE/
 India news. Economic Times' markets RSS (no API key needed, unlike
 Finnhub) fixes that -- confirmed live and current (same-day pubDates,
 real NIFTY/bond-yield/Indian-company headlines).
+
+TradingView's public ideas pages (/symbols/SYMBOL/ideas/) are real
+trader-submitted analysis, explicitly requested to link India futures
+to "news and debates" -- confirmed the actual content is server-
+rendered directly in the page's HTML (checked via a real browser's
+network log first to rule out a separate JS-driven API call being
+missed), so a plain GET + regex extraction works, no headless browser
+needed despite the page being a JS-heavy React app for interactive use.
+Tagged as opinion/debate in the LLM prompt, not reported as news
+events -- these are traders arguing a thesis, not confirmed
+information.
 
 Explicitly NOT wired into any trading decision -- no gating, no sizing
 change, nothing here touches check_watching()/position_size(). This is
@@ -34,6 +46,7 @@ RSS items since RSS has no numeric id). Most 15-min windows won't have
 new world-news items, so this naturally rate-limits itself without an
 arbitrary schedule."""
 import hashlib
+import html
 import json
 import os
 import re
@@ -98,9 +111,48 @@ def fetch_india_news(limit=25):
     return items[:limit]
 
 
+TV_IDEA_PATTERN = re.compile(
+    r'href="(https://www\.tradingview\.com/chart/[^"]+)" data-qa-id="ui-lib-card-link-title"[^>]*>([^<]+)</a>'
+    r'.*?data-qa-id="ui-lib-card-link-paragraph"[^>]*><span[^>]*><span[^>]*>([^<]*)',
+    re.DOTALL,
+)
+
+
+def fetch_tradingview_ideas(tv_symbol, limit=8):
+    """Real community trading ideas/analysis -- server-rendered HTML on
+    TradingView's public ideas page (confirmed live: a raw GET, no
+    browser/JS execution needed, returns the full real content directly
+    -- checked via a real browser's network log first to make sure
+    there wasn't a separate JS-driven API call being missed). No
+    timestamp is exposed in a structured, reliably-parseable form near
+    each card, so these get "now" as their datetime (fetch time) rather
+    than a fabricated one -- fine for this use, since dedup is by the
+    idea's own stable URL, not recency."""
+    url = f"https://www.tradingview.com/symbols/{tv_symbol}/ideas/"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"})
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        content = resp.read().decode("utf-8", errors="replace")
+    now = int(datetime.now(timezone.utc).timestamp())
+    items = []
+    for link, title, summary in TV_IDEA_PATTERN.findall(content):
+        title = html.unescape(title).strip()
+        summary = html.unescape(summary).strip()
+        if not title:
+            continue
+        items.append({
+            "id": "tv_" + hashlib.md5(link.encode()).hexdigest()[:12],
+            "headline": f"[{tv_symbol} idea] {title}", "summary": summary[:200], "url": link,
+            "source": "TradingView Ideas", "datetime": now,
+        })
+    return items[:limit]
+
+
 def build_prompt(headlines):
     lines = "\n".join(f"- {h['headline']}" for h in headlines)
-    return f"""You are a market risk analyst. Below are today's real finance/world news headlines. \
+    return f"""You are a market risk analyst. Below are today's real finance/world news headlines, \
+plus items marked "[SYMBOL idea]" which are trader-submitted analysis/opinion from TradingView, not \
+factual news events -- weigh them as sentiment/debate among traders (what the crowd is arguing about \
+right now), not as confirmed information, and don't report them in key_events as if they were news. \
 Assess them for risk relevant to four specific markets this trading bot watches: \
 crypto (BTC/ETH/SOL/XRP/AVAX/NEAR/FET -- spot and leveraged futures both move on the same news, \
 read as one market), Indian equities including NIFTY/BankNifty/Sensex index futures (NSE cash and \
@@ -175,7 +227,20 @@ def main():
     except Exception as e:
         print(f"India news fetch failed ({e}), continuing with Finnhub only.")
         india_headlines = []
-    headlines = sorted(headlines + india_headlines, key=lambda h: h.get("datetime", 0), reverse=True)
+
+    # Real community trading ideas/debates for the 3 India index futures
+    # this bot actually monitors (see check_watching_india_futures()) --
+    # same failure-isolation reasoning as India news above, and each
+    # symbol fetched independently so one bad page doesn't cost the
+    # other two.
+    idea_headlines = []
+    for tv_symbol in ("NSE-NIFTY", "NSE-BANKNIFTY", "BSE-SENSEX"):
+        try:
+            idea_headlines += fetch_tradingview_ideas(tv_symbol)
+        except Exception as e:
+            print(f"TradingView ideas fetch failed for {tv_symbol} ({e}), skipping it this cycle.")
+
+    headlines = sorted(headlines + india_headlines + idea_headlines, key=lambda h: h.get("datetime", 0), reverse=True)
     if not headlines:
         # Not a real failure -- an empty/transient response from Finnhub
         # this cycle is expected sometimes and nothing is actually wrong.
