@@ -172,9 +172,23 @@ CRYPTO_WATCHLIST = [{"symbol": s, "market": "crypto", "tradable": True} for s in
 # than added speculatively.
 COMMODITY_WATCHLIST = [{"symbol": s, "market": "commodity", "tradable": True} for s in ["GC=F", "NG=F"]]
 
+# India index futures -- no free reliable live data source exists for the
+# actual rolling futures contracts (NSE's own API is scrape-protected,
+# same class of problem Dhan's WAF was), so these run off each index's
+# real spot price (day_vwap()-adjacent proxy, same instrument class
+# check_triple_ma()'s Triple MA edge was validated against: 2yr/1h
+# backtest, PF 1.49 long / 1.19 short, n=556, positive both out-of-sample
+# halves for all 3 indices -- see check_watching_india_futures()).
+# Index futures track spot within a small, predictable basis intraday,
+# so an alert driven off spot should translate cleanly to a real futures
+# order. INDIA_FUTURES_PROXY maps the -FUT symbol used everywhere in
+# alerts/setup_log/market_of() to the real Yahoo ticker actually fetched.
+INDIA_FUTURES_PROXY = {"NIFTY-FUT": "^NSEI", "BANKNIFTY-FUT": "^NSEBANK", "SENSEX-FUT": "^BSESN"}
+INDIA_FUTURES_WATCHLIST = [{"symbol": s, "market": "india_futures", "tradable": False} for s in INDIA_FUTURES_PROXY]
+
 
 def build_watchlist(state):
-    watchlist = list(CRYPTO_WATCHLIST) + list(COMMODITY_WATCHLIST)
+    watchlist = list(CRYPTO_WATCHLIST) + list(COMMODITY_WATCHLIST) + list(INDIA_FUTURES_WATCHLIST)
     for symbol in state.get("active_us_symbols", []):
         watchlist.append({"symbol": symbol, "market": "us", "tradable": True})
     for symbol in state.get("active_india_symbols", []):
@@ -229,6 +243,8 @@ def fetch_yahoo(symbol, limit=60, interval="15m", range_="5d"):
 def fetch_klines(symbol, market, limit=60):
     if market == "crypto":
         return fetch_coinbase(symbol, limit)
+    if market == "india_futures":
+        return fetch_yahoo(INDIA_FUTURES_PROXY[symbol], limit)
     return fetch_yahoo(symbol, limit)
 
 
@@ -348,7 +364,7 @@ def check_triple_ma(symbol, tradable, sym_state, closed_bars, last_closed, capit
     losses = sym_state.get("consecutive_losses", 0)
     wins = sym_state.get("consecutive_wins", 0)
     leverage = LEVERAGE_BY_MARKET.get(market, 1)
-    currency = "Rs" if symbol.endswith(".NS") else "$"
+    currency = "Rs" if symbol.endswith(".NS") or symbol.endswith("-FUT") else "$"
     n = atr(closed_bars)
     tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
 
@@ -456,7 +472,7 @@ def check_triple_threat(symbol, tradable, sym_state, closed_bars, last_closed, c
     losses = sym_state.get("consecutive_losses", 0)
     wins = sym_state.get("consecutive_wins", 0)
     leverage = LEVERAGE_BY_MARKET.get(market, 1)
-    currency = "Rs" if symbol.endswith(".NS") else "$"
+    currency = "Rs" if symbol.endswith(".NS") or symbol.endswith("-FUT") else "$"
     n = atr(closed_bars)
     tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
 
@@ -835,6 +851,8 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
         return None if alert and alert.get("direction") == "short" else alert
     if market == "commodity":
         return check_watching_commodity(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, eia_surprise)
+    if market == "india_futures":
+        return check_watching_india_futures(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     return check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
 
@@ -866,6 +884,27 @@ def check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, 
             alert["trigger_context"] = {**alert.get("trigger_context", {}), "rsi": round(r, 2), "vwap": round(vwap, 4), "gate": "rsi<40 and close<=vwap"}
             return alert
     return check_secondary_strategies(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+
+
+def check_watching_india_futures(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+    """NIFTY/BankNifty/Sensex, via each index's real spot price (see
+    INDIA_FUTURES_PROXY) -- Triple MA ONLY, deliberately not the full
+    check_secondary_strategies() bundle India equities get. Real
+    backtest before shipping (2yr/1h spot-index data, since Yahoo caps
+    15m history at ~60 days): Triple MA long PF 1.49 / short PF 1.19,
+    n=556 combined, positive on BOTH out-of-sample halves for all 3
+    indices, still PF>1.1 with the top 5 trades removed (not outlier-
+    driven). Also tried a volume-gated breakout (VWAP + 2x average
+    volume, a real technique researched for this) against actual
+    futures-contract volume pulled from TradingView -- but TradingView's
+    intraday history for the continuous contract caps at ~300 bars
+    (~12 trading days), only enough for 3 real fires per index, nowhere
+    near enough to validate. Range-rejection and Triple Threat were also
+    tested and explicitly excluded: too few trades (n=11-15) or
+    inconsistent across the two time windows tested (Triple Threat long
+    PF 0.73, short PF 5.18 on n=28 -- too noisy on this little data to
+    trust either direction)."""
+    return check_triple_ma(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
 
 
 def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None):
@@ -1362,7 +1401,7 @@ def check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed
     already_alerted = sym_state.get("last_alert", {})
     bar_time = last_closed["close_time"]
     tag = "" if tradable else " (analysis only -- not paper-tradable, use your own broker if acting on this)"
-    currency = "Rs" if symbol.endswith(".NS") else "$"
+    currency = "Rs" if symbol.endswith(".NS") or symbol.endswith("-FUT") else "$"
 
     if close > range_high and vol > vol_avg:
         if trend_ema and close < trend_ema:
@@ -1994,6 +2033,11 @@ def main():
     capital_usd_us = state.get("capital_usd_us", 100)
     capital_inr = state.get("capital_inr", 100)
     capital_commodity = state.get("capital_usd_commodity", 100)
+    # Own pool, not shared with India equities -- alert-only (no broker
+    # wired), so this doesn't enforce real fund allocation, but keeping
+    # it separate avoids the two instrument classes silently competing
+    # for the same advisory capital figure in position_size()'s qty math.
+    capital_inr_futures = state.get("capital_inr_futures", 100)
     # eia_check.py (run as its own step, same pattern as news_briefing.py)
     # fetches this before the scan and saves it into state.json --
     # required for NG=F's seasonal setup to fire at all, see
@@ -2026,7 +2070,7 @@ def main():
         closed_bars = bars[:-1]
         last_closed = closed_bars[-1]
         if is_stale(last_closed):
-            if market in ("us", "india"):
+            if market in ("us", "india", "india_futures"):
                 if symbol not in symbols_state:
                     symbols_state[symbol] = default_symbol_state(closed_bars)
                 settle_end_of_day(symbol, setup_log, last_closed, symbols_state[symbol])
@@ -2038,6 +2082,8 @@ def main():
         sym_state = symbols_state[symbol]
         if market == "india":
             capital, pool_markets = capital_inr, ("india",)
+        elif market == "india_futures":
+            capital, pool_markets = capital_inr_futures, ("india_futures",)
         elif market == "commodity":
             capital, pool_markets = capital_commodity, ("commodity",)
         elif market == "crypto":
