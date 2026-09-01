@@ -27,13 +27,38 @@
   header h1 { font-size: 20px; margin: 0; font-weight: 600; }
   header .sub { color: var(--text-dim); font-size: 13px; }
 
-  .status-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
-  .status-chip { display: flex; align-items: center; gap: 7px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 20px; padding: 6px 14px; font-size: 13px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .hero-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 720px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero-card { background: linear-gradient(160deg, #141a26 0%, #0c0f16 100%); border: 1px solid var(--panel-border); border-radius: 18px; padding: 22px 24px; position: relative; overflow: hidden; }
+  .hero-card::before { content: ""; position: absolute; top: -40%; right: -20%; width: 60%; height: 140%; background: radial-gradient(circle, currentColor 0%, transparent 70%); opacity: 0.06; pointer-events: none; }
+  .hero-card.pos { color: var(--green); }
+  .hero-card.neg { color: var(--red); }
+  .hero-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); font-weight: 700; margin-bottom: 10px; }
+  .hero-value { font-family: var(--mono); font-size: clamp(28px, 5vw, 42px); font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; }
+  .hero-value.pos { color: var(--green); text-shadow: 0 0 28px rgba(62,207,142,0.45); }
+  .hero-value.neg { color: var(--red); text-shadow: 0 0 28px rgba(255,92,114,0.45); }
+  .hero-sub { font-size: 12px; color: var(--text-dim); margin-top: 8px; }
+  .hero-sparkline { margin-top: 16px; height: 40px; }
+  .hero-sparkline svg { display: block; }
+  .hero-value.pos, .hero-value.neg { display: inline-block; animation: value-glow-pulse 2.6s ease-in-out infinite; }
+  @keyframes value-glow-pulse { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.18); } }
+  .hero-bot { position: absolute; top: 18px; right: 20px; font-size: 26px; animation: bot-float 3.2s ease-in-out infinite; filter: drop-shadow(0 0 6px currentColor); }
+  @keyframes bot-float { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-7px) rotate(4deg); } }
+
+  .status-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
+  @media (max-width: 760px) { .status-bar { grid-template-columns: repeat(2, 1fr); } }
+  .status-chip { display: flex; align-items: center; gap: 10px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 12px; padding: 10px 14px; }
+  .status-chip .status-emoji { font-size: 18px; flex-shrink: 0; line-height: 1; }
+  .status-chip .status-text { min-width: 0; }
+  .status-chip .status-label { font-size: 12px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .status-chip .status-sub { font-size: 11px; color: var(--text-faint); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; position: relative; }
   .dot.ok { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .dot.ok::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 1.5px solid var(--green); animation: pulse-ring 1.8s ease-out infinite; }
   .dot.warn { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
   .dot.bad { background: var(--red); box-shadow: 0 0 8px var(--red); }
   .dot.neutral { background: var(--text-faint); }
+  @keyframes pulse-ring { 0% { transform: scale(0.7); opacity: 0.8; } 100% { transform: scale(2.1); opacity: 0; } }
 
   section { margin-bottom: 28px; }
   section > h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); margin: 0 0 12px; font-weight: 600; }
@@ -45,9 +70,20 @@
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
   @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
 
+  .market-card { position: relative; overflow: hidden; border-top: 2px solid var(--card-accent, var(--panel-border)); transition: border-color 0.2s; }
   .market-card h3 { margin: 0 0 10px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
   .market-card .stat-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; color: var(--text-dim); }
   .market-card .stat-row b { color: var(--text); font-weight: 600; font-family: var(--mono); }
+  .market-card .stat-row b.pnl-pos, .market-card .stat-row b.pnl-neg { font-size: 15px; }
+  .market-card .stat-row.headline { font-size: 14px; padding: 6px 0; }
+  .market-card .card-sparkline { margin: 10px 0 4px; height: 28px; }
+  .market-card .card-sparkline svg { display: block; }
+  .pnl-pos.glow { text-shadow: 0 0 10px rgba(62,207,142,0.5); }
+  .pnl-neg.glow { text-shadow: 0 0 10px rgba(255,92,114,0.5); }
+
+  .trend-chart-svg { width: 100%; height: 140px; display: block; }
+  .trend-chart-labels { display: flex; margin-top: 6px; }
+  .trend-chart-labels > div { flex: 1; text-align: center; font-size: 10px; color: var(--text-faint); font-family: var(--mono); }
 
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { text-align: left; color: var(--text-faint); font-weight: 500; padding: 6px 10px; border-bottom: 1px solid var(--panel-border); text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; }
@@ -132,7 +168,17 @@
   <div class="status-chip"><span class="dot warn"></span> Loading status&hellip;</div>
 </div>
 
-<section>
+<div class="hero-grid" id="heroSection">
+  <div class="hero-card"><div class="loading">Loading&hellip;</div></div>
+  <div class="hero-card"><div class="loading">Loading&hellip;</div></div>
+</div>
+
+<!-- Open Positions (Taken) -- hidden for now, per explicit request: no
+     real-money automation yet, so "your real trades" isn't a thing this
+     dashboard tracks right now. Markup/JS (renderOpenPositions(), the
+     Taken/Log Trade/Close modals) all left intact, just not rendered --
+     add this section back when real-money automation ships. -->
+<section style="display:none">
   <div class="section-header">
     <h2>Open Positions (Taken)</h2>
     <button class="btn-header" onclick="openManualTradeModal()">+ Log Trade</button>
@@ -413,18 +459,18 @@ function renderStatus(state, lastCommitDate, lastRun) {
       pipelineDot = "bad";
       pipelineText = "No recent scans";
     }
-    el.innerHTML += `<div class="status-chip"><span class="dot ${pipelineDot}"></span> ${pipelineText} &middot; last scan ${timeAgo(lastRun.date)}</div>`;
+    el.innerHTML += `<div class="status-chip"><span class="dot ${pipelineDot}"></span><div class="status-text"><div class="status-label">${pipelineText}</div><div class="status-sub">last scan ${timeAgo(lastRun.date)}</div></div></div>`;
   } else {
-    el.innerHTML += `<div class="status-chip"><span class="dot warn"></span> Couldn't check scan history</div>`;
+    el.innerHTML += `<div class="status-chip"><span class="dot warn"></span><div class="status-text"><div class="status-label">Couldn't check scan history</div></div></div>`;
   }
-  el.innerHTML += `<div class="status-chip"><span class="dot neutral"></span> last setup data change ${lastCommitDate ? timeAgo(lastCommitDate) : "unknown"}</div>`;
+  el.innerHTML += `<div class="status-chip"><span class="status-emoji">🗂️</span><div class="status-text"><div class="status-label">Setup data</div><div class="status-sub">changed ${lastCommitDate ? timeAgo(lastCommitDate) : "unknown"}</div></div></div>`;
 
   const openCount = (state.setup_log || []).filter(e => e.taken && !e.resolved).length;
-  el.innerHTML += `<div class="status-chip"><span class="dot ${openCount > 0 ? "ok" : "warn"}"></span> ${openCount} open position${openCount === 1 ? "" : "s"}</div>`;
+  el.innerHTML += `<div class="status-chip"><span class="status-emoji">${openCount > 0 ? "🟢" : "💤"}</span><div class="status-text"><div class="status-label">${openCount} open position${openCount === 1 ? "" : "s"}</div></div></div>`;
 
   const today = toISTDate(new Date().toISOString());
   const firedToday = (state.setup_log || []).filter(e => toISTDate(e.fired_at) === today).length;
-  el.innerHTML += `<div class="status-chip"><span class="dot ok"></span> ${firedToday} setup${firedToday === 1 ? "" : "s"} fired today</div>`;
+  el.innerHTML += `<div class="status-chip"><span class="status-emoji">⚡</span><div class="status-text"><div class="status-label">${firedToday} setup${firedToday === 1 ? "" : "s"} today</div></div></div>`;
 }
 
 // Tracks positions a Close/log-manual-trade submission already went out
@@ -556,6 +602,92 @@ function computeMarketStats(state, market) {
   };
 }
 
+// Small inline SVG sparkline (area + line) -- no chart library, real
+// data only (a cumulative daily net-P&L series computed from actual
+// setup_log entries, see computeDailySeries below). Values can be
+// negative (a losing stretch), so the baseline is wherever 0 falls in
+// the value range, not the bottom edge.
+function sparklineSVG(values, color, width = 280, height = 40) {
+  if (!values || values.length < 2) {
+    return `<svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}" preserveAspectRatio="none"></svg>`;
+  }
+  const min = Math.min(...values, 0);
+  const max = Math.max(...values, 0);
+  const range = (max - min) || 1;
+  const step = width / (values.length - 1);
+  const toY = v => height - ((v - min) / range) * height;
+  const points = values.map((v, i) => `${(i * step).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
+  const areaPoints = `0,${height} ${points} ${width},${height}`;
+  const gradId = "spark-" + Math.random().toString(36).slice(2, 9);
+  return `<svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}" preserveAspectRatio="none">
+    <defs><linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${color}" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
+    </linearGradient></defs>
+    <polygon points="${areaPoints}" fill="url(#${gradId})"/>
+    <polyline points="${points}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// Cumulative net P&L across every setup the bot has suggested and
+// resolved (taken or not -- explicitly requested: this page shows the
+// bot's own data now, not a "your real trades" split), one point per
+// day over the trailing window. Mirrors computeMarketStats()'s own
+// signal-log filtering (surfaced, cutoff, stale_shadow_state
+// exclusion) exactly, so the sparkline and the numbers next to it are
+// always computed the same way.
+function computeDailySeries(state, marketKeys, days = 14) {
+  const dayList = [];
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(Date.now() + IST_OFFSET_MS - i * 86400000);
+    dayList.push(d.toISOString().slice(0, 10));
+  }
+  const byDay = {};
+  dayList.forEach(d => byDay[d] = 0);
+  marketKeys.forEach(market => {
+    const log = (state.setup_log || []).filter(e => marketOf(e.symbol) === market && e.surfaced !== false);
+    const cutoff = SIGNAL_QUALITY_CUTOFF[market];
+    const signalLog = cutoff ? log.filter(e => e.fired_at >= cutoff) : log;
+    signalLog.filter(e => e.resolved && e.outcome && e.outcome.exit_reason !== "stale_shadow_state" && e.outcome.pnl_total != null)
+      .forEach(e => {
+        const d = toISTDate(e.fired_at);
+        if (byDay[d] !== undefined) byDay[d] += e.outcome.pnl_total;
+      });
+  });
+  let cum = 0;
+  return dayList.map(d => { cum += byDay[d]; return cum; });
+}
+
+// Big glowing top-line numbers, grouped by currency since the bot
+// trades both USD and INR markets and summing across currencies would
+// be meaningless. The bot's own suggested/signal data throughout --
+// no separate "real trades you took" framing anymore.
+function renderHero(state) {
+  const el = document.getElementById("heroSection");
+  const groups = [
+    { label: "Net P&L — USD (Crypto + US + Commodity)", cur: "$", markets: ["crypto", "us", "commodity"] },
+    { label: "Net P&L — INR (India + India Futures)", cur: "₹", markets: ["india", "india_futures"] },
+  ];
+  el.innerHTML = groups.map(g => {
+    const totals = g.markets.reduce((acc, m) => {
+      const s = computeMarketStats(state, m).signal;
+      return { net: acc.net + (s.net || 0), resolved: acc.resolved + s.resolved };
+    }, { net: 0, resolved: 0 });
+    const isPos = totals.net >= 0;
+    const color = isPos ? "#3ecf8e" : "#ff5c72";
+    const series = computeDailySeries(state, g.markets);
+    return `<div class="hero-card ${isPos ? "pos" : "neg"}">
+      <span class="hero-bot">🤖</span>
+      <div class="hero-label">${g.label}</div>
+      <div class="hero-value ${isPos ? "pos" : "neg"}">${isPos ? "+" : ""}${g.cur}${fmtNum(totals.net)}</div>
+      <div class="hero-sub">${totals.resolved} setup${totals.resolved === 1 ? "" : "s"} resolved &middot; 14-day cumulative</div>
+      <div class="hero-sparkline">${sparklineSVG(series, color)}</div>
+    </div>`;
+  }).join("");
+}
+
+const MARKET_ACCENT = { india: "#3ecf8e", crypto: "#f5a623", us: "#4f8cff" };
+
 function renderPerfCards(state) {
   const el = document.getElementById("perfCards");
   const markets = [
@@ -565,23 +697,20 @@ function renderPerfCards(state) {
   ];
   el.innerHTML = markets.map(m => {
     const s = computeMarketStats(state, m.key);
-    const realNetClass = s.real.net >= 0 ? "pnl-pos" : "pnl-neg";
-    const sigNetClass = s.signal.net >= 0 ? "pnl-pos" : "pnl-neg";
+    const sigNetClass = s.signal.net >= 0 ? "pnl-pos glow" : "pnl-neg glow";
     const fmtPf = pf => pf === null ? "–" : pf === Infinity ? "∞" : pf.toFixed(2);
     const fmtWr = wr => wr !== null ? wr.toFixed(0) + "%" : "–";
-    return `<div class="panel market-card">
+    const series = computeDailySeries(state, [m.key]);
+    const sparkColor = s.signal.net >= 0 ? "#3ecf8e" : "#ff5c72";
+    return `<div class="panel market-card" style="--card-accent:${MARKET_ACCENT[m.key]}">
       <h3><span class="tag market-${m.key}">${m.label}</span></h3>
-      <div class="stat-row" style="color:var(--text-faint);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:2px">Your real trades</div>
-      <div class="stat-row"><span>Taken &amp; resolved</span><b>${s.real.resolved}</b></div>
-      <div class="stat-row"><span>Win rate</span><b>${fmtWr(s.real.winRate)}</b></div>
-      <div class="stat-row"><span>Profit factor</span><b>${fmtPf(s.real.pf)}</b></div>
-      <div class="stat-row"><span>Net P&amp;L</span><b class="${realNetClass}">${s.real.net >= 0 ? "+" : ""}${m.cur}${fmtNum(s.real.net)}</b></div>
-      <div class="stat-row" style="color:var(--text-faint);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:10px">Signal quality (all suggested, hypothetical)</div>
+      <div class="stat-row headline"><span>Net P&amp;L</span><b class="${sigNetClass}">${s.signal.net >= 0 ? "+" : ""}${m.cur}${fmtNum(s.signal.net)}</b></div>
+      <div class="card-sparkline">${sparklineSVG(series, sparkColor, 280, 28)}</div>
+      <div class="stat-row" style="color:var(--text-faint);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-top:6px">Signal quality</div>
       <div class="stat-row"><span>All-time suggested</span><b>${s.total}</b></div>
       <div class="stat-row"><span>Resolved</span><b>${s.signal.resolved}</b></div>
       <div class="stat-row"><span>Win rate</span><b>${fmtWr(s.signal.winRate)}</b></div>
       <div class="stat-row"><span>Profit factor</span><b>${fmtPf(s.signal.pf)}</b></div>
-      <div class="stat-row"><span>Net P&amp;L</span><b class="${sigNetClass}" style="color:var(--text-faint)">${s.signal.net >= 0 ? "+" : ""}${m.cur}${fmtNum(s.signal.net)}</b></div>
     </div>`;
   }).join("");
 }
@@ -604,18 +733,24 @@ function renderTrend(state) {
     }
   });
 
-  const rows = days.map(d => {
+  const barW = 100 / days.length;
+  const bars = days.map((d, i) => {
     const { wins, total } = byDay[d];
     const pct = total ? (wins / total * 100) : 0;
-    const color = total === 0 ? "#2a3040" : pct >= 50 ? "var(--green)" : "var(--red)";
-    const label = d.slice(5); // MM-DD
-    return `<div class="trend-bar-wrap">
-      <div class="trend-bar-label">${label}</div>
-      <div class="trend-bar-track"><div class="trend-bar-fill" style="width:${total ? pct : 100}%;background:${color};opacity:${total ? 1 : 0.3}"></div></div>
-      <div class="trend-bar-val">${total ? `${wins}/${total} (${pct.toFixed(0)}%)` : "no data"}</div>
-    </div>`;
+    const h = total ? Math.max(pct, 3) : 2;
+    const color = total === 0 ? "#2a3040" : pct >= 50 ? "#3ecf8e" : "#ff5c72";
+    const x = (i * barW + barW * 0.15).toFixed(2);
+    const w = (barW * 0.7).toFixed(2);
+    const y = (100 - h).toFixed(2);
+    const title = total ? `${d}: ${wins}/${total} (${pct.toFixed(0)}%)` : `${d}: no data`;
+    return `<rect x="${x}" width="${w}" y="${y}" height="${h.toFixed(2)}" rx="1.2" fill="${color}" opacity="${total ? 1 : 0.35}"><title>${title}</title></rect>`;
   }).join("");
-  el.innerHTML = rows;
+  const labels = days.map(d => `<div>${d.slice(5)}</div>`).join("");
+
+  el.innerHTML = `
+    <svg class="trend-chart-svg" viewBox="0 0 100 100" preserveAspectRatio="none">${bars}</svg>
+    <div class="trend-chart-labels">${labels}</div>
+  `;
 }
 
 // Fear & Greed classification -> a rough color, red (fear) to green (greed).
@@ -813,13 +948,17 @@ async function loadDashboard() {
     document.getElementById("lastFetched").textContent = `Page data refreshed ${timeAgo(new Date().toISOString())}`;
 
     renderStatus(state, lastCommitDate, lastRun);
+    renderHero(state);
     renderPerfCards(state);
     renderTrend(state);
     renderRecentSetups(state);
     renderNewsBriefing(state);
     renderNewsSentiment(); // independent of state.json, fires without blocking the rest
-    checkForNewSetups(state);
-    await renderOpenPositions(state); // last -- does live price fetches, can take a moment
+    // checkForNewSetups(state)/renderOpenPositions(state) paused along
+    // with the Open Positions section above -- no real-money automation
+    // yet, so "Taken?" toast prompts and the open-positions table don't
+    // have anything real to track right now. Re-enable both together
+    // when that ships.
   } catch (e) {
     document.getElementById("statusBar").innerHTML = `<div class="status-chip"><span class="dot bad"></span> Failed to load: ${e.message}</div>`;
     console.error(e);
