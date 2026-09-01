@@ -1714,26 +1714,38 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
-def trend_reversed(setup_type, direction, closed_bars):
+def trend_reversed(setup_type, direction, closed_bars, symbol=None, trigger_context=None):
     """Explicitly requested: check_open()'s trailing stop only reacts
-    to PRICE -- if a trend-following position's own underlying signal
-    has already flipped against it, the bot still just waits for price
-    to eventually wander down to the trailing stop, giving back far
-    more than necessary and sometimes turning a real winner into a
-    loser. This recomputes each strategy's own directional bias FRESH
-    from the current bars (not a possibly-stale sym_state field) and
-    flags a reversal the moment the strategy itself would no longer
-    call this a "long" (or "short") regime -- including fading to
-    neutral, not just a hard flip to the opposite side, since a
-    strategy's own conviction evaporating is itself grounds to exit.
+    to PRICE -- if a position's own underlying signal has already
+    flipped against it, the bot still just waits for price to
+    eventually wander down to the trailing stop, giving back far more
+    than necessary and sometimes turning a real winner into a loser.
+    This recomputes each strategy's own entry gate FRESH from the
+    current bars/context (not a possibly-stale sym_state field) and
+    flags a reversal the moment that gate would no longer pass --
+    including fading to neutral, not just a hard flip to the opposite
+    side, since a strategy's own conviction evaporating is itself
+    grounds to exit.
 
-    Only defined for the 3 regime/trend-following setup types that
-    have a natural, freshly-recomputable directional bias (Triple MA,
-    Triple Threat, DMI+DPO) -- range-rejection/breakout setups already
-    have a hard target or are handled entirely by check_open()'s
-    trailing logic, no equivalent "the entry condition itself
-    un-happened" concept to check. Applies identically across all 3
-    markets -- these strategies run the same way in each."""
+    Covers every setup type that fires from a freshly-recomputable
+    condition, reusing that exact condition (not a new invented one):
+      - Triple MA / Triple Threat / DMI+DPO: their own regime definition.
+      - Breakout/Breakdown/Range-rejection: the same 10-EMA trend filter
+        (EMA_PERIOD) that gates their entry in check_watching_default()/
+        check_watching_crypto() -- close crossing back to the wrong side
+        of that EMA is the exact condition that would have blocked the
+        entry in the first place.
+      - Gap and Go (US, short-only): price reclaiming the opening-range
+        low it broke down through -- the level the whole setup is built
+        on, from trigger_context.
+      - Seasonal (commodities): whether the current calendar month is
+        still in that symbol's strong/weak list for this direction --
+        naturally recomputed every scan the same way check_watching_
+        commodity() derives it at entry.
+    Not defined for anything else (manually-logged entries like
+    "community_idea" or hand-tracked India futures) -- no strategy
+    logic exists to recompute for those, so they fall through to
+    check_open()'s normal stop/target handling untouched."""
     closes = [b["close"] for b in closed_bars]
 
     if setup_type in ("triple_ma_long", "triple_ma_short"):
@@ -1766,6 +1778,28 @@ def trend_reversed(setup_type, direction, closed_bars):
         trend = ema(closes[-(TRIPLE_THREAT_TREND_PERIOD * 3):], TRIPLE_THREAT_TREND_PERIOD)
         close = closed_bars[-1]["close"]
         return close < trend if direction == "long" else close > trend
+
+    if setup_type in ("breakout_long", "breakdown_short", "range_long_rejection", "range_short_rejection"):
+        if len(closes) < EMA_PERIOD:
+            return False
+        trend_ema = ema(closes[-(EMA_PERIOD * 3):], EMA_PERIOD)
+        if trend_ema is None:
+            return False
+        close = closed_bars[-1]["close"]
+        return close < trend_ema if direction == "long" else close > trend_ema
+
+    if setup_type == "gap_and_go_short":
+        level = (trigger_context or {}).get("opening_range_low")
+        if level is None:
+            return False
+        return closed_bars[-1]["close"] > level
+
+    if setup_type in ("seasonal_long", "seasonal_short") and symbol:
+        now = datetime.fromtimestamp(closed_bars[-1]["close_time"] / 1000, tz=timezone.utc)
+        strong = SEASONAL_STRONG_MONTHS.get(symbol, set())
+        weak = SEASONAL_WEAK_MONTHS.get(symbol, set())
+        current_regime = "long" if now.month in strong else ("short" if now.month in weak else None)
+        return current_regime != direction
 
     return False
 
@@ -2013,7 +2047,7 @@ def main():
                 log_entry["outcome"] = {"exit_reason": "stale_shadow_state", "pnl_per_unit": None, "pnl_total": None}
                 continue
 
-            if trend_reversed(log_entry["type"], shadow["direction"], closed_bars):
+            if trend_reversed(log_entry["type"], shadow["direction"], closed_bars, symbol=symbol, trigger_context=log_entry.get("trigger_context")):
                 close = last_closed["close"]
                 entry_price = shadow["entry_price"]
                 pnl = (close - entry_price) if shadow["direction"] == "long" else (entry_price - close)
