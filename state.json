@@ -24,7 +24,7 @@
       "pending": null,
       "consecutive_wins": 1,
       "dmi_dpo_regime": null,
-      "triple_ma_regime": "long",
+      "triple_ma_regime": "short",
       "triple_threat_cross": "up"
     },
     "ETH-USD": {
@@ -44,7 +44,7 @@
         "expires": 1787825700000
       },
       "dmi_dpo_regime": null,
-      "triple_ma_regime": "long",
+      "triple_ma_regime": "short",
       "triple_threat_cross": "down",
       "consecutive_wins": 2
     },
@@ -79,7 +79,7 @@
         "expires": 1787855400000
       },
       "dmi_dpo_regime": null,
-      "triple_ma_regime": "long",
+      "triple_ma_regime": "short",
       "triple_threat_cross": "up",
       "consecutive_wins": 2
     },
@@ -96,7 +96,7 @@
       "trade_journal": [],
       "pending": null,
       "dmi_dpo_regime": null,
-      "triple_ma_regime": "long",
+      "triple_ma_regime": "short",
       "triple_threat_cross": "up",
       "consecutive_wins": 1
     },
@@ -1236,11 +1236,11 @@
       "extreme_since_entry": null,
       "peak_profit_per_unit": 0,
       "take_profit_target": null,
-      "consecutive_losses": 5,
+      "consecutive_losses": 0,
       "last_alert": {},
       "trade_journal": [],
       "pending": null,
-      "consecutive_wins": 0,
+      "consecutive_wins": 2,
       "dmi_dpo_regime": null,
       "triple_ma_regime": "long",
       "triple_threat_cross": "up"
@@ -1549,7 +1549,7 @@
       "consecutive_wins": 0,
       "last_alert": {},
       "trade_journal": [],
-      "seasonal_fired_period": "2026-08"
+      "seasonal_fired_period": "2026-09"
     },
     "NG=F": {
       "status": "watching",
@@ -1674,8 +1674,12 @@
       "target": null,
       "qty": 48.80599616524304,
       "fired_at": "2026-08-25T18:38:57.012333+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "exit_reason": "stale_shadow_state",
+        "pnl_per_unit": null,
+        "pnl_total": null
+      },
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -2648,8 +2652,12 @@
       "target": null,
       "qty": 0.0938715301059411,
       "fired_at": "2026-08-25T20:00:38.575895+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "exit_reason": "stale_shadow_state",
+        "pnl_per_unit": null,
+        "pnl_total": null
+      },
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -2675,8 +2683,12 @@
       "target": null,
       "qty": 92.83819628647144,
       "fired_at": "2026-08-25T20:00:39.039056+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "exit_reason": "stale_shadow_state",
+        "pnl_per_unit": null,
+        "pnl_total": null
+      },
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -2729,8 +2741,12 @@
       "target": null,
       "qty": 48.771990942344345,
       "fired_at": "2026-08-25T20:30:32.176253+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "exit_reason": "stale_shadow_state",
+        "pnl_per_unit": null,
+        "pnl_total": null
+      },
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -2874,8 +2890,12 @@
       "target": null,
       "qty": 46.43449419568838,
       "fired_at": "2026-08-25T21:23:37.135214+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "exit_reason": "stale_shadow_state",
+        "pnl_per_unit": null,
+        "pnl_total": null
+      },
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -2950,8 +2970,12 @@
       "target": null,
       "qty": 0.060882800608829016,
       "fired_at": "2026-08-25T21:30:38.131900+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "exit_reason": "stale_shadow_state",
+        "pnl_per_unit": null,
+        "pnl_total": null
+      },
       "shadow": {
         "direction": null,
         "entry_price": null,
@@ -4863,8 +4887,12 @@
       "target": null,
       "qty": 5790.388058314198,
       "fired_at": "2026-08-27T08:30:38.300778+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "exit_reason": "stale_shadow_state",
+        "pnl_per_unit": null,
+        "pnl_total": null
+      },
       "surfaced": false,
       "taken": false,
       "confidence_at_fire": {
@@ -18440,8 +18468,8 @@
         "entry_price": 0.15247,
         "entry_qty": 28653.295128940113,
         "stop_loss": 0.153961,
-        "extreme_since_entry": 0.1546,
-        "peak_profit_per_unit": 0.002129999999999993,
+        "extreme_since_entry": 0.15475,
+        "peak_profit_per_unit": 0.0022800000000000042,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -23330,9 +23358,9 @@
         "direction": "long",
         "entry_price": 1.8665,
         "entry_qty": 2103.9975954313127,
-        "stop_loss": 1.8527500000000001,
-        "extreme_since_entry": 1.889,
-        "peak_profit_per_unit": 0.022499999999999964,
+        "stop_loss": 1.91767,
+        "extreme_since_entry": 1.9396,
+        "peak_profit_per_unit": 0.07309999999999994,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -23470,8 +23498,17 @@
       "target": null,
       "qty": 25053.686471009187,
       "fired_at": "2026-08-31T18:45:46.468677+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "long",
+        "entry": 0.15236,
+        "exit": 0.15398,
+        "qty": 25053.686471009187,
+        "pnl_per_unit": 0.0016200000000000103,
+        "pnl_total": 40.58697208303514,
+        "exit_reason": "trend_reversed",
+        "closed_at": "2026-09-01T02:59:30.499181+00:00"
+      },
       "surfaced": false,
       "taken": false,
       "broker_order_id": null,
@@ -23485,16 +23522,32 @@
       "fired_hour_utc": 18,
       "fired_weekday_utc": 0,
       "shadow": {
-        "direction": "long",
-        "entry_price": 0.15236,
-        "entry_qty": 25053.686471009187,
-        "stop_loss": 0.15392799999999998,
-        "extreme_since_entry": 0.1546,
-        "peak_profit_per_unit": 0.002239999999999992,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
-        "trade_journal": []
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 0.15236,
+            "exit": 0.15398,
+            "qty": 25053.686471009187,
+            "pnl_per_unit": 0.0016200000000000103,
+            "pnl_total": 40.58697208303514,
+            "exit_reason": "trend_reversed",
+            "closed_at": "2026-09-01T02:59:30.499181+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 0.15769,
+        "range_low": 0.15369
       }
     },
     {
@@ -23628,8 +23681,17 @@
       "target": null,
       "qty": 33997.08596405995,
       "fired_at": "2026-08-31T19:15:47.342251+00:00",
-      "resolved": false,
-      "outcome": null,
+      "resolved": true,
+      "outcome": {
+        "direction": "long",
+        "entry": 0.15267,
+        "exit": 0.15398,
+        "qty": 33997.08596405995,
+        "pnl_per_unit": 0.0013100000000000056,
+        "pnl_total": 44.53618261291873,
+        "exit_reason": "stop_hit",
+        "closed_at": "2026-09-01T02:59:30.499461+00:00"
+      },
       "surfaced": true,
       "taken": false,
       "broker_order_id": null,
@@ -23643,16 +23705,32 @@
       "fired_hour_utc": 19,
       "fired_weekday_utc": 0,
       "shadow": {
-        "direction": "long",
-        "entry_price": 0.15267,
-        "entry_qty": 33997.08596405995,
-        "stop_loss": 0.154021,
-        "extreme_since_entry": 0.1546,
-        "peak_profit_per_unit": 0.0019299999999999873,
+        "direction": null,
+        "entry_price": null,
+        "entry_qty": null,
+        "stop_loss": null,
+        "extreme_since_entry": null,
+        "peak_profit_per_unit": 0,
         "take_profit_target": null,
         "consecutive_losses": 0,
-        "consecutive_wins": 0,
-        "trade_journal": []
+        "consecutive_wins": 1,
+        "trade_journal": [
+          {
+            "direction": "long",
+            "entry": 0.15267,
+            "exit": 0.15398,
+            "qty": 33997.08596405995,
+            "pnl_per_unit": 0.0013100000000000056,
+            "pnl_total": 44.53618261291873,
+            "exit_reason": "stop_hit",
+            "closed_at": "2026-09-01T02:59:30.499461+00:00"
+          }
+        ],
+        "status": "watching",
+        "last_alert": {},
+        "pending": null,
+        "range_high": 0.15769,
+        "range_low": 0.15369
       }
     },
     {
@@ -23771,6 +23849,230 @@
         "status": "watching",
         "last_alert": {},
         "pending": null
+      }
+    },
+    {
+      "symbol": "BTC-USD",
+      "type": "triple_ma_short",
+      "direction": "short",
+      "entry": 78339.86,
+      "stop": 78748.34428571428,
+      "target": null,
+      "qty": 0.24480745893355255,
+      "fired_at": "2026-09-01T02:59:40.916928+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "broker_order_id": null,
+      "broker_stop_order_id": null,
+      "broker_take_profit_order_id": null,
+      "confidence_at_fire": {
+        "wins": 13,
+        "total": 37,
+        "confidence": 0.359
+      },
+      "fired_hour_utc": 2,
+      "fired_weekday_utc": 1,
+      "trigger_context": {
+        "fast_ema": 78395.810786,
+        "med_ema": 78503.937365,
+        "slow_ema": 78566.532215,
+        "periods": {
+          "fast": 8,
+          "med": 16,
+          "slow": 25
+        }
+      },
+      "shadow": {
+        "direction": "short",
+        "entry_price": 78339.86,
+        "entry_qty": 0.24480745893355255,
+        "stop_loss": 78748.34428571428,
+        "extreme_since_entry": 78339.86,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "ETH-USD",
+      "type": "triple_ma_short",
+      "direction": "short",
+      "entry": 2460.17,
+      "stop": 2476.7528571428575,
+      "target": null,
+      "qty": 6.030323914541604,
+      "fired_at": "2026-09-01T02:59:40.917345+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": false,
+      "taken": false,
+      "broker_order_id": null,
+      "broker_stop_order_id": null,
+      "broker_take_profit_order_id": null,
+      "confidence_at_fire": {
+        "wins": 13,
+        "total": 37,
+        "confidence": 0.359
+      },
+      "fired_hour_utc": 2,
+      "fired_weekday_utc": 1,
+      "trigger_context": {
+        "fast_ema": 2462.506242,
+        "med_ema": 2465.566415,
+        "slow_ema": 2467.078624,
+        "periods": {
+          "fast": 8,
+          "med": 16,
+          "slow": 25
+        }
+      },
+      "shadow": {
+        "direction": "short",
+        "entry_price": 2460.17,
+        "entry_qty": 6.030323914541604,
+        "stop_loss": 2476.7528571428575,
+        "extreme_since_entry": 2460.17,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "SOL-USD",
+      "type": "triple_ma_short",
+      "direction": "short",
+      "entry": 103.04,
+      "stop": 104.0442857142857,
+      "target": null,
+      "qty": 99.5732574679957,
+      "fired_at": "2026-09-01T02:59:40.917571+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": false,
+      "taken": false,
+      "broker_order_id": null,
+      "broker_stop_order_id": null,
+      "broker_take_profit_order_id": null,
+      "confidence_at_fire": {
+        "wins": 13,
+        "total": 37,
+        "confidence": 0.359
+      },
+      "fired_hour_utc": 2,
+      "fired_weekday_utc": 1,
+      "trigger_context": {
+        "fast_ema": 103.116924,
+        "med_ema": 103.187389,
+        "slow_ema": 103.245523,
+        "periods": {
+          "fast": 8,
+          "med": 16,
+          "slow": 25
+        }
+      },
+      "shadow": {
+        "direction": "short",
+        "entry_price": 103.04,
+        "entry_qty": 99.5732574679957,
+        "stop_loss": 104.0442857142857,
+        "extreme_since_entry": 103.04,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "XRP-USD",
+      "type": "triple_ma_short",
+      "direction": "short",
+      "entry": 1.3719,
+      "stop": 1.3855714285714287,
+      "target": null,
+      "qty": 7314.524555903756,
+      "fired_at": "2026-09-01T02:59:40.917789+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": false,
+      "taken": false,
+      "broker_order_id": null,
+      "broker_stop_order_id": null,
+      "broker_take_profit_order_id": null,
+      "confidence_at_fire": {
+        "wins": 13,
+        "total": 37,
+        "confidence": 0.359
+      },
+      "fired_hour_utc": 2,
+      "fired_weekday_utc": 1,
+      "trigger_context": {
+        "fast_ema": 1.375972,
+        "med_ema": 1.378423,
+        "slow_ema": 1.379534,
+        "periods": {
+          "fast": 8,
+          "med": 16,
+          "slow": 25
+        }
+      },
+      "shadow": {
+        "direction": "short",
+        "entry_price": 1.3719,
+        "entry_qty": 7314.524555903756,
+        "stop_loss": 1.3855714285714287,
+        "extreme_since_entry": 1.3719,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
+      }
+    },
+    {
+      "symbol": "GC=F",
+      "type": "seasonal_short",
+      "direction": "short",
+      "entry": 4484.2998046875,
+      "stop": 4910.308286132812,
+      "target": null,
+      "qty": 0.0023473711053998646,
+      "fired_at": "2026-09-01T02:59:40.917985+00:00",
+      "resolved": false,
+      "outcome": null,
+      "surfaced": true,
+      "taken": false,
+      "broker_order_id": null,
+      "broker_stop_order_id": null,
+      "broker_take_profit_order_id": null,
+      "confidence_at_fire": {
+        "wins": 0,
+        "total": 0,
+        "confidence": 0.5
+      },
+      "fired_hour_utc": 2,
+      "fired_weekday_utc": 1,
+      "trigger_context": {
+        "month": 9,
+        "eia_surprise_bcf": null
+      },
+      "shadow": {
+        "direction": "short",
+        "entry_price": 4484.2998046875,
+        "entry_qty": 0.0023473711053998646,
+        "stop_loss": 4910.308286132812,
+        "extreme_since_entry": 4484.2998046875,
+        "peak_profit_per_unit": 0,
+        "take_profit_target": null,
+        "consecutive_losses": 0,
+        "consecutive_wins": 0,
+        "trade_journal": []
       }
     }
   ],
