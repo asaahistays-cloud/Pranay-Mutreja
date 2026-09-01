@@ -1132,7 +1132,7 @@ def check_oi_divergence_long(symbol, tradable, sym_state, closed_bars, last_clos
         f"{abs(oi_chg)*100:.2f}% -- leveraged longs unwinding, not fresh selling conviction.",
         symbol=symbol, price=close,
     )
-    trigger_context = {"price_chg_1h": round(price_chg, 6), "oi_chg_1h": round(oi_chg, 6)}
+    trigger_context = {"price_chg_1h": round(price_chg, 6), "oi_chg_1h": round(oi_chg, 6), "oi_at_entry": cur_oi}
     return {"text": text, "type": "oi_divergence_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0, "trigger_context": trigger_context}
 
 
@@ -1880,7 +1880,7 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
-def trend_reversed(setup_type, direction, closed_bars, market=None, trigger_context=None):
+def trend_reversed(setup_type, direction, closed_bars, market=None, trigger_context=None, symbol=None, oi_history=None):
     """Explicitly requested: check_open()'s trailing stop only reacts
     to PRICE -- if a position's own underlying signal has already
     flipped against it, the bot still just waits for price to
@@ -1972,6 +1972,39 @@ def trend_reversed(setup_type, direction, closed_bars, market=None, trigger_cont
             return level is not None and close < level
         level = tc.get("range_low")
         return level is not None and close > level
+
+    if setup_type in ("seasonal_long", "seasonal_short") and symbol:
+        # No backtest behind this one (and none needed) -- unlike every
+        # other branch above, this isn't a statistical edge being
+        # applied to an exit, it's a structural fact: check_watching_
+        # commodity() derives direction PURELY from the calendar month
+        # (SEASONAL_STRONG_MONTHS/WEAK_MONTHS), so "is this still the
+        # month that justified the entry" is a tautological check, the
+        # same category as Triple MA's regime recompute above, not an
+        # invented signal that needs proving. Previously left uncovered
+        # only because it got swept into reverting the broader (failed)
+        # extension batch, not because it tested badly -- it was never
+        # tested at all, since backtesting isn't the right tool for a
+        # deterministic calendar check.
+        now = datetime.fromtimestamp(closed_bars[-1]["close_time"] / 1000, tz=timezone.utc)
+        strong = SEASONAL_STRONG_MONTHS.get(symbol, set())
+        weak = SEASONAL_WEAK_MONTHS.get(symbol, set())
+        current_regime = "long" if now.month in strong else ("short" if now.month in weak else None)
+        return current_regime != direction
+
+    if setup_type == "oi_divergence_long":
+        # The entry thesis was specifically "open interest is falling --
+        # leveraged longs unwinding, not fresh conviction" (see
+        # check_oi_divergence_long()'s docstring for the real backtest).
+        # If OI recovers back above where it was at entry, that thesis
+        # has directly un-happened -- new positions ARE being built
+        # again, the opposite of what this trade is betting on.
+        tc = trigger_context or {}
+        oi_at_entry = tc.get("oi_at_entry")
+        if oi_at_entry is None or not oi_history:
+            return False
+        cur_oi = oi_history[-1]["sum_open_interest"]
+        return cur_oi > oi_at_entry
 
     return False
 
@@ -2193,6 +2226,23 @@ def main():
             capital, pool_markets = capital_usd_us, ("us",)
         capital = max(capital - committed_capital(setup_log, pool_markets), 0)
 
+        # Fetched here (before the shadow-tracking loop below), not just
+        # right before check_watching() as originally wired -- needed
+        # earlier now so trend_reversed()'s oi_divergence_long branch can
+        # use the same live OI window to check whether an open position's
+        # capitulation thesis has un-happened (OI recovering back above
+        # its value at entry), not just to gate new entries.
+        oi_history = None
+        if market == "crypto" and symbol in OI_DIVERGENCE_LONG_SYMBOLS:
+            try:
+                oi_history = fetch_binance_futures_oi(symbol)
+            except Exception as e:
+                # A failed OI fetch costs this one symbol its OI-divergence
+                # check this scan (both the reversal check below and the
+                # entry check in check_watching_crypto()), not the whole
+                # run -- both already treat oi_history=None as "skip".
+                print(f"{symbol}: OI fetch failed ({e}), skipping OI-divergence checks this scan")
+
         # Shadow-track every setup this symbol has ever fired, whether or
         # not the user took it -- reuses check_open()'s exact trailing
         # stop/target/stop-hit logic against the bars already fetched
@@ -2226,7 +2276,7 @@ def main():
                 log_entry["outcome"] = {"exit_reason": "stale_shadow_state", "pnl_per_unit": None, "pnl_total": None}
                 continue
 
-            if trend_reversed(log_entry["type"], shadow["direction"], closed_bars, market=market, trigger_context=log_entry.get("trigger_context")):
+            if trend_reversed(log_entry["type"], shadow["direction"], closed_bars, market=market, trigger_context=log_entry.get("trigger_context"), symbol=symbol, oi_history=oi_history):
                 close = last_closed["close"]
                 entry_price = shadow["entry_price"]
                 pnl = (close - entry_price) if shadow["direction"] == "long" else (entry_price - close)
@@ -2282,17 +2332,6 @@ def main():
             # against the real broker's actual fill data. No-ops for
             # every entry that was never broker-executed.
             sync_broker_entry(symbol, market, log_entry, shadow, sym_state)
-
-        oi_history = None
-        if market == "crypto" and symbol in OI_DIVERGENCE_LONG_SYMBOLS:
-            try:
-                oi_history = fetch_binance_futures_oi(symbol)
-            except Exception as e:
-                # A failed OI fetch costs this one symbol its OI-divergence
-                # check this scan, not the whole run -- check_watching_crypto()
-                # already treats oi_history=None as "skip that check", same
-                # as if the symbol weren't eligible at all.
-                print(f"{symbol}: OI fetch failed ({e}), skipping OI-divergence check this scan")
 
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise, oi_history)
         if alert:
