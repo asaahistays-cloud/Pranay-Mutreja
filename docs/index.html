@@ -110,6 +110,21 @@
     .setup-right { text-align: left; margin-left: 26px; }
   }
 
+  .ticker-wrap { overflow: hidden; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 12px; padding: 12px 0; position: relative; }
+  .ticker-wrap::before, .ticker-wrap::after { content: ""; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none; }
+  .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--panel), transparent); }
+  .ticker-wrap::after { right: 0; background: linear-gradient(270deg, var(--panel), transparent); }
+  .ticker-track { display: flex; gap: 28px; width: max-content; animation: ticker-scroll linear infinite; }
+  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+  @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker-chip { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  .ticker-chip .ticker-dir { font-size: 11px; }
+  .ticker-chip .ticker-sym { font-weight: 700; color: var(--text); }
+  .ticker-chip .ticker-val { font-weight: 700; }
+  .ticker-chip .ticker-val.pending { color: var(--text-faint); font-weight: 500; }
+  .ticker-chip .ticker-pulse { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--amber); margin-right: 2px; animation: bot-blink-fast 1.1s ease-in-out infinite; }
+  .ticker-sep { color: var(--panel-border); font-size: 13px; }
+
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { text-align: left; color: var(--text-faint); font-weight: 500; padding: 6px 10px; border-bottom: 1px solid var(--panel-border); text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; }
   td { padding: 8px 10px; border-bottom: 1px solid var(--panel-border); font-family: var(--mono); }
@@ -225,7 +240,8 @@
 
 <section>
   <h2>Recent Setups</h2>
-  <div class="panel table-wrap" id="recentSetups"><div class="loading">Loading&hellip;</div></div>
+  <div class="ticker-wrap" id="setupTicker"><div class="loading">Loading&hellip;</div></div>
+  <div class="panel table-wrap" id="recentSetups" style="margin-top:12px"><div class="loading">Loading&hellip;</div></div>
 </section>
 
 <section>
@@ -875,6 +891,40 @@ async function renderNewsSentiment() {
     : `<div class="panel"><h3><span class="tag market-crypto">crypto</span> Fear &amp; Greed Index</h3><div class="empty-state">Couldn't load right now.</div></div>`;
 }
 
+// Live-scrolling ticker strip -- explicit request for "something
+// animated and graphic" instead of a static list. Standard seamless-
+// loop trick: the chip sequence is duplicated back-to-back inside a
+// track twice as wide, animated exactly -50% (one full copy's width),
+// so the reset from -50% back to 0% is invisible -- looks like an
+// infinite scroll, not a jump. Pauses on hover so it's actually
+// readable if someone wants to look closer.
+function renderSetupTicker(state) {
+  const el = document.getElementById("setupTicker");
+  const log = [...(state.setup_log || [])].sort((a, b) => new Date(b.fired_at) - new Date(a.fired_at)).slice(0, 40);
+  if (!log.length) {
+    el.innerHTML = `<div class="empty-state">No setups yet.</div>`;
+    return;
+  }
+  const chips = log.map(e => {
+    const cur = currencyFor(e.symbol);
+    const dirColor = e.direction === "long" ? "#3ecf8e" : "#ff5c72";
+    const dirIcon = e.direction === "long" ? "▲" : "▼";
+    let valHtml;
+    if (e.resolved && e.outcome && e.outcome.exit_reason !== "stale_shadow_state") {
+      const pnl = e.outcome.pnl_total;
+      valHtml = `<span class="ticker-val" style="color:${pnl >= 0 ? "#3ecf8e" : "#ff5c72"}">${pnl >= 0 ? "+" : ""}${cur}${fmtNum(pnl)}</span>`;
+    } else {
+      valHtml = `<span class="ticker-val pending"><span class="ticker-pulse"></span>pending</span>`;
+    }
+    return `<span class="ticker-chip"><span class="ticker-dir" style="color:${dirColor}">${dirIcon}</span><span class="ticker-sym">${e.symbol}</span>${valHtml}</span>`;
+  });
+  const sequence = chips.join(`<span class="ticker-sep">&bull;</span>`);
+  const duration = Math.max(20, chips.length * 2.2);
+  el.innerHTML = `<div class="ticker-track" style="animation-duration:${duration}s">
+    ${sequence}<span class="ticker-sep">&bull;</span>${sequence}<span class="ticker-sep">&bull;</span>
+  </div>`;
+}
+
 function renderRecentSetups(state) {
   const el = document.getElementById("recentSetups");
   const log = [...(state.setup_log || [])].sort((a, b) => new Date(b.fired_at) - new Date(a.fired_at)).slice(0, 25);
@@ -1012,6 +1062,7 @@ async function loadDashboard() {
     renderHero(state);
     renderPerfCards(state);
     renderTrend(state);
+    renderSetupTicker(state);
     renderRecentSetups(state);
     renderNewsBriefing(state);
     renderNewsSentiment(); // independent of state.json, fires without blocking the rest
