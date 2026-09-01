@@ -165,6 +165,21 @@ PROFIT_LOCK_FRACTION = 0.7  # once engaged, guarantee at least this fraction of 
 CRYPTO_WATCHLIST = [{"symbol": s, "market": "crypto", "tradable": True} for s in [
     "BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "AVAX-USD", "NEAR-USD", "FET-USD",
 ]]
+# Real Binance Futures backtest (1yr 15m, real open-interest history --
+# 30-day hard cap on Binance's public OI API, so this is thinner than
+# every other validated edge in this bot): price down >=0.5% over 1hr
+# AND open interest down >=1% over the same window (leveraged longs
+# unwinding/capitulating, not fresh conviction) -> long. PF 1.51 overall
+# (n=235), held on both out-of-sample halves (PF 1.55 -> 1.46), still
+# PF 1.32 with the top 5 trades removed. BTC/ETH specifically do NOT
+# work with this (PF 0.63/0.75) -- explicitly excluded, not a blanket
+# crypto edge. The mirror short (price up + OI down, or the stricter
+# extreme-funding + still-rising-OI combo) both tested net negative
+# (PF 0.79 and 0.73) -- long only, deliberately.
+OI_DIVERGENCE_LONG_SYMBOLS = {"AVAX-USD", "FET-USD", "NEAR-USD", "SOL-USD", "XRP-USD"}
+OI_DIVERGENCE_LOOKBACK_BARS = 4  # 1hr on 15m bars
+OI_DIVERGENCE_PRICE_THRESH = 0.005
+OI_DIVERGENCE_OI_THRESH = -0.01
 # Gold and natural gas only -- the two commodities where a real
 # strategy (seasonality) actually validated out-of-sample. Silver and
 # crude oil were tested the same way and failed (see the AlphaInsider/
@@ -216,6 +231,30 @@ def fetch_coinbase(symbol, limit=60, granularity=900):
             "close_time": r[0] * 1000,
         })
     return bars
+
+
+# Binance Futures' symbol convention (BTCUSDT) vs this bot's own
+# (BTC-USD) -- only used by OI_DIVERGENCE_LONG_SYMBOLS' fetch, kept
+# separate from CRYPTO_WATCHLIST's Coinbase-based price feed.
+BINANCE_FUTURES_SYMBOL = {
+    "BTC-USD": "BTCUSDT", "ETH-USD": "ETHUSDT", "SOL-USD": "SOLUSDT",
+    "XRP-USD": "XRPUSDT", "AVAX-USD": "AVAXUSDT", "NEAR-USD": "NEARUSDT", "FET-USD": "FETUSDT",
+}
+
+
+def fetch_binance_futures_oi(symbol, limit=10):
+    """Recent open-interest history (15m buckets) for one crypto symbol,
+    used only by check_oi_divergence_long() -- see its docstring for
+    the real backtest behind this. A small window (~2.5hrs at limit=10)
+    is all a live scan needs (OI_DIVERGENCE_LOOKBACK_BARS=4 back), unlike
+    the 30-day paginated pull used for backtesting this offline."""
+    bsym = BINANCE_FUTURES_SYMBOL[symbol]
+    url = f"https://fapi.binance.com/futures/data/openInterestHist?symbol={bsym}&period=15m&limit={limit}"
+    req = urllib.request.Request(url, headers={"User-Agent": "btc-monitor-bot"})
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        rows = json.loads(resp.read())
+    rows.sort(key=lambda r: r["timestamp"])
+    return [{"timestamp": r["timestamp"], "sum_open_interest": float(r["sumOpenInterest"])} for r in rows]
 
 
 def fetch_yahoo(symbol, limit=60, interval="15m", range_="5d"):
@@ -814,7 +853,7 @@ def rearm_to_watching(sym_state, closed_bars=None):
 
 # ---------------------------------------------------------------- logic ----
 
-def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None, eia_surprise=None):
+def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log=None, eia_surprise=None, oi_history=None):
     """Dispatches to the market-specific entry logic -- each market got
     its own backtested filter set (crypto: retest/2-bar/ADX; India:
     RSI momentum + VWAP alignment; US: Gap and Go, short-only) since a
@@ -828,6 +867,9 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     eia_surprise is optional and only used by check_watching_commodity()
     for NG=F's news-confirmation gate -- fetched by a separate script
     (eia_check.py) before the scan, same pattern as news_briefing.py.
+    oi_history is optional and only used by check_watching_crypto()'s
+    check_oi_divergence_long() -- fetched by main() only for the 5
+    OI_DIVERGENCE_LONG_SYMBOLS, None for everything else.
     capital already has committed_capital() subtracted by the caller
     (main()) -- if that leaves nothing free, skip outright rather than
     let position_size() size a qty=0 alert (no minimum-qty guard exists
@@ -836,7 +878,7 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     if capital <= 0:
         return None
     if market == "crypto":
-        return check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
+        return check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, oi_history)
     if market == "india":
         return check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if market == "us":
@@ -1039,7 +1081,62 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
     return {"text": text, "type": "gap_and_go_short", "direction": "short", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": vol / vol_avg if vol_avg else 0, "trigger_context": trigger_context}
 
 
-def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market):
+def check_oi_divergence_long(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, oi_history):
+    """Checked before check_watching_crypto()'s other setups -- see
+    OI_DIVERGENCE_LONG_SYMBOLS' definition above for the real backtest
+    behind this. oi_history is a small (~10-bar) recent open-interest
+    window fetched by main() only for the 5 eligible symbols; None for
+    everything else (including BTC/ETH -- deliberately not eligible).
+
+    Own dedicated dedup field (oi_div_condition_met), not the shared
+    last_alert -- fires only on the transition into the condition, not
+    every scan it remains true, same lesson DMI+DPO/Triple MA already
+    had to learn the hard way this session (spam re-fires from a
+    dedup field shared across setup types)."""
+    if symbol not in OI_DIVERGENCE_LONG_SYMBOLS or not oi_history or len(oi_history) < OI_DIVERGENCE_LOOKBACK_BARS + 1:
+        return None
+    if len(closed_bars) < OI_DIVERGENCE_LOOKBACK_BARS + 1:
+        return None
+
+    cur_oi = oi_history[-1]["sum_open_interest"]
+    prev_oi = oi_history[-(OI_DIVERGENCE_LOOKBACK_BARS + 1)]["sum_open_interest"]
+    price_now = last_closed["close"]
+    price_prev = closed_bars[-(OI_DIVERGENCE_LOOKBACK_BARS + 1)]["close"]
+    if not prev_oi or not price_prev:
+        return None
+    price_chg = (price_now - price_prev) / price_prev
+    oi_chg = (cur_oi - prev_oi) / prev_oi
+
+    condition_met = price_chg <= -OI_DIVERGENCE_PRICE_THRESH and oi_chg <= OI_DIVERGENCE_OI_THRESH
+    was_met = sym_state.get("oi_div_condition_met", False)
+    sym_state["oi_div_condition_met"] = condition_met
+    if not condition_met or was_met:
+        return None
+
+    n = atr(closed_bars)
+    close = price_now
+    stop = last_closed["low"] - 1.0 * n
+    if stop >= close:
+        return None
+    losses = sym_state.get("consecutive_losses", 0)
+    wins = sym_state.get("consecutive_wins", 0)
+    leverage = LEVERAGE_BY_MARKET.get(market, 1)
+    qty = position_size(capital, close, stop, losses, leverage=leverage, consecutive_wins=wins)
+    tag = "" if tradable else " (analysis only)"
+    text = build_alert_text(
+        f"{symbol} OI DIVERGENCE (capitulation){tag}\n\n"
+        f"BUY\nEntry: {close:,.4g}\nStoploss: {stop:,.4g}\nVolume: ~{qty:.6g} units\n"
+        f"Take profit: Keep trailing (no fixed target)\n"
+        f"{expected_profit_line(close, stop, qty, currency='$')}\n\n"
+        f"Price down {abs(price_chg)*100:.2f}% over the last hour while open interest fell "
+        f"{abs(oi_chg)*100:.2f}% -- leveraged longs unwinding, not fresh selling conviction.",
+        symbol=symbol, price=close,
+    )
+    trigger_context = {"price_chg_1h": round(price_chg, 6), "oi_chg_1h": round(oi_chg, 6)}
+    return {"text": text, "type": "oi_divergence_long", "direction": "long", "entry": close, "stop": stop, "qty": qty, "target": None, "vol_ratio": 1.0, "trigger_context": trigger_context}
+
+
+def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, oi_history=None):
     """Crypto-only entry logic -- three filters layered on the same base
     breakout/breakdown/range-rejection setups, selected via a 176-combo
     backtest sweep (2 years of 15m data, 12-symbol watchlist) and then
@@ -1058,6 +1155,10 @@ def check_watching_crypto(symbol, tradable, sym_state, closed_bars, last_closed,
     looked strong in year 1: only 51.2% win / PF 1.24 held up in year
     2 -- the honest expectation going forward is closer to that number
     than the in-sample one."""
+    oi_alert = check_oi_divergence_long(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, oi_history)
+    if oi_alert:
+        return oi_alert
+
     range_high = sym_state["range_high"]
     range_low = sym_state["range_low"]
     close = last_closed["close"]
@@ -2182,7 +2283,18 @@ def main():
             # every entry that was never broker-executed.
             sync_broker_entry(symbol, market, log_entry, shadow, sym_state)
 
-        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise)
+        oi_history = None
+        if market == "crypto" and symbol in OI_DIVERGENCE_LONG_SYMBOLS:
+            try:
+                oi_history = fetch_binance_futures_oi(symbol)
+            except Exception as e:
+                # A failed OI fetch costs this one symbol its OI-divergence
+                # check this scan, not the whole run -- check_watching_crypto()
+                # already treats oi_history=None as "skip that check", same
+                # as if the symbol weren't eligible at all.
+                print(f"{symbol}: OI fetch failed ({e}), skipping OI-divergence check this scan")
+
+        alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise, oi_history)
         if alert:
             fired_this_scan.append((market, symbol, alert))
 
