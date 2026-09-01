@@ -824,7 +824,15 @@ def check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capita
     if market == "india":
         return check_watching_india(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
     if market == "us":
-        return check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log)
+        alert = check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log)
+        # The user's broker can't short US equities -- filter out any
+        # short-direction alert regardless of source (Gap and Go, or
+        # the Triple MA/Triple Threat fallback via
+        # check_secondary_strategies both still fire short signals
+        # internally). check_watching_us()'s own dedup state (gap_fired
+        # etc.) already updated normally before this runs, so nothing
+        # retries every scan trying to re-fire the filtered signal.
+        return None if alert and alert.get("direction") == "short" else alert
     if market == "commodity":
         return check_watching_commodity(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, eia_surprise)
     return check_watching_default(symbol, tradable, sym_state, closed_bars, last_closed, capital, market)
@@ -868,6 +876,24 @@ def check_watching_us(symbol, tradable, sym_state, closed_bars, last_closed, cap
     retest/2-bar/ADX combo rescued it when transplanted here -- US
     genuinely needed its own strategy, researched from real US
     day-trading practice rather than reused from another market).
+
+    User's broker can't short US equities -- check_watching()'s
+    dispatcher now filters out ANY short-direction alert for market
+    "us" (this function's own Gap and Go short, and the Triple MA/
+    Triple Threat fallback's short side too), so despite everything
+    below, no short signal for US ever actually reaches the user
+    anymore. Left running internally rather than ripped out: its
+    gap_fired/gap_direction state tracking is unaffected either way,
+    and every long-only replacement tried so far (see git history --
+    gap_and_go_long, breakout_long isolated/retest-confirmed,
+    range_long_rejection isolated, VWAP/RSI mean-reversion both
+    directions -- 10 candidates total on real 40-symbol US_UNIVERSE
+    60-day 15m data) came back flat or negative (PF 0.53-0.98), so
+    there's nothing validated yet to replace it with. Real production
+    triple_ma_long's own live track record on US is thin and weak too
+    (14.3% win, n=7) -- the honest state of things right now is US has
+    no validated long-only edge, watched via the unfiltered fallback
+    in the meantime rather than gone completely quiet.
 
     Mechanic: an overnight gap down of >=1.5% (today's session open vs.
     the prior session's close) locks the day to short-only. Once the
