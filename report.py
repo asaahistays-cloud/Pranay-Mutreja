@@ -312,8 +312,15 @@ def find_bot_mistakes(state):
     for e in state.get("setup_log", []):
         if not e.get("resolved") or not e.get("outcome"):
             continue
+        # "stale_shadow_state" entries (monitor.py's settle_end_of_day()/
+        # trend_reversed() guards against pre-existing broken shadows)
+        # carry pnl_per_unit=None -- not a real trade outcome, just
+        # administrative cleanup. `None > 0` crashes; excluded the same
+        # way the dashboard already excludes these from its stats.
+        if e["outcome"].get("exit_reason") == "stale_shadow_state":
+            continue
         pnl = e["outcome"]["pnl_per_unit"]
-        if pnl > 0:
+        if pnl is None or pnl > 0:
             continue
         d = diagnose_loss(e["type"], e.get("entry"), e.get("stop"), pnl, e["outcome"]["exit_reason"], e.get("trigger_context"))
         if d["category"] == "bot_mistake":
