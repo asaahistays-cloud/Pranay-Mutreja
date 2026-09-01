@@ -1223,3 +1223,28 @@ No setups fired today.
 
 ---
 
+## 2026-09-01 08:38 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-01)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-01)
+- Suggested: 5 trade(s) | Resolved: 4 | Still playing out: 1
+- If you'd taken all 4 resolved trades: 1 right, 3 wrong (25% correct)
+- Net loss (USD): -175.7
+  [-] AVAX-USD triple_threat_long (long): -59.77
+  [-] FET-USD triple_ma_short (short): -100.7
+  [-] AVAX-USD triple_threat_long (long): -59.77
+  [+] FET-USD triple_ma_long (long): +44.54
+- 1 trade(s) still open, not yet counted above: BTC-USD (triple_ma_short)
+
+**US -- SIGNAL QUALITY** (2026-09-01)
+- Suggested: 3 trade(s) | Resolved: 2 | Still playing out: 1
+- If you'd taken all 2 resolved trades: 1 right, 1 wrong (50% correct)
+- Net loss (USD): -4.191
+  [-] HOOD triple_ma_long (long): -65.49
+  [+] AAL triple_ma_short (short): +61.3
+- 1 trade(s) still open, not yet counted above: GC=F (seasonal_short)
+
+---
+
