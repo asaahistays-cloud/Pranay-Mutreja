@@ -101,10 +101,14 @@ def fetch_india_news(limit=25):
 def build_prompt(headlines):
     lines = "\n".join(f"- {h['headline']}" for h in headlines)
     return f"""You are a market risk analyst. Below are today's real finance/world news headlines. \
-Assess them for risk relevant to three specific markets this trading bot watches: \
-crypto (BTC/ETH/SOL/XRP/AVAX/NEAR/FET), Indian equities including NIFTY/BankNifty/Sensex index \
-futures (NSE cash and derivatives move on the same macro/news drivers -- RBI policy, budget, FII \
-flows, global cues -- so read these as one market, not two), and US equities.
+Assess them for risk relevant to four specific markets this trading bot watches: \
+crypto (BTC/ETH/SOL/XRP/AVAX/NEAR/FET -- spot and leveraged futures both move on the same news, \
+read as one market), Indian equities including NIFTY/BankNifty/Sensex index futures (NSE cash and \
+derivatives move on the same macro/news drivers -- RBI policy, budget, FII flows, global cues -- so \
+read these as one market, not two), US equities, and commodities (Gold GC=F, Natural Gas NG=F -- \
+driven by inflation expectations, USD strength, and safe-haven demand for gold; weather and EIA \
+storage data for natural gas -- genuinely different drivers from the equity/crypto markets above, \
+assess separately).
 
 Headlines:
 {lines}
@@ -112,7 +116,7 @@ Headlines:
 Respond with ONLY valid JSON, no other text, in this exact shape:
 {{
   "summary": "2-3 sentence plain-English overview of what matters today",
-  "risk": {{"crypto": "elevated|normal|positive", "india": "elevated|normal|positive", "us": "elevated|normal|positive"}},
+  "risk": {{"crypto": "elevated|normal|positive", "india": "elevated|normal|positive", "us": "elevated|normal|positive", "commodity": "elevated|normal|positive"}},
   "key_events": [{{"headline": "...", "why_it_matters": "one sentence"}}]
 }}
 
@@ -141,7 +145,7 @@ def format_telegram(assessment):
     risk = assessment["risk"]
     risk_emoji = {"elevated": "\U0001F534", "normal": "\U0001F7E2", "positive": "\U0001F535"}
     lines = ["DAILY NEWS BRIEFING", "", assessment["summary"], ""]
-    for market in ("crypto", "india", "us"):
+    for market in ("crypto", "india", "us", "commodity"):
         lvl = risk.get(market, "normal")
         lines.append(f"{risk_emoji.get(lvl, '')} {market.upper()}: {lvl}")
     if assessment.get("key_events"):

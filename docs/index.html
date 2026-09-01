@@ -60,6 +60,7 @@
   .tag.short { background: rgba(255,92,114,0.15); color: var(--red); }
   .tag.market-crypto { background: rgba(245,166,35,0.15); color: var(--amber); }
   .tag.market-us { background: rgba(79,140,255,0.15); color: var(--accent); }
+  .tag.market-commodity { background: rgba(245,166,35,0.15); color: var(--amber); }
   .tag.market-india { background: rgba(62,207,142,0.15); color: var(--green); }
   .tag.market-india_futures { background: rgba(62,207,142,0.15); color: var(--green); }
 
@@ -651,7 +652,7 @@ function renderNewsBriefing(state) {
   const a = briefing.assessment;
   let assessmentHtml = "";
   if (a) {
-    const risks = ["crypto", "india", "us"].map(m => {
+    const risks = ["crypto", "india", "us", "commodity"].map(m => {
       const lvl = a.risk?.[m] || "normal";
       return `<span class="tag market-${m}">${m}</span> <b style="color:${RISK_COLOR[lvl] || "var(--text)"}">${lvl}</b>`;
     }).join(`<span style="color:var(--text-faint);margin:0 10px">|</span>`);
