@@ -14,15 +14,20 @@ Finnhub) fixes that -- confirmed live and current (same-day pubDates,
 real NIFTY/bond-yield/Indian-company headlines).
 
 TradingView's public ideas pages (/symbols/SYMBOL/ideas/) are real
-trader-submitted analysis, explicitly requested to link India futures
-to "news and debates" -- confirmed the actual content is server-
-rendered directly in the page's HTML (checked via a real browser's
-network log first to rule out a separate JS-driven API call being
-missed), so a plain GET + regex extraction works, no headless browser
-needed despite the page being a JS-heavy React app for interactive use.
-Tagged as opinion/debate in the LLM prompt, not reported as news
-events -- these are traders arguing a thesis, not confirmed
-information.
+trader-submitted analysis, explicitly requested to link every market
+this bot trades to "news and debates" -- confirmed the actual content
+is server-rendered directly in the page's HTML (checked via a real
+browser's network log first to rule out a separate JS-driven API call
+being missed), so a plain GET + regex extraction works, no headless
+browser needed despite the page being a JS-heavy React app for
+interactive use. Tagged as opinion/debate in the LLM prompt, not
+reported as news events -- these are traders arguing a thesis, not
+confirmed information. Covers: India futures (NIFTY/BankNifty/Sensex),
+all 7 crypto symbols (not just the 5 OI-divergence trades -- BTC/ETH
+had zero debate coverage at first), both commodities (GC=F/NG=F -- had
+a risk category in the LLM prompt but no actual source before this),
+and today's active US watchlist (dynamic, read from state rather than
+a fixed list since rank_movers.py picks a new top-15 daily).
 
 Explicitly NOT wired into any trading decision -- no gating, no sizing
 change, nothing here touches check_watching()/position_size(). This is
@@ -216,6 +221,13 @@ def main():
         print("FINNHUB_API_KEY not set, skipping.")
         return 1
 
+    # Loaded early (not at its previous spot further down) so the
+    # ideas-fetching block below can read today's actual active US
+    # watchlist -- unlike crypto/India futures, US doesn't have a fixed
+    # symbol list (rank_movers.py picks a new top-15 each day), so
+    # there's no static tuple to hardcode the way the other markets have.
+    state = monitor.load_state()
+
     headlines = fetch_world_news()
     # ET's RSS is a second, independent source -- a failure here (feed
     # down, schema change, network blip) must not take down the whole
@@ -228,19 +240,24 @@ def main():
         print(f"India news fetch failed ({e}), continuing with Finnhub only.")
         india_headlines = []
 
-    # Real community trading ideas/debates for the 3 India index futures
-    # this bot actually monitors (see check_watching_india_futures()) --
-    # same failure-isolation reasoning as India news above, and each
-    # symbol fetched independently so one bad page doesn't cost the
-    # other two.
-    # Same for the 5 crypto symbols check_oi_divergence_long() actually
-    # trades (see monitor.OI_DIVERGENCE_LONG_SYMBOLS) -- not all 7 crypto
-    # symbols, scoped to match the strategy. TradingView's ideas URL for
-    # crypto wants the bare Binance ticker (AVAXUSDT), not an exchange-
-    # prefixed one -- confirmed via a real redirect (BINANCE-AVAXUSDT ->
-    # /symbols/AVAXUSDT/ideas/).
+    # Real community trading ideas/debates -- India index futures (see
+    # check_watching_india_futures()), all 7 crypto symbols (not just
+    # the 5 OI_DIVERGENCE_LONG_SYMBOLS trade -- BTC/ETH are this bot's
+    # two biggest crypto positions and had no debate coverage at all),
+    # both commodities (GC=F/NG=F -- previously only had a risk
+    # *category* in the LLM prompt below, no actual source), and
+    # today's active US watchlist (dynamic, from rank_movers.py -- read
+    # off `state`, not a fixed tuple, since it changes daily unlike
+    # every other market's fixed symbol list). Each symbol fetched
+    # independently, same failure-isolation reasoning as India news
+    # above, so one bad page never costs the others.
+    idea_symbols = [
+        "NSE-NIFTY", "NSE-BANKNIFTY", "BSE-SENSEX",
+        "BTCUSDT", "ETHUSDT", "AVAXUSDT", "FETUSDT", "NEARUSDT", "SOLUSDT", "XRPUSDT",
+        "COMEX-GC1!", "NYMEX-NG1!",
+    ] + list(state.get("active_us_symbols", []))
     idea_headlines = []
-    for tv_symbol in ("NSE-NIFTY", "NSE-BANKNIFTY", "BSE-SENSEX", "AVAXUSDT", "FETUSDT", "NEARUSDT", "SOLUSDT", "XRPUSDT"):
+    for tv_symbol in idea_symbols:
         try:
             idea_headlines += fetch_tradingview_ideas(tv_symbol)
         except Exception as e:
@@ -259,7 +276,6 @@ def main():
         print("No headlines fetched this cycle -- nothing wrong, just nothing new to report.")
         return 0
 
-    state = monitor.load_state()
     seen_ids_list = state.get("news_seen_ids", [])
     seen_ids_set = set(seen_ids_list)
     new_headlines = [h for h in headlines if h.get("id") is not None and h["id"] not in seen_ids_set]
