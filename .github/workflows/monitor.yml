@@ -244,7 +244,23 @@ jobs:
           # underlying bug is fixed and no mistakes remain) actually
           # gets staged and committed, not just removed from disk on
           # this ephemeral runner.
-          git add -A -- state.json "Trade Results.md" "Trade Why Report.md" BOT_MISTAKES.md 2>/dev/null || true
+          #
+          # One `git add` per file, not a single call with all 4
+          # pathspecs -- confirmed directly as the root cause of a real
+          # multi-hour outage: when ANY one pathspec matches nothing
+          # (e.g. BOT_MISTAKES.md or "Trade Why Report.md" not existing
+          # yet on a given run), git add's fatal "pathspec did not
+          # match any files" aborts the ENTIRE command, which the
+          # `2>/dev/null || true` silently swallowed -- meaning
+          # state.json never got staged EITHER, despite real setups
+          # firing and real Telegram alerts going out every run. State
+          # silently stopped advancing for 6+ hours while every run
+          # kept re-detecting and re-alerting the same handful of
+          # already-fired transitions from the same frozen base state.
+          git add state.json 2>/dev/null || true
+          git add -A -- "Trade Results.md" 2>/dev/null || true
+          git add -A -- "Trade Why Report.md" 2>/dev/null || true
+          git add -A -- BOT_MISTAKES.md 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Update state / trade results [skip ci]"
             # With multiple cron triggers firing every ~5 min, overlapping
