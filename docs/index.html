@@ -93,6 +93,23 @@
   .trend-chart-labels { display: flex; margin-top: 6px; }
   .trend-chart-labels > div { flex: 1; text-align: center; font-size: 10px; color: var(--text-faint); font-family: var(--mono); }
 
+  .setup-feed { display: flex; flex-direction: column; gap: 8px; }
+  .setup-item { display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--panel-border); border-left: 3px solid var(--dir-color, var(--panel-border)); border-radius: 10px; padding: 10px 14px; transition: transform 0.15s, border-color 0.15s; }
+  .setup-item:hover { transform: translateX(2px); }
+  .setup-dir-icon { font-size: 15px; color: var(--dir-color); flex-shrink: 0; width: 14px; text-align: center; }
+  .setup-main { flex: 1; min-width: 0; }
+  .setup-symbol-row { display: flex; align-items: center; gap: 7px; font-weight: 700; font-size: 14px; flex-wrap: wrap; }
+  .setup-meta-row { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-faint); margin-top: 3px; flex-wrap: wrap; }
+  .setup-right { text-align: right; flex-shrink: 0; }
+  .setup-entry { font-size: 11px; color: var(--text-faint); font-family: var(--mono); }
+  .setup-outcome-val { font-family: var(--mono); font-weight: 700; font-size: 14px; margin-top: 2px; }
+  .setup-pending-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); position: relative; margin-right: 5px; }
+  .setup-pending-dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid var(--amber); animation: pulse-ring 1.8s ease-out infinite; }
+  @media (max-width: 560px) {
+    .setup-item { flex-wrap: wrap; }
+    .setup-right { text-align: left; margin-left: 26px; }
+  }
+
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { text-align: left; color: var(--text-faint); font-weight: 500; padding: 6px 10px; border-bottom: 1px solid var(--panel-border); text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; }
   td { padding: 8px 10px; border-bottom: 1px solid var(--panel-border); font-family: var(--mono); }
@@ -867,43 +884,61 @@ function renderRecentSetups(state) {
   }
   window.__recentSetupsLog = log; // referenced by index from the Taken button's onclick
 
-  const rows = log.map((e, i) => {
+  // Compact activity-feed cards instead of a dense table -- direction
+  // shown as a colored arrow + left accent bar (scan the color, don't
+  // read a "long"/"short" cell), outcome as a glowing number or a
+  // pulsing amber dot for anything still pending, same visual language
+  // (glow, pulse-ring) the rest of the redesigned dashboard already uses.
+  const items = log.map((e, i) => {
     const market = marketOf(e.symbol);
     const cur = currencyFor(e.symbol);
-    let outcomeCell = `<span style="color:var(--text-faint)">pending</span>`;
+    const dirColor = e.direction === "long" ? "#3ecf8e" : "#ff5c72";
+    const dirIcon = e.direction === "long" ? "▲" : "▼";
+
+    let outcomeHtml;
     if (e.resolved && e.outcome && e.outcome.exit_reason === "stale_shadow_state") {
-      outcomeCell = `<span style="color:var(--text-faint)">n/a (cleanup)</span>`;
+      outcomeHtml = `<div class="setup-outcome-val" style="color:var(--text-faint);font-size:12px">n/a</div>`;
     } else if (e.resolved && e.outcome) {
       const pnl = e.outcome.pnl_total;
-      outcomeCell = pnl >= 0
-        ? `<span class="pnl-pos">+${cur}${fmtNum(pnl)}</span>`
-        : `<span class="pnl-neg">${cur}${fmtNum(pnl)}</span>`;
+      const cls = pnl >= 0 ? "pnl-pos glow" : "pnl-neg glow";
+      outcomeHtml = `<div class="setup-outcome-val ${cls}">${pnl >= 0 ? "+" : ""}${cur}${fmtNum(pnl)}</div>`;
+    } else {
+      outcomeHtml = `<div class="setup-outcome-val" style="color:var(--text-dim);font-size:12px"><span class="setup-pending-dot"></span>pending</div>`;
     }
-    const surfacedTag = e.surfaced === false ? `<span style="color:var(--text-faint);font-size:11px">(not surfaced)</span>` : "";
+
+    const surfacedTag = e.surfaced === false ? `<span>(not surfaced)</span>` : "";
     const withinWindow = (Date.now() - new Date(e.fired_at).getTime()) < TAKEN_WINDOW_MS;
-    let statusCell;
+    let statusHtml = "";
     if (e.taken) {
-      statusCell = `<span style="color:var(--accent);font-size:11px">taken</span>`;
+      statusHtml = `<span style="color:var(--accent)">taken</span>`;
     } else if (!e.resolved && e.surfaced !== false && withinWindow) {
       const minsLeft = Math.max(0, Math.ceil((TAKEN_WINDOW_MS - (Date.now() - new Date(e.fired_at).getTime())) / 60000));
-      statusCell = `<button class="taken-btn" onclick="openTakenModal(${i})">Taken</button> <span class="taken-window">${minsLeft}m left</span>`;
-    } else {
-      statusCell = surfacedTag || `<span style="color:var(--text-faint);font-size:11px">–</span>`;
+      statusHtml = `<button class="taken-btn" onclick="openTakenModal(${i})" style="padding:2px 9px;font-size:11px">Taken</button> <span class="taken-window">${minsLeft}m left</span>`;
+    } else if (surfacedTag) {
+      statusHtml = surfacedTag;
     }
-    return `<tr>
-      <td>${e.symbol} <span class="tag market-${market}">${market}</span></td>
-      <td><span class="tag ${e.direction}">${e.direction}</span></td>
-      <td style="color:var(--text-faint)">${e.type}</td>
-      <td>${cur}${fmtNum(e.entry, 4)}</td>
-      <td>${outcomeCell}</td>
-      <td>${statusCell}</td>
-      <td style="color:var(--text-faint)">${fmtIST(e.fired_at)}</td>
-    </tr>`;
+
+    return `<div class="setup-item" style="--dir-color:${dirColor}">
+      <span class="setup-dir-icon">${dirIcon}</span>
+      <div class="setup-main">
+        <div class="setup-symbol-row">
+          ${e.symbol}
+          <span class="tag market-${market}">${market}</span>
+        </div>
+        <div class="setup-meta-row">
+          <span>${e.type}</span>
+          <span>&middot;</span>
+          <span>${fmtIST(e.fired_at)}</span>
+          ${statusHtml ? `<span>&middot;</span>${statusHtml}` : ""}
+        </div>
+      </div>
+      <div class="setup-right">
+        <div class="setup-entry">${cur}${fmtNum(e.entry, 4)}</div>
+        ${outcomeHtml}
+      </div>
+    </div>`;
   }).join("");
-  el.innerHTML = `<table>
-    <thead><tr><th>Symbol</th><th>Dir</th><th>Type</th><th>Entry</th><th>Outcome</th><th>Status</th><th>Fired</th></tr></thead>
-    <tbody>${rows}</tbody>
-  </table>`;
+  el.innerHTML = `<div class="setup-feed">${items}</div>`;
 }
 
 // GitHub's unauthenticated REST API caps out at 60 requests/hour PER
