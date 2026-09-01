@@ -61,6 +61,7 @@
   .tag.market-crypto { background: rgba(245,166,35,0.15); color: var(--amber); }
   .tag.market-us { background: rgba(79,140,255,0.15); color: var(--accent); }
   .tag.market-india { background: rgba(62,207,142,0.15); color: var(--green); }
+  .tag.market-india_futures { background: rgba(62,207,142,0.15); color: var(--green); }
 
   .pnl-pos { color: var(--green); }
   .pnl-neg { color: var(--red); }
@@ -327,11 +328,12 @@ const IST_OFFSET_MS = (5 * 60 + 30) * 60 * 1000;
 
 function marketOf(symbol) {
   if (symbol.endsWith(".NS")) return "india";
+  if (symbol.endsWith("-FUT")) return "india_futures";
   if (symbol.includes("-USD")) return "crypto";
   return "us";
 }
 function currencyFor(symbol) {
-  return symbol.endsWith(".NS") ? "₹" : "$";
+  return (symbol.endsWith(".NS") || symbol.endsWith("-FUT")) ? "₹" : "$";
 }
 function toISTDate(iso) {
   const d = new Date(iso);
