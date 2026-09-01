@@ -1714,34 +1714,53 @@ def check_open(symbol, tradable, sym_state, closed_bars, last_closed, notify=Tru
                 send_telegram(f"{symbol} short -- consider taking profit{tag}\n\nPeak gain was {peak_profit:,.4g}/unit, now {current_profit:,.4g}/unit -- given back {giveback_pct*100:.0f}%. Still in profit; your call.", symbol=symbol, price=close)
 
 
-def trend_reversed(setup_type, direction, closed_bars, symbol=None, trigger_context=None):
+def trend_reversed(setup_type, direction, closed_bars, market=None, trigger_context=None):
     """Explicitly requested: check_open()'s trailing stop only reacts
     to PRICE -- if a position's own underlying signal has already
     flipped against it, the bot still just waits for price to
     eventually wander down to the trailing stop, giving back far more
     than necessary and sometimes turning a real winner into a loser.
-    This recomputes each strategy's own entry gate FRESH from the
-    current bars/context (not a possibly-stale sym_state field) and
-    flags a reversal the moment that gate would no longer pass --
-    including fading to neutral, not just a hard flip to the opposite
-    side, since a strategy's own conviction evaporating is itself
-    grounds to exit.
+    This recomputes each strategy's own directional bias/entry
+    condition FRESH from the current bars/context (not a possibly-
+    stale sym_state field) and flags a reversal the moment it would no
+    longer hold -- including fading to neutral, not just a hard flip
+    to the opposite side, since a strategy's own conviction
+    evaporating is itself grounds to exit.
 
-    Covers every setup type that fires from a freshly-recomputable
-    condition, reusing that exact condition (not a new invented one):
-      - Triple MA / Triple Threat / DMI+DPO: their own regime definition.
-      - Breakout/Breakdown/Range-rejection: the same 10-EMA trend filter
-        (EMA_PERIOD) that gates their entry in check_watching_default()/
-        check_watching_crypto() -- close crossing back to the wrong side
-        of that EMA is the exact condition that would have blocked the
-        entry in the first place.
-      - Gap and Go (US, short-only): price reclaiming the opening-range
-        low it broke down through -- the level the whole setup is built
-        on, from trigger_context.
-      - Seasonal (commodities): whether the current calendar month is
-        still in that symbol's strong/weak list for this direction --
-        naturally recomputed every scan the same way check_watching_
-        commodity() derives it at entry.
+    Two real, backtest-validated pieces:
+      - Triple MA / Triple Threat / DMI+DPO: their own regime
+        definition, recomputed fresh. Applies identically across all
+        3 markets these run in.
+      - India-only breakout_long/breakdown_short: price closing back
+        on the wrong side of the actual range level the setup broke
+        out/down through (from trigger_context), not price vs an EMA.
+
+    Explicitly tried extending this further -- first with the same
+    10-EMA (EMA_PERIOD) that gates breakout/breakdown/range-rejection
+    entry as the reversal signal, then with the range-level version
+    above applied to EVERY market instead of just India -- and
+    backtested both against 5,189 real trades on real historical data
+    (7 crypto symbols ~1yr 15m, 26 India + 13 US symbols 60d 15m):
+      - EMA version: net negative everywhere (overall avg R -0.0119 ->
+        -0.0146, win rate 49.9% -> 39.1%). It fired on 57% of all
+        trades, didn't catch losers any earlier than just letting them
+        ride to the stop (avg R ~-0.63 either way on that subset), and
+        cut short 207 real winners that would have hit target.
+      - Range-level version, all markets: crypto was a wash both
+        out-of-sample halves (-0.008/+0.007 delta -- the level sits so
+        close to the stop it barely fires before the stop would have
+        anyway), US gap_and_go stayed net negative on a thin 65-trade
+        sample, India's range-rejection types had too few trades/half
+        (11-13) to mean anything. Only India breakout_long/
+        breakdown_short held up: consistently positive on BOTH
+        out-of-sample halves (+0.031/+0.028 and +0.048/+0.083 delta
+        avg R respectively), majority-positive per-symbol (17-better/
+        9-worse across 26 symbols) -- a real, narrow edge, scoped here
+        exactly that narrowly rather than shipped broad on the
+        strength of a mixed/negative result elsewhere. Seasonal
+        wasn't testable at all (2 symbols, a couple fires/year --
+        nowhere near enough sample) -- left uncovered.
+
     Not defined for anything else (manually-logged entries like
     "community_idea" or hand-tracked India futures) -- no strategy
     logic exists to recompute for those, so they fall through to
@@ -1779,27 +1798,14 @@ def trend_reversed(setup_type, direction, closed_bars, symbol=None, trigger_cont
         close = closed_bars[-1]["close"]
         return close < trend if direction == "long" else close > trend
 
-    if setup_type in ("breakout_long", "breakdown_short", "range_long_rejection", "range_short_rejection"):
-        if len(closes) < EMA_PERIOD:
-            return False
-        trend_ema = ema(closes[-(EMA_PERIOD * 3):], EMA_PERIOD)
-        if trend_ema is None:
-            return False
+    if market == "india" and setup_type in ("breakout_long", "breakdown_short"):
+        tc = trigger_context or {}
         close = closed_bars[-1]["close"]
-        return close < trend_ema if direction == "long" else close > trend_ema
-
-    if setup_type == "gap_and_go_short":
-        level = (trigger_context or {}).get("opening_range_low")
-        if level is None:
-            return False
-        return closed_bars[-1]["close"] > level
-
-    if setup_type in ("seasonal_long", "seasonal_short") and symbol:
-        now = datetime.fromtimestamp(closed_bars[-1]["close_time"] / 1000, tz=timezone.utc)
-        strong = SEASONAL_STRONG_MONTHS.get(symbol, set())
-        weak = SEASONAL_WEAK_MONTHS.get(symbol, set())
-        current_regime = "long" if now.month in strong else ("short" if now.month in weak else None)
-        return current_regime != direction
+        if setup_type == "breakout_long":
+            level = tc.get("range_high")
+            return level is not None and close < level
+        level = tc.get("range_low")
+        return level is not None and close > level
 
     return False
 
@@ -2047,7 +2053,7 @@ def main():
                 log_entry["outcome"] = {"exit_reason": "stale_shadow_state", "pnl_per_unit": None, "pnl_total": None}
                 continue
 
-            if trend_reversed(log_entry["type"], shadow["direction"], closed_bars, symbol=symbol, trigger_context=log_entry.get("trigger_context")):
+            if trend_reversed(log_entry["type"], shadow["direction"], closed_bars, market=market, trigger_context=log_entry.get("trigger_context")):
                 close = last_closed["close"]
                 entry_price = shadow["entry_price"]
                 pnl = (close - entry_price) if shadow["direction"] == "long" else (entry_price - close)
