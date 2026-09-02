@@ -1428,3 +1428,93 @@ No setups fired today.
 
 ---
 
+## 2026-09-03 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-02)
+- Suggested: 19 trade(s) | Resolved: 19 | Still playing out: 0
+- If you'd taken all 19 resolved trades: 7 right, 12 wrong (37% correct)
+- Net loss (INR): -1.822e+04
+  [-] BANKINDIA.NS breakdown_short (short): -3,237
+  [+] TATAPOWER.NS triple_ma_long (long): +7,569
+  [+] COALINDIA.NS triple_ma_long (long): +1,254
+  [-] SUZLON.NS triple_ma_short (short): -2,303
+  [+] COALINDIA.NS triple_ma_long (long): +1,336
+  [-] SUZLON.NS triple_ma_short (short): -3,076
+  [-] IDEA.NS triple_ma_short (short): -7,568
+  [+] TATAPOWER.NS breakout_long (long): +978.7
+  [+] COALINDIA.NS triple_ma_long (long): +1,280
+  [-] IDEA.NS triple_ma_short (short): -7,452
+  [+] JSWENERGY.NS breakout_long (long): +707.6
+  [-] IDEA.NS breakout_long (long): -3,037
+  [+] JSWENERGY.NS triple_ma_long (long): +3,127
+  [-] POWERGRID.NS breakout_long (long): -2,062
+  [-] POWERGRID.NS breakout_long (long): -560
+  [-] JSWENERGY.NS breakout_long (long): -1,991
+  [-] RPOWER.NS triple_ma_short (short): -453.1
+  [-] TATAPOWER.NS breakout_long (long): -690.8
+  [-] RPOWER.NS triple_ma_short (short): -2,041
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-02)
+- Suggested: 38 trade(s) | Resolved: 35 | Still playing out: 3
+- If you'd taken all 35 resolved trades: 15 right, 20 wrong (43% correct)
+- Net loss (USD): -138.2
+  [-] FET-USD triple_ma_short (short): -41.29
+  [-] FET-USD triple_ma_long (long): -49.08
+  [-] FET-USD triple_threat_long (long): -36.48
+  [+] FET-USD triple_ma_short (short): +17.72
+  [-] NEAR-USD triple_threat_short (short): -31.69
+  [-] BTC-USD dmi_dpo_short (short): -33.84
+  [+] BTC-USD dmi_dpo_short (short): +51.14
+  [+] ETH-USD dmi_dpo_short (short): +74.36
+  [+] ETH-USD triple_ma_short (short): +46.67
+  [+] SOL-USD triple_ma_short (short): +11.27
+  [+] BTC-USD triple_ma_short (short): +46.82
+  [-] FET-USD triple_ma_short (short): -72.34
+  [-] XRP-USD breakdown_short (short): -166
+  [-] SOL-USD triple_threat_long (long): -38.92
+  [-] BTC-USD triple_threat_long (long): -27.16
+  [+] BTC-USD dmi_dpo_short (short): +22.27
+  [-] ETH-USD dmi_dpo_short (short): -41.08
+  [-] XRP-USD triple_ma_long (long): -52.77
+  [-] NEAR-USD triple_ma_short (short): -37.64
+  [+] BTC-USD dmi_dpo_short (short): +211.6
+  [-] XRP-USD triple_ma_long (long): -22.28
+  [-] FET-USD triple_ma_long (long): -35.27
+  [+] XRP-USD triple_ma_short (short): +84.97
+  [+] SOL-USD triple_ma_short (short): +62.96
+  [+] BTC-USD triple_ma_short (short): +33.69
+  [+] ETH-USD breakdown_short (short): +76.96
+  [+] NEAR-USD triple_ma_short (short): +2.69
+  [-] XRP-USD triple_threat_long (long): -35.99
+  [-] ETH-USD triple_ma_long (long): -54.73
+  [-] SOL-USD dmi_dpo_short (short): -65.06
+  [+] BTC-USD dmi_dpo_short (short): +11.91
+  [+] SOL-USD dmi_dpo_short (short): +36.27
+  [-] ETH-USD triple_ma_long (long): -29.47
+  [-] NEAR-USD triple_ma_short (short): -15.31
+  [-] SOL-USD triple_ma_short (short): -43.13
+- 3 trade(s) still open, not yet counted above: FET-USD (triple_ma_short), ETH-USD (triple_ma_short), XRP-USD (triple_ma_long)
+
+**US -- SIGNAL QUALITY** (2026-09-02)
+- Suggested: 10 trade(s) | Resolved: 7 | Still playing out: 3
+- If you'd taken all 7 resolved trades: 5 right, 2 wrong (71% correct)
+- Net profit (USD): +1,937
+  [-] CLF triple_ma_long (long): -294.7
+  [+] SNAP triple_threat_long (long): +705.5
+  [+] SIRI triple_ma_long (long): +580.8
+  [+] SIRI triple_ma_long (long): +435.1
+  [+] SIRI triple_ma_long (long): +492.9
+  [+] SOFI triple_ma_long (long): +77.5
+  [-] NEM triple_ma_long (long): -60.21
+- 3 trade(s) still open, not yet counted above: T (triple_ma_long), F (community_idea), HOOD (triple_ma_long)
+
+**INDIA FUTURES (MANUAL) -- SIGNAL QUALITY** (2026-09-02)
+- Suggested: 3 trade(s) | Resolved: 3 | Still playing out: 0
+- If you'd taken all 3 resolved trades: 1 right, 2 wrong (33% correct)
+- Net loss (INR): -424.2
+  [+] NIFTY-FUT triple_ma_short (short): +81.64
+  [-] NIFTY-FUT triple_ma_short (short): -216.8
+  [-] SENSEX-FUT triple_ma_short (short): -289
+
+---
+
