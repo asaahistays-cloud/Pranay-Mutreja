@@ -145,6 +145,41 @@ TRAIL_ATR_MULT = 1.25
 PROFIT_LOCK_FLOOR_ATR_MULT = 0.5  # peak profit must exceed this x ATR before the lock floor engages
 PROFIT_LOCK_FRACTION = 0.7  # once engaged, guarantee at least this fraction of peak profit
 
+# 2026-09-03 self-learning check-in: these (market, setup_type, direction)
+# buckets showed near-zero follow-through on live confidence_at_fire data
+# (mostly real stop-losses, few/no trail-locked wins) -- see
+# ~/.claude/scheduled-tasks/bot-selflearning-checkin/snapshots/assessments.json
+# for the per-bucket reasoning. PAUSED, not removed: entry logic is
+# untouched, these are just skipped at fire time (main()) so no new
+# alerts/trades accumulate on them while the read gets re-checked against
+# tomorrow's data. Remove an entry to resume it -- nothing else changes.
+PAUSED_ENTRY_BUCKETS = {
+    ("india", "breakout_long", "long"),
+    ("crypto", "breakdown_short", "short"),
+    ("crypto", "dmi_dpo_long", "long"),
+    ("crypto", "triple_threat_long", "long"),
+    ("crypto", "triple_threat_short", "short"),
+    ("india_futures", "triple_ma_short", "short"),
+    ("us", "range_short_rejection", "short"),
+}
+
+# Same date, a separate finding: replaying check_open()'s trailing-stop
+# logic against real historical price data for every live trend_reversed
+# exit (see reversal_vs_hold comparison) showed that for THESE India
+# buckets specifically, the early regime-flip exit is net-costing money --
+# it's firing on opening-range noise that would often have recovered if
+# left on the trailing stop, not catching real reversals. This is an
+# EXIT-side issue, not an entry one: india|triple_ma_long/short are
+# themselves among the strongest buckets logged, so only trend_reversed()'s
+# early-exit check is paused for these -- entries fire normally, and a
+# paused position just falls through to check_open()'s ordinary
+# trailing-stop/stop-hit handling instead.
+PAUSED_REVERSAL_EXIT_BUCKETS = {
+    ("india", "triple_ma_long"),
+    ("india", "triple_ma_short"),
+    ("india", "triple_threat_long"),
+}
+
 # Crypto is static (24/7, no session to anchor a daily selection to).
 # US and India are NOT static -- their active watchlists are chosen fresh
 # each day by rank_movers.py from that market's opening-range move (the
@@ -1931,6 +1966,8 @@ def trend_reversed(setup_type, direction, closed_bars, market=None, trigger_cont
     "community_idea" or hand-tracked India futures) -- no strategy
     logic exists to recompute for those, so they fall through to
     check_open()'s normal stop/target handling untouched."""
+    if (market, setup_type) in PAUSED_REVERSAL_EXIT_BUCKETS:
+        return False
     closes = [b["close"] for b in closed_bars]
 
     if setup_type in ("triple_ma_long", "triple_ma_short"):
@@ -2334,6 +2371,8 @@ def main():
             sync_broker_entry(symbol, market, log_entry, shadow, sym_state)
 
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise, oi_history)
+        if alert and (market, alert["type"], alert["direction"]) in PAUSED_ENTRY_BUCKETS:
+            alert = None
         if alert:
             fired_this_scan.append((market, symbol, alert))
 
