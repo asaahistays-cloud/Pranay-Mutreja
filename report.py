@@ -78,7 +78,13 @@ def explain_trigger(setup_type, trigger_context):
 
     if setup_type in ("triple_ma_long", "triple_ma_short"):
         p = tc.get("periods", {})
-        parts.append(f"EMA({p.get('fast')}/{p.get('med')}/{p.get('slow')}) = {tc.get('fast_ema'):,.4g}/{tc.get('med_ema'):,.4g}/{tc.get('slow_ema'):,.4g}, freshly aligned")
+        # .4g collapses close-but-distinct EMAs to the same displayed
+        # text (e.g. 11.596456 and 11.595225 both show as "11.6") --
+        # confusing since a FRESH cross is often exactly this close by
+        # nature. .6g matches the precision trigger_context is actually
+        # stored at (round(..., 6) in monitor.py), so what's shown
+        # always reflects real separation, not a display artifact.
+        parts.append(f"EMA({p.get('fast')}/{p.get('med')}/{p.get('slow')}) = {tc.get('fast_ema'):,.6g}/{tc.get('med_ema'):,.6g}/{tc.get('slow_ema'):,.6g}, freshly aligned")
     elif setup_type in ("triple_threat_long", "triple_threat_short"):
         parts.append(f"RSI {tc.get('rsi_prev'):.0f}->{tc.get('rsi_now'):.0f} crossed 50, broke {tc.get('breakout_level'):,.4g}, trend EMA {tc.get('trend_ema'):,.4g}")
     elif setup_type == "gap_and_go_short":
@@ -128,6 +134,10 @@ def explain_outcome(exit_reason, pnl_per_unit):
         return "hit fixed target -- clean win"
     if exit_reason in ("manual_close", "manual_exit"):
         return f"manual close ({'win' if pnl_per_unit > 0 else 'loss'})"
+    if exit_reason == "trend_reversed":
+        return f"early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) ({'win' if pnl_per_unit > 0 else 'loss'})"
+    if exit_reason == "eod_settlement":
+        return f"session ended before stop or target hit -- settled at the day's close ({'win' if pnl_per_unit > 0 else 'loss'})"
     if exit_reason and exit_reason.startswith("broker_"):
         return f"{exit_reason.replace('_', ' ')} ({'win' if pnl_per_unit > 0 else 'loss'})"
     return exit_reason or "unknown exit"
@@ -212,9 +222,10 @@ def diagnose_loss(setup_type, entry, stop, pnl_per_unit, exit_reason, trigger_co
                 "detail": f"intended risk {intended_risk:,.4g}/unit, actual loss {actual_loss:,.4g}/unit ({ratio:.1f}x) -- price moved past the stop faster than the bot's bar-close check could exit; a violent move against the position, amplified by simulation lag rather than a bad entry call",
             }
 
+    exit_clause = "exited within its intended risk" if exit_reason == "stop_hit" else f"exited via {exit_reason or 'a designed exit path'}"
     return {
         "category": "market_opposite",
-        "detail": "no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)",
+        "detail": f"no anomaly found -- setup fired per its own rules and {exit_clause}; the market simply moved the other way this time (normal strategy variance, not a bug)",
     }
 
 
