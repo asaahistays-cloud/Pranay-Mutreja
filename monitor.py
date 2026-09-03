@@ -268,34 +268,34 @@ def fetch_coinbase(symbol, limit=60, granularity=900):
     return bars
 
 
-# Bybit's symbol convention (BTCUSDT) vs this bot's own (BTC-USD) --
-# only used by OI_DIVERGENCE_LONG_SYMBOLS' fetch, kept separate from
-# CRYPTO_WATCHLIST's Coinbase-based price feed. Was Binance Futures
-# until Binance started returning HTTP 451 (blocked) for GitHub
-# Actions runner IPs; Bybit's public OI endpoint isn't blocked.
-BYBIT_FUTURES_SYMBOL = {
-    "BTC-USD": "BTCUSDT", "ETH-USD": "ETHUSDT", "SOL-USD": "SOLUSDT",
-    "XRP-USD": "XRPUSDT", "AVAX-USD": "AVAXUSDT", "NEAR-USD": "NEARUSDT", "FET-USD": "FETUSDT",
-}
-
-
-def fetch_bybit_futures_oi(symbol, limit=10):
-    """Recent open-interest history (15m buckets) for one crypto symbol,
-    used only by check_oi_divergence_long() -- see its docstring for
-    the real backtest behind this. A small window (~2.5hrs at limit=10)
-    is all a live scan needs (OI_DIVERGENCE_LOOKBACK_BARS=4 back). Public
-    endpoint, no auth needed. FET-USD's Bybit contract (FETUSDT) is
-    delisted (status "Closed") as of writing, so this returns an empty
-    list for it -- check_oi_divergence_long() already treats that as
-    "skip this scan", same as any other fetch failure."""
-    bsym = BYBIT_FUTURES_SYMBOL[symbol]
-    url = f"https://api.bybit.com/v5/market/open-interest?category=linear&symbol={bsym}&intervalTime=15min&limit={limit}"
+# OI-divergence fetch has moved exchanges twice: Binance Futures returns
+# HTTP 451 for GitHub Actions runner IPs, and Bybit (tried next) returns
+# HTTP 403 for the same IPs -- both confirmed by an actual run on the
+# runner, not just local testing. OKX's public OI-history endpoint was
+# verified reachable from a real GitHub Actions run before wiring this in.
+def fetch_okx_futures_oi(symbol, limit=10):
+    """Recent open-interest history for one crypto symbol, used only by
+    check_oi_divergence_long() -- see its docstring for the real backtest
+    behind this. OKX's history endpoint is 5m-granularity and keyed by
+    base currency (not a specific contract), so it's downsampled here
+    into 15m buckets to match the 15m spacing check_oi_divergence_long()
+    and trend_reversed() assume (OI_DIVERGENCE_LOOKBACK_BARS=4 back == 1hr).
+    FET-USD has no live perpetual on OKX (nor Bybit, nor Binance) as of
+    writing -- looks delisted post the FET-to-ASI rebrand -- so this
+    returns an empty list for it; check_oi_divergence_long() already
+    treats that as "skip this scan", same as any other fetch failure."""
+    ccy = symbol.split("-")[0]
+    url = f"https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-volume?ccy={ccy}&period=5m"
     req = urllib.request.Request(url, headers={"User-Agent": "btc-monitor-bot"})
     with urllib.request.urlopen(req, timeout=15) as resp:
         data = json.loads(resp.read())
-    rows = data["result"]["list"]
-    rows.sort(key=lambda r: int(r["timestamp"]))
-    return [{"timestamp": int(r["timestamp"]), "sum_open_interest": float(r["openInterest"])} for r in rows]
+    rows = data["data"]  # [[timestamp, open_interest, volume], ...]
+    buckets = {}
+    for ts, oi, _vol in rows:
+        bucket = int(ts) // 900000
+        buckets[bucket] = {"timestamp": int(ts), "sum_open_interest": float(oi)}
+    bars = [buckets[b] for b in sorted(buckets)]
+    return bars[-limit:]
 
 
 def fetch_yahoo(symbol, limit=60, interval="15m", range_="5d"):
@@ -2278,7 +2278,7 @@ def main():
         oi_history = None
         if market == "crypto" and symbol in OI_DIVERGENCE_LONG_SYMBOLS:
             try:
-                oi_history = fetch_bybit_futures_oi(symbol)
+                oi_history = fetch_okx_futures_oi(symbol)
             except Exception as e:
                 # A failed OI fetch costs this one symbol its OI-divergence
                 # check this scan (both the reversal check below and the
