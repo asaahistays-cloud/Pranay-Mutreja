@@ -1668,3 +1668,64 @@ No setups fired today.
 
 ---
 
+## 2026-09-04 00:13 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-03)
+- Suggested: 12 trade(s) | Resolved: 12 | Still playing out: 0
+- If you'd taken all 12 resolved trades: 2 right, 10 wrong (17% correct)
+- Net loss (INR): -1.468e+04
+  [-] RPOWER.NS triple_ma_long (long): -3,009
+  [-] HUDCO.NS triple_ma_long (long): -3,608
+  [-] HUDCO.NS triple_ma_long (long): -3,791
+  [-] SUZLON.NS triple_ma_long (long): -1,931
+  [+] NMDC.NS triple_ma_short (short): +667.6
+  [-] COALINDIA.NS triple_ma_long (long): -175.6
+  [+] RPOWER.NS triple_ma_short (short): +452.3
+  [-] SAIL.NS triple_ma_short (short): -1,875
+  [-] IRFC.NS triple_ma_long (long): -543.6
+  [-] SAIL.NS triple_ma_long (long): -382.1
+  [-] NHPC.NS triple_ma_short (short): -65.79
+  [-] IRCON.NS triple_ma_short (short): -421.3
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-03)
+- Suggested: 13 trade(s) | Resolved: 12 | Still playing out: 1
+- If you'd taken all 12 resolved trades: 4 right, 8 wrong (33% correct)
+- Net loss (USD): -187.7
+  [-] NEAR-USD triple_ma_short (short): -36.08
+  [-] ETH-USD triple_ma_short (short): -33
+  [-] SOL-USD dmi_dpo_short (short): -13.41
+  [-] ETH-USD triple_ma_long (long): -20.82
+  [+] ETH-USD triple_ma_short (short): +8.456
+  [-] FET-USD triple_ma_short (short): -27.43
+  [-] BTC-USD triple_ma_short (short): -70.26
+  [+] AVAX-USD triple_ma_long (long): +41.66
+  [+] BTC-USD triple_ma_long (long): +58.75
+  [+] NEAR-USD triple_ma_short (short): +10.4
+  [-] ETH-USD triple_ma_short (short): -64.94
+  [-] FET-USD triple_ma_short (short): -41
+- 1 trade(s) still open, not yet counted above: FET-USD (triple_ma_long)
+
+**US -- SIGNAL QUALITY** (2026-09-03)
+- Suggested: 8 trade(s) | Resolved: 6 | Still playing out: 2
+- If you'd taken all 6 resolved trades: 3 right, 3 wrong (50% correct)
+- Net profit (USD): +1,949
+  [+] CCL triple_ma_long (long): +635.2
+  [-] NEM triple_ma_long (long): +0
+  [-] KO triple_ma_long (long): -174.1
+  [+] HOOD triple_ma_long (long): +901.9
+  [+] HOOD triple_ma_long (long): +768.6
+  [-] LYFT triple_ma_long (long): -182.3
+- 2 trade(s) still open, not yet counted above: F (triple_ma_long), SNAP (triple_ma_long)
+
+**INDIA FUTURES (MANUAL) -- SIGNAL QUALITY** (2026-09-03)
+- Suggested: 5 trade(s) | Resolved: 5 | Still playing out: 0
+- If you'd taken all 5 resolved trades: 1 right, 4 wrong (20% correct)
+- Net loss (INR): -3,051
+  [-] BANKNIFTY-FUT triple_ma_long (long): -917
+  [-] NIFTY-FUT triple_ma_long (long): -797.4
+  [-] SENSEX-FUT triple_ma_long (long): -887.5
+  [+] SENSEX-FUT triple_ma_long (long): +33.28
+  [-] SENSEX-FUT triple_ma_long (long): -482.2
+
+---
+
