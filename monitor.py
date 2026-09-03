@@ -161,6 +161,12 @@ PAUSED_ENTRY_BUCKETS = {
     ("crypto", "triple_threat_short", "short"),
     ("india_futures", "triple_ma_short", "short"),
     ("us", "range_short_rejection", "short"),
+    # us|triple_ma_short is the sole material deficit in the whole US
+    # market: -$3,714.53 all-time on 52 trades (42.3% win rate) while
+    # every other US setup type -- including its own long-side mirror,
+    # triple_ma_long, +$43.75 -- is flat-to-positive. Same long-works/
+    # short-struggles asymmetry already seen in crypto and India.
+    ("us", "triple_ma_short", "short"),
 }
 
 # Same date, a separate finding: replaying check_open()'s trailing-stop
