@@ -167,6 +167,11 @@ PAUSED_ENTRY_BUCKETS = {
     # triple_ma_long, +$43.75 -- is flat-to-positive. Same long-works/
     # short-struggles asymmetry already seen in crypto and India.
     ("us", "triple_ma_short", "short"),
+    # crypto|dmi_dpo_short: -$1,806.81 all-time on 34 trades (41.2% win
+    # rate), a separate live bleeder from dmi_dpo_long above (already
+    # paused for its own near-zero follow-through) -- each direction's
+    # regime condition is independent, so this needed its own entry.
+    ("crypto", "dmi_dpo_short", "short"),
 }
 
 # Same date, a separate finding: replaying check_open()'s trailing-stop
