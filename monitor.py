@@ -268,28 +268,34 @@ def fetch_coinbase(symbol, limit=60, granularity=900):
     return bars
 
 
-# Binance Futures' symbol convention (BTCUSDT) vs this bot's own
-# (BTC-USD) -- only used by OI_DIVERGENCE_LONG_SYMBOLS' fetch, kept
-# separate from CRYPTO_WATCHLIST's Coinbase-based price feed.
-BINANCE_FUTURES_SYMBOL = {
+# Bybit's symbol convention (BTCUSDT) vs this bot's own (BTC-USD) --
+# only used by OI_DIVERGENCE_LONG_SYMBOLS' fetch, kept separate from
+# CRYPTO_WATCHLIST's Coinbase-based price feed. Was Binance Futures
+# until Binance started returning HTTP 451 (blocked) for GitHub
+# Actions runner IPs; Bybit's public OI endpoint isn't blocked.
+BYBIT_FUTURES_SYMBOL = {
     "BTC-USD": "BTCUSDT", "ETH-USD": "ETHUSDT", "SOL-USD": "SOLUSDT",
     "XRP-USD": "XRPUSDT", "AVAX-USD": "AVAXUSDT", "NEAR-USD": "NEARUSDT", "FET-USD": "FETUSDT",
 }
 
 
-def fetch_binance_futures_oi(symbol, limit=10):
+def fetch_bybit_futures_oi(symbol, limit=10):
     """Recent open-interest history (15m buckets) for one crypto symbol,
     used only by check_oi_divergence_long() -- see its docstring for
     the real backtest behind this. A small window (~2.5hrs at limit=10)
-    is all a live scan needs (OI_DIVERGENCE_LOOKBACK_BARS=4 back), unlike
-    the 30-day paginated pull used for backtesting this offline."""
-    bsym = BINANCE_FUTURES_SYMBOL[symbol]
-    url = f"https://fapi.binance.com/futures/data/openInterestHist?symbol={bsym}&period=15m&limit={limit}"
+    is all a live scan needs (OI_DIVERGENCE_LOOKBACK_BARS=4 back). Public
+    endpoint, no auth needed. FET-USD's Bybit contract (FETUSDT) is
+    delisted (status "Closed") as of writing, so this returns an empty
+    list for it -- check_oi_divergence_long() already treats that as
+    "skip this scan", same as any other fetch failure."""
+    bsym = BYBIT_FUTURES_SYMBOL[symbol]
+    url = f"https://api.bybit.com/v5/market/open-interest?category=linear&symbol={bsym}&intervalTime=15min&limit={limit}"
     req = urllib.request.Request(url, headers={"User-Agent": "btc-monitor-bot"})
     with urllib.request.urlopen(req, timeout=15) as resp:
-        rows = json.loads(resp.read())
-    rows.sort(key=lambda r: r["timestamp"])
-    return [{"timestamp": r["timestamp"], "sum_open_interest": float(r["sumOpenInterest"])} for r in rows]
+        data = json.loads(resp.read())
+    rows = data["result"]["list"]
+    rows.sort(key=lambda r: int(r["timestamp"]))
+    return [{"timestamp": int(r["timestamp"]), "sum_open_interest": float(r["openInterest"])} for r in rows]
 
 
 def fetch_yahoo(symbol, limit=60, interval="15m", range_="5d"):
@@ -2272,7 +2278,7 @@ def main():
         oi_history = None
         if market == "crypto" and symbol in OI_DIVERGENCE_LONG_SYMBOLS:
             try:
-                oi_history = fetch_binance_futures_oi(symbol)
+                oi_history = fetch_bybit_futures_oi(symbol)
             except Exception as e:
                 # A failed OI fetch costs this one symbol its OI-divergence
                 # check this scan (both the reversal check below and the
