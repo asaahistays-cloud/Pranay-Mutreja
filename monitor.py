@@ -180,6 +180,19 @@ PAUSED_REVERSAL_EXIT_BUCKETS = {
     ("india", "triple_threat_long"),
 }
 
+# 2026-09-03, day 2 in a row: with the reversal-exit paused above, India
+# triple_ma is STILL bleeding -- not from one bad symbol, but from a
+# broad correlated market-open pattern (13 India symbols all fired
+# triple_ma_long within the same 5-minute window this morning and mostly
+# lost, all via genuine stop_hit -- the whole active watchlist reacting
+# to the same opening print, not independent signals). india|triple_ma
+# is otherwise one of the strongest buckets logged, so this pauses only
+# the early-session window, not the setup or the day. Cutoff is a
+# judgment call to stop the bleeding now, not yet backtested -- revisit
+# once there's enough post-cutoff data to check it actually helped.
+INDIA_OPEN_PAUSE_SETUP_TYPES = {"triple_ma_long", "triple_ma_short"}
+INDIA_OPEN_PAUSE_UNTIL_UTC_MINUTES = 5 * 60  # 05:00 UTC = 10:30 IST (NSE opens 09:15 IST)
+
 # Crypto is static (24/7, no session to anchor a daily selection to).
 # US and India are NOT static -- their active watchlists are chosen fresh
 # each day by rank_movers.py from that market's opening-range move (the
@@ -2379,6 +2392,10 @@ def main():
         alert = check_watching(symbol, tradable, sym_state, closed_bars, last_closed, capital, market, setup_log, eia_surprise, oi_history)
         if alert and (market, alert["type"], alert["direction"]) in PAUSED_ENTRY_BUCKETS:
             alert = None
+        if alert and market == "india" and alert["type"] in INDIA_OPEN_PAUSE_SETUP_TYPES:
+            now_utc = datetime.now(timezone.utc)
+            if now_utc.hour * 60 + now_utc.minute < INDIA_OPEN_PAUSE_UNTIL_UTC_MINUTES:
+                alert = None
         if alert:
             fired_this_scan.append((market, symbol, alert))
 
