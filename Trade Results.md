@@ -1729,3 +1729,96 @@ No setups fired today.
 
 ---
 
+## 2026-09-05 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-04)
+- Suggested: 18 trade(s) | Resolved: 18 | Still playing out: 0
+- If you'd taken all 18 resolved trades: 8 right, 10 wrong (44% correct)
+- Net loss (INR): -3,273
+  [+] IOB.NS triple_ma_long (long): +2,438
+  [-] UNIONBANK.NS triple_ma_short (short): -1,840
+  [-] VEDL.NS triple_ma_long (long): -2,139
+  [+] GAIL.NS triple_ma_short (short): +115.9
+  [+] PNB.NS triple_ma_long (long): +1,705
+  [+] UNIONBANK.NS triple_ma_long (long): +688.8
+  [+] GAIL.NS breakdown_short (short): +522.4
+  [-] INDIANB.NS triple_ma_long (long): -2,075
+  [+] INDIANB.NS triple_ma_long (long): +816.2
+  [-] BEL.NS triple_ma_short (short): -122.6
+  [-] BEL.NS triple_ma_short (short): -122.6
+  [+] ONGC.NS triple_ma_short (short): +149.1
+  [-] PAYTM.NS triple_ma_long (long): -855.8
+  [-] ETERNAL.NS breakdown_short (short): -1,166
+  [-] PAYTM.NS triple_ma_long (long): -617.1
+  [+] UNIONBANK.NS triple_ma_short (short): +453
+  [-] GAIL.NS triple_ma_long (long): -57.61
+  [-] BEL.NS breakdown_short (short): -1,167
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-04)
+- Suggested: 36 trade(s) | Resolved: 33 | Still playing out: 3
+- If you'd taken all 33 resolved trades: 17 right, 16 wrong (52% correct)
+- Net loss (USD): -599.8
+  [-] XRP-USD oi_divergence_long (long): +0
+  [-] XRP-USD oi_divergence_long (long): +0
+  [-] NEAR-USD oi_divergence_long (long): -102.7
+  [+] SOL-USD oi_divergence_long (long): +12.74
+  [-] FET-USD triple_ma_short (short): -126.8
+  [+] NEAR-USD triple_ma_short (short): +3.975
+  [+] SOL-USD triple_ma_short (short): +7.787
+  [-] XRP-USD triple_ma_short (short): -54.65
+  [-] FET-USD triple_ma_short (short): -46.73
+  [-] BTC-USD triple_ma_short (short): -42.16
+  [+] NEAR-USD triple_ma_short (short): +13.06
+  [+] SOL-USD triple_ma_short (short): +12.17
+  [+] AVAX-USD triple_ma_short (short): +38.22
+  [-] NEAR-USD oi_divergence_long (long): -105.2
+  [-] NEAR-USD oi_divergence_long (long): -14.86
+  [-] BTC-USD triple_ma_short (short): -30.06
+  [+] NEAR-USD oi_divergence_long (long): +129.4
+  [-] BTC-USD triple_ma_long (long): -232.2
+  [+] XRP-USD oi_divergence_long (long): +0.9629
+  [-] FET-USD triple_ma_short (short): -53.21
+  [-] XRP-USD triple_ma_short (short): -33.14
+  [+] NEAR-USD oi_divergence_long (long): +21.8
+  [-] XRP-USD triple_ma_long (long): -202.6
+  [+] SOL-USD oi_divergence_long (long): +6.696
+  [+] BTC-USD triple_ma_short (short): +12.52
+  [-] XRP-USD oi_divergence_long (long): -7.89
+  [+] XRP-USD triple_ma_short (short): +48.87
+  [+] AVAX-USD oi_divergence_long (long): +48.19
+  [+] NEAR-USD triple_ma_short (short): +31.77
+  [+] NEAR-USD oi_divergence_long (long): +15.22
+  [+] AVAX-USD oi_divergence_long (long): +65.23
+  [+] SOL-USD oi_divergence_long (long): +4.348
+  [-] SOL-USD oi_divergence_long (long): -20.59
+- 3 trade(s) still open, not yet counted above: ETH-USD (triple_ma_short), AVAX-USD (triple_ma_short), XRP-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-09-04)
+- Suggested: 12 trade(s) | Resolved: 11 | Still playing out: 1
+- If you'd taken all 11 resolved trades: 8 right, 3 wrong (73% correct)
+- Net profit (USD): +1,445
+  [-] PFE triple_ma_long (long): -346.8
+  [+] NCLH triple_ma_long (long): +128.6
+  [+] PFE triple_ma_long (long): +278.4
+  [-] NCLH triple_ma_long (long): +0
+  [+] RIOT triple_ma_long (long): +242.7
+  [-] SIRI triple_ma_long (long): -747.2
+  [+] GOLD triple_ma_long (long): +664
+  [+] GOLD triple_ma_long (long): +225
+  [+] GOLD triple_ma_long (long): +574.9
+  [+] GOLD triple_ma_long (long): +262
+  [+] C triple_ma_long (long): +163.8
+- 1 trade(s) still open, not yet counted above: NKE (triple_ma_long)
+
+**INDIA FUTURES (MANUAL) -- SIGNAL QUALITY** (2026-09-04)
+- Suggested: 5 trade(s) | Resolved: 5 | Still playing out: 0
+- If you'd taken all 5 resolved trades: 1 right, 4 wrong (20% correct)
+- Net loss (INR): -785.7
+  [+] NIFTY-FUT triple_ma_long (long): +220.3
+  [-] SENSEX-FUT triple_ma_long (long): -397.1
+  [-] BANKNIFTY-FUT triple_ma_long (long): -302
+  [-] NIFTY-FUT triple_ma_long (long): -78.31
+  [-] NIFTY-FUT triple_ma_long (long): -228.6
+
+---
+
