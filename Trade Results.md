@@ -1956,3 +1956,44 @@ No setups fired today.
 
 ---
 
+## 2026-09-06 00:09 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-05)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-05)
+- Suggested: 22 trade(s) | Resolved: 22 | Still playing out: 0
+- If you'd taken all 22 resolved trades: 8 right, 14 wrong (36% correct)
+- Net loss (USD): -152.7
+  [-] SOL-USD triple_ma_short (short): -25.82
+  [+] NEAR-USD oi_divergence_long (long): +1.253
+  [-] ETH-USD triple_ma_short (short): -9.623
+  [+] BTC-USD triple_ma_short (short): +25.73
+  [+] NEAR-USD oi_divergence_long (long): +15.02
+  [+] ETH-USD triple_ma_short (short): +27.74
+  [-] XRP-USD triple_ma_short (short): -38.16
+  [-] XRP-USD triple_ma_short (short): -31.77
+  [-] NEAR-USD oi_divergence_long (long): -0.4804
+  [-] SOL-USD triple_ma_short (short): -43.75
+  [-] XRP-USD triple_ma_short (short): -17.86
+  [+] FET-USD oi_divergence_long (long): +55.78
+  [-] NEAR-USD oi_divergence_long (long): -3.841
+  [+] FET-USD oi_divergence_long (long): +50.32
+  [+] FET-USD oi_divergence_long (long): +35.38
+  [-] BTC-USD triple_ma_short (short): -11.35
+  [-] ETH-USD triple_ma_long (long): -19.19
+  [-] FET-USD oi_divergence_long (long): -108
+  [-] NEAR-USD triple_ma_short (short): -3.991
+  [-] NEAR-USD oi_divergence_long (long): -35.3
+  [-] FET-USD oi_divergence_long (long): -20.37
+  [+] FET-USD triple_ma_short (short): +5.635
+
+**US -- SIGNAL QUALITY** (2026-09-05)
+- Suggested: 2 trade(s) | Resolved: 2 | Still playing out: 0
+- If you'd taken all 2 resolved trades: 1 right, 1 wrong (50% correct)
+- Net loss (USD): -572.4
+  [+] NKE triple_ma_long (long): +87.05
+  [-] MARA triple_ma_long (long): -659.4
+
+---
+
