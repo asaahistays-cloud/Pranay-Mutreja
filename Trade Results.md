@@ -1997,3 +1997,54 @@ No setups fired today.
 
 ---
 
+## 2026-09-07 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-06)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-06)
+- Suggested: 36 trade(s) | Resolved: 35 | Still playing out: 1
+- If you'd taken all 35 resolved trades: 13 right, 22 wrong (37% correct)
+- Net loss (USD): -264.8
+  [+] XRP-USD oi_divergence_long (long): +24.5
+  [+] NEAR-USD triple_ma_short (short): +13.44
+  [-] SOL-USD oi_divergence_long (long): +0
+  [-] BTC-USD triple_ma_short (short): -31.61
+  [-] BTC-USD triple_ma_short (short): -46.04
+  [-] FET-USD triple_ma_short (short): -61.51
+  [-] XRP-USD triple_ma_short (short): -41.78
+  [-] SOL-USD triple_ma_short (short): -52.9
+  [+] XRP-USD triple_ma_long (long): +15.7
+  [-] FET-USD oi_divergence_long (long): -16.52
+  [-] NEAR-USD oi_divergence_long (long): -2.901
+  [-] FET-USD triple_ma_short (short): -43.75
+  [-] SOL-USD oi_divergence_long (long): -20.63
+  [-] BTC-USD triple_ma_short (short): -69.42
+  [+] FET-USD oi_divergence_long (long): +127.6
+  [+] SOL-USD oi_divergence_long (long): +150.9
+  [-] XRP-USD triple_ma_short (short): -24.63
+  [-] AVAX-USD triple_ma_short (short): -46.05
+  [-] ETH-USD triple_ma_short (short): -40.12
+  [-] ETH-USD triple_ma_short (short): -27.77
+  [-] ETH-USD triple_ma_short (short): -18.91
+  [+] AVAX-USD triple_ma_long (long): +25.54
+  [-] FET-USD breakout_long (long): -101.4
+  [-] NEAR-USD oi_divergence_long (long): -64.07
+  [+] XRP-USD triple_ma_short (short): +19.81
+  [+] ETH-USD triple_ma_short (short): +14.66
+  [+] AVAX-USD oi_divergence_long (long): +41.58
+  [-] BTC-USD triple_ma_short (short): -16.16
+  [+] SOL-USD oi_divergence_long (long): +60.52
+  [-] AVAX-USD triple_ma_long (long): -45.68
+  [+] AVAX-USD oi_divergence_long (long): +22.16
+  [+] FET-USD oi_divergence_long (long): +10.85
+  [+] SOL-USD oi_divergence_long (long): +18.81
+  [-] SOL-USD triple_ma_short (short): -38.96
+  [-] NEAR-USD oi_divergence_long (long): +0
+- 1 trade(s) still open, not yet counted above: AVAX-USD (triple_ma_short)
+
+**US -- SIGNAL QUALITY** (2026-09-06)
+No setups fired today.
+
+---
+
