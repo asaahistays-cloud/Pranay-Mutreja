@@ -2173,3 +2173,77 @@ No setups fired today.
 
 ---
 
+## 2026-09-08 00:13 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-07)
+- Suggested: 18 trade(s) | Resolved: 17 | Still playing out: 1
+- If you'd taken all 17 resolved trades: 6 right, 11 wrong (35% correct)
+- Net loss (INR): -1.207e+04
+  [-] COALINDIA.NS triple_threat_long (long): -2,051
+  [-] SUZLON.NS breakdown_short (short): -2,635
+  [+] BANKINDIA.NS breakdown_short (short): +493.3
+  [+] BHEL.NS breakdown_short (short): +4,084
+  [-] INDIANB.NS breakdown_short (short): -575.7
+  [-] BHEL.NS breakdown_short (short): -2,019
+  [+] RPOWER.NS triple_ma_short (short): +562.7
+  [-] COALINDIA.NS triple_ma_short (short): -2,771
+  [-] SAIL.NS breakdown_short (short): -211.5
+  [+] COALINDIA.NS triple_ma_long (long): +1,677
+  [-] NATIONALUM.NS breakdown_short (short): -1,565
+  [-] SAIL.NS breakdown_short (short): -2,029
+  [+] RVNL.NS triple_ma_short (short): +23.67
+  [+] FEDERALBNK.NS triple_ma_short (short): +513.2
+  [-] RVNL.NS breakdown_short (short): -829
+  [-] VEDL.NS breakdown_short (short): -2,243
+  [-] RVNL.NS breakdown_short (short): -2,498
+- 1 trade(s) still open, not yet counted above: CANBK.NS (breakdown_short)
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-07)
+- Suggested: 39 trade(s) | Resolved: 39 | Still playing out: 0
+- If you'd taken all 39 resolved trades: 21 right, 18 wrong (54% correct)
+- Net loss (USD): -1,054
+  [-] BTC-USD triple_ma_long (long): -52.87
+  [+] SOL-USD triple_ma_short (short): +12.67
+  [-] FET-USD breakout_long (long): -139.3
+  [-] SOL-USD triple_ma_short (short): -60.94
+  [+] XRP-USD oi_divergence_long (long): +40.91
+  [+] NEAR-USD range_short_rejection (short): +70.59
+  [+] NEAR-USD oi_divergence_long (long): +31.42
+  [-] NEAR-USD oi_divergence_long (long): -146.7
+  [-] NEAR-USD oi_divergence_long (long): -116.6
+  [+] SOL-USD triple_ma_short (short): +15.8
+  [-] FET-USD oi_divergence_long (long): -108.9
+  [-] XRP-USD triple_ma_short (short): -104
+  [+] AVAX-USD oi_divergence_long (long): +37.7
+  [-] FET-USD triple_ma_short (short): -113.6
+  [+] SOL-USD triple_ma_short (short): +26.86
+  [+] BTC-USD triple_ma_short (short): +5.874
+  [-] SOL-USD oi_divergence_long (long): +0
+  [+] XRP-USD oi_divergence_long (long): +24.56
+  [-] ETH-USD triple_ma_short (short): -68.05
+  [+] NEAR-USD oi_divergence_long (long): +41.01
+  [-] FET-USD oi_divergence_long (long): -17.98
+  [+] ETH-USD triple_ma_short (short): +46.26
+  [-] AVAX-USD oi_divergence_long (long): -102.7
+  [-] NEAR-USD oi_divergence_long (long): -207.7
+  [+] NEAR-USD triple_ma_short (short): +49.93
+  [+] XRP-USD oi_divergence_long (long): +12.82
+  [+] SOL-USD oi_divergence_long (long): +7.795
+  [+] FET-USD triple_ma_long (long): +53.07
+  [-] AVAX-USD oi_divergence_long (long): -11.85
+  [+] AVAX-USD oi_divergence_long (long): +20.1
+  [-] XRP-USD triple_ma_long (long): -159.3
+  [+] BTC-USD triple_ma_short (short): +52.49
+  [-] SOL-USD oi_divergence_long (long): -100.8
+  [+] XRP-USD triple_ma_short (short): +40.66
+  [-] NEAR-USD oi_divergence_long (long): -103.5
+  [+] ETH-USD triple_ma_short (short): +38
+  [-] NEAR-USD oi_divergence_long (long): -141.3
+  [+] NEAR-USD triple_ma_short (short): +53.28
+  [+] XRP-USD oi_divergence_long (long): +20.45
+
+**US -- SIGNAL QUALITY** (2026-09-07)
+No setups fired today.
+
+---
+
