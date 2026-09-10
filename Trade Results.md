@@ -2586,3 +2586,95 @@ No setups fired today.
 
 ---
 
+## 2026-09-11 00:11 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-10)
+- Suggested: 24 trade(s) | Resolved: 24 | Still playing out: 0
+- If you'd taken all 24 resolved trades: 9 right, 15 wrong (38% correct)
+- Net loss (INR): -269.4
+  [-] IRCON.NS triple_threat_long (long): -3,662
+  [+] IRFC.NS triple_ma_short (short): +2,633
+  [+] RVNL.NS triple_ma_short (short): +756.6
+  [-] IDEA.NS breakdown_short (short): -2,027
+  [+] IRFC.NS triple_ma_short (short): +3,977
+  [+] IRFC.NS triple_ma_short (short): +2,450
+  [+] INDIANB.NS triple_ma_short (short): +2,477
+  [-] IRCON.NS triple_ma_long (long): -1,808
+  [+] HINDCOPPER.NS triple_ma_short (short): +5,869
+  [-] IRCON.NS triple_ma_long (long): -2,286
+  [-] IRFC.NS breakdown_short (short): -739.6
+  [-] ONGC.NS triple_ma_short (short): -1,970
+  [-] IRCON.NS triple_ma_long (long): -2,153
+  [+] GAIL.NS triple_ma_short (short): +459.8
+  [+] RVNL.NS breakdown_short (short): +557.6
+  [+] CANBK.NS triple_ma_short (short): +1,766
+  [-] IDFCFIRSTB.NS triple_ma_long (long): -1,615
+  [-] RVNL.NS breakdown_short (short): -1,482
+  [-] GAIL.NS breakdown_short (short): -144
+  [-] PNB.NS triple_ma_short (short): -85.81
+  [-] IDFCFIRSTB.NS triple_ma_long (long): -1,095
+  [-] ONGC.NS triple_ma_long (long): -21.12
+  [-] RVNL.NS breakdown_short (short): -1,631
+  [-] IRFC.NS breakdown_short (short): -493.8
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-10)
+- Suggested: 38 trade(s) | Resolved: 37 | Still playing out: 1
+- If you'd taken all 37 resolved trades: 12 right, 25 wrong (32% correct)
+- Net loss (USD): -1,169
+  [+] SOL-USD triple_ma_short (short): +67.99
+  [-] NEAR-USD oi_divergence_long (long): -212.4
+  [-] SOL-USD oi_divergence_long (long): -133.2
+  [-] XRP-USD oi_divergence_long (long): -94.28
+  [+] NEAR-USD triple_ma_short (short): +56.01
+  [-] FET-USD oi_divergence_long (long): -135.2
+  [-] FET-USD oi_divergence_long (long): +0
+  [-] NEAR-USD oi_divergence_long (long): -2.922
+  [-] XRP-USD oi_divergence_long (long): -76.8
+  [-] FET-USD oi_divergence_long (long): -124.4
+  [+] SOL-USD oi_divergence_long (long): +44.17
+  [-] AVAX-USD oi_divergence_long (long): -70.52
+  [-] NEAR-USD oi_divergence_long (long): -4.648
+  [-] FET-USD oi_divergence_long (long): +0
+  [-] XRP-USD triple_ma_short (short): -14.3
+  [-] NEAR-USD oi_divergence_long (long): -133.1
+  [-] SOL-USD triple_ma_long (long): -41.47
+  [-] NEAR-USD oi_divergence_long (long): -118
+  [+] XRP-USD triple_ma_short (short): +14.47
+  [+] NEAR-USD oi_divergence_long (long): +4.528
+  [+] NEAR-USD triple_ma_short (short): +81.95
+  [-] BTC-USD triple_ma_long (long): -37.54
+  [+] SOL-USD triple_ma_short (short): +29.59
+  [+] BTC-USD triple_ma_short (short): +19.43
+  [-] AVAX-USD oi_divergence_long (long): -79.25
+  [-] FET-USD oi_divergence_long (long): +0
+  [-] AVAX-USD triple_ma_short (short): -42.11
+  [+] NEAR-USD oi_divergence_long (long): +34.84
+  [-] ETH-USD triple_ma_short (short): -38.28
+  [-] NEAR-USD oi_divergence_long (long): -80.61
+  [+] ETH-USD triple_ma_short (short): +2.06
+  [+] AVAX-USD oi_divergence_long (long): +8.502
+  [-] FET-USD oi_divergence_long (long): +0
+  [-] SOL-USD oi_divergence_long (long): -96.41
+  [-] NEAR-USD oi_divergence_long (long): -2.847
+  [-] NEAR-USD triple_ma_short (short): -63.91
+  [+] FET-USD oi_divergence_long (long): +69.49
+- 1 trade(s) still open, not yet counted above: SOL-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-09-10)
+- Suggested: 12 trade(s) | Resolved: 10 | Still playing out: 2
+- If you'd taken all 10 resolved trades: 1 right, 9 wrong (10% correct)
+- Net loss (USD): -2,684
+  [-] OXY triple_ma_long (long): -8.145
+  [+] OXY triple_ma_long (long): +89.56
+  [-] DKNG triple_ma_long (long): -360.6
+  [-] DKNG triple_ma_long (long): -125.7
+  [-] T triple_ma_long (long): -223.4
+  [-] T triple_ma_long (long): -437.6
+  [-] T triple_ma_long (long): -461.2
+  [-] T triple_ma_long (long): -675.9
+  [-] OXY triple_ma_long (long): -122.2
+  [-] OXY triple_ma_long (long): -358.5
+- 2 trade(s) still open, not yet counted above: DKNG (triple_ma_long), F (triple_ma_long)
+
+---
+
