@@ -2846,3 +2846,53 @@ No setups fired today.
 
 ---
 
+## 2026-09-13 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-12)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-12)
+- Suggested: 33 trade(s) | Resolved: 29 | Still playing out: 4
+- If you'd taken all 29 resolved trades: 12 right, 17 wrong (41% correct)
+- Net loss (USD): -335.9
+  [-] BTC-USD triple_ma_short (short): -21.09
+  [+] AVAX-USD triple_ma_short (short): +12.68
+  [-] FET-USD oi_divergence_long (long): -20.31
+  [-] XRP-USD triple_ma_short (short): -29.31
+  [+] NEAR-USD triple_ma_short (short): +27.81
+  [+] FET-USD triple_ma_short (short): +63.87
+  [+] ETH-USD triple_ma_short (short): +29.47
+  [+] NEAR-USD oi_divergence_long (long): +37.26
+  [-] NEAR-USD oi_divergence_long (long): -125.1
+  [+] AVAX-USD oi_divergence_long (long): +2.365
+  [-] BTC-USD community_idea (short): -148.9
+  [+] NEAR-USD oi_divergence_long (long): +10.14
+  [-] NEAR-USD oi_divergence_long (long): -25.54
+  [-] AVAX-USD triple_ma_short (short): -10.19
+  [-] BTC-USD triple_ma_short (short): -28.28
+  [-] BTC-USD triple_ma_short (short): -35.41
+  [-] NEAR-USD oi_divergence_long (long): -34.58
+  [+] ETH-USD triple_ma_long (long): +88.77
+  [-] AVAX-USD triple_ma_short (short): -15.08
+  [-] FET-USD oi_divergence_long (long): +0
+  [+] FET-USD oi_divergence_long (long): +82.87
+  [-] NEAR-USD triple_ma_short (short): -51.95
+  [+] AVAX-USD triple_ma_short (short): +16.28
+  [+] FET-USD oi_divergence_long (long): +10.97
+  [-] FET-USD oi_divergence_long (long): -16.04
+  [-] BTC-USD triple_ma_long (long): -39.3
+  [-] FET-USD triple_ma_short (short): -109
+  [-] XRP-USD triple_ma_long (long): -35.83
+  [+] FET-USD oi_divergence_long (long): +27.45
+- 4 trade(s) still open, not yet counted above: FET-USD (triple_ma_short), BTC-USD (triple_ma_short), XRP-USD (triple_ma_short), NEAR-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-09-12)
+- Suggested: 3 trade(s) | Resolved: 3 | Still playing out: 0
+- If you'd taken all 3 resolved trades: 1 right, 2 wrong (33% correct)
+- Net loss (USD): -56.5
+  [-] RIVN triple_ma_long (long): -56.5
+  [-] NIO triple_ma_long (long): -181.8
+  [+] NIO triple_ma_long (long): +181.8
+
+---
+
