@@ -2896,3 +2896,36 @@ No setups fired today.
 
 ---
 
+## 2026-09-15 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-14)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-14)
+- Suggested: 10 trade(s) | Resolved: 10 | Still playing out: 0
+- If you'd taken all 10 resolved trades: 3 right, 7 wrong (30% correct)
+- Net loss (USD): -218.2
+  [+] BTC-USD triple_ma_long (long): +27.51
+  [+] NEAR-USD oi_divergence_long (long): +31.06
+  [-] FET-USD triple_ma_short (short): -63.23
+  [-] AVAX-USD triple_ma_short (short): -91.06
+  [-] NEAR-USD triple_ma_long (long): -18.38
+  [-] FET-USD oi_divergence_long (long): +0
+  [-] ETH-USD triple_ma_short (short): -71.46
+  [-] AVAX-USD oi_divergence_long (long): -20.78
+  [-] NEAR-USD triple_ma_short (short): -61.19
+  [+] FET-USD oi_divergence_long (long): +49.37
+
+**US -- SIGNAL QUALITY** (2026-09-14)
+- Suggested: 7 trade(s) | Resolved: 5 | Still playing out: 2
+- If you'd taken all 5 resolved trades: 0 right, 5 wrong (0% correct)
+- Net loss (USD): -2,704
+  [-] LYFT triple_ma_long (long): +0
+  [-] INTC community_idea (short): -1,208
+  [-] LYFT triple_ma_long (long): -652.2
+  [-] HOOD triple_ma_long (long): -766.3
+  [-] HOOD triple_ma_long (long): -77.5
+- 2 trade(s) still open, not yet counted above: AAL (triple_ma_long), NCLH (triple_ma_long)
+
+---
+
