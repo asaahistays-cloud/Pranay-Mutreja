@@ -3151,3 +3151,57 @@ No setups fired today.
 
 ---
 
+## 2026-09-19 00:01 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-18)
+- Suggested: 1 trade(s) | Resolved: 1 | Still playing out: 0
+- If you'd taken all 1 resolved trades: 0 right, 1 wrong (0% correct)
+- Net profit (INR): +0
+  [-] NATIONALUM.NS triple_ma_long (long): +0
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-18)
+- Suggested: 21 trade(s) | Resolved: 20 | Still playing out: 1
+- If you'd taken all 20 resolved trades: 7 right, 13 wrong (35% correct)
+- Net loss (USD): -100.4
+  [+] XRP-USD triple_ma_short (short): +6.747
+  [-] NEAR-USD oi_divergence_long (long): -12.17
+  [+] ETH-USD triple_ma_short (short): +16.01
+  [+] BTC-USD triple_ma_short (short): +2.236
+  [-] SOL-USD triple_ma_long (long): -40.49
+  [-] FET-USD oi_divergence_long (long): -5.117
+  [-] AVAX-USD triple_ma_short (short): -85.51
+  [-] SOL-USD triple_ma_long (long): -33.51
+  [+] NEAR-USD oi_divergence_long (long): +104.4
+  [+] XRP-USD triple_ma_long (long): +26.27
+  [-] FET-USD oi_divergence_long (long): -22.76
+  [-] FET-USD oi_divergence_long (long): -0.8424
+  [-] NEAR-USD oi_divergence_long (long): -3.606
+  [-] NEAR-USD oi_divergence_long (long): +0
+  [-] FET-USD oi_divergence_long (long): -146.5
+  [-] SOL-USD oi_divergence_long (long): -17.7
+  [+] AVAX-USD oi_divergence_long (long): +80.68
+  [+] NEAR-USD oi_divergence_long (long): +90.09
+  [-] NEAR-USD oi_divergence_long (long): -32.17
+  [-] FET-USD oi_divergence_long (long): -26.49
+- 1 trade(s) still open, not yet counted above: FET-USD (triple_ma_short)
+
+**US -- SIGNAL QUALITY** (2026-09-18)
+- Suggested: 4 trade(s) | Resolved: 4 | Still playing out: 0
+- If you'd taken all 4 resolved trades: 3 right, 1 wrong (75% correct)
+- Net profit (USD): +437.5
+  [+] PLTR triple_ma_long (long): +37.36
+  [+] HOOD triple_ma_long (long): +1,114
+  [+] MARA triple_ma_long (long): +92.23
+  [-] PINS triple_ma_long (long): -806.5
+
+**INDIA FUTURES (MANUAL) -- SIGNAL QUALITY** (2026-09-18)
+- Suggested: 4 trade(s) | Resolved: 4 | Still playing out: 0
+- If you'd taken all 4 resolved trades: 2 right, 2 wrong (50% correct)
+- Net loss (INR): -254.9
+  [+] NIFTY-FUT triple_ma_long (long): +306.8
+  [-] SENSEX-FUT triple_ma_long (long): -680.6
+  [-] SENSEX-FUT triple_ma_long (long): -140.3
+  [+] BANKNIFTY-FUT triple_ma_long (long): +259.2
+
+---
+
