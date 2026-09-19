@@ -3259,3 +3259,49 @@ No setups fired today.
 
 ---
 
+## 2026-09-20 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-19)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-19)
+- Suggested: 32 trade(s) | Resolved: 30 | Still playing out: 2
+- If you'd taken all 30 resolved trades: 16 right, 14 wrong (53% correct)
+- Net profit (USD): +182.3
+  [-] NEAR-USD oi_divergence_long (long): -21.53
+  [-] FET-USD oi_divergence_long (long): -2.764
+  [-] NEAR-USD oi_divergence_long (long): -123.2
+  [-] NEAR-USD oi_divergence_long (long): -55.57
+  [+] FET-USD oi_divergence_long (long): +32.72
+  [+] XRP-USD oi_divergence_long (long): +40.34
+  [+] AVAX-USD oi_divergence_long (long): +9.941
+  [+] NEAR-USD oi_divergence_long (long): +34.5
+  [+] FET-USD oi_divergence_long (long): +76.26
+  [+] FET-USD triple_ma_short (short): +110.2
+  [-] NEAR-USD oi_divergence_long (long): -54.99
+  [-] AVAX-USD oi_divergence_long (long): -19.79
+  [-] NEAR-USD oi_divergence_long (long): -104.7
+  [-] NEAR-USD oi_divergence_long (long): -12.18
+  [+] SOL-USD oi_divergence_long (long): +5.354
+  [+] NEAR-USD triple_ma_short (short): +45.41
+  [+] SOL-USD triple_ma_short (short): +72.63
+  [-] BTC-USD triple_ma_short (short): -92.45
+  [-] NEAR-USD oi_divergence_long (long): -0.2589
+  [-] XRP-USD oi_divergence_long (long): -24.98
+  [+] NEAR-USD oi_divergence_long (long): +22.13
+  [+] FET-USD triple_ma_long (long): +25.33
+  [+] NEAR-USD oi_divergence_long (long): +12.25
+  [+] AVAX-USD oi_divergence_long (long): +79.46
+  [-] FET-USD oi_divergence_long (long): -29.4
+  [+] AVAX-USD breakout_long (long): +180.5
+  [+] ETH-USD triple_ma_long (long): +17.18
+  [-] SOL-USD triple_ma_short (short): -32.63
+  [-] SOL-USD triple_ma_short (short): -32.36
+  [+] XRP-USD oi_divergence_long (long): +24.9
+- 2 trade(s) still open, not yet counted above: SOL-USD (triple_ma_short), SOL-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-09-19)
+No setups fired today.
+
+---
+
