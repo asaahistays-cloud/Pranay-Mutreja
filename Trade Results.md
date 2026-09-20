@@ -3305,3 +3305,51 @@ No setups fired today.
 
 ---
 
+## 2026-09-21 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-09-20)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-09-20)
+- Suggested: 34 trade(s) | Resolved: 32 | Still playing out: 2
+- If you'd taken all 32 resolved trades: 14 right, 18 wrong (44% correct)
+- Net loss (USD): -139.3
+  [+] AVAX-USD oi_divergence_long (long): +24.94
+  [-] XRP-USD triple_ma_short (short): -1.044
+  [-] NEAR-USD oi_divergence_long (long): -74.77
+  [+] NEAR-USD triple_ma_short (short): +45.56
+  [+] BTC-USD triple_ma_short (short): +26.29
+  [+] AVAX-USD oi_divergence_long (long): +50.25
+  [-] FET-USD oi_divergence_long (long): -122
+  [-] XRP-USD oi_divergence_long (long): -123.6
+  [+] SOL-USD oi_divergence_long (long): +35.16
+  [-] AVAX-USD oi_divergence_long (long): +0
+  [+] NEAR-USD oi_divergence_long (long): +18.47
+  [+] BTC-USD triple_ma_short (short): +163.6
+  [-] AVAX-USD oi_divergence_long (long): -12.7
+  [-] AVAX-USD oi_divergence_long (long): -67.87
+  [-] SOL-USD oi_divergence_long (long): -113.1
+  [-] AVAX-USD triple_ma_short (short): -30.83
+  [+] NEAR-USD oi_divergence_long (long): +41.61
+  [-] NEAR-USD oi_divergence_long (long): -12.56
+  [+] NEAR-USD oi_divergence_long (long): +47.5
+  [+] NEAR-USD oi_divergence_long (long): +16.24
+  [+] AVAX-USD oi_divergence_long (long): +29.45
+  [-] AVAX-USD triple_ma_short (short): -71.43
+  [+] FET-USD oi_divergence_long (long): +94.55
+  [+] SOL-USD oi_divergence_long (long): +31.76
+  [-] XRP-USD triple_ma_short (short): -2.792
+  [-] XRP-USD oi_divergence_long (long): -3.811
+  [-] BTC-USD triple_ma_short (short): -45.92
+  [-] FET-USD oi_divergence_long (long): -10.37
+  [-] FET-USD triple_ma_short (short): -17.85
+  [+] XRP-USD triple_ma_long (long): +114.5
+  [-] AVAX-USD breakout_long (long): -105.2
+  [-] NEAR-USD oi_divergence_long (long): -63.27
+- 2 trade(s) still open, not yet counted above: AVAX-USD (oi_divergence_long), XRP-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-09-20)
+No setups fired today.
+
+---
+
