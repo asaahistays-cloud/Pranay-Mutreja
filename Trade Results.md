@@ -4307,3 +4307,66 @@ No setups fired today.
 
 ---
 
+## 2026-10-03 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-02)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-02)
+- Suggested: 40 trade(s) | Resolved: 35 | Still playing out: 5
+- If you'd taken all 35 resolved trades: 18 right, 17 wrong (51% correct)
+- Net profit (USD): +425.7
+  [+] FET-USD oi_divergence_long (long): +10.28
+  [+] SOL-USD oi_divergence_long (long): +60.93
+  [+] XRP-USD oi_divergence_long (long): +34.02
+  [+] FET-USD oi_divergence_long (long): +113.5
+  [+] AVAX-USD oi_divergence_long (long): +84.51
+  [-] FET-USD triple_ma_short (short): -54.74
+  [-] SOL-USD triple_ma_short (short): -38.58
+  [+] SOL-USD triple_ma_long (long): +40.56
+  [-] XRP-USD triple_ma_short (short): -28.79
+  [-] XRP-USD triple_ma_short (short): -32.72
+  [+] BTC-USD triple_ma_long (long): +3.8
+  [+] AVAX-USD triple_ma_long (long): +44.82
+  [+] NEAR-USD oi_divergence_long (long): +208.3
+  [-] AVAX-USD oi_divergence_long (long): +0
+  [+] XRP-USD oi_divergence_long (long): +63.41
+  [-] NEAR-USD oi_divergence_long (long): -15.88
+  [+] SOL-USD oi_divergence_long (long): +112.5
+  [-] NEAR-USD oi_divergence_long (long): -53.67
+  [-] NEAR-USD oi_divergence_long (long): +0
+  [+] FET-USD triple_ma_short (short): +30.77
+  [-] NEAR-USD triple_ma_short (short): -21.42
+  [-] NEAR-USD oi_divergence_long (long): -54.96
+  [-] XRP-USD oi_divergence_long (long): +0
+  [-] AVAX-USD oi_divergence_long (long): +0
+  [+] XRP-USD oi_divergence_long (long): +50.14
+  [-] AVAX-USD oi_divergence_long (long): -133
+  [-] AVAX-USD oi_divergence_long (long): -3.386
+  [+] NEAR-USD oi_divergence_long (long): +86.94
+  [-] SOL-USD oi_divergence_long (long): -141.4
+  [-] FET-USD oi_divergence_long (long): -12.17
+  [+] XRP-USD oi_divergence_long (long): +1.111
+  [+] SOL-USD triple_ma_short (short): +23
+  [+] AVAX-USD triple_ma_short (short): +22.31
+  [-] XRP-USD oi_divergence_long (long): -2.715
+  [+] XRP-USD oi_divergence_long (long): +28.27
+- 5 trade(s) still open, not yet counted above: NEAR-USD (triple_ma_short), BTC-USD (triple_ma_short), NEAR-USD (oi_divergence_long), XRP-USD (oi_divergence_long), NEAR-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-10-02)
+- Suggested: 10 trade(s) | Resolved: 9 | Still playing out: 1
+- If you'd taken all 9 resolved trades: 2 right, 7 wrong (22% correct)
+- Net loss (USD): -4,179
+  [+] RF triple_ma_long (long): +564.2
+  [-] NCLH triple_ma_long (long): -243.1
+  [+] KEY triple_ma_long (long): +400.6
+  [-] HBAN triple_ma_long (long): +0
+  [-] RIVN triple_ma_long (long): -2,208
+  [-] MARA triple_ma_long (long): -282.7
+  [-] MARA triple_ma_long (long): -1,117
+  [-] GOLD triple_ma_long (long): -1,037
+  [-] HOOD triple_ma_long (long): -255
+- 1 trade(s) still open, not yet counted above: HOOD (triple_ma_long)
+
+---
+
