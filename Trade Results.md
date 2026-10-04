@@ -4413,3 +4413,37 @@ No setups fired today.
 
 ---
 
+## 2026-10-05 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-04)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-04)
+- Suggested: 19 trade(s) | Resolved: 19 | Still playing out: 0
+- If you'd taken all 19 resolved trades: 9 right, 10 wrong (47% correct)
+- Net loss (USD): -91.74
+  [-] BTC-USD triple_ma_short (short): -44.91
+  [-] FET-USD triple_ma_short (short): -61.93
+  [-] XRP-USD triple_ma_short (short): -20.59
+  [-] SOL-USD triple_ma_long (long): -25.14
+  [-] SOL-USD triple_ma_short (short): -29.9
+  [+] FET-USD triple_ma_short (short): +84.84
+  [+] AVAX-USD triple_ma_short (short): +19.44
+  [+] XRP-USD triple_ma_long (long): +10.27
+  [+] NEAR-USD oi_divergence_long (long): +4.859
+  [-] FET-USD oi_divergence_long (long): -7.121
+  [+] BTC-USD triple_ma_long (long): +58.82
+  [+] AVAX-USD triple_ma_short (short): +21.71
+  [-] NEAR-USD triple_ma_short (short): -87.28
+  [+] FET-USD oi_divergence_long (long): +28.35
+  [-] ETH-USD triple_ma_short (short): -47.25
+  [+] BTC-USD triple_ma_long (long): +7.115
+  [+] ETH-USD triple_ma_long (long): +17.26
+  [-] FET-USD oi_divergence_long (long): -10.87
+  [-] FET-USD oi_divergence_long (long): -9.408
+
+**US -- SIGNAL QUALITY** (2026-10-04)
+No setups fired today.
+
+---
+
