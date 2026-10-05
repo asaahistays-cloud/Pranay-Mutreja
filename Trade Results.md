@@ -4447,3 +4447,93 @@ No setups fired today.
 
 ---
 
+## 2026-10-06 00:01 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-05)
+- Suggested: 15 trade(s) | Resolved: 15 | Still playing out: 0
+- If you'd taken all 15 resolved trades: 7 right, 8 wrong (47% correct)
+- Net loss (INR): -4,220
+  [-] CANBK.NS triple_ma_long (long): -2,204
+  [-] PNB.NS triple_ma_long (long): -2,645
+  [+] SAIL.NS triple_ma_short (short): +715.7
+  [-] POWERGRID.NS triple_ma_long (long): -3,102
+  [-] PNB.NS triple_ma_short (short): -2,702
+  [+] BANKBARODA.NS triple_ma_long (long): +629.6
+  [-] CANBK.NS triple_ma_long (long): -2,008
+  [-] COALINDIA.NS triple_ma_short (short): -2,723
+  [+] CANBK.NS triple_ma_short (short): +458.3
+  [+] POWERGRID.NS triple_ma_long (long): +2,435
+  [+] RPOWER.NS triple_ma_long (long): +6,277
+  [-] PNB.NS triple_ma_long (long): -1,652
+  [+] COALINDIA.NS triple_ma_long (long): +2,769
+  [-] BANKBARODA.NS triple_ma_short (short): -602.6
+  [+] PNB.NS triple_ma_short (short): +134.3
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-05)
+- Suggested: 42 trade(s) | Resolved: 41 | Still playing out: 1
+- If you'd taken all 41 resolved trades: 16 right, 25 wrong (39% correct)
+- Net loss (USD): -533.5
+  [-] SOL-USD triple_ma_short (short): -104.8
+  [+] NEAR-USD oi_divergence_long (long): +16.66
+  [+] FET-USD oi_divergence_long (long): +7.234
+  [-] FET-USD oi_divergence_long (long): -18.38
+  [-] NEAR-USD oi_divergence_long (long): -92.05
+  [+] XRP-USD oi_divergence_long (long): +94.03
+  [+] AVAX-USD triple_ma_short (short): +109.8
+  [+] SOL-USD triple_ma_short (short): +91.07
+  [+] FET-USD oi_divergence_long (long): +41.03
+  [-] NEAR-USD triple_ma_long (long): -79.61
+  [+] NEAR-USD triple_ma_short (short): +3.995
+  [-] XRP-USD oi_divergence_long (long): -40.93
+  [+] NEAR-USD oi_divergence_long (long): +280.9
+  [-] ETH-USD triple_ma_short (short): -13.49
+  [-] FET-USD oi_divergence_long (long): -79.22
+  [-] BTC-USD triple_ma_short (short): -39.09
+  [+] NEAR-USD triple_ma_long (long): +70.27
+  [-] NEAR-USD oi_divergence_long (long): -34.37
+  [-] FET-USD triple_ma_short (short): -18.51
+  [+] FET-USD oi_divergence_long (long): +81.88
+  [-] ETH-USD triple_ma_long (long): -40.97
+  [-] BTC-USD triple_ma_long (long): -65.24
+  [-] NEAR-USD oi_divergence_long (long): -90.64
+  [-] FET-USD breakout_long (long): -133.6
+  [-] XRP-USD oi_divergence_long (long): -18.96
+  [+] FET-USD oi_divergence_long (long): +7.177
+  [-] BTC-USD triple_ma_short (short): -44.06
+  [-] FET-USD oi_divergence_long (long): -101.8
+  [-] AVAX-USD triple_ma_long (long): -56.39
+  [-] ETH-USD triple_ma_short (short): -41.63
+  [-] AVAX-USD triple_ma_short (short): -80.03
+  [-] FET-USD oi_divergence_long (long): -14.31
+  [-] BTC-USD triple_ma_short (short): -44.02
+  [-] NEAR-USD triple_ma_long (long): -68.91
+  [+] XRP-USD triple_ma_short (short): +42.28
+  [-] FET-USD oi_divergence_long (long): -136.5
+  [+] ETH-USD triple_ma_short (short): +4.112
+  [+] SOL-USD oi_divergence_long (long): +7.678
+  [+] BTC-USD triple_ma_short (short): +57.19
+  [-] NEAR-USD oi_divergence_long (long): +0
+  [+] NEAR-USD triple_ma_short (short): +8.631
+- 1 trade(s) still open, not yet counted above: FET-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-10-05)
+- Suggested: 7 trade(s) | Resolved: 5 | Still playing out: 2
+- If you'd taken all 5 resolved trades: 4 right, 1 wrong (80% correct)
+- Net profit (USD): +1,085
+  [+] CLF triple_ma_long (long): +398.1
+  [+] CLF triple_ma_long (long): +255.8
+  [+] DKNG triple_ma_long (long): +271.4
+  [+] RF triple_ma_long (long): +293.8
+  [-] NIO triple_ma_long (long): -134.6
+- 2 trade(s) still open, not yet counted above: NEM (triple_ma_long), NKE (triple_ma_long)
+
+**INDIA FUTURES (MANUAL) -- SIGNAL QUALITY** (2026-10-05)
+- Suggested: 3 trade(s) | Resolved: 3 | Still playing out: 0
+- If you'd taken all 3 resolved trades: 1 right, 2 wrong (33% correct)
+- Net loss (INR): -2,215
+  [-] BANKNIFTY-FUT triple_ma_long (long): -2,423
+  [+] NIFTY-FUT triple_ma_long (long): +307.2
+  [-] SENSEX-FUT triple_ma_long (long): -99.14
+
+---
+

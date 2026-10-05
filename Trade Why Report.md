@@ -16226,3 +16226,407 @@ No setups fired.
 
 ---
 
+## 2026-10-06 00:01 IST
+
+**INDIA -- WHY** (2026-10-05)
+- Fired: 18 | Resolved: 18 | Still open: 0
+
+[LOSS] CANBK.NS triple_ma_long (long) (-2,204)
+  Triggered: EMA(8/16/25) = 119.512/119.077/119.047, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] YESBANK.NS triple_ma_long (long) (-170.7)
+  Triggered: EMA(8/16/25) = 20.9644/20.9037/20.9025, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] PNB.NS triple_ma_long (long) (-2,645)
+  Triggered: EMA(8/16/25) = 112.195/111.868/111.868, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] SAIL.NS triple_ma_short (short) (+715.7)
+  Triggered: EMA(8/16/25) = 175.039/175.09/175.696, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] POWERGRID.NS triple_ma_long (long) (-3,102)
+  Triggered: EMA(8/16/25) = 257.026/256.503/256.497, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] PNB.NS triple_ma_short (short) (-2,702)
+  Triggered: EMA(8/16/25) = 111.757/111.764/111.807, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] CANBK.NS triple_ma_short (short) (-1,435)
+  Triggered: EMA(8/16/25) = 119.106/119.116/119.12, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] BANKBARODA.NS triple_ma_long (long) (+629.6)
+  Triggered: EMA(8/16/25) = 233.883/233.871/233.602, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] CANBK.NS triple_ma_long (long) (-2,008)
+  Triggered: EMA(8/16/25) = 119.153/119.141/119.139, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] COALINDIA.NS triple_ma_short (short) (-2,723)
+  Triggered: EMA(8/16/25) = 423.426/423.85/423.852, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] CANBK.NS triple_ma_short (short) (+458.3)
+  Triggered: EMA(8/16/25) = 119.064/119.098/119.107, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] POWERGRID.NS triple_ma_long (long) (+2,435)
+  Triggered: EMA(8/16/25) = 256.575/256.494/256.487, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] RPOWER.NS triple_ma_long (long) (+6,277)
+  Triggered: EMA(8/16/25) = 19.6999/19.6946/19.6871, freshly aligned
+  Outcome:   session ended before stop or target hit -- settled at the day's close (win)
+
+[LOSS] PNB.NS triple_ma_long (long) (-1,652)
+  Triggered: EMA(8/16/25) = 111.902/111.856/111.855, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] INDIANB.NS triple_ma_long (long) (-139.7)
+  Triggered: EMA(8/16/25) = 805.78/805.622/805.177, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] COALINDIA.NS triple_ma_long (long) (+2,769)
+  Triggered: EMA(8/16/25) = 423.961/423.895/423.871, freshly aligned
+  Outcome:   session ended before stop or target hit -- settled at the day's close (win)
+
+[LOSS] BANKBARODA.NS triple_ma_short (short) (-602.6)
+  Triggered: EMA(8/16/25) = 233.012/233.299/233.356, freshly aligned
+  Outcome:   session ended before stop or target hit -- settled at the day's close (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via eod_settlement; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] PNB.NS triple_ma_short (short) (+134.3)
+  Triggered: EMA(8/16/25) = 111.82/111.835/111.85, freshly aligned
+  Outcome:   session ended before stop or target hit -- settled at the day's close (win)
+
+**CRYPTO -- WHY** (2026-10-05)
+- Fired: 51 | Resolved: 50 | Still open: 1
+
+[LOSS] SOL-USD triple_ma_short (short) (-104.8)
+  Triggered: EMA(8/16/25) = 121.387/121.46/121.466, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] NEAR-USD oi_divergence_long (long) (+16.66)
+  Triggered: price_chg_1h=-0.008765, oi_chg_1h=-0.010422, oi_at_entry=65091870.56
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[WIN] FET-USD oi_divergence_long (long) (+7.234)
+  Triggered: price_chg_1h=-0.00558, oi_chg_1h=-0.02021, oi_at_entry=2440653.238
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[LOSS] FET-USD oi_divergence_long (long) (-18.38)
+  Triggered: price_chg_1h=-0.006239, oi_chg_1h=-0.014738, oi_at_entry=2404682.295
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] NEAR-USD oi_divergence_long (long) (-92.05)
+  Triggered: price_chg_1h=-0.008721, oi_chg_1h=-0.018191, oi_at_entry=64033625.666
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] XRP-USD oi_divergence_long (long) (+94.03)
+  Triggered: price_chg_1h=-0.007018, oi_chg_1h=-0.012158, oi_at_entry=132649947.4888
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[WIN] AVAX-USD triple_ma_short (short) (+109.8)
+  Triggered: EMA(8/16/25) = 11.0546/11.0663/11.0669, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] NEAR-USD triple_ma_short (short) (-36.29)
+  Triggered: EMA(8/16/25) = 4.9163/4.9283/4.93078, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] SOL-USD triple_ma_short (short) (+91.07)
+  Triggered: EMA(8/16/25) = 121.42/121.467/121.469, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] FET-USD oi_divergence_long (long) (+41.03)
+  Triggered: price_chg_1h=-0.030273, oi_chg_1h=-0.040699, oi_at_entry=2607251.247
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[LOSS] NEAR-USD triple_ma_long (long) (-79.61)
+  Triggered: EMA(8/16/25) = 4.93238/4.92747/4.9272, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] NEAR-USD triple_ma_short (short) (+3.995)
+  Triggered: EMA(8/16/25) = 4.91925/4.92104/4.92305, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] XRP-USD oi_divergence_long (long) (-40.93)
+  Triggered: price_chg_1h=-0.005005, oi_chg_1h=-0.012971, oi_at_entry=133285546.893
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] FET-USD oi_divergence_long (long) (-97.61)
+  Triggered: price_chg_1h=-0.006139, oi_chg_1h=-0.014329, oi_at_entry=2645306.748
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] NEAR-USD oi_divergence_long (long) (+280.9)
+  Triggered: price_chg_1h=-0.018185, oi_chg_1h=-0.018238, oi_at_entry=63987026.342
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[LOSS] ETH-USD triple_ma_short (short) (-13.49)
+  Triggered: EMA(8/16/25) = 2,715.32/2,719.65/2,719.89, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] FET-USD oi_divergence_long (long) (-79.22)
+  Triggered: price_chg_1h=-0.008609, oi_chg_1h=-0.069084, oi_at_entry=2518276.022
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] BTC-USD triple_ma_short (short) (-39.09)
+  Triggered: EMA(8/16/25) = 85,918.7/86,125.5/86,164, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] XRP-USD triple_ma_short (short) (-15.65)
+  Triggered: EMA(8/16/25) = 1.50983/1.51344/1.51431, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] NEAR-USD triple_ma_long (long) (+70.27)
+  Triggered: EMA(8/16/25) = 4.93677/4.92125/4.91895, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] NEAR-USD oi_divergence_long (long) (-34.37)
+  Triggered: price_chg_1h=-0.006868, oi_chg_1h=-0.024009, oi_at_entry=62460868.658
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] FET-USD triple_ma_short (short) (-18.51)
+  Triggered: EMA(8/16/25) = 0.255128/0.25636/0.256413, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] FET-USD oi_divergence_long (long) (+81.88)
+  Triggered: price_chg_1h=-0.010382, oi_chg_1h=-0.011635, oi_at_entry=2400419.94
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[LOSS] ETH-USD triple_ma_long (long) (-40.97)
+  Triggered: EMA(8/16/25) = 2,719.35/2,716.93/2,716.68, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] BTC-USD triple_ma_long (long) (-65.24)
+  Triggered: EMA(8/16/25) = 86,196.4/86,114.7/86,101.9, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] NEAR-USD oi_divergence_long (long) (-90.64)
+  Triggered: price_chg_1h=-0.010329, oi_chg_1h=-0.021422, oi_at_entry=62937493.4
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] FET-USD breakout_long (long) (-133.6)
+  Triggered: broke range high 0.2646 on vol 2,081,805 vs avg 586,221, trend EMA 0.2617, 2-bar + retest
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] XRP-USD oi_divergence_long (long) (-18.96)
+  Triggered: price_chg_1h=-0.00683, oi_chg_1h=-0.011833, oi_at_entry=131464669.353
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] AVAX-USD oi_divergence_long (long) (+13.15)
+  Triggered: price_chg_1h=-0.008494, oi_chg_1h=-0.010133, oi_at_entry=22330308.7996
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[WIN] FET-USD oi_divergence_long (long) (+7.177)
+  Triggered: price_chg_1h=-0.013977, oi_chg_1h=-0.034848, oi_at_entry=2807440.495
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[LOSS] BTC-USD triple_ma_short (short) (-44.06)
+  Triggered: EMA(8/16/25) = 86,066.5/86,088.1/86,092.6, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] SOL-USD triple_ma_short (short) (+3.048)
+  Triggered: EMA(8/16/25) = 120.914/121.023/121.048, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] FET-USD oi_divergence_long (long) (-101.8)
+  Triggered: price_chg_1h=-0.014506, oi_chg_1h=-0.067001, oi_at_entry=2771417.018
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] AVAX-USD triple_ma_long (long) (-56.39)
+  Triggered: EMA(8/16/25) = 10.9932/10.9927/10.9918, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] ETH-USD triple_ma_short (short) (-41.63)
+  Triggered: EMA(8/16/25) = 2,716/2,717.33/2,717.61, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] AVAX-USD triple_ma_short (short) (-80.03)
+  Triggered: EMA(8/16/25) = 10.9848/10.99/10.9911, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] FET-USD oi_divergence_long (long) (-14.31)
+  Triggered: price_chg_1h=-0.010744, oi_chg_1h=-0.029622, oi_at_entry=2724028.039
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] BTC-USD triple_ma_short (short) (-44.02)
+  Triggered: EMA(8/16/25) = 86,041/86,057.5/86,065.5, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] XRP-USD triple_ma_short (short) (-52.66)
+  Triggered: EMA(8/16/25) = 1.51371/1.51468/1.51485, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] FET-USD triple_ma_short (short) (+12.24)
+  Triggered: EMA(8/16/25) = 0.25934/0.260328/0.260361, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] NEAR-USD triple_ma_long (long) (-68.91)
+  Triggered: EMA(8/16/25) = 5.02276/5.02129/5.01857, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] XRP-USD triple_ma_short (short) (+42.28)
+  Triggered: EMA(8/16/25) = 1.5139/1.51413/1.51434, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] AVAX-USD triple_ma_short (short) (+33.66)
+  Triggered: EMA(8/16/25) = 10.976/10.9785/10.9815, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] FET-USD oi_divergence_long (long) (-136.5)
+  Triggered: price_chg_1h=-0.012951, oi_chg_1h=-0.033487, oi_at_entry=2653661.736
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] ETH-USD triple_ma_short (short) (+4.112)
+  Triggered: EMA(8/16/25) = 2,715.56/2,716.32/2,716.66, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] SOL-USD oi_divergence_long (long) (+7.678)
+  Triggered: price_chg_1h=-0.010681, oi_chg_1h=-0.01321, oi_at_entry=397665310.2663
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (win)
+
+[LOSS] XRP-USD oi_divergence_long (long) (-22.61)
+  Triggered: price_chg_1h=-0.005424, oi_chg_1h=-0.017328, oi_at_entry=132019081.3346
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] BTC-USD triple_ma_short (short) (+57.19)
+  Triggered: EMA(8/16/25) = 86,009.2/86,052/86,063.8, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] NEAR-USD oi_divergence_long (long) (+0)
+  Triggered: price_chg_1h=-0.009024, oi_chg_1h=-0.022547, oi_at_entry=63081848.205
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] NEAR-USD triple_ma_short (short) (+8.631)
+  Triggered: EMA(8/16/25) = 5.01332/5.01722/5.01727, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+Still open (too soon to say why it worked or not):
+  FET-USD oi_divergence_long (long) -- triggered: price_chg_1h=-0.019008, oi_chg_1h=-0.010659, oi_at_entry=2504584.927
+
+**US -- WHY** (2026-10-05)
+- Fired: 15 | Resolved: 11 | Still open: 4
+
+[WIN] CLF triple_ma_long (long) (+398.1)
+  Triggered: EMA(8/16/25) = 11.497/11.4901/11.48, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] CLF triple_ma_long (long) (+255.8)
+  Triggered: EMA(8/16/25) = 11.6632/11.5845/11.5442, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] PINS triple_ma_long (long) (+299.1)
+  Triggered: EMA(8/16/25) = 19.5208/19.4003/19.3305, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] UBER triple_ma_long (long) (+397.8)
+  Triggered: EMA(8/16/25) = 68.7379/68.426/68.2585, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] NIO triple_ma_long (long) (-448.7)
+  Triggered: EMA(8/16/25) = 3.41332/3.40427/3.40225, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] WFC triple_ma_long (long) (+561.2)
+  Triggered: EMA(8/16/25) = 80.7885/80.5796/80.437, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] DKNG triple_ma_long (long) (+271.4)
+  Triggered: EMA(8/16/25) = 19.08/18.9847/18.9678, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[WIN] PYPL triple_ma_long (long) (+210.9)
+  Triggered: EMA(8/16/25) = 53.1238/53.0036/52.9776, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] HOOD triple_ma_long (long) (-443.9)
+  Triggered: EMA(8/16/25) = 113.733/113.585/113.519, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] RF triple_ma_long (long) (+293.8)
+  Triggered: EMA(8/16/25) = 27.1205/27.1047/27.0786, freshly aligned
+  Outcome:   trail-locked win -- price moved favorably first, trailing stop locked in the gain (real follow-through)
+
+[LOSS] NIO triple_ma_long (long) (-134.6)
+  Triggered: EMA(8/16/25) = 3.41576/3.41561/3.41406, freshly aligned
+  Outcome:   early exit -- the setup's own signal flipped/faded before price reached stop or target, so the bot cut it rather than wait for the trailing stop (validated exit, see monitor.py's trend_reversed()) (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via trend_reversed; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+Still open (too soon to say why it worked or not):
+  F triple_ma_long (long) -- triggered: EMA(8/16/25) = 12.1116/12.0955/12.0918, freshly aligned
+  GM triple_ma_long (long) -- triggered: EMA(8/16/25) = 78.6933/78.6438/78.5884, freshly aligned
+  NEM triple_ma_long (long) -- triggered: EMA(8/16/25) = 115.193/115.068/115.011, freshly aligned
+  NKE triple_ma_long (long) -- triggered: EMA(8/16/25) = 33.6667/33.5594/33.5573, freshly aligned
+
+**INDIA FUTURES (MANUAL) -- WHY** (2026-10-05)
+- Fired: 4 | Resolved: 4 | Still open: 0
+
+[LOSS] BANKNIFTY-FUT triple_ma_long (long) (-2,423)
+  Triggered: EMA(8/16/25) = 54,767.9/54,677.5/54,670.7, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[WIN] NIFTY-FUT triple_ma_long (long) (+307.2)
+  Triggered: EMA(8/16/25) = 22,496.2/22,483.3/22,483.1, freshly aligned
+  Outcome:   session ended before stop or target hit -- settled at the day's close (win)
+
+[LOSS] BANKNIFTY-FUT triple_ma_long (long) (-1,107)
+  Triggered: EMA(8/16/25) = 54,689.3/54,663.9/54,663.7, freshly aligned
+  Outcome:   session ended before stop or target hit -- settled at the day's close (loss)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited via eod_settlement; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+[LOSS] SENSEX-FUT triple_ma_long (long) (-99.14)
+  Triggered: EMA(8/16/25) = 72,180.9/72,134.2/72,127.7, freshly aligned
+  Outcome:   real stop-loss -- no favorable move before the stop hit (no edge at entry)
+  Diagnosis: [market read wrong] no anomaly found -- setup fired per its own rules and exited within its intended risk; the market simply moved the other way this time (normal strategy variance, not a bug)
+
+---
+
