@@ -4682,3 +4682,74 @@ No setups fired today.
 
 ---
 
+## 2026-10-09 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-08)
+- Suggested: 6 trade(s) | Resolved: 6 | Still playing out: 0
+- If you'd taken all 6 resolved trades: 3 right, 3 wrong (50% correct)
+- Net profit (INR): +110.2
+  [+] IRCON.NS breakdown_short (short): +1,488
+  [+] JPPOWER.NS breakdown_short (short): +692
+  [-] GAIL.NS breakdown_short (short): -900.6
+  [+] BEL.NS breakdown_short (short): +340.3
+  [-] RVNL.NS breakdown_short (short): +0
+  [-] SUZLON.NS breakdown_short (short): -1,510
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-08)
+- Suggested: 40 trade(s) | Resolved: 38 | Still playing out: 2
+- If you'd taken all 38 resolved trades: 19 right, 19 wrong (50% correct)
+- Net loss (USD): -581.3
+  [+] AVAX-USD oi_divergence_long (long): +51.12
+  [-] AVAX-USD oi_divergence_long (long): -165.8
+  [-] FET-USD oi_divergence_long (long): -52.1
+  [-] BTC-USD triple_ma_short (short): -17.65
+  [+] XRP-USD oi_divergence_long (long): +46.93
+  [-] AVAX-USD triple_ma_short (short): -28.56
+  [+] FET-USD oi_divergence_long (long): +38.22
+  [-] FET-USD triple_ma_short (short): -40.81
+  [-] ETH-USD triple_ma_long (long): -40.67
+  [+] NEAR-USD oi_divergence_long (long): +13.08
+  [+] BTC-USD triple_ma_short (short): +21.85
+  [+] FET-USD oi_divergence_long (long): +44.76
+  [+] NEAR-USD oi_divergence_long (long): +105.2
+  [+] SOL-USD triple_ma_short (short): +53.49
+  [+] XRP-USD triple_ma_short (short): +137.9
+  [-] ETH-USD triple_ma_short (short): -47.48
+  [+] XRP-USD oi_divergence_long (long): +10.86
+  [-] FET-USD oi_divergence_long (long): +0
+  [-] FET-USD triple_ma_short (short): -95.73
+  [-] NEAR-USD triple_ma_long (long): -33.24
+  [+] AVAX-USD oi_divergence_long (long): +33.88
+  [+] FET-USD oi_divergence_long (long): +43.7
+  [-] NEAR-USD oi_divergence_long (long): -168.4
+  [+] ETH-USD triple_ma_short (short): +11.65
+  [+] NEAR-USD triple_ma_short (short): +72.93
+  [+] BTC-USD triple_ma_short (short): +42.67
+  [-] NEAR-USD oi_divergence_long (long): -85.14
+  [+] XRP-USD triple_ma_short (short): +49.45
+  [-] FET-USD oi_divergence_long (long): -8.637
+  [-] SOL-USD oi_divergence_long (long): -78.27
+  [-] NEAR-USD oi_divergence_long (long): -164.9
+  [+] FET-USD triple_ma_short (short): +10.23
+  [+] FET-USD oi_divergence_long (long): +56.09
+  [-] SOL-USD oi_divergence_long (long): -15.31
+  [-] NEAR-USD oi_divergence_long (long): -168.1
+  [+] SOL-USD oi_divergence_long (long): +71.56
+  [-] SOL-USD oi_divergence_long (long): -271.3
+  [-] SOL-USD oi_divergence_long (long): -14.78
+- 2 trade(s) still open, not yet counted above: XRP-USD (triple_ma_short), AVAX-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-10-08)
+- Suggested: 7 trade(s) | Resolved: 6 | Still playing out: 1
+- If you'd taken all 6 resolved trades: 3 right, 3 wrong (50% correct)
+- Net loss (USD): -434.3
+  [+] NG=F community_idea (short): +0.03069
+  [-] PLTR triple_ma_long (long): -605.9
+  [-] DKNG triple_ma_long (long): -514.5
+  [+] GOLD triple_ma_long (long): +257.7
+  [-] DKNG triple_ma_long (long): -114.9
+  [+] DKNG triple_ma_long (long): +543.4
+- 1 trade(s) still open, not yet counted above: PYPL (triple_ma_long)
+
+---
+
