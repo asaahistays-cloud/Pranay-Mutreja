@@ -4822,3 +4822,38 @@ No setups fired today.
 
 ---
 
+## 2026-10-11 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-10)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-10)
+- Suggested: 19 trade(s) | Resolved: 16 | Still playing out: 3
+- If you'd taken all 16 resolved trades: 10 right, 6 wrong (62% correct)
+- Net profit (USD): +141.3
+  [+] AVAX-USD oi_divergence_long (long): +30.2
+  [-] XRP-USD triple_ma_short (short): -46.26
+  [+] SOL-USD oi_divergence_long (long): +87.37
+  [+] ETH-USD triple_ma_long (long): +19.27
+  [+] FET-USD oi_divergence_long (long): +78.87
+  [-] BTC-USD triple_ma_long (long): -43.56
+  [-] FET-USD oi_divergence_long (long): -26.25
+  [-] AVAX-USD oi_divergence_long (long): -42.88
+  [+] FET-USD oi_divergence_long (long): +4.129
+  [+] SOL-USD triple_ma_short (short): +31.01
+  [+] ETH-USD triple_ma_long (long): +63.63
+  [-] XRP-USD triple_ma_short (short): -85.45
+  [+] FET-USD oi_divergence_long (long): +54.42
+  [+] BTC-USD triple_ma_long (long): +23.47
+  [-] FET-USD oi_divergence_long (long): -31.72
+  [+] NEAR-USD oi_divergence_long (long): +25.04
+- 3 trade(s) still open, not yet counted above: AVAX-USD (triple_ma_short), XRP-USD (triple_ma_short), FET-USD (triple_ma_short)
+
+**US -- SIGNAL QUALITY** (2026-10-10)
+- Suggested: 1 trade(s) | Resolved: 1 | Still playing out: 0
+- If you'd taken all 1 resolved trades: 0 right, 1 wrong (0% correct)
+- Net profit (USD): +0
+  [-] LYFT triple_ma_long (long): +0
+
+---
+
