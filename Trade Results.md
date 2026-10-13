@@ -4965,3 +4965,77 @@ No setups fired today.
 
 ---
 
+## 2026-10-14 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-13)
+- Suggested: 12 trade(s) | Resolved: 12 | Still playing out: 0
+- If you'd taken all 12 resolved trades: 4 right, 8 wrong (33% correct)
+- Net loss (INR): -1.624e+04
+  [+] UNIONBANK.NS triple_ma_short (short): +1,125
+  [+] ETERNAL.NS triple_ma_short (short): +2,643
+  [+] BANKINDIA.NS triple_ma_short (short): +526.4
+  [-] PAYTM.NS breakdown_short (short): -4,242
+  [-] PAYTM.NS triple_ma_short (short): -5,227
+  [-] PAYTM.NS breakdown_short (short): -7,543
+  [-] VEDL.NS breakdown_short (short): -1,669
+  [+] PAYTM.NS triple_ma_long (long): +2,547
+  [-] ETERNAL.NS breakdown_short (short): -2,513
+  [-] IRCON.NS triple_ma_long (long): -733.5
+  [-] IOC.NS triple_ma_short (short): -1,153
+  [-] SAIL.NS triple_ma_long (long): +0
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-13)
+- Suggested: 38 trade(s) | Resolved: 34 | Still playing out: 4
+- If you'd taken all 34 resolved trades: 14 right, 20 wrong (41% correct)
+- Net profit (USD): +584.4
+  [-] AVAX-USD oi_divergence_long (long): -112.5
+  [+] ETH-USD triple_ma_short (short): +396.9
+  [-] AVAX-USD oi_divergence_long (long): -159
+  [+] FET-USD triple_ma_short (short): +329.3
+  [+] SOL-USD triple_ma_short (short): +488.4
+  [-] SOL-USD oi_divergence_long (long): -44
+  [-] SOL-USD oi_divergence_long (long): -26.95
+  [+] BTC-USD triple_ma_short (short): +136.1
+  [-] AVAX-USD oi_divergence_long (long): -105.7
+  [-] AVAX-USD oi_divergence_long (long): -101.5
+  [-] SOL-USD oi_divergence_long (long): -43.29
+  [+] XRP-USD oi_divergence_long (long): +93.52
+  [+] XRP-USD triple_ma_long (long): +25.93
+  [+] NEAR-USD oi_divergence_long (long): +2.867
+  [-] NEAR-USD oi_divergence_long (long): -115
+  [+] AVAX-USD oi_divergence_long (long): +53.97
+  [-] AVAX-USD oi_divergence_long (long): -64
+  [+] NEAR-USD triple_ma_short (short): +42.06
+  [-] FET-USD oi_divergence_long (long): -82.22
+  [-] SOL-USD oi_divergence_long (long): -33.48
+  [-] AVAX-USD oi_divergence_long (long): -25.63
+  [-] XRP-USD oi_divergence_long (long): -91.7
+  [+] AVAX-USD triple_ma_short (short): +59.69
+  [+] FET-USD triple_ma_short (short): +59.34
+  [-] SOL-USD oi_divergence_long (long): -65.79
+  [-] SOL-USD triple_ma_short (short): -38.57
+  [-] ETH-USD triple_ma_short (short): -120.6
+  [+] AVAX-USD oi_divergence_long (long): +150.1
+  [+] NEAR-USD oi_divergence_long (long): +62.73
+  [-] BTC-USD triple_ma_short (short): -63.8
+  [-] FET-USD oi_divergence_long (long): +0
+  [-] SOL-USD triple_ma_long (long): -52.03
+  [+] SOL-USD oi_divergence_long (long): +62.11
+  [-] FET-USD triple_ma_short (short): -32.83
+- 4 trade(s) still open, not yet counted above: FET-USD (oi_divergence_long), AVAX-USD (triple_ma_short), BTC-USD (triple_ma_short), ETH-USD (triple_ma_short)
+
+**US -- SIGNAL QUALITY** (2026-10-13)
+- Suggested: 3 trade(s) | Resolved: 1 | Still playing out: 2
+- If you'd taken all 1 resolved trades: 0 right, 1 wrong (0% correct)
+- Net profit (USD): +0
+  [-] INTC triple_ma_long (long): +0
+- 2 trade(s) still open, not yet counted above: PINS (triple_ma_long), RIOT (triple_ma_long)
+
+**INDIA FUTURES (MANUAL) -- SIGNAL QUALITY** (2026-10-13)
+- Suggested: 1 trade(s) | Resolved: 1 | Still playing out: 0
+- If you'd taken all 1 resolved trades: 0 right, 1 wrong (0% correct)
+- Net loss (INR): -1,225
+  [-] NIFTY-FUT triple_ma_long (long): -1,225
+
+---
+
