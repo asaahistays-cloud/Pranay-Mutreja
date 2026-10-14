@@ -235659,9 +235659,9 @@
         "direction": "short",
         "entry_price": 105.85,
         "entry_qty": 32.11009174311912,
-        "stop_loss": 104.674,
-        "extreme_since_entry": 104.17,
-        "peak_profit_per_unit": 1.6799999999999926,
+        "stop_loss": 104.541,
+        "extreme_since_entry": 103.98,
+        "peak_profit_per_unit": 1.8699999999999903,
         "take_profit_target": null,
         "consecutive_losses": 0,
         "consecutive_wins": 0,
@@ -236265,358 +236265,38 @@
   ],
   "capital_inr_futures": 500000,
   "news_briefing": {
-    "date": "2026-10-14T14:00:53.664730+00:00",
+    "date": "2026-10-14T14:30:37.608898+00:00",
     "assessment": {
-      "summary": "Today's market news is dominated by the release of hot US inflation data, which has boosted Fed hike bets and led to a decline in US stocks and gold. In India, Reliance Jio's IPO announcement and wholesale inflation rising faster than expected are key events to watch. Overall, market risk is elevated due to inflation concerns and geopolitical tensions.",
-      "risk": {
-        "crypto": "normal",
-        "india": "elevated",
-        "us": "elevated",
-        "commodity": "elevated"
-      },
       "key_events": [
         {
           "headline": "US consumer prices accelerate in September on costlier gasoline; core CPI firmer",
-          "why_it_matters": "This increase in inflation has led to a rise in Fed hike bets, affecting US stocks and gold prices."
-        },
-        {
-          "headline": "Reliance Jio files RHP, announces IPO dates for India's biggest listing",
-          "why_it_matters": "This highly anticipated IPO could have a significant impact on the Indian market, particularly for RIL shareholders."
+          "why_it_matters": "This data has led to increased bets on interest rate hikes, affecting US stocks and gold prices"
         },
         {
           "headline": "India's wholesale inflation rises faster than expected at 11.4% in September",
-          "why_it_matters": "This increase in wholesale inflation could lead to further monetary policy tightening by the RBI, affecting the Indian economy and markets."
+          "why_it_matters": "This inflation data may impact the RBI's monetary policy decisions and affect the Indian market"
+        },
+        {
+          "headline": "Yemen's Houthis vow more attacks on Saudi airports, oil facilities after Aramco HQ hit",
+          "why_it_matters": "Geopolitical tensions in the Middle East are affecting oil prices and contributing to market volatility"
         }
-      ]
+      ],
+      "risk": {
+        "commodity": "elevated",
+        "crypto": "normal",
+        "india": "elevated",
+        "us": "elevated"
+      },
+      "summary": "Today's market sentiment is influenced by hot US consumer inflation data, which has boosted rate hike bets and led to a decline in US stocks and gold. The Indian market is watching the IPO of Reliance Jio and the impact of RBI commentary on bonds. Overall, the markets are experiencing elevated risk due to inflation concerns and geopolitical tensions."
     },
     "headlines": [
-      {
-        "id": "tv_5c0f6bf5d0bf",
-        "headline": "[PFE idea] Pfizer \u2014 Buy Side",
-        "summary": "Pfizer Inc. is developing a constructive buy-side setup, with the current price structure showing signs of improving upside potential. The recent configuration suggests that buyers are gradually gaini",
-        "url": "https://www.tradingview.com/chart/PFE/UZZriicw-Pfizer-Buy-Side/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_2f30333b79dc",
-        "headline": "[PFE idea] Here's why I am long $PFE and NOT $LLY.",
-        "summary": "Here's why I am long  NYSE:PFE  and NOT $LLY. \ud83d\udc40\n\n NYSE:PFE   NYSE:LLY  #Pharma #Trading #Stocks #Investing",
-        "url": "https://www.tradingview.com/chart/PFE/lw1108Lw-Here-s-why-I-am-long-PFE-and-NOT-LLY/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_1944cf4997a3",
-        "headline": "[PFE idea] Pfizer\u2019s Cypher Setup: The Yellow Trend Line Could Hold the Key",
-        "summary": "Pfizer is approaching one of the most technically important areas on its long-term monthly chart.\n\nThe setup is built around a bullish Cypher harmonic pattern, with the projected completion occurring ",
-        "url": "https://www.tradingview.com/chart/PFE/7kvkHhiM-Pfizer-s-Cypher-Setup-The-Yellow-Trend-Line-Could-Hold-the-Key/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_c6ce73251fe2",
-        "headline": "[PFE idea] PFE \u2013 Pfizer Technical View",
-        "summary": "PFE is currently trading within what I consider a position-building zone.\n\nVolume activity supports the potential for an upside move, while the MACD crossover is starting to turn positive, adding mome",
-        "url": "https://www.tradingview.com/chart/PFE/oY5BxtxR-PFE-Pfizer-Technical-View/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_90d956373b97",
-        "headline": "[PFE idea] Can AI Save the Pfizer Growth Engine?",
-        "summary": "Pfizer faces a critical financial crossroads today. Investors question life after pandemic windfalls. The company must replace declining vaccine revenues quickly. Chief Executive Albert Bourla envisio",
-        "url": "https://www.tradingview.com/chart/PFE/eTXqHFu4-Can-AI-Save-the-Pfizer-Growth-Engine/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_b9fce64b5642",
-        "headline": "[PFE idea] Pfizer Wave Analysis \u2013 19 August 2026",
-        "summary": "\u2013 Pfizer broke key resistance level 27.15\n\n\u2013 Likely to rise to resistance level 28,7\n\nPfizer continues to rise inside the minor impulse wave C that previously broke above the key resistance level 27.1",
-        "url": "https://www.tradingview.com/chart/PFE/8BBmDefD-Pfizer-Wave-Analysis-19-August-2026/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_70eca1d56f45",
-        "headline": "[PFE idea] Pfizer, Inc. (PFE) \u2013 Bullish Setup | Target: 27.95 #39",
-        "summary": "PFE Price Outlook: Pfizer Pressing Against 0.618 Arc | Potential Breakout Toward $27.95  \n\nPfizer, Inc. (PFE): Arc Cycle Analysis \n\nOverview: Based on Arc Cycle Analysis applied to the 1D chart, Pfize",
-        "url": "https://www.tradingview.com/chart/PFE/7Ie4azhm-Pfizer-Inc-PFE-Bullish-Setup-Target-27-95-39/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_f908ff38d306",
-        "headline": "[PFE idea] PFE - This Is the Kind of Setup You Wait For",
-        "summary": "We haven't broken out of the higher-timeframe selling channel yet, but I think that's why the setup is so attractive. We're being handed a \"safe\" entry ahead of that move \u2014 a chance to position before",
-        "url": "https://www.tradingview.com/chart/PFE/vvWQ9Ji2-PFE-This-Is-the-Kind-of-Setup-You-Wait-For/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_559f74bb08ae",
-        "headline": "[NCLH idea] Norewegian Double Top Nearing Completion",
-        "summary": "Hello, \n\nLooks like Norwegian has big swing potential. \n\n NYSE:NCLH  is nearing the bottom of a Double Top retracement while following trendline lows. \n\nDeviation Profile suggests bear sentiment. \n\nWo",
-        "url": "https://www.tradingview.com/chart/NCLH/4XTr9Fj1-Norewegian-Double-Top-Nearing-Completion/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_1faf27e25184",
-        "headline": "[NCLH idea] Upcoming Buying Opportunity NCLH, CCL, RCL",
-        "summary": "Good afternoon everyone, I have been invested in NCLH for over a few years now and those who have viewed and invested along with me I am sure you have been able to make some good returns and by now kn",
-        "url": "https://www.tradingview.com/chart/NCLH/UaFTZIEF-Upcoming-Buying-Opportunity-NCLH-CCL-RCL/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_b2db485a7a39",
-        "headline": "[NCLH idea] $NCLH \u2014 Entered on the triangle breakout for a longer-term swing",
-        "summary": "Same sector as  NYSE:RCL , which has been trending strongly, while Norwegian Cruise Line has largely consolidated.\n\nStop: $21\nTarget: $38",
-        "url": "https://www.tradingview.com/chart/NCLH/NicP16kC-NCLH-Entered-on-the-triangle-breakout-for-a-longer-term-swing/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_9e26c741728f",
-        "headline": "[NCLH idea] GREAT CHANCE OF SHORTING 8% DOWN ( 3 day prediction)",
-        "summary": "Trying some new strategy... i really think this position can make your months earnings. Im going in short with $20k, expecting 8%return next 3 days\nLets see what happens",
-        "url": "https://www.tradingview.com/chart/NCLH/LYKqeXxE-GREAT-CHANCE-OF-SHORTING-8-DOWN-3-day-prediction/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_eabf2fbb6a9e",
-        "headline": "[NCLH idea] NCLH Moving Lower",
-        "summary": "Looking to see a nice little leg to the downside here on  NYSE:NCLH",
-        "url": "https://www.tradingview.com/chart/NCLH/NsH9FwSm-NCLH-Moving-Lower/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_57990d59a9a8",
-        "headline": "[NCLH idea] Don't Miss Your Port Call (NCLH & CCL)",
-        "summary": "Hello Everyone! Please, remember this is for educational purposes only, you MUST do your own research. Investing involves risk and should be evaluated with your own financial advisor... \n\nNonetheless,",
-        "url": "https://www.tradingview.com/chart/NCLH/LeR6nOsM-Don-t-Miss-Your-Port-Call-NCLH-CCL/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_d7135579dd8e",
-        "headline": "[NCLH idea] Norwegian Cruise Line | NCLH | On the path to profitability?",
-        "summary": "Norwegian Cruise Line  NYSE:NCLH , as well as many of the other cruise line stocks, never fully recovered from the 2020 market crash. From a technical analysis standpoint, this stock may be poised for",
-        "url": "https://www.tradingview.com/chart/NCLH/HnJKWHqg-Norwegian-Cruise-Line-NCLH-On-the-path-to-profitability/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_1562f7762802",
-        "headline": "[NCLH idea] First Weekly Golden Cross In 5 Years",
-        "summary": "And we could hit 4 year high.\n\nGiven the positive news around cruises, $30 is achievable by year end.",
-        "url": "https://www.tradingview.com/chart/NCLH/tClEJFSW-First-Weekly-Golden-Cross-In-5-Years/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_46732527a3d3",
-        "headline": "[CCL idea] CCL Dark Pools",
-        "summary": "Monthly Range for months and hit monthly low and took bounce up and dark pools showing alot of buys hit market worth a long on stock option 45 dte",
-        "url": "https://www.tradingview.com/chart/CCL/EM99G3Ce-CCL-Dark-Pools/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_526a4751dcbd",
-        "headline": "[CCL idea] CCL \u2014 Demand Zone + Long-Term Trendline Confluence",
-        "summary": "Carnival Corporation (CCL) is testing an interesting technical area on the Daily chart.\n\nPrice has pulled back into the $21.96\u2013$22.32 demand zone, right where it meets a major rising trendline that ha",
-        "url": "https://www.tradingview.com/chart/CCL/6ahZK3En-CCL-Demand-Zone-Long-Term-Trendline-Confluence/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_e8f3766b1693",
-        "headline": "[CCL idea] CCL: Reversal Setup | Watching a Bounce Toward the 200 EMA",
-        "summary": "CCL is back on my watchlist after a sharp pullback into the $23 area.\n\nPrice is currently trading below the 4H 200 EMA, so I\u2019m treating this as a potential recovery/reversal setup, not a confirmed bul",
-        "url": "https://www.tradingview.com/chart/CCL/4pqCZIsW-CCL-Reversal-Setup-Watching-a-Bounce-Toward-the-200-EMA/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_14c85511b710",
-        "headline": "[CCL idea] Carnival Staggers as Stocks Break Out",
-        "summary": "Carnival has been stuck in the doldrums as the broader market breaks out, and some traders may see downside risk.\n\nThe first pattern on today\u2019s chart is the peak above $34 in February, its highest lev",
-        "url": "https://www.tradingview.com/chart/CCL/kStL3TSC-Carnival-Staggers-as-Stocks-Break-Out/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_3a8adf857737",
-        "headline": "[CCL idea] Bullish for CCL",
-        "summary": "The price has been in a steady ranging dance. \nBig investors were unwilling to sell.\n\n\nAlways use Stop Loss",
-        "url": "https://www.tradingview.com/chart/CCL/eLzbKKXn-Bullish-for-CCL/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_7df15bb03f11",
-        "headline": "[CCL idea] Carnival (CCL): Key Support Test With Upside Potential",
-        "summary": "Carnival Corporation (CCL) is pulling back into a key support zone around $26, where buyers have previously stepped in.\n\nThe stock is still trading below the 200 EMA, so I\u2019d like to see buyers reclaim",
-        "url": "https://www.tradingview.com/chart/CCL/OV55xPQo-Carnival-CCL-Key-Support-Test-With-Upside-Potential/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_6a3fb2cae96e",
-        "headline": "[CCL idea] CCL \u2014 Q2 Earnings Today: Testing Whether the Cruise Recovery Has",
-        "summary": "CCL \u2014 Q2 Earnings Today: Testing Whether the Cruise Recovery Has Legs \n\n NYSE:CCL  \u2014 Carnival Corporation \u2014 June 23, 2026**\n\nCarnival reports Q2 earnings this morning with the stock sitting in the mid",
-        "url": "https://www.tradingview.com/chart/CCL/jqsuWFxV-CCL-Q2-Earnings-Today-Testing-Whether-the-Cruise-Recovery-Has/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_4b5e5287a527",
-        "headline": "[CCL idea] Carnival Corp (CCL): A Leveraged Travel Oligopoly Rebuilding Its",
-        "summary": "Executive Summary:\nCarnival has come out of the pandemic with demand stronger than most investors expected. Free cash flow has returned and ROIC has recovered to roughly 13 percent. The balance sheet,",
-        "url": "https://www.tradingview.com/chart/CCL/hqglNLcD-Carnival-Corp-CCL-A-Leveraged-Travel-Oligopoly-Rebuilding-Its/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986453
-      },
-      {
-        "id": "tv_b7885820df0b",
-        "headline": "[DAL idea] DAL Earnings: The EMAs Are Squeezing, Yields Are at 24-Year High",
-        "summary": "Delta reports Q3 before the open Friday, with consensus near $1.99 EPS. The chart is at a decision point, and the macro backdrop is what makes this earnings report matter more than most.\n\n\nDAL bottome",
-        "url": "https://www.tradingview.com/chart/DAL/zgcuIyS2-DAL-Earnings-The-EMAs-Are-Squeezing-Yields-Are-at-24-Year-High/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_23bef1c113c1",
-        "headline": "[DAL idea] DAL:Textbook Bounce from Channel Support & Structuring for New H",
-        "summary": "Hello Traders,\nAnalyzing the daily (1D) chart for Delta Air Lines (NYSE: DAL), we can observe highly disciplined Price Action unfolding within a well-defined bullish market structure. The stock is con",
-        "url": "https://www.tradingview.com/chart/DAL/qr9A30vG-DAL-Textbook-Bounce-from-Channel-Support-Structuring-for-New-H/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_f54e06ce6a9e",
-        "headline": "[DAL idea] $DAL Long Buy Still Intact Above the Rising Structure",
-        "summary": "Delta Air Lines is still trading inside a long-term bullish structure, and the key thing on this monthly chart is that the base breakout remains intact.\ud83d\udcc8 \n\nThe recent weakness looks more like a normal",
-        "url": "https://www.tradingview.com/chart/DAL/qJCHbQF8-DAL-Long-Buy-Still-Intact-Above-the-Rising-Structure/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_ca32761a5af0",
-        "headline": "[DAL idea] The DAL Trade Played Out",
-        "summary": "I posted this trade earlier.  If you entered it I would trim or get out completely here.",
-        "url": "https://www.tradingview.com/chart/DAL/p5azGTZ4-The-DAL-Trade-Played-Out/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_31f512037ed6",
-        "headline": "[DAL idea] Potential DAL trade setup",
-        "summary": "My screener returned DAL as a potential Pre-Breakout candidate.  This would be a swing trade.  The risk and reward levels are included.",
-        "url": "https://www.tradingview.com/chart/DAL/Jh4vsilw-Potential-DAL-trade-setup/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_b044b1bddcb9",
-        "headline": "[DAL idea] Delta Air Lines: A Good Airline in a Historically Difficult Busi",
-        "summary": "Executive Summary:\nDelta Air Lines is widely regarded as the best managed airline in the United States and currently produces billions in free cash flow with margins that lead the industry. Even so, a",
-        "url": "https://www.tradingview.com/chart/DAL/8zp6Ept6-Delta-Air-Lines-A-Good-Airline-in-a-Historically-Difficult-Busi/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_a7381e1148bc",
-        "headline": "[DAL idea] Delta Air Lines showing short\u2011term upside as support holds near",
-        "summary": "Current Price: 67.82 (Analysis was generated on Monday Morning)\n\nDirection: LONG\n\nConfidence level: 58%(Limited direct trader snippets but available sentiment shows a bullish tilt and price is holding",
-        "url": "https://www.tradingview.com/chart/DAL/5Pib9ovp-Delta-Air-Lines-showing-short-term-upside-as-support-holds-near/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_112e8d254e44",
-        "headline": "[DAL idea] V3 Bullish CBRA pattern in DAL",
-        "summary": "\ud83d\udd3a V3 Pattern (Bullish) \u2014 what it is \n\nThe V3 pattern is a short-term exhaustion structure that appears after a move into support.\nIt typically reflects:\n\n\u25b6\ufe0f a sharp move down\n\u25b6\ufe0f followed by loss of do",
-        "url": "https://www.tradingview.com/chart/DAL/ujQgdyJ5-V3-Bullish-CBRA-pattern-in-DAL/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_e3a3e5ba0758",
-        "headline": "[AAL idea] AAL \u2014 200-SMA Reclaim Attempt",
-        "summary": "Bias: Early Bullish Reversal Watch\nTimeframe: Daily Swing\nReference Price: $13.87\n\nAAL is attempting an important trend transition near its 200-day moving average.\n\nMomentum is improving and MACD has ",
-        "url": "https://www.tradingview.com/chart/AAL/SaJgJk8m-AAL-200-SMA-Reclaim-Attempt/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_7449acabb57d",
-        "headline": "[AAL idea] American Airlines Faces Fuel-Cost Pressure as Oil Tops $100!",
-        "summary": "American Airlines (AAL) is confronting a fresh fuel-cost headwind as crude oil prices surge back above $100 a barrel, a development that has prompted Barclays to lower its price target on the carrier.",
-        "url": "https://www.tradingview.com/chart/AAL/nhR21q8r-American-Airlines-Faces-Fuel-Cost-Pressure-as-Oil-Tops-100/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_8591d024886d",
-        "headline": "[AAL idea] American Airlines look\u0131ng good for sw\u0131ng trade",
-        "summary": "NASDAQ:AAL  - American Airlines | LONG Setup \ud83d\udeeb\n\nTechnical setup lining up with a macro catalyst.\n\n\ud83d\udccd Entry: $13 zone (current price/support area)\n\ud83c\udfaf Target: $15 (short-to-mid term resistance)\n\ud83d\udcca Potentia",
-        "url": "https://www.tradingview.com/chart/AAL/nzh2uD6v-American-Airlines-look%C4%B1ng-good-for-sw%C4%B1ng-trade/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_0d8ccda71633",
-        "headline": "[AAL idea] AAL | June, 2026 | Continued stock growth",
-        "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 14.52\n- Take Profit: Open\n- Stop Loss: 13.18 (-9.30 %)\n\nIdea: Long on a breakout above last week's high \u2014 bullish momentum continuation.\nEntry",
-        "url": "https://www.tradingview.com/chart/AAL/klM9Ls9X-AAL-June-2026-Continued-stock-growth/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_c32f0e884b32",
-        "headline": "[AAL idea] Buy the bounce or let it crash?",
-        "summary": "NASDAQ:AAL  struggling since March '25 and mirroring the S&P 500.\n\nThe price bounced off COVID era low once in April in '25, but has since erased all gains from the year. \n\nIt almost reclaimed the 200",
-        "url": "https://www.tradingview.com/chart/AAL/YEQgXm6I-Buy-the-bounce-or-let-it-crash/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_888b31748192",
-        "headline": "[AAL idea] HOW-TO: Bearish RSI Divergence Inside a Strong 1H EMA Uptrend",
-        "summary": "Bearish RSI divergence does not always mean \u201cshort\u201d.\n\nIn this example, AAL is moving inside a strong 1H EMA uptrend. Several bearish RSI divergence signals appear during the move, but the broader EMA ",
-        "url": "https://www.tradingview.com/chart/AAL/Tm667Ps8-HOW-TO-Bearish-RSI-Divergence-Inside-a-Strong-1H-EMA-Uptrend/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_4b5ccace4dba",
-        "headline": "[AAL idea] American Airlines | AAL | Long at $13.34",
-        "summary": "As the Great American Wealth Transfer happens, people are using that money to travel more (after all, few can afford to transfer that wealth into real estate). Airline data show passenger counts are i",
-        "url": "https://www.tradingview.com/chart/AAL/efecqqa8-American-Airlines-AAL-Long-at-13-34/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
-      {
-        "id": "tv_c20ffb02413a",
-        "headline": "[AAL idea] AAL- American Airlines Multi-Year Pattern Breaks to the Upside",
-        "summary": "NASDAQ:AAL  is finally breaking out of a symmetrical triangle that has been forming since January 2025, setting up a high R/R swing opportunity.\n\nI\u2019m using the 3-day chart for this analysis.\n\nPrice ha",
-        "url": "https://www.tradingview.com/chart/AAL/XoWj1UDP-AAL-American-Airlines-Multi-Year-Pattern-Breaks-to-the-Upside/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986452
-      },
       {
         "id": "tv_593f3bfabcff",
         "headline": "[CLF idea] Cleveland-Cliffs (CLF) \u2014 Potential Rebound Toward $18",
         "summary": "Cleveland-Cliffs has been recovering after a long period of weakness. The stock found strong support around the $7.5\u20139 area and has since started building a higher low structure.\n\nThe price is current",
         "url": "https://www.tradingview.com/chart/CLF/o8mJmtYp-Cleveland-Cliffs-CLF-Potential-Rebound-Toward-18/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
       },
       {
         "id": "tv_b09a5d80e021",
@@ -236624,7 +236304,7 @@
         "summary": "Domestic steel prices, remain structurally higher. Imports remain constrained, demand improves. Cleveland-Cliffs, converts that pricing environment, into a rapid recovery in earnings and free cash flo",
         "url": "https://www.tradingview.com/chart/CLF/42ipQTyU-Cleveland-Cliffs-made-of-Steel/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
       },
       {
         "id": "tv_14f9dc7a207a",
@@ -236632,7 +236312,7 @@
         "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 10.18\n- Take Profit: Open\n- Stop Loss: 9.11 (-10.50 %)\n\nIdea: Long on a breakout above last week's high - bullish momentum continuation.\nEntry",
         "url": "https://www.tradingview.com/chart/CLF/QlOpJVR9-CLF-The-time-to-go-long-has-come/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
       },
       {
         "id": "tv_c2cde0e367a4",
@@ -236640,7 +236320,7 @@
         "summary": "Sometimes all you have to do is Zoom Out and let it cook.  Tons of volume in a tight accumulation (relative to previous price obviously). Steel is kind of important to a massive AI Infa buildout.  Buy",
         "url": "https://www.tradingview.com/chart/CLF/x19nZ6gD-Zoom-Out/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
       },
       {
         "id": "tv_12fb221848c6",
@@ -236648,7 +236328,7 @@
         "summary": "If you haven`t bought CLF before the previous earnings:\n\n\nNow analyzing the options chain and the chart patterns of CLF Cleveland-Cliffs prior to the earnings report this week,\nI would consider purcha",
         "url": "https://www.tradingview.com/chart/CLF/7AgM33Ld-CLF-Cleveland-Cliffs-Options-Ahead-of-Earnings/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
       },
       {
         "id": "tv_e614543f5760",
@@ -236656,7 +236336,7 @@
         "summary": "if  NYSE:CLF  follows this channel we should get a good move from here. 1,3 and 7 year moving averages squeezing...massive run incoming?",
         "url": "https://www.tradingview.com/chart/CLF/LLJx7W6b-CLF-Bullish-Bottoms-in/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
       },
       {
         "id": "tv_ff7496ffa3ad",
@@ -236664,7 +236344,7 @@
         "summary": "CLF is on my Watchlist for next week. \nCharting CLF trade idea for the week of 02/09-02/13/2026",
         "url": "https://www.tradingview.com/chart/CLF/STez7elk-CLF-trade-idea-week-of-02-09-02-13-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
       },
       {
         "id": "tv_11d99e3f7cd8",
@@ -236672,7 +236352,199 @@
         "summary": "CLF got a Bull trap spike then crashed hard.\nRecovery wave testing Golden Genesis at $11.68\nLook for a Break-n-Retest to mark a good BOTTOM\n\n.\n\nSee \"Related Publications\" for previous plots such as th",
         "url": "https://www.tradingview.com/chart/CLF/qWHbIeji-CLF-eyes-on-11-68-Golden-Genesis-fib-Break-n-Retest-for-BOTTOM/",
         "source": "TradingView Ideas",
-        "datetime": 1791986452
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_5c0f6bf5d0bf",
+        "headline": "[PFE idea] Pfizer \u2014 Buy Side",
+        "summary": "Pfizer Inc. is developing a constructive buy-side setup, with the current price structure showing signs of improving upside potential. The recent configuration suggests that buyers are gradually gaini",
+        "url": "https://www.tradingview.com/chart/PFE/UZZriicw-Pfizer-Buy-Side/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_2f30333b79dc",
+        "headline": "[PFE idea] Here's why I am long $PFE and NOT $LLY.",
+        "summary": "Here's why I am long  NYSE:PFE  and NOT $LLY. \ud83d\udc40\n\n NYSE:PFE   NYSE:LLY  #Pharma #Trading #Stocks #Investing",
+        "url": "https://www.tradingview.com/chart/PFE/lw1108Lw-Here-s-why-I-am-long-PFE-and-NOT-LLY/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_1944cf4997a3",
+        "headline": "[PFE idea] Pfizer\u2019s Cypher Setup: The Yellow Trend Line Could Hold the Key",
+        "summary": "Pfizer is approaching one of the most technically important areas on its long-term monthly chart.\n\nThe setup is built around a bullish Cypher harmonic pattern, with the projected completion occurring ",
+        "url": "https://www.tradingview.com/chart/PFE/7kvkHhiM-Pfizer-s-Cypher-Setup-The-Yellow-Trend-Line-Could-Hold-the-Key/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_c6ce73251fe2",
+        "headline": "[PFE idea] PFE \u2013 Pfizer Technical View",
+        "summary": "PFE is currently trading within what I consider a position-building zone.\n\nVolume activity supports the potential for an upside move, while the MACD crossover is starting to turn positive, adding mome",
+        "url": "https://www.tradingview.com/chart/PFE/oY5BxtxR-PFE-Pfizer-Technical-View/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_90d956373b97",
+        "headline": "[PFE idea] Can AI Save the Pfizer Growth Engine?",
+        "summary": "Pfizer faces a critical financial crossroads today. Investors question life after pandemic windfalls. The company must replace declining vaccine revenues quickly. Chief Executive Albert Bourla envisio",
+        "url": "https://www.tradingview.com/chart/PFE/eTXqHFu4-Can-AI-Save-the-Pfizer-Growth-Engine/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_b9fce64b5642",
+        "headline": "[PFE idea] Pfizer Wave Analysis \u2013 19 August 2026",
+        "summary": "\u2013 Pfizer broke key resistance level 27.15\n\n\u2013 Likely to rise to resistance level 28,7\n\nPfizer continues to rise inside the minor impulse wave C that previously broke above the key resistance level 27.1",
+        "url": "https://www.tradingview.com/chart/PFE/8BBmDefD-Pfizer-Wave-Analysis-19-August-2026/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_70eca1d56f45",
+        "headline": "[PFE idea] Pfizer, Inc. (PFE) \u2013 Bullish Setup | Target: 27.95 #39",
+        "summary": "PFE Price Outlook: Pfizer Pressing Against 0.618 Arc | Potential Breakout Toward $27.95  \n\nPfizer, Inc. (PFE): Arc Cycle Analysis \n\nOverview: Based on Arc Cycle Analysis applied to the 1D chart, Pfize",
+        "url": "https://www.tradingview.com/chart/PFE/7Ie4azhm-Pfizer-Inc-PFE-Bullish-Setup-Target-27-95-39/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_f908ff38d306",
+        "headline": "[PFE idea] PFE - This Is the Kind of Setup You Wait For",
+        "summary": "We haven't broken out of the higher-timeframe selling channel yet, but I think that's why the setup is so attractive. We're being handed a \"safe\" entry ahead of that move \u2014 a chance to position before",
+        "url": "https://www.tradingview.com/chart/PFE/vvWQ9Ji2-PFE-This-Is-the-Kind-of-Setup-You-Wait-For/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_559f74bb08ae",
+        "headline": "[NCLH idea] Norewegian Double Top Nearing Completion",
+        "summary": "Hello, \n\nLooks like Norwegian has big swing potential. \n\n NYSE:NCLH  is nearing the bottom of a Double Top retracement while following trendline lows. \n\nDeviation Profile suggests bear sentiment. \n\nWo",
+        "url": "https://www.tradingview.com/chart/NCLH/4XTr9Fj1-Norewegian-Double-Top-Nearing-Completion/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_1faf27e25184",
+        "headline": "[NCLH idea] Upcoming Buying Opportunity NCLH, CCL, RCL",
+        "summary": "Good afternoon everyone, I have been invested in NCLH for over a few years now and those who have viewed and invested along with me I am sure you have been able to make some good returns and by now kn",
+        "url": "https://www.tradingview.com/chart/NCLH/UaFTZIEF-Upcoming-Buying-Opportunity-NCLH-CCL-RCL/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_b2db485a7a39",
+        "headline": "[NCLH idea] $NCLH \u2014 Entered on the triangle breakout for a longer-term swing",
+        "summary": "Same sector as  NYSE:RCL , which has been trending strongly, while Norwegian Cruise Line has largely consolidated.\n\nStop: $21\nTarget: $38",
+        "url": "https://www.tradingview.com/chart/NCLH/NicP16kC-NCLH-Entered-on-the-triangle-breakout-for-a-longer-term-swing/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_9e26c741728f",
+        "headline": "[NCLH idea] GREAT CHANCE OF SHORTING 8% DOWN ( 3 day prediction)",
+        "summary": "Trying some new strategy... i really think this position can make your months earnings. Im going in short with $20k, expecting 8%return next 3 days\nLets see what happens",
+        "url": "https://www.tradingview.com/chart/NCLH/LYKqeXxE-GREAT-CHANCE-OF-SHORTING-8-DOWN-3-day-prediction/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_eabf2fbb6a9e",
+        "headline": "[NCLH idea] NCLH Moving Lower",
+        "summary": "Looking to see a nice little leg to the downside here on  NYSE:NCLH",
+        "url": "https://www.tradingview.com/chart/NCLH/NsH9FwSm-NCLH-Moving-Lower/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_57990d59a9a8",
+        "headline": "[NCLH idea] Don't Miss Your Port Call (NCLH & CCL)",
+        "summary": "Hello Everyone! Please, remember this is for educational purposes only, you MUST do your own research. Investing involves risk and should be evaluated with your own financial advisor... \n\nNonetheless,",
+        "url": "https://www.tradingview.com/chart/NCLH/LeR6nOsM-Don-t-Miss-Your-Port-Call-NCLH-CCL/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_d7135579dd8e",
+        "headline": "[NCLH idea] Norwegian Cruise Line | NCLH | On the path to profitability?",
+        "summary": "Norwegian Cruise Line  NYSE:NCLH , as well as many of the other cruise line stocks, never fully recovered from the 2020 market crash. From a technical analysis standpoint, this stock may be poised for",
+        "url": "https://www.tradingview.com/chart/NCLH/HnJKWHqg-Norwegian-Cruise-Line-NCLH-On-the-path-to-profitability/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_1562f7762802",
+        "headline": "[NCLH idea] First Weekly Golden Cross In 5 Years",
+        "summary": "And we could hit 4 year high.\n\nGiven the positive news around cruises, $30 is achievable by year end.",
+        "url": "https://www.tradingview.com/chart/NCLH/tClEJFSW-First-Weekly-Golden-Cross-In-5-Years/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_46732527a3d3",
+        "headline": "[CCL idea] CCL Dark Pools",
+        "summary": "Monthly Range for months and hit monthly low and took bounce up and dark pools showing alot of buys hit market worth a long on stock option 45 dte",
+        "url": "https://www.tradingview.com/chart/CCL/EM99G3Ce-CCL-Dark-Pools/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_526a4751dcbd",
+        "headline": "[CCL idea] CCL \u2014 Demand Zone + Long-Term Trendline Confluence",
+        "summary": "Carnival Corporation (CCL) is testing an interesting technical area on the Daily chart.\n\nPrice has pulled back into the $21.96\u2013$22.32 demand zone, right where it meets a major rising trendline that ha",
+        "url": "https://www.tradingview.com/chart/CCL/6ahZK3En-CCL-Demand-Zone-Long-Term-Trendline-Confluence/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_e8f3766b1693",
+        "headline": "[CCL idea] CCL: Reversal Setup | Watching a Bounce Toward the 200 EMA",
+        "summary": "CCL is back on my watchlist after a sharp pullback into the $23 area.\n\nPrice is currently trading below the 4H 200 EMA, so I\u2019m treating this as a potential recovery/reversal setup, not a confirmed bul",
+        "url": "https://www.tradingview.com/chart/CCL/4pqCZIsW-CCL-Reversal-Setup-Watching-a-Bounce-Toward-the-200-EMA/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_14c85511b710",
+        "headline": "[CCL idea] Carnival Staggers as Stocks Break Out",
+        "summary": "Carnival has been stuck in the doldrums as the broader market breaks out, and some traders may see downside risk.\n\nThe first pattern on today\u2019s chart is the peak above $34 in February, its highest lev",
+        "url": "https://www.tradingview.com/chart/CCL/kStL3TSC-Carnival-Staggers-as-Stocks-Break-Out/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_3a8adf857737",
+        "headline": "[CCL idea] Bullish for CCL",
+        "summary": "The price has been in a steady ranging dance. \nBig investors were unwilling to sell.\n\n\nAlways use Stop Loss",
+        "url": "https://www.tradingview.com/chart/CCL/eLzbKKXn-Bullish-for-CCL/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_7df15bb03f11",
+        "headline": "[CCL idea] Carnival (CCL): Key Support Test With Upside Potential",
+        "summary": "Carnival Corporation (CCL) is pulling back into a key support zone around $26, where buyers have previously stepped in.\n\nThe stock is still trading below the 200 EMA, so I\u2019d like to see buyers reclaim",
+        "url": "https://www.tradingview.com/chart/CCL/OV55xPQo-Carnival-CCL-Key-Support-Test-With-Upside-Potential/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_6a3fb2cae96e",
+        "headline": "[CCL idea] CCL \u2014 Q2 Earnings Today: Testing Whether the Cruise Recovery Has",
+        "summary": "CCL \u2014 Q2 Earnings Today: Testing Whether the Cruise Recovery Has Legs \n\n NYSE:CCL  \u2014 Carnival Corporation \u2014 June 23, 2026**\n\nCarnival reports Q2 earnings this morning with the stock sitting in the mid",
+        "url": "https://www.tradingview.com/chart/CCL/jqsuWFxV-CCL-Q2-Earnings-Today-Testing-Whether-the-Cruise-Recovery-Has/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
+      },
+      {
+        "id": "tv_4b5e5287a527",
+        "headline": "[CCL idea] Carnival Corp (CCL): A Leveraged Travel Oligopoly Rebuilding Its",
+        "summary": "Executive Summary:\nCarnival has come out of the pandemic with demand stronger than most investors expected. Free cash flow has returned and ROIC has recovered to roughly 13 percent. The balance sheet,",
+        "url": "https://www.tradingview.com/chart/CCL/hqglNLcD-Carnival-Corp-CCL-A-Leveraged-Travel-Oligopoly-Rebuilding-Its/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988237
       },
       {
         "id": "tv_85047ee2af0a",
@@ -236680,7 +236552,7 @@
         "summary": "NEM Weekly: Bearish RSI Divergence + High-Value Rejection \u2014 Is Wyckoff Distribution Developing? \n\nNEM has had an exceptionally strong advance, but the weekly chart is beginning to show a combination o",
         "url": "https://www.tradingview.com/chart/NEM/vk777M7F-NEM-Weekly-Bearish-RSI-Divergence-High-Value-Rejection-Is-W/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_9dcd7335bb2c",
@@ -236688,7 +236560,7 @@
         "summary": "**Newmont Corporation** is the world's largest gold mining company, with a diversified portfolio of gold, copper, silver, zinc, and lead operations spanning multiple continents. Its scale, long-life r",
         "url": "https://www.tradingview.com/chart/NEM/eBcoPD2r-Newmont-Corporation-NEM/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_eacda08ddfff",
@@ -236696,7 +236568,7 @@
         "summary": "Analyzing the options chain and the chart patterns of NEM Newmont Corporation prior to the earnings report this week,\nI would consider purchasing the 85usd strike price Puts with\nan expiration date of",
         "url": "https://www.tradingview.com/chart/NEM/AGocsRMN-NEM-Newmont-Corporation-Options-Ahead-of-Earnings/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_7d025e1d27f5",
@@ -236704,7 +236576,7 @@
         "summary": "Newmont (NEM) has all the ingredients I look for. \nAfter a strong prior uptrend, price went through a sharp shakeout, then built a clean, sideways base right on long\u2011term trendline support. \nVolatilit",
         "url": "https://www.tradingview.com/chart/NEM/qU96R9N5-NEM-Long/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_307cee887769",
@@ -236712,7 +236584,7 @@
         "summary": "NEM \u2014 Multi-Year Trendline Hold, $134 Reclaim, Path to $149-$166 | Record Q1 FCF $3.1B\nDirection: Long\nTimeframe: 1D\nDescription:\nSpot: $116.51 (+2.66%). Newmont closed Friday bouncing off the 0.702 f",
         "url": "https://www.tradingview.com/chart/NEM/aCCWqCcy-NEM-Multi-Year-Trendline-Hold-134-Reclaim-Path-to-149-166/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_fc837679ce68",
@@ -236720,7 +236592,7 @@
         "summary": "Newmont more than doubled last year, but some traders may think the gold miner is stalling.\n\nThe first pattern on today\u2019s chart is the bullish continuation in late 2025: NEM held its rising 50-day sim",
         "url": "https://www.tradingview.com/chart/NEM/4Esojqoy-Newmont-Lower-Low-Lower-High/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_8b829d04612b",
@@ -236728,7 +236600,7 @@
         "summary": "NEM on the 15-minute chart is showing a confirmed bullish continuation setup, with multiple layers of confluence aligning through the Lucky MTF indicator.\n\nWhat the data is showing:\n\ud83d\udcca Trade Probabilit",
         "url": "https://www.tradingview.com/chart/NEM/F8CYrR8v-NEM-15M-Bullish-Continuation-Confirmed-Lucky-MTF/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_ad270816f0f8",
@@ -236736,7 +236608,7 @@
         "summary": "Entry: $115.39\nStop Loss: $96.00\nTake Profit: $154.73\nRisk/Reward: ~1 : 2.03\n\n\ud83d\udd0d Rationale\n\ud83d\udcca Fundamental Backing (Score 7/7)\nStrong growth: Revenue +21% YoY, net income +112% YoY.\n\nPristine balance she",
         "url": "https://www.tradingview.com/chart/NEM/IbAFkiyC-Gold-Mining-Leader-with-Strong-Fundamentals-Technical-Rebound/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_b4f8ccf5a8b8",
@@ -236744,7 +236616,7 @@
         "summary": "Price is approaching HTF trendline.    This coincides with the Daily down close of May 15, 2026.    That daily candle is significant because it swept the HTF SSL from Feb 5, 2026.    I have support zo",
         "url": "https://www.tradingview.com/chart/RIVN/5HgCSHcm-RIVN-long-theory/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_8bf732814f68",
@@ -236752,7 +236624,7 @@
         "summary": "There is clear sell-side liquidity sitting below us at $12.50. If we continue to slowly drift down there with small candles and low volume, the future bull case gets interesting.\n\nBut be wary of any w",
         "url": "https://www.tradingview.com/chart/RIVN/iQZ2US10-RIVN-Something-doesn-t-seem-right/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_7be7a0aee2f3",
@@ -236760,7 +236632,7 @@
         "summary": "We've seen this setup before. \n\nFirst part is complete:\nTake LTF liquidity\n\n Second part is more important: \nReclaim that level ($14.50 here) i.e. bullish intent and see sellers fail to bring us lower",
         "url": "https://www.tradingview.com/chart/RIVN/T1btjiLI-RIVN-IF-ONLY/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_75acec524951",
@@ -236768,7 +236640,7 @@
         "summary": "Rivian looks risky but according to my data visualizers (WaveTrend with Crosses: \"The sky is falling!\", \"FBB with VFI: There is no support here!\", Custom Orb Indicator Model: RIVN is seeing inflows fr",
         "url": "https://www.tradingview.com/chart/RIVN/8bTXYKYY-RIVN/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_dac2a94d3382",
@@ -236776,7 +236648,7 @@
         "summary": "hi traders,\n\nTechnical Analysis & Trade Idea: RIVN (Weekly Timeframe)\n1. Market Structure: Ascending Triangle / Rising Higher Lows\nHigher Lows Structure: Since bottoming out near the $8.00 mark, RIVN ",
         "url": "https://www.tradingview.com/chart/RIVN/LiqpV3E2-RIVN-with-higher-lows-bullish/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_45f0e00fc54e",
@@ -236784,7 +236656,7 @@
         "summary": "Rivian struggling to get back inside the green channel\n\nShould reach around $18 before hitting the green channel again. \n\nPerhaps this time we can break back through. To add to it we had a nice weekly",
         "url": "https://www.tradingview.com/chart/RIVN/9QG0SAPW-Back-to-the-Broken-Channel/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_190f1986e5d6",
@@ -236792,7 +236664,7 @@
         "summary": "waiting for breakout, once it happens it's gonna be huge cos the amount of time it has spend it's almost 4 yrs in consolidation, I have set the reminder we will keep monitoring it closely for institut",
         "url": "https://www.tradingview.com/chart/RIVN/h8p7EWm7-Huge-move-loading-upside/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_0565049c35a8",
@@ -236800,7 +236672,7 @@
         "summary": "NASDAQ:RIVN   More Than Just an EV Company \ud83d\ude97\ud83d\udcbb\nAs we look at Rivian, one thing that stands out is that the company is becoming more than just a car manufacturer.\n\nRivian\u2019s vehicle business is still wor",
         "url": "https://www.tradingview.com/chart/RIVN/bG5oqu1j-RIVN/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_6a31bb5615cf",
@@ -236808,7 +236680,7 @@
         "summary": "Citi needs to \"Catch Up\"\n\n- I would wait see if we cross this bearish region\n- If we hit the bearish region I would go short\n- Short to $90 dollar region",
         "url": "https://www.tradingview.com/chart/C/b4WvW4W2-C-Trend-is-slightly-Bearish/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_fb82e2c3b469",
@@ -236816,7 +236688,7 @@
         "summary": "Citigroup Inc. is showing a weakening price configuration, with the current market structure creating room for a further decline toward the 117 level. Recent price behavior indicates that upside momen",
         "url": "https://www.tradingview.com/chart/C/qMmhn9LS-Citigroup-Sell-Side-117/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_ef321f5f6afc",
@@ -236824,7 +236696,7 @@
         "summary": "On June 18, 2026.  Citigroup delayed its U.S. Federal Reserve Interest rate cut forecast by pushing expectations back to 25-basis-point reductions specifically in October and December 2026.  Citigroup",
         "url": "https://www.tradingview.com/chart/C/ArlzfX9E-BREAKOUT-OF-TRIANGLE/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_3d2c99b53eab",
@@ -236832,7 +236704,7 @@
         "summary": "\u2013 Citigroup reversed from key support level 124.70\n\u2013 Likely to rise to resistance level 130.00\n\nCitigroup recently reversed up from the support zone between the key support level 124.70 (former resist",
         "url": "https://www.tradingview.com/chart/C/y4Cyeywk-Citigroup-Wave-Analysis-5-October-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_e4542bc456aa",
@@ -236840,7 +236712,7 @@
         "summary": "That ascending channel (blue dashed lines) has been remarkably clean since around Sep/Oct 2025, from roughly $60 up to today. Price has respected both boundaries multiple times.\n\nPossible scenarios fr",
         "url": "https://www.tradingview.com/chart/C/pRVlVcHW-Bullish-continuation-channel/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_88de799c6e68",
@@ -236848,7 +236720,7 @@
         "summary": "If you haven`t bought C Citigroup before the rally:\n\n\nNow analyzing the options chain and the chart patterns of C Citigroup prior to the earnings report this week,\nI would consider purchasing the 138u",
         "url": "https://www.tradingview.com/chart/C/Qq6coKL8-C-Citigroup-Options-Ahead-of-Earnings/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_e2ab68a9344b",
@@ -236856,7 +236728,7 @@
         "summary": "Head and shoulders pattern on Citigroup\n\n- Recent layoffs\n- Not financially secured\n- CEO Received a $41 million pay package\n- 1,000+ employees let go to pay CEO",
         "url": "https://www.tradingview.com/chart/C/pnN1JoF2-Head-and-shoulders-pattern-on-Citigroup/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
         "id": "tv_f5bc7b719b7a",
@@ -236864,583 +236736,135 @@
         "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 144.71\n- Take Profit: Open\n- Stop Loss: 137.15 (-5.20 %)\n\nIdea: Long on a breakout above last week's high - bullish momentum continuation.\nEnt",
         "url": "https://www.tradingview.com/chart/C/XEu9tDGr-Citigroup-Continued-stock-growth/",
         "source": "TradingView Ideas",
-        "datetime": 1791986451
+        "datetime": 1791988236
       },
       {
-        "id": "tv_9c0e268c4dda",
-        "headline": "[SOFI idea] 15 in the money puts may be the choice",
-        "summary": "Something is going on with Sofi, early signs forward would be increasing selling volume on the monthly timeframe.\nI see a support of 14.88 holding up the current base \nThe macd and signal line are far",
-        "url": "https://www.tradingview.com/chart/SOFI/hUB5wHie-15-in-the-money-puts-may-be-the-choice/",
+        "id": "tv_b7885820df0b",
+        "headline": "[DAL idea] DAL Earnings: The EMAs Are Squeezing, Yields Are at 24-Year High",
+        "summary": "Delta reports Q3 before the open Friday, with consensus near $1.99 EPS. The chart is at a decision point, and the macro backdrop is what makes this earnings report matter more than most.\n\n\nDAL bottome",
+        "url": "https://www.tradingview.com/chart/DAL/zgcuIyS2-DAL-Earnings-The-EMAs-Are-Squeezing-Yields-Are-at-24-Year-High/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_4ab5ba77f5eb",
-        "headline": "[SOFI idea] SOFI expected earnings Q326 enough for a breakout of the range?",
-        "summary": "it seems that the stock price kept increasing till Q325 earnings as was the eps growth. After this earnings margins have dropped and profits stagnated. the share value of the growth has been erased an",
-        "url": "https://www.tradingview.com/chart/SOFI/0bzBYL5I-SOFI-expected-earnings-Q326-enough-for-a-breakout-of-the-range/",
+        "id": "tv_23bef1c113c1",
+        "headline": "[DAL idea] DAL:Textbook Bounce from Channel Support & Structuring for New H",
+        "summary": "Hello Traders,\nAnalyzing the daily (1D) chart for Delta Air Lines (NYSE: DAL), we can observe highly disciplined Price Action unfolding within a well-defined bullish market structure. The stock is con",
+        "url": "https://www.tradingview.com/chart/DAL/qr9A30vG-DAL-Textbook-Bounce-from-Channel-Support-Structuring-for-New-H/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_ecc79ac8525a",
-        "headline": "[SOFI idea] sofi possible buying zones",
-        "summary": "I see 14.5 in respected the support, otherwise if support broken than I see there is a gap at 11.5 and historically gaps tends to fill most of the time. let's wait patiently for the best buying spots.",
-        "url": "https://www.tradingview.com/chart/SOFI/L97TxZq7-sofi-possible-buying-zones/",
+        "id": "tv_f54e06ce6a9e",
+        "headline": "[DAL idea] $DAL Long Buy Still Intact Above the Rising Structure",
+        "summary": "Delta Air Lines is still trading inside a long-term bullish structure, and the key thing on this monthly chart is that the base breakout remains intact.\ud83d\udcc8 \n\nThe recent weakness looks more like a normal",
+        "url": "https://www.tradingview.com/chart/DAL/qJCHbQF8-DAL-Long-Buy-Still-Intact-Above-the-Rising-Structure/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_771220718423",
-        "headline": "[SOFI idea] SoFi breakdown",
-        "summary": "Update on SoFi unfortunately it broke down. Looks like rate holders on top of them keeping risk on their balance sheet is not something the market likes. I expect 14$ here. I took a loss on my spot.",
-        "url": "https://www.tradingview.com/chart/SOFI/hyfGW98Z-SoFi-breakdown/",
+        "id": "tv_ca32761a5af0",
+        "headline": "[DAL idea] The DAL Trade Played Out",
+        "summary": "I posted this trade earlier.  If you entered it I would trim or get out completely here.",
+        "url": "https://www.tradingview.com/chart/DAL/p5azGTZ4-The-DAL-Trade-Played-Out/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_81a5f3516e01",
-        "headline": "[SOFI idea] SOFI accumulation ahead of Q3 earnings",
-        "summary": "Moderate swing trade ahead of Q3 earnings on Nov 3rd, which I believe they will beat as usual and they'll continue building investors trust in the company. I expect at least a move towards $19.5 - $20",
-        "url": "https://www.tradingview.com/chart/SOFI/qGuunw17-SOFI-accumulation-ahead-of-Q3-earnings/",
+        "id": "tv_31f512037ed6",
+        "headline": "[DAL idea] Potential DAL trade setup",
+        "summary": "My screener returned DAL as a potential Pre-Breakout candidate.  This would be a swing trade.  The risk and reward levels are included.",
+        "url": "https://www.tradingview.com/chart/DAL/Jh4vsilw-Potential-DAL-trade-setup/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_60124bbe0a9a",
-        "headline": "[SOFI idea] SOFI: Price Gradually Approaching The Consolidation Support Zone",
-        "summary": "SoFi Technologies Inc (SOFI) is trading down today at $15.96, representing a 3.74% decline in intraday trading . The drop is largely driven by macro pressure, as rising Treasury yields (with the 10 ye",
-        "url": "https://www.tradingview.com/chart/SOFI/DzDrb6LL-SOFI-Price-Gradually-Approaching-The-Consolidation-Support-Zone/",
+        "id": "tv_b044b1bddcb9",
+        "headline": "[DAL idea] Delta Air Lines: A Good Airline in a Historically Difficult Busi",
+        "summary": "Executive Summary:\nDelta Air Lines is widely regarded as the best managed airline in the United States and currently produces billions in free cash flow with margins that lead the industry. Even so, a",
+        "url": "https://www.tradingview.com/chart/DAL/8zp6Ept6-Delta-Air-Lines-A-Good-Airline-in-a-Historically-Difficult-Busi/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_fc1d7a3769ce",
-        "headline": "[SOFI idea] SOFI: A Swing Setup Worth Watching",
-        "summary": "SOFI is interesting here, but I don\u2019t think the trade has been earned yet.\n\nOn the hourly chart, price has spent the last several weeks compressing inside a declining structure after peaking near $19.",
-        "url": "https://www.tradingview.com/chart/SOFI/LxB1aM7a-SOFI-A-Swing-Setup-Worth-Watching/",
+        "id": "tv_a7381e1148bc",
+        "headline": "[DAL idea] Delta Air Lines showing short\u2011term upside as support holds near",
+        "summary": "Current Price: 67.82 (Analysis was generated on Monday Morning)\n\nDirection: LONG\n\nConfidence level: 58%(Limited direct trader snippets but available sentiment shows a bullish tilt and price is holding",
+        "url": "https://www.tradingview.com/chart/DAL/5Pib9ovp-Delta-Air-Lines-showing-short-term-upside-as-support-holds-near/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_435566d9c674",
-        "headline": "[SOFI idea] SOFI - long idea",
-        "summary": "Risky trade \nSupport zone $16.20-17 (yellow zone)\nTight SL $15.5\nTP $24\nor wait for daily market structure break for confirmation",
-        "url": "https://www.tradingview.com/chart/SOFI/7CAHFrOD-SOFI-long-idea/",
+        "id": "tv_112e8d254e44",
+        "headline": "[DAL idea] V3 Bullish CBRA pattern in DAL",
+        "summary": "\ud83d\udd3a V3 Pattern (Bullish) \u2014 what it is \n\nThe V3 pattern is a short-term exhaustion structure that appears after a move into support.\nIt typically reflects:\n\n\u25b6\ufe0f a sharp move down\n\u25b6\ufe0f followed by loss of do",
+        "url": "https://www.tradingview.com/chart/DAL/ujQgdyJ5-V3-Bullish-CBRA-pattern-in-DAL/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_d3a8ca8902d6",
-        "headline": "[HOOD idea] HOOD: Stock Approaching An Important Trendline Zone",
-        "summary": "Robinhood Markets Inc. (HOOD) stock has experienced a pullback, trading around $108.15 amid broader pressure across the cryptocurrency market and active regulatory headlines. Despite recent downward m",
-        "url": "https://www.tradingview.com/chart/HOOD/WkpdEktj-HOOD-Stock-Approaching-An-Important-Trendline-Zone/",
+        "id": "tv_e3a3e5ba0758",
+        "headline": "[AAL idea] AAL \u2014 200-SMA Reclaim Attempt",
+        "summary": "Bias: Early Bullish Reversal Watch\nTimeframe: Daily Swing\nReference Price: $13.87\n\nAAL is attempting an important trend transition near its 200-day moving average.\n\nMomentum is improving and MACD has ",
+        "url": "https://www.tradingview.com/chart/AAL/SaJgJk8m-AAL-200-SMA-Reclaim-Attempt/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_aedb589420db",
-        "headline": "[HOOD idea] HOOD \u2014 Hold",
-        "summary": "Robinhood Markets, Inc. (HOOD) \u2014 HOLD 51/100\n\nRobinhood presents a complex tension between high operational efficiency and an increasingly stretched valuation. While the company demonstrates impressiv",
-        "url": "https://www.tradingview.com/chart/HOOD/XQ8TshC5-HOOD-Hold/",
+        "id": "tv_7449acabb57d",
+        "headline": "[AAL idea] American Airlines Faces Fuel-Cost Pressure as Oil Tops $100!",
+        "summary": "American Airlines (AAL) is confronting a fresh fuel-cost headwind as crude oil prices surge back above $100 a barrel, a development that has prompted Barclays to lower its price target on the carrier.",
+        "url": "https://www.tradingview.com/chart/AAL/nhR21q8r-American-Airlines-Faces-Fuel-Cost-Pressure-as-Oil-Tops-100/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_c96b5703f48d",
-        "headline": "[HOOD idea] HOOD Gravestone doji",
-        "summary": "Gravestone doji at recent support is typically a reversal signal meaning the bearish pressure may be over. But the long rejection wick indicates selling pressure was still present and caution should b",
-        "url": "https://www.tradingview.com/chart/HOOD/UrHorj16-HOOD-Gravestone-doji/",
+        "id": "tv_8591d024886d",
+        "headline": "[AAL idea] American Airlines look\u0131ng good for sw\u0131ng trade",
+        "summary": "NASDAQ:AAL  - American Airlines | LONG Setup \ud83d\udeeb\n\nTechnical setup lining up with a macro catalyst.\n\n\ud83d\udccd Entry: $13 zone (current price/support area)\n\ud83c\udfaf Target: $15 (short-to-mid term resistance)\n\ud83d\udcca Potentia",
+        "url": "https://www.tradingview.com/chart/AAL/nzh2uD6v-American-Airlines-look%C4%B1ng-good-for-sw%C4%B1ng-trade/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_99a927774dd1",
-        "headline": "[HOOD idea] HOOD - LTF/HTF Alignment Trade",
-        "summary": "This is what we look for - A clear HTF bias, coupled with a LTF liquidity level that, if taken, will offer us an excellent R:R trade.\n\nMore specifically here, I am looking for the LTF sell-side liquid",
-        "url": "https://www.tradingview.com/chart/HOOD/gyi9xUrb-HOOD-LTF-HTF-Alignment-Trade/",
+        "id": "tv_0d8ccda71633",
+        "headline": "[AAL idea] AAL | June, 2026 | Continued stock growth",
+        "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 14.52\n- Take Profit: Open\n- Stop Loss: 13.18 (-9.30 %)\n\nIdea: Long on a breakout above last week's high \u2014 bullish momentum continuation.\nEntry",
+        "url": "https://www.tradingview.com/chart/AAL/klM9Ls9X-AAL-June-2026-Continued-stock-growth/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_65cc16273d2a",
-        "headline": "[HOOD idea] ATH by next month?",
-        "summary": "I noticed that Robinhood had a huge bullish move, about a 25% gain in only 3 days, which is crazy.\nI see this and can only imagine how much higher it can go. \nSo I am considering getting in a part of ",
-        "url": "https://www.tradingview.com/chart/HOOD/n8tzGfFh-ATH-by-next-month/",
+        "id": "tv_c32f0e884b32",
+        "headline": "[AAL idea] Buy the bounce or let it crash?",
+        "summary": "NASDAQ:AAL  struggling since March '25 and mirroring the S&P 500.\n\nThe price bounced off COVID era low once in April in '25, but has since erased all gains from the year. \n\nIt almost reclaimed the 200",
+        "url": "https://www.tradingview.com/chart/AAL/YEQgXm6I-Buy-the-bounce-or-let-it-crash/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_e62d1ebf05c8",
-        "headline": "[HOOD idea] HOOD: I still count this recovery as wave B",
-        "summary": "On the weekly chart, I count the decline from roughly $153 to $63 as five waves down, completing wave (A) of a larger wave (2). The recovery since then has an A-B-C structure and remains wave (B) in m",
-        "url": "https://www.tradingview.com/chart/HOOD/2XyH5ktE-HOOD-I-still-count-this-recovery-as-wave-B/",
+        "id": "tv_888b31748192",
+        "headline": "[AAL idea] HOW-TO: Bearish RSI Divergence Inside a Strong 1H EMA Uptrend",
+        "summary": "Bearish RSI divergence does not always mean \u201cshort\u201d.\n\nIn this example, AAL is moving inside a strong 1H EMA uptrend. Several bearish RSI divergence signals appear during the move, but the broader EMA ",
+        "url": "https://www.tradingview.com/chart/AAL/Tm667Ps8-HOW-TO-Bearish-RSI-Divergence-Inside-a-Strong-1H-EMA-Uptrend/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_5e0807b2795d",
-        "headline": "[HOOD idea] HOOD lose 50% by end of year",
-        "summary": "Looking like a great 5 waves down for A with a 3 wave retrace for B right to the 161.8% extension of A. Looking for this stock to tumble back to $50 / share. \n \n A = C\n 127% extension of A \n 38% retra",
-        "url": "https://www.tradingview.com/chart/HOOD/JneoDpWh-HOOD-lose-50-by-end-of-year/",
+        "id": "tv_4b5ccace4dba",
+        "headline": "[AAL idea] American Airlines | AAL | Long at $13.34",
+        "summary": "As the Great American Wealth Transfer happens, people are using that money to travel more (after all, few can afford to transfer that wealth into real estate). Airline data show passenger counts are i",
+        "url": "https://www.tradingview.com/chart/AAL/efecqqa8-American-Airlines-AAL-Long-at-13-34/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
+        "datetime": 1791988236
       },
       {
-        "id": "tv_4accc3c7348f",
-        "headline": "[HOOD idea] Bearish engulfing HOOD",
-        "summary": "Bearish engulfingc with a long wick rejection showing on HOOD indicating selling pressure. Will we see a drop to $100 before continuing past $120?",
-        "url": "https://www.tradingview.com/chart/HOOD/uxrEStVk-Bearish-engulfing-HOOD/",
+        "id": "tv_c20ffb02413a",
+        "headline": "[AAL idea] AAL- American Airlines Multi-Year Pattern Breaks to the Upside",
+        "summary": "NASDAQ:AAL  is finally breaking out of a symmetrical triangle that has been forming since January 2025, setting up a high R/R swing opportunity.\n\nI\u2019m using the 3-day chart for this analysis.\n\nPrice ha",
+        "url": "https://www.tradingview.com/chart/AAL/XoWj1UDP-AAL-American-Airlines-Multi-Year-Pattern-Breaks-to-the-Upside/",
         "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_285901ba2f84",
-        "headline": "[WFC idea] WFC Bearish Idea Into Earnings: Lower High, Supply Zone and Fib",
-        "summary": "Wells Fargo reports earnings today at 11:00 UTC, with the call at 14:00 UTC. Earnings can move price either way, so I'm not trying to guess the numbers. I'm trading the structure on the 2D chart.\n\nWha",
-        "url": "https://www.tradingview.com/chart/WFC/eIlwll2V-WFC-Bearish-Idea-Into-Earnings-Lower-High-Supply-Zone-and-Fib/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_1396bd31f360",
-        "headline": "[WFC idea] Wells Fargo & Company \u2014 Buy Side | 97",
-        "summary": "Wells Fargo & Company is presenting a constructive upside setup, with the current price structure creating room for a further advance toward the 97 level. The recent formation is showing improving upw",
-        "url": "https://www.tradingview.com/chart/WFC/Sbmrp6nc-Wells-Fargo-Company-Buy-Side-97/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_a4f45d4654ca",
-        "headline": "[WFC idea] WFC LONG \u2014 4H ALMA Averaging Setup (WR 74% \u00b7 avg RR 1.2)",
-        "summary": "My BoaBias ALMA Averaging Strategy is managing an open long position on $NYSE:WFC.\n\nThe position was opened in four entries between August 21 and October 1. This is a systematic mean-reversion setup g",
-        "url": "https://www.tradingview.com/chart/WFC/Yd4Vd0BZ-WFC-LONG-4H-ALMA-Averaging-Setup-WR-74-avg-RR-1-2/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_1723ed66c458",
-        "headline": "[WFC idea] Wells Fargo & Company. WFC",
-        "summary": "Wells Fargo & Company is a diversified U.S. financial services company providing banking, lending, investment, and wealth-management services to individuals, businesses, and institutions.\n\nFrom a tech",
-        "url": "https://www.tradingview.com/chart/WFC/t2kWfpjM-Wells-Fargo-Company-WFC/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_7695883a2256",
-        "headline": "[WFC idea] WFC \u2014 Bearish Crab: Possible Second Rejection",
-        "summary": "WFC has already rejected the Potential Reversal Zone once, making the current setup interesting as price approaches the same area again.\n\nA second rejection from this zone could provide another opport",
-        "url": "https://www.tradingview.com/chart/WFC/rU95g2DJ-WFC-Bearish-Crab-Possible-Second-Rejection/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_3ecb086638bb",
-        "headline": "[WFC idea] WFC LONG",
-        "summary": "\ud83d\udd18 Entry points when strong global levels are broken\n\ud83d\udd18 There is no clear take profit target - the position is accompanied by different algorithms\n\ud83d\udd18 Use Tradingview as the most convenient way to visuali",
-        "url": "https://www.tradingview.com/chart/WFC/0k02zalF-WFC-LONG/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_ce0a8b2f6b49",
-        "headline": "[WFC idea] WFC LONG",
-        "summary": "\ud83d\udd18 Entry points when strong global levels are broken\n\ud83d\udd18 There is no clear take profit target - the position is accompanied by different algorithms\n\ud83d\udd18 Use Tradingview as the most convenient way to visuali",
-        "url": "https://www.tradingview.com/chart/WFC/U8YNYLFN-WFC-LONG/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_3d2c27755c8d",
-        "headline": "[WFC idea] WFC LONG",
-        "summary": "\ud83d\udd18 Entry points when strong global levels are broken\n\ud83d\udd18 There is no clear take profit target - the position is accompanied by different algorithms\n\ud83d\udd18 Use Tradingview as the most convenient way to visuali",
-        "url": "https://www.tradingview.com/chart/WFC/DZa4fBMg-WFC-LONG/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986450
-      },
-      {
-        "id": "tv_7b6e7299e0f6",
-        "headline": "[MARA idea] MARA: We Are At An Interesting Point!",
-        "summary": "A strong week for MARA stock: The stock gained significantly, rising almost 25%. Immediately after our last update, very dynamic gains began, but these have lost some momentum in recent trading days.\n",
-        "url": "https://www.tradingview.com/chart/MARA/ARO7BmxE-MARA-We-Are-At-An-Interesting-Point/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_4cbf650627ee",
-        "headline": "[MARA idea] MARA (4H) is back at the $10.25 level \u2014 the same horizontal supp",
-        "summary": "MARA (4H) is back at the $10.25 level \u2014 the same horizontal support that held during the November low and is now being retested after the pullback from the July high near $15.60. This is a classic str",
-        "url": "https://www.tradingview.com/chart/MARA/F3dMtElg-MARA-4H-is-back-at-the-10-25-level-the-same-horizontal-supp/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_218a7431242b",
-        "headline": "[MARA idea] MARA | The time to go long has come",
-        "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 12.39\n- Take Profit: Open\n- Stop Loss: 11.00 (-11.20 %)\n\nIdea: Long on a breakout above last week's high - bullish momentum continuation.\nEntr",
-        "url": "https://www.tradingview.com/chart/MARA/ozJwDeR3-MARA-The-time-to-go-long-has-come/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_8b64962e3a17",
-        "headline": "[MARA idea] MARA. Can the rise be sustained?",
-        "summary": "It evolves from a pure Bitcoin miner, into a broader digital-infrastructure and AI/HPC power platform.\nMore importantly, MARA controls roughly 1.9 GW of energy capacity across 19 data centers.\nThe Sta",
-        "url": "https://www.tradingview.com/chart/MARA/8evJcdcC-MARA-Can-the-rise-be-sustained/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_ff91b0c9f2de",
-        "headline": "[MARA idea] MARA/HUT (18/08/2026)",
-        "summary": "MARA vs HUT double bottom\n\nHUT has done the bulk of its move. This means MARA is up next IMHO!\n\nNot financial advice",
-        "url": "https://www.tradingview.com/chart/MARA/EoiqPBf7-MARA-HUT-18-08-2026/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_5bc0379d8bc5",
-        "headline": "[MARA idea] MARA Holdings Options Ahead of Earnings",
-        "summary": "If you haven`t bought MARA before the previous earnings:\n\n\nNow analyzing the options chain and the chart patterns of MARA Holdings prior to the earnings report this week,\nI would consider purchasing t",
-        "url": "https://www.tradingview.com/chart/MARA/sb6aJtdw-MARA-Holdings-Options-Ahead-of-Earnings/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_e932d4694b57",
-        "headline": "[MARA idea] Week 28 of 52 | MARA | Is This Still a Downtrend?",
-        "summary": "NASDAQ:MARA  s a great example of why not every stock below a descending trendline is in a clean downtrend.\n\nA real downtrend usually needs two things:\n\nLower highs + lower lows.\n\nMARA still has the l",
-        "url": "https://www.tradingview.com/chart/MARA/y5Qj7whr-Week-28-of-52-MARA-Is-This-Still-a-Downtrend/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_c8dc1e30d5b0",
-        "headline": "[MARA idea] MARA Long \u2014 $MARA pulling back into prior support at $14.30 afte",
-        "summary": "On the 4-hour chart, MARA has been in a clear uptrend since its late-March low near $8, printing successive higher lows and higher highs through mid-June before spiking to $16+ on June 22. That spike ",
-        "url": "https://www.tradingview.com/chart/MARA/avXvXXaM-MARA-Long-MARA-pulling-back-into-prior-support-at-14-30-afte/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_7d82d074742a",
-        "headline": "[RIOT idea] Targets up- ready for break out",
-        "summary": "Riot has been descending for a while now. It finally hit the big support. A very healthy company with lots of future potential in my eyes",
-        "url": "https://www.tradingview.com/chart/RIOT/waQhX3Rw-Targets-up-ready-for-break-out/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_8e94ed6a613a",
-        "headline": "[RIOT idea] RIOT: Meltdown or meltup?",
-        "summary": "The recent two strong moves have put the bull case for RIOT front and center. However, we still have only a 3 waves moves so far. 9/29 price drop below the trendline has put the whole move under jeopa",
-        "url": "https://www.tradingview.com/chart/RIOT/HYQD5PwU-RIOT-Meltdown-or-meltup/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_39104d66ea03",
-        "headline": "[RIOT idea] RIOT charts have it all",
-        "summary": "Riot Platforms offer infrastructure for bitcoin mining and data centers. The crypto theme has been heating up for some time now, and I previously wrote about Coinbase which I will link here too. I wro",
-        "url": "https://www.tradingview.com/chart/RIOT/sQkmNoNm-RIOT-charts-have-it-all/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_14dd7436ba5b",
-        "headline": "[RIOT idea] Bounce from Breakout Gap",
-        "summary": "RIOT took support near the breakout gap. Made solid Marubozu candle after the hammer.  Looking good to go higher towards 18.9, 19.4, with a final target of 21.5 \n\nshouldn't fall below 15 (SL)",
-        "url": "https://www.tradingview.com/chart/RIOT/TwfO5V7J-Bounce-from-Breakout-Gap/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_f6192bd1b537",
-        "headline": "[RIOT idea] RIOT | Continued stock growth",
-        "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 22.87\n- Take Profit: Open\n- Stop Loss: 20.78 (-9.10 %)\n\nIdea: Long on a breakout above last week's high - bullish momentum continuation.\nEntry",
-        "url": "https://www.tradingview.com/chart/RIOT/2h76mOr4-RIOT-Continued-stock-growth/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_8c024a554e49",
-        "headline": "[RIOT idea] RIOT: Breakout or breakdown next?",
-        "summary": "RIOT has been on a sideways journey for the past couple of months. The patterns look very similar to what happened between October of last year to March of this year. It created slight lower lows back",
-        "url": "https://www.tradingview.com/chart/RIOT/EV420Hct-RIOT-Breakout-or-breakdown-next/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_0cfe1bdb6647",
-        "headline": "[RIOT idea] 08-17-2026 Buy RIOT",
-        "summary": "08-17-2026\nBuy RIOT \nSwing trade\nB 18.89\nS 20.91\nA 2.02\nSL 17.85\n\nThe company recently signed a massive $9.1 billion AI compute deal with Anthropic to shift toward AI infrastructure, though Q2 2026 fi",
-        "url": "https://www.tradingview.com/chart/RIOT/opYuJblV-08-17-2026-Buy-RIOT/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_ede242b37bf0",
-        "headline": "[RIOT idea] RIOT: AI/Data Center Catalyst + Key 200 EMA Reclaim Setup",
-        "summary": "RIOT Platforms (RIOT) is on my watchlist as price approaches an important technical decision area following a major AI/data-center catalyst.\n\nRIOT is currently trading around the $20 area, with the 4H",
-        "url": "https://www.tradingview.com/chart/RIOT/PbO0CPs4-RIOT-AI-Data-Center-Catalyst-Key-200-EMA-Reclaim-Setup/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986449
-      },
-      {
-        "id": "tv_7cd2a810f584",
-        "headline": "[SOLUSDT idea] SOLUSDT: Structural Compression Retest",
-        "summary": "\ud83d\udcca Macro & Fundamental Context \nSolana is consolidating around the $110.00 threshold on the 30-minute timeframe, reflecting localized volatility contraction following recent downside expansion. Digital",
-        "url": "https://www.tradingview.com/chart/SOLUSDT/XGL6XUiD-SOLUSDT-Structural-Compression-Retest/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_494778635e61",
-        "headline": "[SOLUSDT idea] SOLUSDT: Rising Trendline Support Under Pressure",
-        "summary": "\ud83d\udd39 SOLUSDT Price Action Analysis: Solana has faced a strong bearish rejection from the 120\u2013121 resistance and liquidity area, followed by a sharp decline toward the rising trendline. The current price ",
-        "url": "https://www.tradingview.com/chart/SOLUSDT.P/T0PEMcRz-SOLUSDT-Rising-Trendline-Support-Under-Pressure/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_d34088319838",
-        "headline": "[SOLUSDT idea] HOW-TO: read a bearish momentum thrust after a sharp drop",
-        "summary": "On 7 October, between 01:30 and 02:30 UTC, about $41 million of long positions were liquidated on Bybit alone. Ether led with $16.6 million. US index futures, the dollar and Treasury yields barely mov",
-        "url": "https://www.tradingview.com/chart/SOLUSDT.P/YYhhZG59-HOW-TO-read-a-bearish-momentum-thrust-after-a-sharp-drop/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_858fc548517c",
-        "headline": "[SOLUSDT idea] Potential scenario: It looks like this for Solana SHORT",
-        "summary": "The chart clearly shows that the five wave sequence has completed.  and price may now be entering an ABC correction.\nI\u2019m watching for a potential corrective structure developing into either a Flat or ",
-        "url": "https://www.tradingview.com/chart/SOLUSDT.P/YJlsqqpg-Potential-scenario-It-looks-like-this-for-Solana-SHORT/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_cb777dd54856",
-        "headline": "[SOLUSDT idea] SOLUSDT Short: Structural Breakdown At Liquidity Shelf",
-        "summary": "\ud83d\udcca  Macro & Technical Breakdown (SOLUSDT)\n \nFollowing a prolonged period of distribution and multiple failed attempts to secure acceptance above the psychological resistance block, SOLUSDT has printed ",
-        "url": "https://www.tradingview.com/chart/SOLUSDT/Cqg84tcN-SOLUSDT-Short-Structural-Breakdown-At-Liquidity-Shelf/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_673b9f100539",
-        "headline": "[SOLUSDT idea] SOLANA (SOL): Final Shakeout Before $150 Rally?",
-        "summary": "Yello Paradisers! Is #SOL latest correction creating a significant buying opportunity before its next bullish expansion toward $150, or could a breakdown of critical support threaten the entire recove",
-        "url": "https://www.tradingview.com/chart/SOLUSDT/F1qVXFeG-SOLANA-SOL-Final-Shakeout-Before-150-Rally/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_bab60ed27bfb",
-        "headline": "[SOLUSDT idea] SOLUSDT: Bulls Set Up a Recovery Toward $125",
-        "summary": "Solana has corrected sharply from the $120\u2013$124 area and is now testing an important support zone around $105\u2013$109. This region previously acted as resistance before the September breakout, so the cur",
-        "url": "https://www.tradingview.com/chart/SOLUSDT/P2Jn3sN1-SOLUSDT-Bulls-Set-Up-a-Recovery-Toward-125/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_7c77ae69cdf9",
-        "headline": "[SOLUSDT idea] Solana (SOL) \u2014 Point of Control Support Remains Critical",
-        "summary": "Solana price action continues to hold above the lower boundary of its broader trading channel, with a key technical support region situated around the Point of Control (POC) and Fibonacci confluence. ",
-        "url": "https://www.tradingview.com/chart/SOLUSDT.P/fzWvFONp-Solana-SOL-Point-of-Control-Support-Remains-Critical/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_cbfe9f0d21e7",
-        "headline": "[XRPUSDT idea] XRP Looks Extremely Bullish: Is a Major Rally Ahead? (3D)",
-        "summary": "Before anything else, pay attention to the timeframe. This is a higher timeframe setup that will take time to play out.\n\nThe XRP market is still hot, with ongoing discussions about major fundamental c",
-        "url": "https://www.tradingview.com/chart/XRPUSDT.P/aw3QKzeI-XRP-Looks-Extremely-Bullish-Is-a-Major-Rally-Ahead-3D/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_b330281678cd",
-        "headline": "[XRPUSDT idea] XRP/USDT: Key Support Holds, Potential Recovery Ahead",
-        "summary": "XRP is testing a key support zone around $1.37 to $1.39 on the 4H timeframe. This area aligns with the ascending trendline and has already triggered a rebound following the recent sell-off.\n\nIf suppor",
-        "url": "https://www.tradingview.com/chart/XRPUSDT/DcsMSQal-XRP-USDT-Key-Support-Holds-Potential-Recovery-Ahead/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_108fdd563dc2",
-        "headline": "[XRPUSDT idea] XRPUSDT \u2014 BUY Setup ...",
-        "summary": "XRPUSDT \u2014 BUY Setup\nBUY BIAS\nBuy on confirmation\n1.3950\u20131.4050\n\n\nTP1\n1.4200\n\nTP2\n1.4700\n\nTP3\n1.5500\n\nStop Loss\n1.3750\n\n\nSupport: 1.3200\u20131.3300\nResistance: 1.4100\u20131.4200, 1.4700\u20131.4800, and 1.5500\u20131.56",
-        "url": "https://www.tradingview.com/chart/XRPUSDT/Q2BBA4Bk-XRPUSDT-BUY-Setup/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_f2060f89f978",
-        "headline": "[XRPUSDT idea] XRPUSDT \u2014 Rising Trendline Breakdown & Bearish Pressure",
-        "summary": "\ud83d\udd39 XRPUSDT is showing a clear bearish shift in price action after breaking below the rising trendline that supported the previous recovery. The rejection from the 1.45\u20131.46 resistance area was followed",
-        "url": "https://www.tradingview.com/chart/XRPUSDT/puVFOsg6-XRPUSDT-Rising-Trendline-Breakdown-Bearish-Pressure/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_9d6df397a8fb",
-        "headline": "[XRPUSDT idea] XRPUSDT: Bottom Could Set U Move Toward 1.60",
-        "summary": "XRP has pulled back sharply into the $1.34\u2013$1.40 area, where buyers are beginning to react. This creates a potential second bottom after the September low, but the bullish reversal is not confirmed ye",
-        "url": "https://www.tradingview.com/chart/XRPUSDT/MvaF4FE8-XRPUSDT-Bottom-Could-Set-U-Move-Toward-1-60/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_6a22b7a77b48",
-        "headline": "[XRPUSDT idea] XRPUSDT: Breakdown Pressure, Sellers Takes Wave",
-        "summary": "XRP remains under pressure inside a clear descending channel. The latest selloff pushed price below the previous support area and below both EMAs, with XRP now trading near 1.42. This keeps the short-",
-        "url": "https://www.tradingview.com/chart/XRPUSDT/UbS55cBt-XRPUSDT-Breakdown-Pressure-Sellers-Takes-Wave/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_2d091c6183a3",
-        "headline": "[XRPUSDT idea] XRP: Long-Term Downtrend Finally Breaking?",
-        "summary": "BINANCE:XRPUSDT  Daily Time-Frame\nXRP is showing signs of a potential trend reversal after breaking above its long-term descending trendline.\nThe $1.40\u2013$1.50 area has acted as an important base, and a",
-        "url": "https://www.tradingview.com/chart/XRPUSDT.P/IFKtEvnV-XRP-Long-Term-Downtrend-Finally-Breaking/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_fd1825149075",
-        "headline": "[XRPUSDT idea] XRP is quiet and X is loud about Evernorth. I buy above 1.44",
-        "summary": "Evernorth lists on Nasdaq on Monday as XRPN. About 473 million XRP and 300 million in cash, and my X feed is all \"big money is coming\".\n\nThe chart did not get the memo. XRP fell 13% in two days up to ",
-        "url": "https://www.tradingview.com/chart/XRPUSDT.P/NSC40Kld-XRP-is-quiet-and-X-is-loud-about-Evernorth-I-buy-above-1-44/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_c526994018a8",
-        "headline": "[COMEX-GC1! idea] Gold Hints at Quiet Accumulation as Bulls Seek Dips",
-        "summary": "Gold made a mild attempt to reverse its trend and break above its bearish trendline, although falling volumes suggest the move lacks strong bullish conviction for now. However, the sharp rejection of ",
-        "url": "https://www.tradingview.com/chart/GC1!/cXvfowGv-Gold-Hints-at-Quiet-Accumulation-as-Bulls-Seek-Dips/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_95fd3335b164",
-        "headline": "[COMEX-GC1! idea] Tools of the Trade:  Bar Replay",
-        "summary": "Tools of the Trade \u2013 Session 1: Backtesting / Bar Replay\nIn this first Tools of the Trade session, we dive into one of the most important habits a trader can build: backtesting.\nThis session is design",
-        "url": "https://www.tradingview.com/chart/GCZ2026/PpwVpC2G-Tools-of-the-Trade-Bar-Replay/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_6eb548c3e41a",
-        "headline": "[COMEX-GC1! idea] 30M GC Demand Zone",
-        "summary": "I am expecting a Bullish move from Marked Demand Zone",
-        "url": "https://www.tradingview.com/chart/GC1!/GZQw1OMx-30M-GC-Demand-Zone/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_8238333ca119",
-        "headline": "[COMEX-GC1! idea] 5 Ways to Build Better Trading Discipline",
-        "summary": "Markets move quickly. Prices change, volatility expands, and opportunities can appear to arrive all at once. \n\nBut the traders who last are often not the ones chasing every move. They are the ones who",
-        "url": "https://www.tradingview.com/chart/GC1!/EWJZrZ1n-5-Ways-to-Build-Better-Trading-Discipline/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_1a9e944a2429",
-        "headline": "[COMEX-GC1! idea] Gold Futures (MGC) Breakout Plan \u2014 Week of 12 October 2026",
-        "summary": "Gold Futures (MGC) Breakout Plan \u2014 Week of 12 October 2026\n11 Oct 2026 \u00b7 \n\nSummary\n\nThis week's plan is a breakout bracket on Micro Gold futures. I'll buy above 4,232.40 if price breaks out of Friday'",
-        "url": "https://www.tradingview.com/chart/MGC1!/EgvqiwYv-Gold-Futures-MGC-Breakout-Plan-Week-of-12-October-2026/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_ed385169f4c3",
-        "headline": "[COMEX-GC1! idea] GOLD Struggles To Hold Support. CPI Data Looms!",
-        "summary": "In this Weekly Market Forecast, we will analyze Gold for the week of Oct 12-16th.\n\nGold (XAU/USD) is showing bearish momentum for the immediate short term, despite maintaining a structurally bullish p",
-        "url": "https://www.tradingview.com/chart/GC1!/A4YU3SOL-GOLD-Struggles-To-Hold-Support-CPI-Data-Looms/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_e2b74fb684f3",
-        "headline": "[COMEX-GC1! idea] Gold Futures (MCX) | 1H \u2014 Channel Resistance Rejection",
-        "summary": "Gold Futures faced rejection near the descending channel resistance. If the selling pressure continues, the next downside target is around **\u20b9144,000**.\n\nA sustained move above channel resistance woul",
-        "url": "https://www.tradingview.com/chart/GOLD1!/LryJ6Gf4-Gold-Futures-MCX-1H-Channel-Resistance-Rejection/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_a5f98216f1ab",
-        "headline": "[COMEX-GC1! idea] Trading Craft 101 \u00b7 Lesson 07 - Review & Iterate",
-        "summary": "\ud83d\udd35 THE LOOP \n\nEdge is not found, it is built - and it is built in a loop: trade, record, review, adjust, trade again. Most traders break the loop at the review step. They trade, they record (sometimes)",
-        "url": "https://www.tradingview.com/chart/GC1!/SR5260em-Trading-Craft-101-Lesson-07-Review-Iterate/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_a0357e27b39c",
-        "headline": "[NYMEX-NG1! idea] NG1! |  Bearish Correction Outlook -EIA Storage Report Catalyst",
-        "summary": "Natural Gas has experienced a recovery from its August lows, with price now approaching a significant resistance region between 3.25 and 3.30. This area combines the September high with the daily 800 ",
-        "url": "https://www.tradingview.com/chart/NG1!/XIzYjoqU-NG1-Bearish-Correction-Outlook-EIA-Storage-Report-Catalyst/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_d51298963683",
-        "headline": "[NYMEX-NG1! idea] NG1! Will Go Down From Resistance! Sell!",
-        "summary": "Take a look at our analysis for NG1!.\n\nTime Frame: 9h\nCurrent Trend: Bearish\nSentiment: Overbought (based on 7-period RSI) \nForecast: Bearish\n\nThe market is trading around a solid horizontal structure",
-        "url": "https://www.tradingview.com/chart/NG1!/ylz9wclh-NG1-Will-Go-Down-From-Resistance-Sell/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_48e41dc66bb6",
-        "headline": "[NYMEX-NG1! idea] Natural Gas Futures (MCX) | Intraday Structure | October 13, 202",
-        "summary": "Natural Gas Futures (MCX) | Intraday Structure | October 13, 2026\n\n  MCX:NATURALGAS1!  \n\nNatural Gas is trading around 302.3, hovering right against the 302.11 Short Entry boundary after a sharp pullb",
-        "url": "https://www.tradingview.com/chart/NATURALGAS1!/X6O6pbj8-Natural-Gas-Futures-MCX-Intraday-Structure-October-13-202/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_8d59c2238bd2",
-        "headline": "[NYMEX-NG1! idea] Naturalgas analysis",
-        "summary": "This is a 4-hour Natural Gas Futures chart, and the structure is quite interesting.\n\n\ud83d\udcca What the chart is showing\n\n* Current price: ~316.2\n* Major resistance: 318\u2013320\n* Price has rallied strongly from ",
-        "url": "https://www.tradingview.com/chart/NATURALGAS1!/ePe4BLuv-Naturalgas-analysis/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_78348ec8f642",
-        "headline": "[NYMEX-NG1! idea] NATGAS LOCAL SHORT|",
-        "summary": "\u2705NATGAS  is awaiting a supply level retest near 3.25$, where rejection may favor bearish displacement toward 3.16$ as sellers regain control and order flow shifts lower after the rebound.Time Frame 4H",
-        "url": "https://www.tradingview.com/chart/NG1!/fxy1IUDi-NATGAS-LOCAL-SHORT/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_c9f5b632cd5f",
-        "headline": "[NYMEX-NG1! idea] NATURAL GAS 1H | Rounded Bottom Breakout Setup",
-        "summary": "Natural Gas has formed a rounded-bottom recovery from the 285\u2013288 zone, followed by higher highs and higher lows. Price has reclaimed both EMAs and is now pressing the 312 resistance.\n\nA clean break w",
-        "url": "https://www.tradingview.com/chart/NATURALGAS1!/AcVWU6c7-NATURAL-GAS-1H-Rounded-Bottom-Breakout-Setup/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_c5b029106d38",
-        "headline": "[NYMEX-NG1! idea] NATGAS Free Signal! Sell!",
-        "summary": "Hello,Traders!\nNATGAS  is rejecting the horizontal supply area after a buy-side liquidity sweep, while distribution around the mitigation block supports a bearish rotation toward the lower target.\n---",
-        "url": "https://www.tradingview.com/chart/NG1!/CtpsrA8N-NATGAS-Free-Signal-Sell/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
-      },
-      {
-        "id": "tv_a103a2e3b423",
-        "headline": "[NYMEX-NG1! idea] Silver | Natural Gas | Gold Price Forecast | Oil | Dollar |",
-        "summary": "Silver | Natural Gas | Gold Price Forecast | Oil | Dollar | \n\n0:00 Introduction & Commodities Overview\n0:21 Natural Gas (NG / UNG) Technical Analysis  NYMEX:NG1! \n4:21 Crude Oil (CL / USO) Technical A",
-        "url": "https://www.tradingview.com/chart/NG2!/6nWhiW07-Silver-Natural-Gas-Gold-Price-Forecast-Oil-Dollar/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988236
       },
       {
         "id": "tv_d9566cd7780d",
@@ -237448,7 +236872,7 @@
         "summary": "With  NYSE:BAC  actively sweeping into the Weekly FVG / 0.618 Golden Pocket ($52.00\u2013$55.46), the structural setup for a high-conviction Long Call entry is reaching maturity.\n\nBut as always, waiting fo",
         "url": "https://www.tradingview.com/chart/BAC/Or51Xb5S-BAC-updated-wave-count-as-earnings-approach/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
         "id": "tv_2c0775286de0",
@@ -237456,7 +236880,7 @@
         "summary": "NYSE:BAC  could present a final liquidity sweep down into the $48.00\u2013$50.00 support zone. This path holds significantly higher probability than Wave (iv) being finished at $54.32/$54.24\n\nAn initial ne",
         "url": "https://www.tradingview.com/chart/BAC/tcVIz0AH-BAC-Earnings-would-be-the-catalyst/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
         "id": "tv_1439e66e63d5",
@@ -237464,7 +236888,7 @@
         "summary": "I feel confidant with this count as compared to my previous analysis.  NYSE:BAC  is likely approaching the end of W-X-Y Running Flat.\n\nPerfect Confluence of Support Levels:\nPath of least resistance is",
         "url": "https://www.tradingview.com/chart/BAC/9T32XM2K-BAC-a-W-X-Y-Running-Flat/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
         "id": "tv_05ae08818b28",
@@ -237472,7 +236896,7 @@
         "summary": "Bank of America has been dropping, but some traders may think it\u2019s oversold.\n\nThe first pattern on today\u2019s chart is the advance between March and August. The financial giant\u2019s current pullback represe",
         "url": "https://www.tradingview.com/chart/BAC/HbOVTwdn-Bank-of-America-May-Be-Oversold/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
         "id": "tv_17f47f824a6f",
@@ -237480,7 +236904,7 @@
         "summary": "Awaiting confirmation for the next wave up.\n\nBetween late September and early October,  NYSE:BAC  is likely to grind sideways to lower, allowing price to sweep into the Monthly/Weekly FVG ($54.80 pric",
         "url": "https://www.tradingview.com/chart/BAC/dlc1HAo5-BAC-approaching-October-Earnings/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
         "id": "tv_a526d617f126",
@@ -237488,7 +236912,7 @@
         "summary": "Date: 2026-09-15\nType: CSE Option Decision OS Update\n\nBank of America is now another live case inside our CSE Capital \u2014 Option Decision OS, also known as the Continuation Swing Engine.\n\nLast Friday, w",
         "url": "https://www.tradingview.com/chart/BAC/4VORBYa7-BAC-Silver-Reclaimed-Share-Position-Opened-CSE-Option-Decis/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
         "id": "tv_176c73b653f0",
@@ -237496,7 +236920,7 @@
         "summary": "The rally from 27 Aug was on low volume which strengthens the case for a b-wave of a developing Wave (iv). For this analysis to be right,  NYSE:BAC  will need to print a rejection candle at the Daily ",
         "url": "https://www.tradingview.com/chart/BAC/36q6E0SK-BAC-wave-iv-in-progress/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
         "id": "tv_dd7089beb0e6",
@@ -237504,135 +236928,327 @@
         "summary": "Bank of America (BATS:BAC) has rallied +25.9% over the past year on the weekly chart, pushing to a fresh all-time high of $65.23 in late August before pulling back to test support near $61.50\u2013$61.70. ",
         "url": "https://www.tradingview.com/chart/BAC/73j66Fvo-BAC-Basing-Near-Record-Highs-After-a-Strong-Uptrend/",
         "source": "TradingView Ideas",
-        "datetime": 1791986448
+        "datetime": 1791988235
       },
       {
-        "id": "tv_205c4de42c63",
-        "headline": "[BTCUSDT idea] BTCUSDT 4H: Key Demand Zone Could Trigger the Next Leg Higher",
-        "summary": "Hi!\n\n Market Outlook: Bullish Scenario\n \nBTC is consolidating below the 100 SMA after printing a potential double top near the $87K region. Price is now approaching a key demand zone between $79K and ",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/PwoL3DZE-BTCUSDT-4H-Key-Demand-Zone-Could-Trigger-the-Next-Leg-Higher/",
+        "id": "tv_7b6e7299e0f6",
+        "headline": "[MARA idea] MARA: We Are At An Interesting Point!",
+        "summary": "A strong week for MARA stock: The stock gained significantly, rising almost 25%. Immediately after our last update, very dynamic gains began, but these have lost some momentum in recent trading days.\n",
+        "url": "https://www.tradingview.com/chart/MARA/ARO7BmxE-MARA-We-Are-At-An-Interesting-Point/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_3211cd3a55e4",
-        "headline": "[BTCUSDT idea] BTCUSDT",
-        "summary": "Hello Traders! \ud83d\udc4b\n\nWhat are your thoughts on Bitcoin ?\n\nBitcoin is currently trading around $83,000 after facing selling pressure in the $86,000\u2013$87,500 resistance zone, where price previously failed t",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/uIbGIw7B-BTCUSDT/",
+        "id": "tv_4cbf650627ee",
+        "headline": "[MARA idea] MARA (4H) is back at the $10.25 level \u2014 the same horizontal supp",
+        "summary": "MARA (4H) is back at the $10.25 level \u2014 the same horizontal support that held during the November low and is now being retested after the pullback from the July high near $15.60. This is a classic str",
+        "url": "https://www.tradingview.com/chart/MARA/F3dMtElg-MARA-4H-is-back-at-the-10-25-level-the-same-horizontal-supp/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_537c6fd14be1",
-        "headline": "[BTCUSDT idea] BTCUSDT \u2014 LIQUIDITY BEFORE DIRECTION | PRICE ACTION EDUCATION",
-        "summary": "BTCUSDT \u2014 LIQUIDITY BEFORE DIRECTION | CANDLE-BY-CANDLE PRICE ACTION EDUCATION\n\n1. Bullish Candles \u2014 Moving Toward the Previous High\n\nReason: Buyers are becoming more aggressive and pushing price towa",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/eIFXifkt-BTCUSDT-LIQUIDITY-BEFORE-DIRECTION-PRICE-ACTION-EDUCATION/",
+        "id": "tv_218a7431242b",
+        "headline": "[MARA idea] MARA | The time to go long has come",
+        "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 12.39\n- Take Profit: Open\n- Stop Loss: 11.00 (-11.20 %)\n\nIdea: Long on a breakout above last week's high - bullish momentum continuation.\nEntr",
+        "url": "https://www.tradingview.com/chart/MARA/ozJwDeR3-MARA-The-time-to-go-long-has-come/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_9324389499fd",
-        "headline": "[BTCUSDT idea] Bitcoin Double Top Breakdown \u2014 Is $77.5K the Next Target?",
-        "summary": "Bitcoin ( BINANCE:BTCUSDT ) has declined more than 5% over the past three days and lost the Support Zone($81,950-$82,960).\n\nBTC has started to react from the 50_SMA(Daily), but several macro and marke",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/jUptVCaP-Bitcoin-Double-Top-Breakdown-Is-77-5K-the-Next-Target/",
+        "id": "tv_8b64962e3a17",
+        "headline": "[MARA idea] MARA. Can the rise be sustained?",
+        "summary": "It evolves from a pure Bitcoin miner, into a broader digital-infrastructure and AI/HPC power platform.\nMore importantly, MARA controls roughly 1.9 GW of energy capacity across 19 data centers.\nThe Sta",
+        "url": "https://www.tradingview.com/chart/MARA/8evJcdcC-MARA-Can-the-rise-be-sustained/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_49961f7ae998",
-        "headline": "[BTCUSDT idea] Repeated Supply Rejections Put Bitcoin\u2019s Local Support in Focus",
-        "summary": "Hello traders! Here\u2019s my technical outlook based on the current BTCUSDT (1H) chart structure. BTCUSDT previously turned around from the highs and formed a descending structure under the Resistance Lin",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/vKOxezyy-Repeated-Supply-Rejections-Put-Bitcoin-s-Local-Support-in-Focus/",
+        "id": "tv_ff91b0c9f2de",
+        "headline": "[MARA idea] MARA/HUT (18/08/2026)",
+        "summary": "MARA vs HUT double bottom\n\nHUT has done the bulk of its move. This means MARA is up next IMHO!\n\nNot financial advice",
+        "url": "https://www.tradingview.com/chart/MARA/EoiqPBf7-MARA-HUT-18-08-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_570b3075595e",
-        "headline": "[BTCUSDT idea] BTCUSDT \u2013 H4 \u2013 Bearish",
-        "summary": "BTCUSDT \u2013 H4 \u2013 Bearish Rejection & Support Breakdown Setup\n\nBTCUSDT is currently trading around 82,690 and has rejected the upper trading range. Price remains below the marked 87,000\u201387,900 resistance",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/LQuVKKYr-BTCUSDT-H4-Bearish/",
+        "id": "tv_5bc0379d8bc5",
+        "headline": "[MARA idea] MARA Holdings Options Ahead of Earnings",
+        "summary": "If you haven`t bought MARA before the previous earnings:\n\n\nNow analyzing the options chain and the chart patterns of MARA Holdings prior to the earnings report this week,\nI would consider purchasing t",
+        "url": "https://www.tradingview.com/chart/MARA/sb6aJtdw-MARA-Holdings-Options-Ahead-of-Earnings/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_20a04e6a00fd",
-        "headline": "[BTCUSDT idea] BTC Rebuilds Bullish Momentum as Price Climbs Away From 80,400",
-        "summary": "Hello traders! Here\u2019s my technical outlook based on the current BTCUSDT (4H) chart structure. BTCUSDT previously broke higher from a descending structure and formed a strong upward Trend Line. Price t",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/yficrLFM-BTC-Rebuilds-Bullish-Momentum-as-Price-Climbs-Away-From-80-400/",
+        "id": "tv_e932d4694b57",
+        "headline": "[MARA idea] Week 28 of 52 | MARA | Is This Still a Downtrend?",
+        "summary": "NASDAQ:MARA  s a great example of why not every stock below a descending trendline is in a clean downtrend.\n\nA real downtrend usually needs two things:\n\nLower highs + lower lows.\n\nMARA still has the l",
+        "url": "https://www.tradingview.com/chart/MARA/y5Qj7whr-Week-28-of-52-MARA-Is-This-Still-a-Downtrend/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_a4b127ac9d27",
-        "headline": "[BTCUSDT idea] BTCUSDT \u2013 Bearish Breakdown & Downside Continuation Setup",
-        "summary": "\ud83d\udcca BTCUSDT \u2013 Bearish Breakdown & Downside Continuation Setup\n\n\n\n\ud83d\udd0d Market Overview\n\nBitcoin is showing bearish momentum on the 4H timeframe after breaking below its rising trendline and losing the previ",
-        "url": "https://www.tradingview.com/chart/BTCUSDT/SU7MBKft-BTCUSDT-Bearish-Breakdown-Downside-Continuation-Setup/",
+        "id": "tv_c8dc1e30d5b0",
+        "headline": "[MARA idea] MARA Long \u2014 $MARA pulling back into prior support at $14.30 afte",
+        "summary": "On the 4-hour chart, MARA has been in a clear uptrend since its late-March low near $8, printing successive higher lows and higher highs through mid-June before spiking to $16+ on June 22. That spike ",
+        "url": "https://www.tradingview.com/chart/MARA/avXvXXaM-MARA-Long-MARA-pulling-back-into-prior-support-at-14-30-afte/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_f1dfa1a6a138",
-        "headline": "[ETHUSDT idea] Short-Term Peak Range: 2654.48 ~ 2753.63",
-        "summary": "Hello,\nNice to meet you, fellow traders.\n\nIf you follow me, you can always receive new information quickly.\nHave a great day today as well.\n\n-------------------------------------\n\n\n\nThe volatility per",
-        "url": "https://www.tradingview.com/chart/ETHUSDT/0MD9AGPZ-Short-Term-Peak-Range-2654-48-2753-63/",
+        "id": "tv_7d82d074742a",
+        "headline": "[RIOT idea] Targets up- ready for break out",
+        "summary": "Riot has been descending for a while now. It finally hit the big support. A very healthy company with lots of future potential in my eyes",
+        "url": "https://www.tradingview.com/chart/RIOT/waQhX3Rw-Targets-up-ready-for-break-out/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_ade45b822694",
-        "headline": "[ETHUSDT idea] ETH Loses $2,650, Deeper Pullback Ahead?",
-        "summary": "ETH is weak after a few weeks of consolidation near the recent highs.\n\nPrice has broken below the prior range support at $2,650 on the 4H chart which is a significant short term change. The breakdown ",
-        "url": "https://www.tradingview.com/chart/ETHUSDT/xiLB0rwh-ETH-Loses-2-650-Deeper-Pullback-Ahead/",
+        "id": "tv_8e94ed6a613a",
+        "headline": "[RIOT idea] RIOT: Meltdown or meltup?",
+        "summary": "The recent two strong moves have put the bull case for RIOT front and center. However, we still have only a 3 waves moves so far. 9/29 price drop below the trendline has put the whole move under jeopa",
+        "url": "https://www.tradingview.com/chart/RIOT/HYQD5PwU-RIOT-Meltdown-or-meltup/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_0047d962f522",
-        "headline": "[ETHUSDT idea] ETHUSDT Bearish Reversal \u2014 Resistance Breakdown",
-        "summary": "ETHUSDT is showing strong bearish momentum after rejecting the major resistance zone around **2,775\u20132,790**. Price has broken down from the recent consolidation range and is now moving lower, confirmi",
-        "url": "https://www.tradingview.com/chart/ETHUSDT/jnJZiiv0-ETHUSDT-Bearish-Reversal-Resistance-Breakdown/",
+        "id": "tv_39104d66ea03",
+        "headline": "[RIOT idea] RIOT charts have it all",
+        "summary": "Riot Platforms offer infrastructure for bitcoin mining and data centers. The crypto theme has been heating up for some time now, and I previously wrote about Coinbase which I will link here too. I wro",
+        "url": "https://www.tradingview.com/chart/RIOT/sQkmNoNm-RIOT-charts-have-it-all/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_7da94c23180c",
-        "headline": "[ETHUSDT idea] ETH: Buyers Defend $2,400 as the Next Rally Setup Builds",
-        "summary": "ETH: Buyers Defend $2,400 as the Next Rally Setup Builds \n\nOn all timeframes, ETH is in a clear uptrend.\n\nCurrently, ETH is moving down as part of a larger corrective move. \n\nYou can look to buy ETH n",
-        "url": "https://www.tradingview.com/chart/ETHUSDT/Kc06425a-ETH-Buyers-Defend-2-400-as-the-Next-Rally-Setup-Builds/",
+        "id": "tv_14dd7436ba5b",
+        "headline": "[RIOT idea] Bounce from Breakout Gap",
+        "summary": "RIOT took support near the breakout gap. Made solid Marubozu candle after the hammer.  Looking good to go higher towards 18.9, 19.4, with a final target of 21.5 \n\nshouldn't fall below 15 (SL)",
+        "url": "https://www.tradingview.com/chart/RIOT/TwfO5V7J-Bounce-from-Breakout-Gap/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_c53469060fcd",
-        "headline": "[ETHUSDT idea] ETH \u2013 A Strong Intersection for Buyers?",
-        "summary": "Ethereum has been overall bullish, trading above the rising blue trendline and maintaining a series of higher highs and higher lows.\n\nFollowing its recent bullish impulse, ETH entered a correction pha",
-        "url": "https://www.tradingview.com/chart/ETHUSDT/eYEdOeHg-ETH-A-Strong-Intersection-for-Buyers/",
+        "id": "tv_f6192bd1b537",
+        "headline": "[RIOT idea] RIOT | Continued stock growth",
+        "summary": "- Timeframe: Weekly\n- Trade type: Buy stop order\n- Price: 22.87\n- Take Profit: Open\n- Stop Loss: 20.78 (-9.10 %)\n\nIdea: Long on a breakout above last week's high - bullish momentum continuation.\nEntry",
+        "url": "https://www.tradingview.com/chart/RIOT/2h76mOr4-RIOT-Continued-stock-growth/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_ee4e2316514d",
-        "headline": "[ETHUSDT idea] Will $ETH hit $10K in this Bull Run After Now Turned into Bull",
-        "summary": "ETHEREUM $10,000 TARGET: THE NEXT BIG ACCUMULATION OPPORTUNITY COULD BE NEAR! \ud83d\ude80\n\n CRYPTOCAP:ETH  has shifted into a bullish HTF zone, and my 2026\u20132027 roadmap targets $5,000\u2013$10,000.\nETH has already r",
-        "url": "https://www.tradingview.com/chart/ETHUSDT.P/JRBOUX7B-Will-ETH-hit-10K-in-this-Bull-Run-After-Now-Turned-into-Bull/",
+        "id": "tv_8c024a554e49",
+        "headline": "[RIOT idea] RIOT: Breakout or breakdown next?",
+        "summary": "RIOT has been on a sideways journey for the past couple of months. The patterns look very similar to what happened between October of last year to March of this year. It created slight lower lows back",
+        "url": "https://www.tradingview.com/chart/RIOT/EV420Hct-RIOT-Breakout-or-breakdown-next/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_745432038319",
-        "headline": "[ETHUSDT idea] ETHEREUM PRICE ALERT: $2,562 Could Decide Next Major $ETH Move",
-        "summary": "ETHEREUM PRICE ALERT: $2,562 Could Decide The Next Major  CRYPTOCAP:ETH  Move\n\n CRYPTOCAP:ETH  is approaching a critical SMC decision zone. The chart shows $2,562 as key inducement. If the daily candl",
-        "url": "https://www.tradingview.com/chart/ETHUSDT.P/PsvVKl5B-ETHEREUM-PRICE-ALERT-2-562-Could-Decide-Next-Major-ETH-Move/",
+        "id": "tv_0cfe1bdb6647",
+        "headline": "[RIOT idea] 08-17-2026 Buy RIOT",
+        "summary": "08-17-2026\nBuy RIOT \nSwing trade\nB 18.89\nS 20.91\nA 2.02\nSL 17.85\n\nThe company recently signed a massive $9.1 billion AI compute deal with Anthropic to shift toward AI infrastructure, though Q2 2026 fi",
+        "url": "https://www.tradingview.com/chart/RIOT/opYuJblV-08-17-2026-Buy-RIOT/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
       },
       {
-        "id": "tv_6c46ec5db3ff",
-        "headline": "[ETHUSDT idea] $ETH FACES A DOUBLE WARNING",
-        "summary": "$161M ETF OUTFLOW + MAJOR RESISTANCE\n\n CRYPTOCAP:ETH \u00a0 just got another warning sign. U.S. Spot ETH ETFs recorded $160.9M in net outflows on October 7, extending the outflow streak to 7 consecutive tr",
-        "url": "https://www.tradingview.com/chart/ETHUSDT.P/LgVc8tXN-ETH-FACES-A-DOUBLE-WARNING/",
+        "id": "tv_ede242b37bf0",
+        "headline": "[RIOT idea] RIOT: AI/Data Center Catalyst + Key 200 EMA Reclaim Setup",
+        "summary": "RIOT Platforms (RIOT) is on my watchlist as price approaches an important technical decision area following a major AI/data-center catalyst.\n\nRIOT is currently trading around the $20 area, with the 4H",
+        "url": "https://www.tradingview.com/chart/RIOT/PbO0CPs4-RIOT-AI-Data-Center-Catalyst-Key-200-EMA-Reclaim-Setup/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_9c0e268c4dda",
+        "headline": "[SOFI idea] 15 in the money puts may be the choice",
+        "summary": "Something is going on with Sofi, early signs forward would be increasing selling volume on the monthly timeframe.\nI see a support of 14.88 holding up the current base \nThe macd and signal line are far",
+        "url": "https://www.tradingview.com/chart/SOFI/hUB5wHie-15-in-the-money-puts-may-be-the-choice/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_4ab5ba77f5eb",
+        "headline": "[SOFI idea] SOFI expected earnings Q326 enough for a breakout of the range?",
+        "summary": "it seems that the stock price kept increasing till Q325 earnings as was the eps growth. After this earnings margins have dropped and profits stagnated. the share value of the growth has been erased an",
+        "url": "https://www.tradingview.com/chart/SOFI/0bzBYL5I-SOFI-expected-earnings-Q326-enough-for-a-breakout-of-the-range/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_ecc79ac8525a",
+        "headline": "[SOFI idea] sofi possible buying zones",
+        "summary": "I see 14.5 in respected the support, otherwise if support broken than I see there is a gap at 11.5 and historically gaps tends to fill most of the time. let's wait patiently for the best buying spots.",
+        "url": "https://www.tradingview.com/chart/SOFI/L97TxZq7-sofi-possible-buying-zones/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_771220718423",
+        "headline": "[SOFI idea] SoFi breakdown",
+        "summary": "Update on SoFi unfortunately it broke down. Looks like rate holders on top of them keeping risk on their balance sheet is not something the market likes. I expect 14$ here. I took a loss on my spot.",
+        "url": "https://www.tradingview.com/chart/SOFI/hyfGW98Z-SoFi-breakdown/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_81a5f3516e01",
+        "headline": "[SOFI idea] SOFI accumulation ahead of Q3 earnings",
+        "summary": "Moderate swing trade ahead of Q3 earnings on Nov 3rd, which I believe they will beat as usual and they'll continue building investors trust in the company. I expect at least a move towards $19.5 - $20",
+        "url": "https://www.tradingview.com/chart/SOFI/qGuunw17-SOFI-accumulation-ahead-of-Q3-earnings/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_60124bbe0a9a",
+        "headline": "[SOFI idea] SOFI: Price Gradually Approaching The Consolidation Support Zone",
+        "summary": "SoFi Technologies Inc (SOFI) is trading down today at $15.96, representing a 3.74% decline in intraday trading . The drop is largely driven by macro pressure, as rising Treasury yields (with the 10 ye",
+        "url": "https://www.tradingview.com/chart/SOFI/DzDrb6LL-SOFI-Price-Gradually-Approaching-The-Consolidation-Support-Zone/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_fc1d7a3769ce",
+        "headline": "[SOFI idea] SOFI: A Swing Setup Worth Watching",
+        "summary": "SOFI is interesting here, but I don\u2019t think the trade has been earned yet.\n\nOn the hourly chart, price has spent the last several weeks compressing inside a declining structure after peaking near $19.",
+        "url": "https://www.tradingview.com/chart/SOFI/LxB1aM7a-SOFI-A-Swing-Setup-Worth-Watching/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_435566d9c674",
+        "headline": "[SOFI idea] SOFI - long idea",
+        "summary": "Risky trade \nSupport zone $16.20-17 (yellow zone)\nTight SL $15.5\nTP $24\nor wait for daily market structure break for confirmation",
+        "url": "https://www.tradingview.com/chart/SOFI/7CAHFrOD-SOFI-long-idea/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_d3a8ca8902d6",
+        "headline": "[HOOD idea] HOOD: Stock Approaching An Important Trendline Zone",
+        "summary": "Robinhood Markets Inc. (HOOD) stock has experienced a pullback, trading around $108.15 amid broader pressure across the cryptocurrency market and active regulatory headlines. Despite recent downward m",
+        "url": "https://www.tradingview.com/chart/HOOD/WkpdEktj-HOOD-Stock-Approaching-An-Important-Trendline-Zone/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_aedb589420db",
+        "headline": "[HOOD idea] HOOD \u2014 Hold",
+        "summary": "Robinhood Markets, Inc. (HOOD) \u2014 HOLD 51/100\n\nRobinhood presents a complex tension between high operational efficiency and an increasingly stretched valuation. While the company demonstrates impressiv",
+        "url": "https://www.tradingview.com/chart/HOOD/XQ8TshC5-HOOD-Hold/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_c96b5703f48d",
+        "headline": "[HOOD idea] HOOD Gravestone doji",
+        "summary": "Gravestone doji at recent support is typically a reversal signal meaning the bearish pressure may be over. But the long rejection wick indicates selling pressure was still present and caution should b",
+        "url": "https://www.tradingview.com/chart/HOOD/UrHorj16-HOOD-Gravestone-doji/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_99a927774dd1",
+        "headline": "[HOOD idea] HOOD - LTF/HTF Alignment Trade",
+        "summary": "This is what we look for - A clear HTF bias, coupled with a LTF liquidity level that, if taken, will offer us an excellent R:R trade.\n\nMore specifically here, I am looking for the LTF sell-side liquid",
+        "url": "https://www.tradingview.com/chart/HOOD/gyi9xUrb-HOOD-LTF-HTF-Alignment-Trade/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_65cc16273d2a",
+        "headline": "[HOOD idea] ATH by next month?",
+        "summary": "I noticed that Robinhood had a huge bullish move, about a 25% gain in only 3 days, which is crazy.\nI see this and can only imagine how much higher it can go. \nSo I am considering getting in a part of ",
+        "url": "https://www.tradingview.com/chart/HOOD/n8tzGfFh-ATH-by-next-month/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_e62d1ebf05c8",
+        "headline": "[HOOD idea] HOOD: I still count this recovery as wave B",
+        "summary": "On the weekly chart, I count the decline from roughly $153 to $63 as five waves down, completing wave (A) of a larger wave (2). The recovery since then has an A-B-C structure and remains wave (B) in m",
+        "url": "https://www.tradingview.com/chart/HOOD/2XyH5ktE-HOOD-I-still-count-this-recovery-as-wave-B/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_5e0807b2795d",
+        "headline": "[HOOD idea] HOOD lose 50% by end of year",
+        "summary": "Looking like a great 5 waves down for A with a 3 wave retrace for B right to the 161.8% extension of A. Looking for this stock to tumble back to $50 / share. \n \n A = C\n 127% extension of A \n 38% retra",
+        "url": "https://www.tradingview.com/chart/HOOD/JneoDpWh-HOOD-lose-50-by-end-of-year/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_4accc3c7348f",
+        "headline": "[HOOD idea] Bearish engulfing HOOD",
+        "summary": "Bearish engulfingc with a long wick rejection showing on HOOD indicating selling pressure. Will we see a drop to $100 before continuing past $120?",
+        "url": "https://www.tradingview.com/chart/HOOD/uxrEStVk-Bearish-engulfing-HOOD/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_285901ba2f84",
+        "headline": "[WFC idea] WFC Bearish Idea Into Earnings: Lower High, Supply Zone and Fib",
+        "summary": "Wells Fargo reports earnings today at 11:00 UTC, with the call at 14:00 UTC. Earnings can move price either way, so I'm not trying to guess the numbers. I'm trading the structure on the 2D chart.\n\nWha",
+        "url": "https://www.tradingview.com/chart/WFC/eIlwll2V-WFC-Bearish-Idea-Into-Earnings-Lower-High-Supply-Zone-and-Fib/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_1396bd31f360",
+        "headline": "[WFC idea] Wells Fargo & Company \u2014 Buy Side | 97",
+        "summary": "Wells Fargo & Company is presenting a constructive upside setup, with the current price structure creating room for a further advance toward the 97 level. The recent formation is showing improving upw",
+        "url": "https://www.tradingview.com/chart/WFC/Sbmrp6nc-Wells-Fargo-Company-Buy-Side-97/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_a4f45d4654ca",
+        "headline": "[WFC idea] WFC LONG \u2014 4H ALMA Averaging Setup (WR 74% \u00b7 avg RR 1.2)",
+        "summary": "My BoaBias ALMA Averaging Strategy is managing an open long position on $NYSE:WFC.\n\nThe position was opened in four entries between August 21 and October 1. This is a systematic mean-reversion setup g",
+        "url": "https://www.tradingview.com/chart/WFC/Yd4Vd0BZ-WFC-LONG-4H-ALMA-Averaging-Setup-WR-74-avg-RR-1-2/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_1723ed66c458",
+        "headline": "[WFC idea] Wells Fargo & Company. WFC",
+        "summary": "Wells Fargo & Company is a diversified U.S. financial services company providing banking, lending, investment, and wealth-management services to individuals, businesses, and institutions.\n\nFrom a tech",
+        "url": "https://www.tradingview.com/chart/WFC/t2kWfpjM-Wells-Fargo-Company-WFC/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_7695883a2256",
+        "headline": "[WFC idea] WFC \u2014 Bearish Crab: Possible Second Rejection",
+        "summary": "WFC has already rejected the Potential Reversal Zone once, making the current setup interesting as price approaches the same area again.\n\nA second rejection from this zone could provide another opport",
+        "url": "https://www.tradingview.com/chart/WFC/rU95g2DJ-WFC-Bearish-Crab-Possible-Second-Rejection/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_3ecb086638bb",
+        "headline": "[WFC idea] WFC LONG",
+        "summary": "\ud83d\udd18 Entry points when strong global levels are broken\n\ud83d\udd18 There is no clear take profit target - the position is accompanied by different algorithms\n\ud83d\udd18 Use Tradingview as the most convenient way to visuali",
+        "url": "https://www.tradingview.com/chart/WFC/0k02zalF-WFC-LONG/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_ce0a8b2f6b49",
+        "headline": "[WFC idea] WFC LONG",
+        "summary": "\ud83d\udd18 Entry points when strong global levels are broken\n\ud83d\udd18 There is no clear take profit target - the position is accompanied by different algorithms\n\ud83d\udd18 Use Tradingview as the most convenient way to visuali",
+        "url": "https://www.tradingview.com/chart/WFC/U8YNYLFN-WFC-LONG/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
+      },
+      {
+        "id": "tv_3d2c27755c8d",
+        "headline": "[WFC idea] WFC LONG",
+        "summary": "\ud83d\udd18 Entry points when strong global levels are broken\n\ud83d\udd18 There is no clear take profit target - the position is accompanied by different algorithms\n\ud83d\udd18 Use Tradingview as the most convenient way to visuali",
+        "url": "https://www.tradingview.com/chart/WFC/DZa4fBMg-WFC-LONG/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988235
       },
       {
         "id": "tv_ac4247d39c1d",
@@ -237640,7 +237256,7 @@
         "summary": "CRYPTOCAP:AVAX  JUST FLIPPED BULLISH? 10X\u201313X MOVE NEXT?\n\n CRYPTOCAP:AVAX  May Be Setting Up For A MASSIVE Long-Term Reversal.\nAfter A Brutal ~96% Drawdown, AVAX Has Reclaimed The $11.40 Bullish Activ",
         "url": "https://www.tradingview.com/chart/AVAXUSDT/OWXdbYsD-AVAX-JUST-FLIPPED-BULLISH-10X-13X-MOVE-NEXT/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_ec75e9040b4a",
@@ -237648,7 +237264,7 @@
         "summary": "This analysis is an update to the previous analysis, which you can find in the related posts section.\n\nThe previous AVAX analysis did not provide us with an entry opportunity. Wave D correction shifte",
         "url": "https://www.tradingview.com/chart/AVAXUSDT.P/4VsAH6R5-AVAX-is-one-of-the-most-super-bullish-cryptocurrencies-8H/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_7b104dc0a07d",
@@ -237656,7 +237272,7 @@
         "summary": "CRYPTOCAP:AVAX  two week chart gave back 9% this candle and is sitting right on the mid channel line, the first real test of that level since reclaiming it. The green bar before this one was the bigge",
         "url": "https://www.tradingview.com/chart/AVAXUSDT/UuZAwvdL-AVAX/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_d4086fa71e97",
@@ -237664,7 +237280,7 @@
         "summary": "AVAX Bullish Wave 3 Is Underway? Diametric Pattern Could Lead to a Stronger Move\n\nAVAX is showing a developing bullish structure, and the move from the START point marked on the chart could represent ",
         "url": "https://www.tradingview.com/chart/AVAXUSDT.P/VPdAbDNZ-AVAX-Is-Still-Bullish-The-Next-Move-Could-Be-Big-8H/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_bd38825e50cd",
@@ -237672,7 +237288,7 @@
         "summary": "It has formed a beautiful bullish green pattern.\nFor now, it can move within this green pattern and head toward the upper boundary; a breakout above that level could be very promising.\nA break below t",
         "url": "https://www.tradingview.com/chart/AVAXUSDT/zaWZXtPT-AVAXUSDT/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_73ee4456b316",
@@ -237680,7 +237296,7 @@
         "summary": "Looking for good entries on AVAX after a good move up.  Buying interest at the .382 and then th .618 level.  If AVAX pulls back, I will be looking to add AVAXUSDT to my port.  \n\nNFA, do your own DD.\n\n",
         "url": "https://www.tradingview.com/chart/AVAXUSDT/5kG3a5TS-AVAX-USDT-Daily-Chart/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_19ad9a47da7a",
@@ -237688,7 +237304,7 @@
         "summary": "Avalanche has the news. Tokenized treasuries on the network are up to 545 million, four times a year ago, and a Goldman treasury fund went live on an Avalanche-based network on 29 Sep. AVAX still trad",
         "url": "https://www.tradingview.com/chart/AVAXUSDT.P/mefs5xQA-AVAX-got-sold-on-Goldman-news-I-buy-only-above-12-05/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_621b9f064598",
@@ -237696,7 +237312,7 @@
         "summary": "After a strong downtrend, AVAX recently bounced from the lows and pushed back above an important historical support/resistance level.\n\nNow price is pulling back towards that same area. This is where t",
         "url": "https://www.tradingview.com/chart/AVAXUSDT/DemRK7zB-AVAX-levels-to-watch/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_9c1e77a008d1",
@@ -237704,7 +237320,7 @@
         "summary": "Yello, Paradisers! Are you ready for FET's next explosive move, or will the market shake out impatient traders before the real rally begins? #FETUSDT is currently approaching a crucial decision point,",
         "url": "https://www.tradingview.com/chart/FETUSDT/t71SDRcV-FETUSDT-Bulls-Ready-to-Explode/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_a47ec0d8e40c",
@@ -237712,7 +237328,7 @@
         "summary": "The FET pattern looks highly bullish, and it appears that this bullish phase is forming an expanding structure.\n\nWe expect wave D to complete within the green zone, after which price is expected to en",
         "url": "https://www.tradingview.com/chart/FETUSDT.P/2Jobe0v9-FET-A-Powerful-Bullish-Structure-Is-Taking-Shape-8H/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_38f8e6a21676",
@@ -237720,15 +237336,7 @@
         "summary": "FET is consolidating around $0.23 after its recent advance. The chart outlines a possible pullback before another move higher, with $0.508 marked as a potential target.  \nThe bullish scenario is inval",
         "url": "https://www.tradingview.com/chart/FETUSDT/H7GEMO3H-FETUSDT-Bullish-Setup-Toward-0-508-Invalid-Below-0-204/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
-      },
-      {
-        "id": "tv_2076c3ff413d",
-        "headline": "[FETUSDT idea] FET/USDT long \u2014 Signal #073",
-        "summary": "Signal #073\nLONG FET/USDT\nEntry: 0.2440 \u2013 0.2450 (limit order)\nSL: 0.2200\nTP: 0.2575 / 0.2700 / 0.2850 / 0.3050 / 0.3250 / 0.3450\nThe entry zone was already reached at 15:50 UTC, before this post.",
-        "url": "https://www.tradingview.com/chart/FETUSDT.P/iYhfls8L-FET-USDT-long-Signal-073/",
-        "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_0b76561b3395",
@@ -237736,7 +237344,15 @@
         "summary": "\ud83d\udcca  Executive Summary & Technical Breakdown FETUSDT: \n\nThis educational case study analyzes the structural footprint of FETUSDT following a significant volume exhaustion at the macro resistance block n",
         "url": "https://www.tradingview.com/chart/FETUSDT/WFz2x23k-FETUSDT-STRUCTURAL-HORIZON-UNVEILING-THE-WYCKOFF-DISTRIBUTION/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_2076c3ff413d",
+        "headline": "[FETUSDT idea] FET/USDT long \u2014 Signal #073",
+        "summary": "Signal #073\nLONG FET/USDT\nEntry: 0.2440 \u2013 0.2450 (limit order)\nSL: 0.2200\nTP: 0.2575 / 0.2700 / 0.2850 / 0.3050 / 0.3250 / 0.3450\nThe entry zone was already reached at 15:50 UTC, before this post.",
+        "url": "https://www.tradingview.com/chart/FETUSDT.P/iYhfls8L-FET-USDT-long-Signal-073/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
       },
       {
         "id": "tv_b587244730b6",
@@ -237744,7 +237360,7 @@
         "summary": "\ud83d\udcca  Macro & Technical Breakdown (FETUSDT)\n \nThe FETUSDT daily structural blueprint is displaying an exceptionally clean bullish continuation pattern, heavily driven by institutional accumulation at key",
         "url": "https://www.tradingview.com/chart/FETUSDT/Fl65mLSN-FETUSDT-Volatility-Squeeze-Before-Trend-Continuation/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_7b40d89f033d",
@@ -237752,7 +237368,7 @@
         "summary": "NYSE:FET  weekly has been flatlining in accumulation for 357 days straight, 51 bars of pure boredom after the triangle squeezed out every last seller. Target measured at $3.46, roughly 1440% from spot",
         "url": "https://www.tradingview.com/chart/FETUSDT/bILEbKXd-FET/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_75dbfff4d93c",
@@ -237760,7 +237376,7 @@
         "summary": "NYSE:FET  PRICE PREDICTION: +123% FROM OUR ACCUMULATION ZONE | IS $5 NEXT? \ud83d\ude80\n\n NYSE:FET  Is Now +123% From Our Macro Accumulation Zone, But I\u2019m Still Holding The Same Macro Targets Toward $2\u2013$5.\nAfter",
         "url": "https://www.tradingview.com/chart/FETUSDT/w5IMYvrL-FET-123-FROM-OUR-ACCUMULATION-ZONE-IS-5-NEXT/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_d0ea0f922ff3",
@@ -237768,7 +237384,7 @@
         "summary": "Good trading is not about chasing breakout candles; it is about waiting for price to retest key structure with defined risk.\n\n Key Execution Levels \n\u2022  Bias:  Bullish Continuation\n\u2022  Support / Pullbac",
         "url": "https://www.tradingview.com/chart/NEARUSDT/61yoyWfX-NEAR-Protocol-Breakout-and-Pullback-Setup/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_85711c4a6ebe",
@@ -237776,7 +237392,7 @@
         "summary": "BINANCE:NEARUSDT  Update: 1W\n\nOn the short term, we are bullish, as you can see, we are forming higher highs, the bullish momentum is very strong. We are approaching a major level of liquidity at arou",
         "url": "https://www.tradingview.com/chart/NEARUSDT.P/9JKm7GbC-NEAR-is-approaching-a-MAJOR-level-Bearish-retest-coming/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_7d87fea2922e",
@@ -237784,7 +237400,7 @@
         "summary": "I wanted NEAR at 4.75 to 4.85. Yesterday it came down to 4.85, missed my order by a hair and left. This morning it went through 5.50 without me, so that idea is cancelled. No trade, no win to claim.\n\n",
         "url": "https://www.tradingview.com/chart/NEARUSDT.P/pJ9GULkO-NEAR-hit-its-January-2025-high-to-the-cent-I-am-not-chasing/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_937697a18e28",
@@ -237792,7 +237408,7 @@
         "summary": "NEAR/USDT\nShort Market\n\nThe price is in a bearish structure and has reached the 1-hour supply zone. Also, this supply zone has swept the liquidity of the recent highs, making it suitable for taking a ",
         "url": "https://www.tradingview.com/chart/NEARUSDT.P/fASqyIfk-NEARUSDT/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_2971c6c358bb",
@@ -237800,7 +237416,7 @@
         "summary": "By analyzing the #NEAR (NEAR Protocol) chart on the 4H timeframe, we can see a market that spent two weeks convincing everyone it had topped, swept the liquidity beneath, and then broke structure upwa",
         "url": "https://www.tradingview.com/chart/NEARUSDT/rY8OdZgD-NEAR-Two-Flip-Zones-One-Pool-Above/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_2220ba145fb4",
@@ -237808,7 +237424,7 @@
         "summary": "This is it, ladies and gentlemen... This is truly the one that I wanted to show you.\n\nNEAR Protocol has been rising since February 2026; a very strong rise not something insignificant. After such a st",
         "url": "https://www.tradingview.com/chart/NEARUSDT/uZUOh6cH-Bullish-continuation-on-NEAR-Protocol-means-BTC-hit-100K/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
         "id": "tv_0957d7fe62a7",
@@ -237816,15 +237432,271 @@
         "summary": "CRYPTOCAP:NEAR  TO $20? 523% ALREADY DONE BUT THIS MAY NOT BE THE END!\n\n CRYPTOCAP:NEAR  Has Now Delivered A Massive 523% Move From Our Accumulation Zone. Hope You\u2019re Happy With These Huge Returns! \ud83d\ude80\n",
         "url": "https://www.tradingview.com/chart/NEARUSDT/QrXhQVnG-NEAR-TO-20-523-ALREADY-DONE-BUT-THIS-MAY-NOT-BE-THE-END/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
       },
       {
-        "id": "tv_cb44c57b6f7c",
-        "headline": "[NEARUSDT idea] Who is still brave enough to hold for $6?",
-        "summary": "Hi,\n\n\n\ud83e\udd2f  CRYPTOCAP:NEAR  is looking absolutely INSANE right now!\nCan you believe this? NEAR is sitting at its highest price in nearly 2 years, while the massive monthly $3 resistance has finally been ",
-        "url": "https://www.tradingview.com/chart/NEARUSDT/YTQ9KIKY-Who-is-still-brave-enough-to-hold-for-6/",
+        "id": "tv_d5764149a141",
+        "headline": "[NEARUSDT idea] NEAR Analysis",
+        "summary": "**NEAR Analysis**\n \nBased on the current trend and price action, my scenario is that NEAR could start moving higher again from below the $3 level, as I believe its market structure has turned bullish ",
+        "url": "https://www.tradingview.com/chart/NEARUSDT/0BZLNPd7-NEAR-Analysis/",
         "source": "TradingView Ideas",
-        "datetime": 1791986447
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_7cd2a810f584",
+        "headline": "[SOLUSDT idea] SOLUSDT: Structural Compression Retest",
+        "summary": "\ud83d\udcca Macro & Fundamental Context \nSolana is consolidating around the $110.00 threshold on the 30-minute timeframe, reflecting localized volatility contraction following recent downside expansion. Digital",
+        "url": "https://www.tradingview.com/chart/SOLUSDT/XGL6XUiD-SOLUSDT-Structural-Compression-Retest/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_494778635e61",
+        "headline": "[SOLUSDT idea] SOLUSDT: Rising Trendline Support Under Pressure",
+        "summary": "\ud83d\udd39 SOLUSDT Price Action Analysis: Solana has faced a strong bearish rejection from the 120\u2013121 resistance and liquidity area, followed by a sharp decline toward the rising trendline. The current price ",
+        "url": "https://www.tradingview.com/chart/SOLUSDT.P/T0PEMcRz-SOLUSDT-Rising-Trendline-Support-Under-Pressure/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_d34088319838",
+        "headline": "[SOLUSDT idea] HOW-TO: read a bearish momentum thrust after a sharp drop",
+        "summary": "On 7 October, between 01:30 and 02:30 UTC, about $41 million of long positions were liquidated on Bybit alone. Ether led with $16.6 million. US index futures, the dollar and Treasury yields barely mov",
+        "url": "https://www.tradingview.com/chart/SOLUSDT.P/YYhhZG59-HOW-TO-read-a-bearish-momentum-thrust-after-a-sharp-drop/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_cc0e5367411b",
+        "headline": "[SOLUSDT idea] SOLUSDT: Rebound Trendline, Next Sell Setup",
+        "summary": "Solana is still moving inside a clear descending channel. The latest bounce from the lower boundary near the recent low has pushed price back toward $109, but SOL remains below the slower EMA around $",
+        "url": "https://www.tradingview.com/chart/SOLUSDT/Gzlsm7tP-SOLUSDT-Rebound-Trendline-Next-Sell-Setup/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_858fc548517c",
+        "headline": "[SOLUSDT idea] Potential scenario: It looks like this for Solana SHORT",
+        "summary": "The chart clearly shows that the five wave sequence has completed.  and price may now be entering an ABC correction.\nI\u2019m watching for a potential corrective structure developing into either a Flat or ",
+        "url": "https://www.tradingview.com/chart/SOLUSDT.P/YJlsqqpg-Potential-scenario-It-looks-like-this-for-Solana-SHORT/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_cb777dd54856",
+        "headline": "[SOLUSDT idea] SOLUSDT Short: Structural Breakdown At Liquidity Shelf",
+        "summary": "\ud83d\udcca  Macro & Technical Breakdown (SOLUSDT)\n \nFollowing a prolonged period of distribution and multiple failed attempts to secure acceptance above the psychological resistance block, SOLUSDT has printed ",
+        "url": "https://www.tradingview.com/chart/SOLUSDT/Cqg84tcN-SOLUSDT-Short-Structural-Breakdown-At-Liquidity-Shelf/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_673b9f100539",
+        "headline": "[SOLUSDT idea] SOLANA (SOL): Final Shakeout Before $150 Rally?",
+        "summary": "Yello Paradisers! Is #SOL latest correction creating a significant buying opportunity before its next bullish expansion toward $150, or could a breakdown of critical support threaten the entire recove",
+        "url": "https://www.tradingview.com/chart/SOLUSDT/F1qVXFeG-SOLANA-SOL-Final-Shakeout-Before-150-Rally/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_bab60ed27bfb",
+        "headline": "[SOLUSDT idea] SOLUSDT: Bulls Set Up a Recovery Toward $125",
+        "summary": "Solana has corrected sharply from the $120\u2013$124 area and is now testing an important support zone around $105\u2013$109. This region previously acted as resistance before the September breakout, so the cur",
+        "url": "https://www.tradingview.com/chart/SOLUSDT/P2Jn3sN1-SOLUSDT-Bulls-Set-Up-a-Recovery-Toward-125/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_cbfe9f0d21e7",
+        "headline": "[XRPUSDT idea] XRP Looks Extremely Bullish: Is a Major Rally Ahead? (3D)",
+        "summary": "Before anything else, pay attention to the timeframe. This is a higher timeframe setup that will take time to play out.\n\nThe XRP market is still hot, with ongoing discussions about major fundamental c",
+        "url": "https://www.tradingview.com/chart/XRPUSDT.P/aw3QKzeI-XRP-Looks-Extremely-Bullish-Is-a-Major-Rally-Ahead-3D/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_b330281678cd",
+        "headline": "[XRPUSDT idea] XRP/USDT: Key Support Holds, Potential Recovery Ahead",
+        "summary": "XRP is testing a key support zone around $1.37 to $1.39 on the 4H timeframe. This area aligns with the ascending trendline and has already triggered a rebound following the recent sell-off.\n\nIf suppor",
+        "url": "https://www.tradingview.com/chart/XRPUSDT/DcsMSQal-XRP-USDT-Key-Support-Holds-Potential-Recovery-Ahead/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_108fdd563dc2",
+        "headline": "[XRPUSDT idea] XRPUSDT \u2014 BUY Setup ...",
+        "summary": "XRPUSDT \u2014 BUY Setup\nBUY BIAS\nBuy on confirmation\n1.3950\u20131.4050\n\n\nTP1\n1.4200\n\nTP2\n1.4700\n\nTP3\n1.5500\n\nStop Loss\n1.3750\n\n\nSupport: 1.3200\u20131.3300\nResistance: 1.4100\u20131.4200, 1.4700\u20131.4800, and 1.5500\u20131.56",
+        "url": "https://www.tradingview.com/chart/XRPUSDT/Q2BBA4Bk-XRPUSDT-BUY-Setup/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_f2060f89f978",
+        "headline": "[XRPUSDT idea] XRPUSDT \u2014 Rising Trendline Breakdown & Bearish Pressure",
+        "summary": "\ud83d\udd39 XRPUSDT is showing a clear bearish shift in price action after breaking below the rising trendline that supported the previous recovery. The rejection from the 1.45\u20131.46 resistance area was followed",
+        "url": "https://www.tradingview.com/chart/XRPUSDT/puVFOsg6-XRPUSDT-Rising-Trendline-Breakdown-Bearish-Pressure/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_9d6df397a8fb",
+        "headline": "[XRPUSDT idea] XRPUSDT: Bottom Could Set U Move Toward 1.60",
+        "summary": "XRP has pulled back sharply into the $1.34\u2013$1.40 area, where buyers are beginning to react. This creates a potential second bottom after the September low, but the bullish reversal is not confirmed ye",
+        "url": "https://www.tradingview.com/chart/XRPUSDT/MvaF4FE8-XRPUSDT-Bottom-Could-Set-U-Move-Toward-1-60/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_6a22b7a77b48",
+        "headline": "[XRPUSDT idea] XRPUSDT: Breakdown Pressure, Sellers Takes Wave",
+        "summary": "XRP remains under pressure inside a clear descending channel. The latest selloff pushed price below the previous support area and below both EMAs, with XRP now trading near 1.42. This keeps the short-",
+        "url": "https://www.tradingview.com/chart/XRPUSDT/UbS55cBt-XRPUSDT-Breakdown-Pressure-Sellers-Takes-Wave/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_2d091c6183a3",
+        "headline": "[XRPUSDT idea] XRP: Long-Term Downtrend Finally Breaking?",
+        "summary": "BINANCE:XRPUSDT  Daily Time-Frame\nXRP is showing signs of a potential trend reversal after breaking above its long-term descending trendline.\nThe $1.40\u2013$1.50 area has acted as an important base, and a",
+        "url": "https://www.tradingview.com/chart/XRPUSDT.P/IFKtEvnV-XRP-Long-Term-Downtrend-Finally-Breaking/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_fd1825149075",
+        "headline": "[XRPUSDT idea] XRP is quiet and X is loud about Evernorth. I buy above 1.44",
+        "summary": "Evernorth lists on Nasdaq on Monday as XRPN. About 473 million XRP and 300 million in cash, and my X feed is all \"big money is coming\".\n\nThe chart did not get the memo. XRP fell 13% in two days up to ",
+        "url": "https://www.tradingview.com/chart/XRPUSDT.P/NSC40Kld-XRP-is-quiet-and-X-is-loud-about-Evernorth-I-buy-above-1-44/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_c526994018a8",
+        "headline": "[COMEX-GC1! idea] Gold Hints at Quiet Accumulation as Bulls Seek Dips",
+        "summary": "Gold made a mild attempt to reverse its trend and break above its bearish trendline, although falling volumes suggest the move lacks strong bullish conviction for now. However, the sharp rejection of ",
+        "url": "https://www.tradingview.com/chart/GC1!/cXvfowGv-Gold-Hints-at-Quiet-Accumulation-as-Bulls-Seek-Dips/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_95fd3335b164",
+        "headline": "[COMEX-GC1! idea] Tools of the Trade:  Bar Replay",
+        "summary": "Tools of the Trade \u2013 Session 1: Backtesting / Bar Replay\nIn this first Tools of the Trade session, we dive into one of the most important habits a trader can build: backtesting.\nThis session is design",
+        "url": "https://www.tradingview.com/chart/GCZ2026/PpwVpC2G-Tools-of-the-Trade-Bar-Replay/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_6eb548c3e41a",
+        "headline": "[COMEX-GC1! idea] 30M GC Demand Zone",
+        "summary": "I am expecting a Bullish move from Marked Demand Zone",
+        "url": "https://www.tradingview.com/chart/GC1!/GZQw1OMx-30M-GC-Demand-Zone/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_8238333ca119",
+        "headline": "[COMEX-GC1! idea] 5 Ways to Build Better Trading Discipline",
+        "summary": "Markets move quickly. Prices change, volatility expands, and opportunities can appear to arrive all at once. \n\nBut the traders who last are often not the ones chasing every move. They are the ones who",
+        "url": "https://www.tradingview.com/chart/GC1!/EWJZrZ1n-5-Ways-to-Build-Better-Trading-Discipline/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_1a9e944a2429",
+        "headline": "[COMEX-GC1! idea] Gold Futures (MGC) Breakout Plan \u2014 Week of 12 October 2026",
+        "summary": "Gold Futures (MGC) Breakout Plan \u2014 Week of 12 October 2026\n11 Oct 2026 \u00b7 \n\nSummary\n\nThis week's plan is a breakout bracket on Micro Gold futures. I'll buy above 4,232.40 if price breaks out of Friday'",
+        "url": "https://www.tradingview.com/chart/MGC1!/EgvqiwYv-Gold-Futures-MGC-Breakout-Plan-Week-of-12-October-2026/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_ed385169f4c3",
+        "headline": "[COMEX-GC1! idea] GOLD Struggles To Hold Support. CPI Data Looms!",
+        "summary": "In this Weekly Market Forecast, we will analyze Gold for the week of Oct 12-16th.\n\nGold (XAU/USD) is showing bearish momentum for the immediate short term, despite maintaining a structurally bullish p",
+        "url": "https://www.tradingview.com/chart/GC1!/A4YU3SOL-GOLD-Struggles-To-Hold-Support-CPI-Data-Looms/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_e2b74fb684f3",
+        "headline": "[COMEX-GC1! idea] Gold Futures (MCX) | 1H \u2014 Channel Resistance Rejection",
+        "summary": "Gold Futures faced rejection near the descending channel resistance. If the selling pressure continues, the next downside target is around **\u20b9144,000**.\n\nA sustained move above channel resistance woul",
+        "url": "https://www.tradingview.com/chart/GOLD1!/LryJ6Gf4-Gold-Futures-MCX-1H-Channel-Resistance-Rejection/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_a5f98216f1ab",
+        "headline": "[COMEX-GC1! idea] Trading Craft 101 \u00b7 Lesson 07 - Review & Iterate",
+        "summary": "\ud83d\udd35 THE LOOP \n\nEdge is not found, it is built - and it is built in a loop: trade, record, review, adjust, trade again. Most traders break the loop at the review step. They trade, they record (sometimes)",
+        "url": "https://www.tradingview.com/chart/GC1!/SR5260em-Trading-Craft-101-Lesson-07-Review-Iterate/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_a0357e27b39c",
+        "headline": "[NYMEX-NG1! idea] NG1! |  Bearish Correction Outlook -EIA Storage Report Catalyst",
+        "summary": "Natural Gas has experienced a recovery from its August lows, with price now approaching a significant resistance region between 3.25 and 3.30. This area combines the September high with the daily 800 ",
+        "url": "https://www.tradingview.com/chart/NG1!/XIzYjoqU-NG1-Bearish-Correction-Outlook-EIA-Storage-Report-Catalyst/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_d51298963683",
+        "headline": "[NYMEX-NG1! idea] NG1! Will Go Down From Resistance! Sell!",
+        "summary": "Take a look at our analysis for NG1!.\n\nTime Frame: 9h\nCurrent Trend: Bearish\nSentiment: Overbought (based on 7-period RSI) \nForecast: Bearish\n\nThe market is trading around a solid horizontal structure",
+        "url": "https://www.tradingview.com/chart/NG1!/ylz9wclh-NG1-Will-Go-Down-From-Resistance-Sell/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_48e41dc66bb6",
+        "headline": "[NYMEX-NG1! idea] Natural Gas Futures (MCX) | Intraday Structure | October 13, 202",
+        "summary": "Natural Gas Futures (MCX) | Intraday Structure | October 13, 2026\n\n  MCX:NATURALGAS1!  \n\nNatural Gas is trading around 302.3, hovering right against the 302.11 Short Entry boundary after a sharp pullb",
+        "url": "https://www.tradingview.com/chart/NATURALGAS1!/X6O6pbj8-Natural-Gas-Futures-MCX-Intraday-Structure-October-13-202/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_8d59c2238bd2",
+        "headline": "[NYMEX-NG1! idea] Naturalgas analysis",
+        "summary": "This is a 4-hour Natural Gas Futures chart, and the structure is quite interesting.\n\n\ud83d\udcca What the chart is showing\n\n* Current price: ~316.2\n* Major resistance: 318\u2013320\n* Price has rallied strongly from ",
+        "url": "https://www.tradingview.com/chart/NATURALGAS1!/ePe4BLuv-Naturalgas-analysis/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_78348ec8f642",
+        "headline": "[NYMEX-NG1! idea] NATGAS LOCAL SHORT|",
+        "summary": "\u2705NATGAS  is awaiting a supply level retest near 3.25$, where rejection may favor bearish displacement toward 3.16$ as sellers regain control and order flow shifts lower after the rebound.Time Frame 4H",
+        "url": "https://www.tradingview.com/chart/NG1!/fxy1IUDi-NATGAS-LOCAL-SHORT/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_c9f5b632cd5f",
+        "headline": "[NYMEX-NG1! idea] NATURAL GAS 1H | Rounded Bottom Breakout Setup",
+        "summary": "Natural Gas has formed a rounded-bottom recovery from the 285\u2013288 zone, followed by higher highs and higher lows. Price has reclaimed both EMAs and is now pressing the 312 resistance.\n\nA clean break w",
+        "url": "https://www.tradingview.com/chart/NATURALGAS1!/AcVWU6c7-NATURAL-GAS-1H-Rounded-Bottom-Breakout-Setup/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_c5b029106d38",
+        "headline": "[NYMEX-NG1! idea] NATGAS Free Signal! Sell!",
+        "summary": "Hello,Traders!\nNATGAS  is rejecting the horizontal supply area after a buy-side liquidity sweep, while distribution around the mitigation block supports a bearish rotation toward the lower target.\n---",
+        "url": "https://www.tradingview.com/chart/NG1!/CtpsrA8N-NATGAS-Free-Signal-Sell/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
+      },
+      {
+        "id": "tv_a103a2e3b423",
+        "headline": "[NYMEX-NG1! idea] Silver | Natural Gas | Gold Price Forecast | Oil | Dollar |",
+        "summary": "Silver | Natural Gas | Gold Price Forecast | Oil | Dollar | \n\n0:00 Introduction & Commodities Overview\n0:21 Natural Gas (NG / UNG) Technical Analysis  NYMEX:NG1! \n4:21 Crude Oil (CL / USO) Technical A",
+        "url": "https://www.tradingview.com/chart/NG2!/6nWhiW07-Silver-Natural-Gas-Gold-Price-Forecast-Oil-Dollar/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988234
       },
       {
         "id": "tv_9aba6e6e8011",
@@ -237832,7 +237704,7 @@
         "summary": "Hello Traders,\nThe NIFTY50 hit a new low of 22,180 points on Tuesday, the 8th. This was in line with my expectations.\nMy first target at 22,340 was reached (first rectangle), and the second is taking ",
         "url": "https://www.tradingview.com/chart/NIFTY/9q9P3FiN-NIFTY50-Sideways-in-a-consolidation/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_6d0db9fab6e2",
@@ -237840,7 +237712,7 @@
         "summary": "NIFTY 50 Breakout Confirmed? | Target 23,261 | Support To Resistance Trade Setup\n\nOption 2 (Catchy):\nNIFTY 50 Ready For 500+ Points Rally? | Channel Breakout | My Target Inside\n\nOption 3 (Short):\nNift",
         "url": "https://www.tradingview.com/chart/NIFTY/fnEilI7g-NIFTY-50-Breakout-Confirmed-Target-23-261-Support-To-Resist/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_061f376ce0f7",
@@ -237848,7 +237720,7 @@
         "summary": "Nifty short -- 15 Mins supply with strong liquidation nifty50\n\nNifty easy target  15 Mins supply with strong liquidation",
         "url": "https://www.tradingview.com/chart/NIFTY/C38KjF0v-Nifty-short-15-Mins-supply-with-strong-liquidation-nifty50/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_0351d9d09c20",
@@ -237856,7 +237728,7 @@
         "summary": "Hello Friends, Welcome to RK_Chaarts\n\n Nifty - Big Picture | Elliott Wave Perspective (Educational) \n\n Global indices are at ATH but Nifty is in pressure - why ?  \n\nLet's look at the bigger wave struc",
         "url": "https://www.tradingview.com/chart/NIFTY/Zk17F26o-Big-Picture-Why-Nifty-is-lagging-while-US-hits-ATH-Elliot-Waves/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_e77d0d9dafbc",
@@ -237864,7 +237736,7 @@
         "summary": "Nifty may open on gap down note as per sgx nifty around at 22300 levels in today session.In yesterday session entire day nifty traded in the red but nifty can managed to closed above the recent low th",
         "url": "https://www.tradingview.com/chart/NIFTY/uG2maXoH-Nifty-strategy-for-09-10-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_b13c8db7451f",
@@ -237872,7 +237744,7 @@
         "summary": "Short Covering trigger after Monday gap down can be possible for fresh buying in the index where 22900 will act as first resistance and the rally may extend upto 23560 with periodic correction. 22325-",
         "url": "https://www.tradingview.com/chart/NIFTY/Lc5T08Gv-Nifty-finding-bottom-on-Monday-amid-the-news-cycle/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_7732ef138faf",
@@ -237880,15 +237752,15 @@
         "summary": "Nifty is trading at important level i.e. 22500 as on 13th oct 2026 nifty has spent over an week in this zone. now nifty must show strength and start recover above 23500 ( approx. 5%) by next 2 weeks i",
         "url": "https://www.tradingview.com/chart/NIFTY/NXASSLW2-Nifty-Head-and-Shoulder-Neckline-22500-Make-or-Break/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
-        "id": "tv_1b6fb25eabb6",
-        "headline": "[NSE-NIFTY idea] NIFTY 50 Trade Setup \u2014 Double Bottom + Liquidity Sweep",
-        "summary": "NIFTY 50 has been in a clear short-term downtrend, forming lower highs and lower lows. However, price has now tested the 22,200\u201322,240 support zone twice, creating a potential double-bottom formation.",
-        "url": "https://www.tradingview.com/chart/NIFTY/vb6HVBVz-NIFTY-50-Trade-Setup-Double-Bottom-Liquidity-Sweep/",
+        "id": "tv_9804fa910f61",
+        "headline": "[NSE-NIFTY idea] NIFTY 50 \u2013 Elliott Wave Analysis",
+        "summary": "NIFTY appears to be developing a bearish Elliott Wave structure, with the initial five-wave decline potentially followed by a corrective ABC recovery.\n\nThe current recovery is expected to develop into",
+        "url": "https://www.tradingview.com/chart/NIFTY/SPrK65Ni-NIFTY-50-Elliott-Wave-Analysis/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_799d049c543c",
@@ -237896,7 +237768,7 @@
         "summary": "The Indian market could reach a new all-time high from the 1H POI Some trapping and liquidity sweeps may occur along the way, but my overall bias remains bullish, with the expectation of further upsid",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/qR2EPb1z-This-is-my-perspective-on-the-Indian-market/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_65ef0eb5131a",
@@ -237904,7 +237776,7 @@
         "summary": "Utilizing the support and resistance levels of BankNifty, along with the 5-minute timeframe candlesticks and VWAP, can enhance the precision of trade entries and exits on or near these levels. It is c",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/UQIjF0xI-BankNifty-levels-Oct-08-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_db364f371646",
@@ -237912,7 +237784,7 @@
         "summary": "Utilizing the support and resistance levels of BankNifty, along with the 5-minute timeframe candlesticks and VWAP, can enhance the precision of trade entries and exits on or near these levels. It is c",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/vOMbK6vI-BankNifty-levels-Oct-13-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_cf110cffe813",
@@ -237920,7 +237792,7 @@
         "summary": "Utilizing the support and resistance levels of BankNifty, along with the 5-minute timeframe candlesticks and VWAP, can enhance the precision of trade entries and exits on or near these levels. It is c",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/Of2cSzWk-BankNifty-levels-Oct-12-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_b6819809a2b4",
@@ -237928,7 +237800,7 @@
         "summary": "Utilizing the support and resistance levels of BankNifty, along with the 5-minute timeframe candlesticks and VWAP, can enhance the precision of trade entries and exits on or near these levels. It is c",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/K0RhZx0V-BankNifty-levels-Oct-14-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_3ebe7ceffb78",
@@ -237936,7 +237808,7 @@
         "summary": "Utilizing the support and resistance levels of BankNifty, along with the 5-minute timeframe candlesticks and VWAP, can enhance the precision of trade entries and exits on or near these levels. It is c",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/5OBvCBBC-BankNifty-levels-Oct-09-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_366a304b4e0b",
@@ -237944,7 +237816,7 @@
         "summary": "Bank Nifty showed a bullish recovery structure, forming higher lows after finding support around the 54,200\u201354,300 zone. Price then consolidated around the 54,900\u201355,000 area before giving a 15-minute",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/RogSndPi-Bank-Nifty-15-Minute-Long-Breakout-Trade/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_6873fe2e5708",
@@ -237952,7 +237824,7 @@
         "summary": "Utilizing the support and resistance levels of BankNifty, along with the 5-minute timeframe candlesticks and VWAP, can enhance the precision of trade entries and exits on or near these levels. It is c",
         "url": "https://www.tradingview.com/chart/BANKNIFTY/iGt0HTCo-BankNifty-levels-Oct-06-2026/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_e19889752f3f",
@@ -237960,7 +237832,7 @@
         "summary": "By analyzing the  #SENSEX  (S&P BSE Sensex Index) chart on the Daily timeframe, we can see that price has moved exactly in the direction we mapped out in our previous analysis \u2014 the bullish reversal i",
         "url": "https://www.tradingview.com/chart/SENSEX/iDUk5dk7-SENSEX-The-Reversal-We-Called-Delivers-Price-Taps-The-Flip-Zone/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_84fff3081ad8",
@@ -237968,7 +237840,7 @@
         "summary": "Senex now trading near well defined multiyear support also near its low risk zone, high probability hold this support. Whats your view on this ?",
         "url": "https://www.tradingview.com/chart/SENSEX/yMEtwgv4-well-defined-multiyear-support/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_619a5c45bf74",
@@ -237976,7 +237848,7 @@
         "summary": "BSE Sensex : From Dec 2025 Until today Oct 2026.\n\nUnfortunately, Year 2026 has been quite rough for Sensex . -15,000 points approx. \n\nMonthly time frame  \n\n(This is not a buy or sell recommendation.\nP",
         "url": "https://www.tradingview.com/chart/SENSEX/GvVn73hg-BSE-Sensex-From-Dec-2025-Until-today/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_698ccb0deef6",
@@ -237984,7 +237856,7 @@
         "summary": "Trade Plan Description \u2014 SENSEX\n\nThe plan is to watch for a double-top formation near the current highs. Price may make another attempt toward the previous swing high, create a rejection, and then bre",
         "url": "https://www.tradingview.com/chart/SENSEX/xKEXEBAF-SENSEX-Trade-Plan/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_d15caae29626",
@@ -237992,7 +237864,7 @@
         "summary": "The BSE Sensex is developing a weaker price structure, with recent market behavior keeping the downside firmly in focus. The broader formation continues to reflect selling pressure, while the index is",
         "url": "https://www.tradingview.com/chart/SENSEX/taF6XMlh-Sensex-Bearish-Setup-Toward-72-982/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_3678d5ca5cb6",
@@ -238000,7 +237872,7 @@
         "summary": "SENSEX is close below its 200- week Simple Moving Average, it be the First time in 6 Years .",
         "url": "https://www.tradingview.com/chart/SENSEX/04K6rDJd-First-Time-Since-Covid/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_5a287241f5e6",
@@ -238008,7 +237880,7 @@
         "summary": "Sensex index might go down further. \n\n* just a view not recommendation",
         "url": "https://www.tradingview.com/chart/SENSEX/KmuUrzxq-Sensex-View/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
       },
       {
         "id": "tv_79a114322c23",
@@ -238016,12 +237888,156 @@
         "summary": "The Psychological Wall: \nWe are tested the previous All-Time High (ATH) with decreasing volume. \nIn markets, price making a new high while volume stays low is a classic sign of \"Exhaustion.\" The big b",
         "url": "https://www.tradingview.com/chart/SENSEX/1HWflf2S-SENSEX-Double-Top/",
         "source": "TradingView Ideas",
-        "datetime": 1791986446
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_205c4de42c63",
+        "headline": "[BTCUSDT idea] BTCUSDT 4H: Key Demand Zone Could Trigger the Next Leg Higher",
+        "summary": "Hi!\n\n Market Outlook: Bullish Scenario\n \nBTC is consolidating below the 100 SMA after printing a potential double top near the $87K region. Price is now approaching a key demand zone between $79K and ",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/PwoL3DZE-BTCUSDT-4H-Key-Demand-Zone-Could-Trigger-the-Next-Leg-Higher/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_3211cd3a55e4",
+        "headline": "[BTCUSDT idea] BTCUSDT",
+        "summary": "Hello Traders! \ud83d\udc4b\n\nWhat are your thoughts on Bitcoin ?\n\nBitcoin is currently trading around $83,000 after facing selling pressure in the $86,000\u2013$87,500 resistance zone, where price previously failed t",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/uIbGIw7B-BTCUSDT/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_537c6fd14be1",
+        "headline": "[BTCUSDT idea] BTCUSDT \u2014 LIQUIDITY BEFORE DIRECTION | PRICE ACTION EDUCATION",
+        "summary": "BTCUSDT \u2014 LIQUIDITY BEFORE DIRECTION | CANDLE-BY-CANDLE PRICE ACTION EDUCATION\n\n1. Bullish Candles \u2014 Moving Toward the Previous High\n\nReason: Buyers are becoming more aggressive and pushing price towa",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/eIFXifkt-BTCUSDT-LIQUIDITY-BEFORE-DIRECTION-PRICE-ACTION-EDUCATION/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_9324389499fd",
+        "headline": "[BTCUSDT idea] Bitcoin Double Top Breakdown \u2014 Is $77.5K the Next Target?",
+        "summary": "Bitcoin ( BINANCE:BTCUSDT ) has declined more than 5% over the past three days and lost the Support Zone($81,950-$82,960).\n\nBTC has started to react from the 50_SMA(Daily), but several macro and marke",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/jUptVCaP-Bitcoin-Double-Top-Breakdown-Is-77-5K-the-Next-Target/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_49961f7ae998",
+        "headline": "[BTCUSDT idea] Repeated Supply Rejections Put Bitcoin\u2019s Local Support in Focus",
+        "summary": "Hello traders! Here\u2019s my technical outlook based on the current BTCUSDT (1H) chart structure. BTCUSDT previously turned around from the highs and formed a descending structure under the Resistance Lin",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/vKOxezyy-Repeated-Supply-Rejections-Put-Bitcoin-s-Local-Support-in-Focus/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_1ff6c2d7f8e9",
+        "headline": "[BTCUSDT idea] BTCUSDT 4H: ICT Liquidity Sweep, MSS & Order Block Analysis",
+        "summary": "BTCUSDT 4H | Advanced ICT & Smart Money Concepts Analysis\n\n1. Market Overview\n\nThis analysis examines Bitcoin (BTCUSDT) on the 4-hour timeframe using Inner Circle Trader (ICT) concepts and Smart Money",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/SQbqDq93-BTCUSDT-4H-ICT-Liquidity-Sweep-MSS-Order-Block-Analysis/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_570b3075595e",
+        "headline": "[BTCUSDT idea] BTCUSDT \u2013 H4 \u2013 Bearish",
+        "summary": "BTCUSDT \u2013 H4 \u2013 Bearish Rejection & Support Breakdown Setup\n\nBTCUSDT is currently trading around 82,690 and has rejected the upper trading range. Price remains below the marked 87,000\u201387,900 resistance",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/LQuVKKYr-BTCUSDT-H4-Bearish/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_20a04e6a00fd",
+        "headline": "[BTCUSDT idea] BTC Rebuilds Bullish Momentum as Price Climbs Away From 80,400",
+        "summary": "Hello traders! Here\u2019s my technical outlook based on the current BTCUSDT (4H) chart structure. BTCUSDT previously broke higher from a descending structure and formed a strong upward Trend Line. Price t",
+        "url": "https://www.tradingview.com/chart/BTCUSDT/yficrLFM-BTC-Rebuilds-Bullish-Momentum-as-Price-Climbs-Away-From-80-400/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_f1dfa1a6a138",
+        "headline": "[ETHUSDT idea] Short-Term Peak Range: 2654.48 ~ 2753.63",
+        "summary": "Hello,\nNice to meet you, fellow traders.\n\nIf you follow me, you can always receive new information quickly.\nHave a great day today as well.\n\n-------------------------------------\n\n\n\nThe volatility per",
+        "url": "https://www.tradingview.com/chart/ETHUSDT/0MD9AGPZ-Short-Term-Peak-Range-2654-48-2753-63/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_ade45b822694",
+        "headline": "[ETHUSDT idea] ETH Loses $2,650, Deeper Pullback Ahead?",
+        "summary": "ETH is weak after a few weeks of consolidation near the recent highs.\n\nPrice has broken below the prior range support at $2,650 on the 4H chart which is a significant short term change. The breakdown ",
+        "url": "https://www.tradingview.com/chart/ETHUSDT/xiLB0rwh-ETH-Loses-2-650-Deeper-Pullback-Ahead/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_0047d962f522",
+        "headline": "[ETHUSDT idea] ETHUSDT Bearish Reversal \u2014 Resistance Breakdown",
+        "summary": "ETHUSDT is showing strong bearish momentum after rejecting the major resistance zone around **2,775\u20132,790**. Price has broken down from the recent consolidation range and is now moving lower, confirmi",
+        "url": "https://www.tradingview.com/chart/ETHUSDT/jnJZiiv0-ETHUSDT-Bearish-Reversal-Resistance-Breakdown/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_7da94c23180c",
+        "headline": "[ETHUSDT idea] ETH: Buyers Defend $2,400 as the Next Rally Setup Builds",
+        "summary": "ETH: Buyers Defend $2,400 as the Next Rally Setup Builds \n\nOn all timeframes, ETH is in a clear uptrend.\n\nCurrently, ETH is moving down as part of a larger corrective move. \n\nYou can look to buy ETH n",
+        "url": "https://www.tradingview.com/chart/ETHUSDT/Kc06425a-ETH-Buyers-Defend-2-400-as-the-Next-Rally-Setup-Builds/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_c53469060fcd",
+        "headline": "[ETHUSDT idea] ETH \u2013 A Strong Intersection for Buyers?",
+        "summary": "Ethereum has been overall bullish, trading above the rising blue trendline and maintaining a series of higher highs and higher lows.\n\nFollowing its recent bullish impulse, ETH entered a correction pha",
+        "url": "https://www.tradingview.com/chart/ETHUSDT/eYEdOeHg-ETH-A-Strong-Intersection-for-Buyers/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_ee4e2316514d",
+        "headline": "[ETHUSDT idea] Will $ETH hit $10K in this Bull Run After Now Turned into Bull",
+        "summary": "ETHEREUM $10,000 TARGET: THE NEXT BIG ACCUMULATION OPPORTUNITY COULD BE NEAR! \ud83d\ude80\n\n CRYPTOCAP:ETH  has shifted into a bullish HTF zone, and my 2026\u20132027 roadmap targets $5,000\u2013$10,000.\nETH has already r",
+        "url": "https://www.tradingview.com/chart/ETHUSDT.P/JRBOUX7B-Will-ETH-hit-10K-in-this-Bull-Run-After-Now-Turned-into-Bull/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_bf8034db800a",
+        "headline": "[ETHUSDT idea] ETH \u2014 RECLAIMING THE ASCENDING STRUCTURE",
+        "summary": "\ud83d\udd3a\n\nETH is currently navigating a critical retest phase after sliding below its multi-month rising support trendline. Price action shows a \ud83c\udf00 compression following a failed triangle breakout, with the a",
+        "url": "https://www.tradingview.com/chart/ETHUSDT/ibnk3bU9-ETH-RECLAIMING-THE-ASCENDING-STRUCTURE/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "tv_6c46ec5db3ff",
+        "headline": "[ETHUSDT idea] $ETH FACES A DOUBLE WARNING",
+        "summary": "$161M ETF OUTFLOW + MAJOR RESISTANCE\n\n CRYPTOCAP:ETH \u00a0 just got another warning sign. U.S. Spot ETH ETFs recorded $160.9M in net outflows on October 7, extending the outflow streak to 7 consecutive tr",
+        "url": "https://www.tradingview.com/chart/ETHUSDT.P/LgVc8tXN-ETH-FACES-A-DOUBLE-WARNING/",
+        "source": "TradingView Ideas",
+        "datetime": 1791988233
+      },
+      {
+        "id": "et_84167cdbfd59",
+        "headline": "Global Market: BoE's Huw Pill wary of market bets on four rate hikes over next year",
+        "summary": "Bank of England Chief Economist Huw Pill has questioned market expectations for four quarter-point rate hikes over the next 12 months as policymakers assess the inflationary fallout of the Iran war. H",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/global-market-boes-huw-pill-wary-of-market-bets-on-four-rate-hikes-over-next-year/articleshow/134944944.cms",
+        "source": "Economic Times",
+        "datetime": 1791987625
+      },
+      {
+        "id": "et_36f4902ed802",
+        "headline": "US yields jump as hot consumer inflation boosts rate hike bets",
+        "summary": "In September, the US Treasury yields climbed as the Consumer Price Index (CPI) showed a surprising rise of 0.6% month-over-month and 3.7% year-over-year. This unexpected inflation report heightened th",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-yields-jump-as-hot-consumer-inflation-boosts-rate-hike-bets/articleshow/134944738.cms",
+        "source": "Economic Times",
+        "datetime": 1791986933
       },
       {
         "id": "et_bf58e5ae96f5",
         "headline": "Diwali offer for RIL shareholders! Reliance Jio sets aside Rs 2,500 crore shares in IPO reservation",
-        "summary": "Jio Platforms has filed its red herring prospectus (RHP) for an IPO of up to 27 crore equity shares, setting the stage for what could be India\u2019s largest-ever public issue. Anchor investor bidding will",
+        "summary": "Reliance Jio has reserved up to Rs 2,500 crore worth of shares for eligible Reliance Industries shareholders in its upcoming IPO. The quota offers RIL investors a direct route to apply for Jio Platfor",
         "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/diwali-offer-for-ril-shareholders-reliance-jio-sets-aside-rs-2500-crore-shares-in-ipo-reservation/articleshow/134944234.cms",
         "source": "Economic Times",
         "datetime": 1791985619
@@ -238041,6 +238057,14 @@
         "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/gold-drops-over-1-as-hot-us-inflation-data-boosts-fed-hike-bets/articleshow/134944020.cms",
         "source": "Economic Times",
         "datetime": 1791984620
+      },
+      {
+        "id": 8619279,
+        "headline": "Gulf markets mixed; Saudi stocks hardest hit on Aramco attack - Reuters",
+        "summary": "Gulf markets mixed; Saudi stocks hardest hit on Aramco attack\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNLXZwM3pfUE0yMVJsTzRjTkJmWFIwclNIamJ1Y2xFdmxWV2lpVHZWRDNqdkVLVGRvSV9rWEZXX0Q3cndEWXJNNnFWeVlYWkhzbFRjV19CSlV5M2phQVJSa2pWdXNob0RsSURPb0k2bVh2ZXJnMEJPeUdXYnhDV2FNLVN4QVdLVXpIWjJCTU5BYkVaMTlkQWlzeDI5bW9CU09sRUtsNlNtbjV6UklveDU4ZmNHcGQxT1VLb3BJ?oc=5",
+        "source": "Reuters",
+        "datetime": 1791984219
       },
       {
         "id": "et_962e4a40d58a",
@@ -238067,12 +238091,28 @@
         "datetime": 1791983562
       },
       {
+        "id": 8619827,
+        "headline": "Netanyahu says he is not seeking to attack Iran again before Israel election - Reuters",
+        "summary": "Netanyahu says he is not seeking to attack Iran again before Israel election\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOLWQySUR2MFRlc1ZmU2lEaFRLU0VVWU14UVZhNm1Jc05obTk2SFV6UzZwLWhySUlaTXJISmdnc00wWnpNZHd0WGlIeC03ZmVnbzJuOUV6Zm96OE9sdTExbU5LdzBoa0U1S2QtMlNoWWQ1VUQtM1FzZHBXTGFxMDczVVRoWjNZbjIzaUpwMGlSS0s0VDAtZ3J5M0laNVlrT09Mc3ZwcjQwbE9YSDN4c2V0UmpWZ1lhanNDdS1hU3BtSUJzQ2tfbXc?oc=5",
+        "source": "Reuters",
+        "datetime": 1791983143
+      },
+      {
         "id": 8619717,
         "headline": "Jim Cramer's top 10 things to watch in the stock market Wednesday",
         "summary": "The Septembr CPI report came in hot, and Morgan Stanley's equities trading blew past expectations.",
         "url": "https://www.cnbc.com/investingclub/2026/10/14/jim-cramers-top-10-things-to-watch-in-the-stock-market-wednesday.html",
         "source": "CNBC",
         "datetime": 1791982789
+      },
+      {
+        "id": 8619828,
+        "headline": "Container ship sinks near Hormuz after being hit by projectile, sources say - Reuters",
+        "summary": "Container ship sinks near Hormuz after being hit by projectile, sources say\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNVlQtcHJibXBpYWEwWTQ4dFdfWUFJbTVteGY0WThGcTFybEdUTERvVG9DcGdoY09vUjh0TG1QeG5zMWx0LTFvV09teVNXY1NLdXZVNlpuMVBIV3pndWJKWVBRdENjLVd0dnVwdUxPTHFPU002S0ZqR0lkcjgyNVl2ZFFXc05MdTJHenM3LVNUSlBUb1RyeDVxY3VTdUxEamxrbS1OXzJJR3o3SlltandncHAwVXFNSTFYcmJXblh2U25vN2xMMW1ibQ?oc=5",
+        "source": "Reuters",
+        "datetime": 1791982314
       },
       {
         "id": 8619169,
@@ -238084,7 +238124,7 @@
       },
       {
         "id": "et_4e37679fffdb",
-        "headline": "Dow Jones| Nasdaq | US Stock Market Today | Live:  US stocks open lower as hot inflation data revives rate-hike bets",
+        "headline": "Dow Jones| Nasdaq | US Stock Market Today | Live:  US stocks edge lower as hot inflation data revives rate-hike bets",
         "summary": "",
         "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/dow-jones-us-stock-market-live-updates-nasdaq-sp-500-iran-war-hormuz-deal-brent-crude-oil-fed-rate-yield-inflation-data-bank-earnings-blackrock-bank-of-america-alphabet-micron-inflation-dataai-chip-stock-price-news-14th-october-2026/liveblog/134942729.cms",
         "source": "Economic Times",
@@ -238211,6 +238251,22 @@
         "datetime": 1791972155
       },
       {
+        "id": 8619932,
+        "headline": "Abu Dhabi's IRH seeks more mining assets in Zambia - Reuters",
+        "summary": "Abu Dhabi's IRH seeks more mining assets in Zambia\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOZWRkOHBKaHM5dG92MVcwS2xzdF9qSDZ0dU1ONDh6ektMQ1BTVU5TMWpLR0NTWlRpTjhiMXhhMHFwcmp1MzNISll4ZDN1RXBKdWZQcXZxdm5aakpqdUZEZ21Ra3Y5MHVfLXJCckhfY0sxSWhpWERZbmx1aGhjT0tVR1R6N0tfeUs3bjE3aE9RaFhXdU9ScXJZMjJRbzBXLTJVWWc?oc=5",
+        "source": "Reuters",
+        "datetime": 1791971456
+      },
+      {
+        "id": 8619931,
+        "headline": "Three fishermen injured in drone incident off southern Iran - Reuters",
+        "summary": "Three fishermen injured in drone incident off southern Iran\u00a0\u00a0Reuters",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQYnR1WUkwS0JTSV9BMU1iUGVCTFVLd1V5U0N3ekNjTDZxa2ZKa2VNZ3kwYlNUYmNCOGY3RS04dTlXdnA5MEUteDhwR3VNRW05U3U1S2ZMWWRRNmpvMzhGWjM0Y0FrN2FRMmxTQTdrSGxEVFFTWXVULVJxY2g1dm1ldVN1NVEyR29YNTVWY2gzRlMwZEZFVTZqbFJ1Z3h4eXM?oc=5",
+        "source": "Reuters",
+        "datetime": 1791971373
+      },
+      {
         "id": "et_771a84360f06",
         "headline": "Nvidia pledges $250 million in computing resources to boost UK AI safety research",
         "summary": "Nvidia has committed $250 million in computing resources over five years to advance UK artificial intelligence safety research. Announced by CEO Jensen Huang on Wednesday, the $50 million annual pledg",
@@ -238267,30 +238323,6 @@
         "datetime": 1791965744
       },
       {
-        "id": 8619279,
-        "headline": "Saudi stocks slip after attack on Aramco building; Gulf markets mixed - Reuters",
-        "summary": "Saudi stocks slip after attack on Aramco building; Gulf markets mixed\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNLXZwM3pfUE0yMVJsTzRjTkJmWFIwclNIamJ1Y2xFdmxWV2lpVHZWRDNqdkVLVGRvSV9rWEZXX0Q3cndEWXJNNnFWeVlYWkhzbFRjV19CSlV5M2phQVJSa2pWdXNob0RsSURPb0k2bVh2ZXJnMEJPeUdXYnhDV2FNLVN4QVdLVXpIWjJCTU5BYkVaMTlkQWlzeDI5bW9CU09sRUtsNlNtbjV6UklveDU4ZmNHcGQxT1VLb3BJ?oc=5",
-        "source": "Reuters",
-        "datetime": 1791964783
-      },
-      {
-        "id": "et_f57c32e28941",
-        "headline": "PMS Tracker: HEM Securities\u2019 SME stars, others rally up to 7.5% in September despite Nifty\u2019s 6% crash",
-        "summary": "Despite Nifty and Sensex tumbling over 6% in September, small-cap and SME-focused PMS strategies delivered robust positive returns. Hem Securities' India Rising SME Stars scheme led gains at 7.23%, ac",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/pms-tracker-hem-securities-sme-stars-others-rally-up-to-7-5-in-september-despite-niftys-6-crash/articleshow/134936130.cms",
-        "source": "Economic Times",
-        "datetime": 1791964175
-      },
-      {
-        "id": "et_b178e3f68a38",
-        "headline": "Global Market: Lagarde says France must tackle debt woes through fiscal consolidation",
-        "summary": "ECB President Christine Lagarde stated on Wednesday that France must tackle its ballooning debt and deficit through domestic fiscal consolidation rather than relying on central bank bond intervention.",
-        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-lagarde-says-france-must-tackle-debt-woes-through-fiscal-consolidation/articleshow/134935514.cms",
-        "source": "Economic Times",
-        "datetime": 1791964010
-      },
-      {
         "id": 8619722,
         "headline": "India's wholesale inflation rises faster than expected at 11.4% in September - Reuters",
         "summary": "India's wholesale inflation rises faster than expected at 11.4% in September\u00a0\u00a0Reuters",
@@ -238332,8 +238364,8 @@
       },
       {
         "id": 8617503,
-        "headline": "Oil prices surge as Iran deploys new tactics to target tankers - Reuters",
-        "summary": "Oil prices surge as Iran deploys new tactics to target tankers\u00a0\u00a0Reuters",
+        "headline": "Oil prices steady after gains on Iran's new tactics to target tankers - Reuters",
+        "summary": "Oil prices steady after gains on Iran's new tactics to target tankers\u00a0\u00a0Reuters",
         "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxON0hPaGRDOW9haXRKcUJ3WVU5dVdwSjB2ZzNMZTVWd0lRYV9ZUjRNRTI4VjVXeERGeW1XVU1GanZidjZneXhKeFh1dWM0OUJ6ZGltVXFXdHJNVk52MDN5M3NvRnhUUWN6aEFiSldFUWxfeHNPYmQ2R21JMGlhaUNaWEFNckc0T0ItSFpYcHA3MmM4UUdnTVd0VFg0NWhtbm91MllPWllha0pqdVBjZlRldDgxaG5PclVud0xtNQ?oc=5",
         "source": "Reuters",
         "datetime": 1791941220
@@ -238505,56 +238537,10 @@
         "url": "https://www.cnbc.com/investingclub/2026/10/13/jim-cramer-bucks-all-the-stock-market-negativity-with-3-buy-recommendations.html",
         "source": "CNBC",
         "datetime": 1791907640
-      },
-      {
-        "id": 8616979,
-        "headline": "Azerbaijan's governing party defends school uniform rules after hijab dispute - Reuters",
-        "summary": "Azerbaijan's governing party defends school uniform rules after hijab dispute\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNYzl3YVVQODV2LWItbWlQZ1hzdXA0ODQxNXdIV1BCZUM2M1FYWjg0R2JLOFJsX3dxajUwdkJvSEFDWEtRcmExQnhNTFdRUFRLamNFbktqck9meWttc183N0dvWUR2MnllVkJHaGVWVlRXSG1VXzI0dnR5cGpxYk9QeTcyOWs4TUlPcU5HV2NoX1JFSEFfdzJ0ZHpBOVFKUi1BcjlYVE1vUUJacUdpOWR0Sk5zZlZlaDZkYlE?oc=5",
-        "source": "Reuters",
-        "datetime": 1791906145
-      },
-      {
-        "id": 8615292,
-        "headline": "We're adding to a consumer staples stock in advance of a big catalyst",
-        "summary": "We see this company's pending merger as a potential for cost savings, incremental revenue synergies, and increased scale.",
-        "url": "https://www.cnbc.com/investingclub/2026/10/13/were-adding-to-a-consumer-staples-stock-in-advance-of-a-big-catalyst.html",
-        "source": "CNBC",
-        "datetime": 1791906028
-      },
-      {
-        "id": 8614874,
-        "headline": "Wells Fargo beats profit estimates, but net interest income, revenue fall short - Reuters",
-        "summary": "Wells Fargo beats profit estimates, but net interest income, revenue fall short\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPZ3h0SU11NWFMTHJPeWw2ZGlmZlJ5RzNzRm9FZWZ3MURpVmtwajFQV2RnRDkxeVJVXzZGcEduYzF1RFdtT0RKYkRub1pfazFCbUNiWHllejh6V3Y2TVZnU1gzNV9qSkExVGhoWk1WampqaHduYjVoNGRVQ2NBb3lueThEZExQaTlQb1J0SmpLdUg5akhSY1NXNFNjY1d5dmx3SEhscjd4MFFyTFZtR0FtNkRB?oc=5",
-        "source": "Reuters",
-        "datetime": 1791905952
-      },
-      {
-        "id": 8615611,
-        "headline": "MI5 chief lists Iran, Russia, AI and terrorists among threats to UK - Reuters",
-        "summary": "MI5 chief lists Iran, Russia, AI and terrorists among threats to UK\u00a0\u00a0Reuters",
-        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNTHFwT0RUTm5iTFMtTEJHM1Z0S1ZHS1E0RU5VVHlzS2J0ZGtFYW4tWTV3RUo4N0Q1YkNKUlhaVGNBT1BUcVlXbVBpZUNJQ1VrN185YzJDZUp3YVBkU2w0MG12OHBWaUpSd1lzdmNPU3VQX2FMa0wzWHdPaE9tbG56VE5IcXYtZWd6NTZHcFF2MlkySG1IaUVsQlVmbktyMHNTTXY1YXk2bF9pZ28?oc=5",
-        "source": "Reuters",
-        "datetime": 1791905543
       }
     ]
   },
   "news_seen_ids": [
-    "tv_f1f9d0ab92cf",
-    "et_0ff12dc64d07",
-    "et_e870c5eb6a6d",
-    8595235,
-    "tv_0957d7fe62a7",
-    "et_3a7d4896ac36",
-    "et_dfea7bd1d898",
-    "et_d9224849c63c",
-    8595446,
-    8595447,
-    8595345,
-    8595344,
-    "tv_481768dabeb1",
-    "tv_75dbfff4d93c",
     "tv_6873fe2e5708",
     "tv_16a9a38a34b5",
     "et_af13f5e8651a",
@@ -239540,7 +239526,21 @@
     "et_4e37679fffdb",
     8619720,
     8619722,
-    8619721
+    8619721,
+    "tv_2076c3ff413d",
+    "tv_d5764149a141",
+    "tv_cc0e5367411b",
+    "tv_673b9f100539",
+    "tv_f2060f89f978",
+    "tv_9804fa910f61",
+    "tv_1ff6c2d7f8e9",
+    "tv_bf8034db800a",
+    "et_84167cdbfd59",
+    "et_36f4902ed802",
+    8619827,
+    8619828,
+    8619932,
+    8619931
   ],
   "community_ideas_seen": [
     "https://www.tradingview.com/chart/XRPUSD/BErb6RNq-XRP-Dont-Tell-anyone/",
