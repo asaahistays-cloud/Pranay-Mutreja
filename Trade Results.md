@@ -5101,3 +5101,79 @@ No setups fired today.
 
 ---
 
+## 2026-10-16 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-15)
+- Suggested: 16 trade(s) | Resolved: 16 | Still playing out: 0
+- If you'd taken all 16 resolved trades: 8 right, 8 wrong (50% correct)
+- Net profit (INR): +3,408
+  [+] PNB.NS triple_ma_short (short): +4,074
+  [+] RPOWER.NS breakdown_short (short): +866.9
+  [-] UNIONBANK.NS triple_ma_long (long): -1,689
+  [+] BHEL.NS triple_ma_short (short): +5,152
+  [-] JPPOWER.NS triple_ma_long (long): -5,185
+  [-] INDIANB.NS triple_ma_long (long): -5,225
+  [+] BANKBARODA.NS triple_ma_short (short): +3,291
+  [-] HINDCOPPER.NS breakdown_short (short): -2,418
+  [-] INDIANB.NS triple_ma_short (short): -1,361
+  [-] UNIONBANK.NS triple_ma_short (short): -3,303
+  [+] BHEL.NS breakdown_short (short): +513.4
+  [-] INDIANB.NS triple_ma_long (long): -2,463
+  [+] JPPOWER.NS triple_ma_short (short): +1,321
+  [+] JPPOWER.NS breakdown_short (short): +9,284
+  [+] UNIONBANK.NS triple_ma_long (long): +550.4
+  [-] BHEL.NS breakdown_short (short): +0
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-15)
+- Suggested: 31 trade(s) | Resolved: 30 | Still playing out: 1
+- If you'd taken all 30 resolved trades: 15 right, 15 wrong (50% correct)
+- Net profit (USD): +380.8
+  [-] NEAR-USD oi_divergence_long (long): -17.52
+  [+] NEAR-USD oi_divergence_long (long): +71.53
+  [-] SOL-USD triple_ma_short (short): -23.11
+  [+] FET-USD oi_divergence_long (long): +15.77
+  [-] SOL-USD triple_ma_short (short): -21.71
+  [-] AVAX-USD oi_divergence_long (long): -24.62
+  [+] SOL-USD triple_ma_short (short): +48.6
+  [+] XRP-USD triple_ma_short (short): +126.3
+  [+] AVAX-USD triple_ma_short (short): +182.2
+  [+] NEAR-USD oi_divergence_long (long): +61.21
+  [-] FET-USD triple_ma_short (short): -18.34
+  [+] SOL-USD oi_divergence_long (long): +73.63
+  [-] XRP-USD oi_divergence_long (long): +0
+  [-] XRP-USD oi_divergence_long (long): -82.16
+  [-] SOL-USD oi_divergence_long (long): -78.22
+  [-] FET-USD oi_divergence_long (long): -93.23
+  [-] FET-USD triple_ma_short (short): -33.42
+  [+] NEAR-USD oi_divergence_long (long): +66.23
+  [-] NEAR-USD oi_divergence_long (long): -156.7
+  [+] NEAR-USD triple_ma_short (short): +5.361
+  [+] BTC-USD triple_ma_short (short): +44.24
+  [+] ETH-USD triple_ma_short (short): +34.18
+  [+] XRP-USD oi_divergence_long (long): +57.14
+  [-] XRP-USD triple_ma_short (short): -3.153
+  [-] XRP-USD oi_divergence_long (long): +0
+  [-] SOL-USD oi_divergence_long (long): -27.33
+  [-] AVAX-USD triple_ma_short (short): -101.5
+  [+] XRP-USD oi_divergence_long (long): +157
+  [+] SOL-USD triple_ma_long (long): +38.47
+  [+] XRP-USD oi_divergence_long (long): +79.92
+- 1 trade(s) still open, not yet counted above: FET-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-10-15)
+- Suggested: 4 trade(s) | Resolved: 2 | Still playing out: 2
+- If you'd taken all 2 resolved trades: 1 right, 1 wrong (50% correct)
+- Net loss (USD): -371.5
+  [+] NKE triple_ma_long (long): +173
+  [-] DKNG triple_ma_long (long): -544.6
+- 2 trade(s) still open, not yet counted above: WFC (triple_ma_long), DKNG (triple_ma_long)
+
+**INDIA FUTURES (MANUAL) -- SIGNAL QUALITY** (2026-10-15)
+- Suggested: 2 trade(s) | Resolved: 2 | Still playing out: 0
+- If you'd taken all 2 resolved trades: 2 right, 0 wrong (100% correct)
+- Net profit (INR): +8,613
+  [+] NIFTY-FUT triple_ma_long (long): +5,059
+  [+] BANKNIFTY-FUT triple_ma_long (long): +3,554
+
+---
+
