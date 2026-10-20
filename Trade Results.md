@@ -5445,3 +5445,56 @@ No setups fired today.
 
 ---
 
+## 2026-10-21 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-20)
+No setups fired today.
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-20)
+- Suggested: 27 trade(s) | Resolved: 27 | Still playing out: 0
+- If you'd taken all 27 resolved trades: 13 right, 14 wrong (48% correct)
+- Net loss (USD): -196.7
+  [+] NEAR-USD triple_ma_short (short): +67.7
+  [+] SOL-USD triple_ma_long (long): +54.39
+  [-] ETH-USD triple_ma_long (long): -37.22
+  [-] NEAR-USD oi_divergence_long (long): -121.1
+  [+] FET-USD oi_divergence_long (long): +61.53
+  [+] BTC-USD triple_ma_short (short): +69.23
+  [-] NEAR-USD oi_divergence_long (long): +0
+  [+] ETH-USD triple_ma_short (short): +56.83
+  [+] FET-USD oi_divergence_long (long): +56.47
+  [-] SOL-USD triple_ma_short (short): -61.59
+  [-] AVAX-USD triple_ma_long (long): -61.74
+  [-] NEAR-USD oi_divergence_long (long): -117.7
+  [-] FET-USD oi_divergence_long (long): -22.37
+  [-] FET-USD triple_ma_short (short): -47.26
+  [-] BTC-USD triple_ma_short (short): -45.94
+  [+] NEAR-USD oi_divergence_long (long): +76.59
+  [+] AVAX-USD triple_ma_short (short): +77.66
+  [+] XRP-USD triple_ma_short (short): +35.44
+  [-] AVAX-USD oi_divergence_long (long): -99.52
+  [-] FET-USD oi_divergence_long (long): -41.02
+  [-] NEAR-USD oi_divergence_long (long): -109.7
+  [+] NEAR-USD oi_divergence_long (long): +31.65
+  [-] BTC-USD triple_ma_short (short): -38.89
+  [-] AVAX-USD triple_ma_short (short): -20.67
+  [+] SOL-USD triple_ma_long (long): +22.55
+  [+] SOL-USD oi_divergence_long (long): +16.83
+  [+] FET-USD oi_divergence_long (long): +1.097
+
+**US -- SIGNAL QUALITY** (2026-10-20)
+- Suggested: 11 trade(s) | Resolved: 8 | Still playing out: 3
+- If you'd taken all 8 resolved trades: 2 right, 6 wrong (25% correct)
+- Net loss (USD): -1,801
+  [-] MO triple_ma_long (long): -388.6
+  [-] NKE triple_ma_long (long): -147.8
+  [+] VZ triple_threat_long (long): +267.1
+  [-] KEY triple_ma_long (long): -419.6
+  [-] AAL triple_ma_long (long): -448.9
+  [-] MARA triple_ma_long (long): -429.4
+  [+] MARA triple_ma_long (long): +174.6
+  [-] INTC triple_ma_long (long): -408.9
+- 3 trade(s) still open, not yet counted above: MO (triple_ma_long), CLF (triple_ma_long), VZ (triple_ma_long)
+
+---
+
