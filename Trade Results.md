@@ -5498,3 +5498,59 @@ No setups fired today.
 
 ---
 
+## 2026-10-22 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-21)
+- Suggested: 11 trade(s) | Resolved: 11 | Still playing out: 0
+- If you'd taken all 11 resolved trades: 7 right, 4 wrong (64% correct)
+- Net loss (INR): -2,176
+  [+] JPPOWER.NS breakdown_short (short): +2,629
+  [+] BHEL.NS breakdown_short (short): +925.6
+  [-] CANBK.NS triple_ma_long (long): -2,843
+  [-] INDIANB.NS triple_ma_short (short): -200.5
+  [+] JPPOWER.NS breakdown_short (short): +299.1
+  [+] CANBK.NS triple_ma_short (short): +99.15
+  [+] HINDCOPPER.NS breakdown_short (short): +1,729
+  [+] UNIONBANK.NS triple_ma_long (long): +440.5
+  [+] BANKBARODA.NS breakdown_short (short): +740.9
+  [-] SUZLON.NS breakdown_short (short): -2,571
+  [-] HINDCOPPER.NS breakdown_short (short): -3,425
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-21)
+- Suggested: 21 trade(s) | Resolved: 21 | Still playing out: 0
+- If you'd taken all 21 resolved trades: 10 right, 11 wrong (48% correct)
+- Net loss (USD): -384.6
+  [-] NEAR-USD oi_divergence_long (long): -42.11
+  [+] AVAX-USD oi_divergence_long (long): +4.671
+  [-] SOL-USD oi_divergence_long (long): -77.43
+  [+] AVAX-USD triple_ma_long (long): +97.02
+  [-] NEAR-USD oi_divergence_long (long): -9.171
+  [-] AVAX-USD oi_divergence_long (long): -1.433
+  [+] SOL-USD triple_ma_short (short): +11.61
+  [-] BTC-USD triple_ma_short (short): -87.26
+  [-] ETH-USD triple_ma_short (short): -1.604
+  [+] FET-USD oi_divergence_long (long): +19.31
+  [+] NEAR-USD oi_divergence_long (long): +46.9
+  [-] FET-USD triple_ma_short (short): -210.5
+  [+] AVAX-USD oi_divergence_long (long): +42.27
+  [-] AVAX-USD triple_ma_long (long): -88.49
+  [-] AVAX-USD triple_ma_short (short): -69.22
+  [+] NEAR-USD oi_divergence_long (long): +77.42
+  [-] FET-USD triple_ma_short (short): -71.7
+  [-] AVAX-USD triple_ma_short (short): -116.6
+  [+] AVAX-USD oi_divergence_long (long): +9.45
+  [+] FET-USD oi_divergence_long (long): +52.89
+  [+] NEAR-USD oi_divergence_long (long): +29.33
+
+**US -- SIGNAL QUALITY** (2026-10-21)
+- Suggested: 6 trade(s) | Resolved: 4 | Still playing out: 2
+- If you'd taken all 4 resolved trades: 3 right, 1 wrong (75% correct)
+- Net profit (USD): +407.2
+  [+] AAL triple_ma_long (long): +437.3
+  [+] AAL triple_ma_long (long): +360.5
+  [-] GOLD triple_ma_long (long): -478.5
+  [+] GOLD triple_ma_long (long): +87.87
+- 2 trade(s) still open, not yet counted above: NCLH (triple_ma_long), NCLH (triple_threat_long)
+
+---
+
