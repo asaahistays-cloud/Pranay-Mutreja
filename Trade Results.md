@@ -5554,3 +5554,71 @@ No setups fired today.
 
 ---
 
+## 2026-10-23 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-22)
+- Suggested: 8 trade(s) | Resolved: 7 | Still playing out: 1
+- If you'd taken all 7 resolved trades: 4 right, 3 wrong (57% correct)
+- Net loss (INR): -3,062
+  [-] HINDCOPPER.NS breakdown_short (short): -5,467
+  [+] HINDCOPPER.NS triple_ma_short (short): +1,127
+  [+] YESBANK.NS triple_ma_short (short): +486.1
+  [+] ETERNAL.NS triple_ma_short (short): +2,444
+  [-] SAIL.NS triple_ma_long (long): -1,835
+  [-] ETERNAL.NS breakdown_short (short): -1,148
+  [+] HUDCO.NS triple_ma_short (short): +1,331
+- 1 trade(s) still open, not yet counted above: PNB.NS (range_long_rejection)
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-22)
+- Suggested: 36 trade(s) | Resolved: 33 | Still playing out: 3
+- If you'd taken all 33 resolved trades: 16 right, 17 wrong (48% correct)
+- Net loss (USD): -16.69
+  [-] SOL-USD oi_divergence_long (long): -103.2
+  [+] AVAX-USD oi_divergence_long (long): +33.31
+  [-] NEAR-USD oi_divergence_long (long): -83.77
+  [+] NEAR-USD oi_divergence_long (long): +141.1
+  [-] FET-USD triple_ma_long (long): -31.06
+  [-] AVAX-USD oi_divergence_long (long): -45.86
+  [+] FET-USD triple_ma_short (short): +17.65
+  [+] AVAX-USD triple_ma_short (short): +31.42
+  [-] AVAX-USD oi_divergence_long (long): -87.09
+  [+] ETH-USD triple_ma_short (short): +30.37
+  [-] XRP-USD oi_divergence_long (long): -146.7
+  [+] XRP-USD triple_ma_short (short): +195.8
+  [+] SOL-USD oi_divergence_long (long): +5.303
+  [-] NEAR-USD triple_ma_short (short): -47.29
+  [-] BTC-USD triple_ma_short (short): -19.99
+  [-] SOL-USD oi_divergence_long (long): -103.6
+  [+] NEAR-USD triple_ma_short (short): +42.72
+  [-] NEAR-USD oi_divergence_long (long): +0
+  [-] AVAX-USD oi_divergence_long (long): -156.1
+  [-] XRP-USD oi_divergence_long (long): -21.95
+  [+] AVAX-USD oi_divergence_long (long): +56.15
+  [+] NEAR-USD oi_divergence_long (long): +32.54
+  [+] NEAR-USD oi_divergence_long (long): +27.46
+  [-] SOL-USD triple_ma_short (short): -22.73
+  [+] AVAX-USD oi_divergence_long (long): +44.32
+  [-] NEAR-USD triple_ma_short (short): -43.88
+  [+] NEAR-USD oi_divergence_long (long): +107.9
+  [+] XRP-USD oi_divergence_long (long): +79.57
+  [+] SOL-USD triple_ma_short (short): +38.77
+  [+] AVAX-USD oi_divergence_long (long): +63.79
+  [-] NEAR-USD oi_divergence_long (long): -3.493
+  [-] FET-USD oi_divergence_long (long): -11.48
+  [-] SOL-USD oi_divergence_long (long): -36.59
+- 3 trade(s) still open, not yet counted above: ETH-USD (triple_ma_short), XRP-USD (oi_divergence_long), NEAR-USD (oi_divergence_long)
+
+**US -- SIGNAL QUALITY** (2026-10-22)
+- Suggested: 8 trade(s) | Resolved: 6 | Still playing out: 2
+- If you'd taken all 6 resolved trades: 3 right, 3 wrong (50% correct)
+- Net loss (USD): -1,984
+  [-] NKE triple_ma_long (long): -832.9
+  [-] NIO triple_threat_long (long): +0
+  [-] KMI triple_threat_long (long): -1,905
+  [+] LYFT triple_threat_long (long): +260
+  [+] LYFT triple_ma_long (long): +199.1
+  [+] T triple_ma_long (long): +294.9
+- 2 trade(s) still open, not yet counted above: VZ (triple_ma_long), KMI (triple_ma_long)
+
+---
+
