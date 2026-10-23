@@ -5622,3 +5622,56 @@ No setups fired today.
 
 ---
 
+## 2026-10-24 00:00 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-10-23)
+- Suggested: 5 trade(s) | Resolved: 5 | Still playing out: 0
+- If you'd taken all 5 resolved trades: 0 right, 5 wrong (0% correct)
+- Net loss (INR): -1.186e+04
+  [-] JPPOWER.NS breakdown_short (short): -310.8
+  [-] SAIL.NS breakdown_short (short): -3,333
+  [-] IOB.NS breakdown_short (short): -4,916
+  [-] HUDCO.NS range_long_rejection (long): -2,134
+  [-] RPOWER.NS triple_ma_short (short): -1,171
+
+**CRYPTO -- SIGNAL QUALITY** (2026-10-23)
+- Suggested: 25 trade(s) | Resolved: 24 | Still playing out: 1
+- If you'd taken all 24 resolved trades: 11 right, 13 wrong (46% correct)
+- Net loss (USD): -92.54
+  [+] XRP-USD oi_divergence_long (long): +59.3
+  [-] NEAR-USD oi_divergence_long (long): -29.52
+  [-] BTC-USD triple_ma_short (short): -37.7
+  [-] ETH-USD triple_ma_short (short): -47.83
+  [+] SOL-USD triple_ma_long (long): +8.151
+  [+] FET-USD triple_ma_long (long): +44.89
+  [+] ETH-USD triple_ma_long (long): +41.49
+  [+] BTC-USD triple_ma_long (long): +36.86
+  [-] AVAX-USD oi_divergence_long (long): -22.95
+  [-] FET-USD oi_divergence_long (long): -9.2
+  [+] XRP-USD oi_divergence_long (long): +83.73
+  [+] NEAR-USD triple_ma_short (short): +36.27
+  [+] AVAX-USD triple_ma_short (short): +25.78
+  [-] ETH-USD triple_ma_short (short): -101.8
+  [-] SOL-USD triple_ma_short (short): -62.47
+  [+] AVAX-USD oi_divergence_long (long): +31
+  [-] BTC-USD triple_ma_short (short): -43.38
+  [-] BTC-USD triple_ma_short (short): -72.94
+  [+] AVAX-USD oi_divergence_long (long): +146.8
+  [-] BTC-USD triple_ma_long (long): -45.26
+  [+] NEAR-USD triple_ma_short (short): +20.34
+  [-] NEAR-USD oi_divergence_long (long): +0
+  [-] XRP-USD oi_divergence_long (long): -120.6
+  [-] BTC-USD triple_ma_short (short): -33.47
+- 1 trade(s) still open, not yet counted above: BTC-USD (triple_ma_short)
+
+**US -- SIGNAL QUALITY** (2026-10-23)
+- Suggested: 4 trade(s) | Resolved: 4 | Still playing out: 0
+- If you'd taken all 4 resolved trades: 4 right, 0 wrong (100% correct)
+- Net profit (USD): +1,204
+  [+] GM triple_ma_long (long): +209.4
+  [+] SIRI triple_threat_long (long): +539.6
+  [+] OXY triple_ma_long (long): +343.3
+  [+] VZ triple_ma_long (long): +111.6
+
+---
+
