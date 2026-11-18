@@ -5721,3 +5721,27 @@ No setups fired today.
 
 ---
 
+## 2026-11-19 00:04 IST
+
+**INDIA -- SIGNAL QUALITY** (2026-11-18)
+- Suggested: 1 trade(s) | Resolved: 1 | Still playing out: 0
+- If you'd taken all 1 resolved trades: 1 right, 0 wrong (100% correct)
+- Net profit (INR): +380.4
+  [+] IDEA.NS triple_ma_short (short): +380.4
+
+**CRYPTO -- SIGNAL QUALITY** (2026-11-18)
+- Suggested: 4 trade(s) | Resolved: 2 | Still playing out: 2
+- If you'd taken all 2 resolved trades: 0 right, 2 wrong (0% correct)
+- Net loss (USD): -317.5
+  [-] SOL-USD triple_ma_short (short): -57.64
+  [-] AVAX-USD oi_divergence_long (long): -259.8
+- 2 trade(s) still open, not yet counted above: AVAX-USD (triple_ma_short), BTC-USD (triple_ma_short)
+
+**US -- SIGNAL QUALITY** (2026-11-18)
+- Suggested: 1 trade(s) | Resolved: 1 | Still playing out: 0
+- If you'd taken all 1 resolved trades: 0 right, 1 wrong (0% correct)
+- Net loss (USD): -270.1
+  [-] NIO triple_ma_long (long): -270.1
+
+---
+
